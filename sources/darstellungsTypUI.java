@@ -22,14 +22,10 @@
 		Dominic Hopf (dmaphy at users.berlios.de),
 		Robert Exner (ashrak at users.berlios.de),
 		Matthias Tylkowski (micron at users.berlios.de)
-	@since 2005-01-31
-	@version 0.0.1
 
-*/
-
-/**
 	verändert die Darstellungseigenschaften der Kurve
 */
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -66,6 +62,7 @@ class darstellungsTypUI extends JDialog {
 	public darstellungsTypUI(int tabellenNummer){
 		// erzeugen eines neuen Dialogs speziell für jede kurve...
 		this.tabellenNummer = tabellenNummer;
+		System.out.println(tabellenNummer);
 		this.pack();
 	}
 
@@ -97,9 +94,7 @@ class darstellungsTypUI extends JDialog {
 			this.bottomPanel.add(this.okKnopf);
 				this.okKnopf.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
-
 						if (wedabecha.getKurve(tabellenNummer).isset()){
-
 							wedabecha.getKurve(tabellenNummer).setKurvenStilIndex(
 								stilCombo.getSelectedIndex()
 							);
@@ -107,8 +102,8 @@ class darstellungsTypUI extends JDialog {
  							wedabecha.getKurve(tabellenNummer).setFarbe(farbe);
 
 							setVisible(false);
-						}//if
-					}
+						} // if
+					} // actionPerformed()
 				});
 
 		/*
@@ -116,9 +111,9 @@ class darstellungsTypUI extends JDialog {
 		*/
 		int bildSchirmBreite = getToolkit().getScreenSize().width;
 		int bildSchirmHoehe = getToolkit().getScreenSize().height;
-		int Xposition = (bildSchirmBreite - 350) / 2;
+		int Xposition = (bildSchirmBreite - 500) / 2;
 		int Yposition = (bildSchirmHoehe - 150) / 2;
-		setSize(350,150);
+		setSize(500,150);
 		setLocation(Xposition,Yposition);
 		setResizable(false);
 		setModal(true);

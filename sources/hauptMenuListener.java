@@ -23,14 +23,9 @@
 		Dominic Hopf (dmaphy at users.berlios.de),
 		Robert Exner (ashrak at users.berlios.de),
 		Matthias Tylkowski (micron at users.berlios.de)
-	@since 2005-01-31
-	@version 0.0.1
 
-*/
-
-/**
-Diese Datei enhaelt Hintergrundfunktionen bzw. Hintergrundklassen
-und ActionListener-Klassen für die hauptMenuUI
+	Diese Datei enhaelt Hintergrundfunktionen bzw. Hintergrundklassen
+	und ActionListener-Klassen für die hauptMenuUI
 */
 
 import java.awt.event.*;

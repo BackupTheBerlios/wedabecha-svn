@@ -21,12 +21,7 @@
 	@author
 		Dominic Hopf (dmaphy at users.berlios.de),
 		Robert Exner (ashrak at users.berlios.de)
-	@since 2005-01-26
-	@version 0.0.1
 
-*/
-
-/**
 	Diese Datei enthält die Hintergrundfunktionen für importiereTabelle
 */
 
@@ -258,7 +253,7 @@ public class importiereTabelle {
 		String splittedDate[];
 		String tempDatum = "";
 		ArrayList ergebnis =  new ArrayList();
-
+		try {
 		for (int i = 0; i < datumAL.size(); i++){
 			String ergebnisDate[] = new String[3]; // splittedDate richtig sortiert nach YYYY MM DD
 			tempDatum = (String)datumAL.get(i);
@@ -269,28 +264,28 @@ public class importiereTabelle {
 					ergebnisDate = splittedDate;
 				break;
 				case 1: /*dd.mm.yyyy*/
-					splittedDate = tempDatum.split("\\.");
-					ergebnisDate[0] = splittedDate[2];
-					ergebnisDate[1] = splittedDate[1];
-					ergebnisDate[2] = splittedDate[0];
+						splittedDate = tempDatum.split("\\.");
+						ergebnisDate[0] = splittedDate[2];
+						ergebnisDate[1] = splittedDate[1];
+						ergebnisDate[2] = splittedDate[0];
 				break;
 				case 2: /*mm.dd.yyyy*/
-					splittedDate = tempDatum.split("\\.");
-					ergebnisDate[0] = splittedDate[2];
-					ergebnisDate[1] = splittedDate[0];
-					ergebnisDate[2] = splittedDate[1];
+						splittedDate = tempDatum.split("\\.");
+						ergebnisDate[0] = splittedDate[2];
+						ergebnisDate[1] = splittedDate[0];
+						ergebnisDate[2] = splittedDate[1];
 				break;
 				case 3: /*dd/mm/yyyy*/
-					splittedDate = tempDatum.split("/");
-					ergebnisDate[0] = splittedDate[2];
-					ergebnisDate[1] = splittedDate[1];
-					ergebnisDate[2] = splittedDate[0];
+						splittedDate = tempDatum.split("/");
+						ergebnisDate[0] = splittedDate[2];
+						ergebnisDate[1] = splittedDate[1];
+						ergebnisDate[2] = splittedDate[0];
 				break;
 				case 4: /*mm/dd/yyyy*/
-					splittedDate = tempDatum.split("/");
-					ergebnisDate[0] = splittedDate[2];
-					ergebnisDate[1] = splittedDate[0];
-					ergebnisDate[2] = splittedDate[1];
+						splittedDate = tempDatum.split("/");
+						ergebnisDate[0] = splittedDate[2];
+						ergebnisDate[1] = splittedDate[0];
+						ergebnisDate[2] = splittedDate[1];
 				break;
 			} // switch
 
@@ -299,8 +294,17 @@ public class importiereTabelle {
 
 			ergebnis.add(ergebnisDate);
 		} // for()
+		} catch (ArrayIndexOutOfBoundsException except){
+			showFalschesDatumFehler();
+		} // try
 // 		System.out.println(ergebnis); // debug-ausgabe
 		return ergebnis;
 	} // getDaten()
+
+	private static void showFalschesDatumFehler(){
+		JOptionPane.showMessageDialog(null,
+        "Scheinbar wurde ein falsches Datumsformat angegeben\nBitte korrigieren Sie es.","Falsches Datumsformat",
+        JOptionPane.ERROR_MESSAGE );
+	}
 
 } // importiereTabelle

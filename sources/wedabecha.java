@@ -17,6 +17,10 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+/**
+	@author Dominic Hopf (dmaphy at users.berlios.de)
+*/
+
 /*
 	hauptklasse die als programm aufgerufen wird.
 	das programm soll fünf kurven zeichnen können.

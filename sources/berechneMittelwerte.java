@@ -16,19 +16,17 @@
  *   Free Software Foundation, Inc.,                                        *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
+
 /**
     @author Matthias Tylkowski
-    @since 2005-01-26
+
+	diese Klasse dient zur Berechnung der Verschiedenen Mittelwerte die dann
+	als Diagramm dargestellt werden können.
  */
 
 import java.util.*;
 
 public class berechneMittelwerte {
-
-    /**
-	diese Klasse dient zur Berechnung der Verschiedenen Mittelwerte die dann
-	als Diagramm dargestellt werden können.
-    */
 
     private ArrayList werte;
     private ArrayList datum;

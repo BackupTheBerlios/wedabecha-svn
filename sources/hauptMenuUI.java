@@ -21,9 +21,6 @@
 	@author
 		Dominic Hopf (dmaphy at users.berlios.de),
 		Robert Exner (ashrak at users.berlios.de)
-	@since 2005-01-31
-	@version 0.0.1
-
 */
 
 // in dieser Klasse brauchen wir nur Swing, da sie
@@ -107,8 +104,6 @@ public class hauptMenuUI {
 			private JMenuItem dokuMenuItem = new JMenuItem("Dokumentation");
 			private JMenuItem aboutMenuItem = new JMenuItem("\u00dcber");
 
-		private int actionCounter;
-
 	// konstruktor
 	public hauptMenuUI(){
 		this.pack();
@@ -151,7 +146,6 @@ public class hauptMenuUI {
 // 						this.kurveSpeichernMenuItem[kurveIt].setEnabled(false);
 					this.kurveMenuList[kurveIt].add(this.kurveDarstellungMenuItem[kurveIt]);
 						this.kurveDarstellungMenuItem[kurveIt].setEnabled(false);
-
 					this.kurveMenuList[kurveIt].add(this.kurveNeuZeichnenMenuItem[kurveIt]);
 						this.kurveNeuZeichnenMenuItem[kurveIt].setEnabled(false);
 						this.kurveNeuZeichnenMenuItem[kurveIt].addActionListener(
@@ -170,7 +164,7 @@ public class hauptMenuUI {
 													)
 												);
 
-											}catch(ArrayIndexOutOfBoundsException except){
+											} catch (ArrayIndexOutOfBoundsException except){
 												try{
 													hauptFensterUI.layeredPane.remove(
 														hauptFensterUI.layeredPane.getIndexOf(
@@ -178,11 +172,11 @@ public class hauptMenuUI {
 														)
 													);
 
-												}catch(ArrayIndexOutOfBoundsException exception){
-												//mache von mir aus nix
-												}//try
+												} catch(ArrayIndexOutOfBoundsException exception){
+													// mache von mir aus nix
+												} // try
 
-											}//try
+											} // try
 
 
 											hauptFensterUI.layeredPane.repaint();
@@ -227,15 +221,36 @@ public class hauptMenuUI {
 
 			} // for
 
+			this.kurveDarstellungMenuItem[0].addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent event){
+					new darstellungsTypUI(1);
+				}
+			});
 
-//			for (actionCounter=1; actionCounter<6; actionCounter++){
-				actionCounter = 1;
-				this.kurveDarstellungMenuItem[actionCounter - 1].addActionListener(new ActionListener(){
-							public void actionPerformed(ActionEvent event){
-								new darstellungsTypUI(actionCounter);
-							}
-						});
-//			}
+			this.kurveDarstellungMenuItem[1].addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent event){
+					new darstellungsTypUI(2);
+				}
+			});
+
+			this.kurveDarstellungMenuItem[2].addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent event){
+					new darstellungsTypUI(3);
+				}
+			});
+
+			this.kurveDarstellungMenuItem[3].addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent event){
+					new darstellungsTypUI(4);
+				}
+			});
+
+			this.kurveDarstellungMenuItem[4].addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent event){
+					new darstellungsTypUI(5);
+				}
+			});
+
 		this.mainMenuBar.add(this.kurveMenu);
 		// ende kurve-menues
 

@@ -19,9 +19,7 @@
 
 /**
 	@author
-		Martin Müller (mrtnmueller at users.berlios.de),
-	@since 2004-11-26
-	@version 1.0
+		Martin Müller (mrtnmueller at users.berlios.de)
 */
 
 // Diese Klasse dient zum Erstellen und Speichern eines Screenshots
@@ -36,20 +34,20 @@ import java.io.*;
 public class exportiereGrafik {
 	private String dateiname;
 
-	
+
 	public void export() {
-		
+
 		//holt die Größe des Bildes aus HauptFensterUI
 		Dimension size  = hauptFensterUI.layeredPane.getSize();
-		
+
 		//erzeugt ein Image aus layeredPane
 		Image image = hauptFensterUI.layeredPane.createImage(size.width, size.height);
-		
+
 		//zeichnet alles auf die layeredPane, damit Kurve, Gitter
 		//und Funktion auf dem bild sichtbar sind
 		Graphics g = image.getGraphics();
 		hauptFensterUI.layeredPane.paint(g);
-		
+
 		try {
 			//öffnet den OutputStream und erzeugt die Datei "dateiname"
 			OutputStream  out  = new FileOutputStream( this.dateiname );
@@ -66,21 +64,21 @@ public class exportiereGrafik {
 				out.close(); } catch (IOException sonmist){
 				exportiereGrafikUI.showCouldNotCloseError();
 			}
-		} catch 
+		} catch
 			//fängt die FileNotFoundExeption ab
 			(FileNotFoundException dateinichda){
 			exportiereGrafikUI.showFileNotFoundError(this.dateiname);
 		} // try
 	} // export()
 
-	
+
 	protected void setFile(String name){
 		this.dateiname = name;
 	} // setFile()
 
-	
+
 	protected String getFile(){
 		return this.dateiname;
 	}//getFile()
-	
+
 } // exportiereGrafik

@@ -19,8 +19,6 @@
 /**
 	@author
 		Matthias Tylkowski (micron at users.berlios.de)
-	@since 2005-02-01
-	@version 0.0.1
 */
 
 import java.awt.*;

@@ -54,8 +54,8 @@ public class Koordinatensystem extends JComponent {
 
 	private int yBeschriftung;
 	private double multiplikator;
-	private int startDateIndex; // Startwert für den horizontalen Zeichenbereich
-	private int endDateIndex; // Endwert für den horizontalen Zeichenbereich
+	private int startDateIndex = 0; // Startwert für den horizontalen Zeichenbereich
+	private int endDateIndex = 299; // Endwert für den horizontalen Zeichenbereich
 
 	//Konstruktor
 	Koordinatensystem(){
@@ -192,6 +192,7 @@ public class Koordinatensystem extends JComponent {
 			g.drawString(text[0] + "-" + text[1] + "-" + text[2],xTextPos,startY + 12);
 			xTextPos += 100;
 		} // for
+
 	} // paintComponent()
 
 

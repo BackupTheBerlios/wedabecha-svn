@@ -21,12 +21,7 @@
 	@author
 		Dominic Hopf (dmaphy at users.berlios.de),
 		Robert Exner (ashrak at users.berlios.de)
-	@since 2005-01-31
-	@version 0.0.1
 
-*/
-
-/**
 	Debug
 	Testklasse zum auslesen der Daten,
 	kann evtl. in zeichneKurve übernommen und bearbeitet werden.

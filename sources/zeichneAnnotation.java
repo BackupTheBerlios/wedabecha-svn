@@ -18,17 +18,14 @@
  ***************************************************************************/
 /**
     @author Matthias Tylkowski
-    @since 2005-01-31
- */
+
+	Diese Klasse dient als Sammelklasse, für die verschiedenen Annotationnen
+	(Text, Linie, Pfeil)
+*/
 
 import javax.swing.*;
 import java.awt.*;
 import java.lang.Math;
-
-/**
- * Diese Klasse dient als Sammelklasse, für die verschiedenen Annotationnen
- * (Text, Linie, Pfeil)
- */
 
 public class zeichneAnnotation extends JComponent{
 

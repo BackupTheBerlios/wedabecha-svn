@@ -21,9 +21,6 @@
 	@author
 		Dominic Hopf (dmaphy at users.berlios.de),
 		Robert Exner (ashrak at users.berlios.de)
-	@since 2005-01-31
-	@version 0.0.1
-
 */
 
 import javax.swing.*;
@@ -223,10 +220,10 @@ class importiereTabelleUI extends JDialog  {
 				public void actionPerformed(ActionEvent event){
 					int datenLaengen[] = new int[5];
 					for(int i = 1; i <= 5; i++){
-					    /* beim klick auf [OK] alle importierten Tabellen als 
+					    /* beim klick auf [OK] alle importierten Tabellen als
 						 * Kurve zeichnen und die erste Kurve sichtbar machen
 						 */
-						
+
 						if(wedabecha.getKurve(i).isset()){
 							wedabecha.getKurve(i).zeichneKurve();
 							hauptFensterUI.toolBar.setKurve1Button();

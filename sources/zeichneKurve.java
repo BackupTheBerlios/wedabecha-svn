@@ -19,8 +19,6 @@
 /**
 	@author
 		Matthias Tylkowski (micron at users.berlios.de)
-	@since 2005-02-01
-	@version 0.0.1
 */
 
 import java.awt.Graphics;
@@ -38,7 +36,7 @@ class zeichneLinienKurve extends JComponent {
 
 	private double multiplikator;
 	private double max;
-	
+
 	private int breite = 670;
 	
 	private ArrayList ausgangsWerte;
@@ -56,8 +54,8 @@ class zeichneLinienKurve extends JComponent {
 		this.breite = breite;
 		this.setSize(breite, hoehe);
 	} // setGroesse()
-	
-	
+
+
 	protected void setVisibility(boolean sichtbar){
 		this.setVisible(sichtbar);
 	} // setVisibility()
@@ -76,9 +74,14 @@ class zeichneLinienKurve extends JComponent {
 	public void paintComponent(Graphics kurve){
 		getMax();
 		int zaehler = 25;
-		
+
+<<<<<<< .mine
+		this.abstand = (2 * this.ausgangsWerte.size()) / this.werte.size();
+
+=======
 		this.abstand = (2 * this.ausgangsWerte.size() * this.breite / 670)  / this.werte.size();
 
+>>>>>>> .r180
 		for(int i = dateBeginIndex / (this.abstand / 2); i < dateEndIndex / (this.abstand / 2); i ++){
 			kurve.setColor(this.farbe);
 			kurve.drawLine(	zaehler,
@@ -126,8 +129,8 @@ class zeichneAktienKurve extends JComponent {
 	protected void setGroesse(int breite, int hoehe){
 		this.setSize(breite, hoehe);
 	}// setGroesse()
-	
-	
+
+
 	protected void setVisibility( boolean sichtbar){
 		this.setVisible(sichtbar);
 	} // setVisibility()

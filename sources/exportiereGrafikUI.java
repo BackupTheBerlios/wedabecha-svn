@@ -19,9 +19,7 @@
 
 /**
 	@author
-		Martin Müller (mrtnmueller at users.berlios.de),
-	@since 2004-11-26
-	@version 1.0
+		Martin Müller (mrtnmueller at users.berlios.de)
 */
 
 // Diese Klasse dient zum Aufruf des "Speichern"-Dialoges
@@ -37,17 +35,17 @@ public class exportiereGrafikUI {
 	//Konstruktor
 	private exportiereGrafik export = new exportiereGrafik();
 
-	
+
 	public exportiereGrafikUI () {
-	
+
 		try{
 			// erzeugen eines neuen Objekts "fc"
 			JFileChooser fc = new JFileChooser();
-		
+
 			//Dialog-Typ und Titel setzen
 			fc.setDialogTitle("Grafik exportieren");
 			fc.setDialogType(JFileChooser.SAVE_DIALOG);
-	
+
 			//erzeugt zu fc einen Dateifilter
 			fc.setFileFilter( new FileFilter() {
 				//akzeptiert nur Dateien mit .jpg als Endung
@@ -55,26 +53,26 @@ public class exportiereGrafikUI {
 					return 	f.isDirectory() ||
 							f.getName().toLowerCase().endsWith(".jpg");
 				} // accept()
-	
+
 				//Beschreibung des Dateityps im Speichern-Dialog
 				public String getDescription() {
 					return "JPEG-Bilddatei (*.jpg)";
 				}//getDescription()
-				
+
 			} ); //setFileFilter()
-	
+
 			//zeigt den Dialog an
 			int returnVal = fc.showSaveDialog( null );
-	
+
 			if ( returnVal == JFileChooser.APPROVE_OPTION ) {
 				// Rückgabe der gewälten Datei als "file"
 				File file = fc.getSelectedFile();
 				System.out.println( file.getName() );
-	
+
 				//Prüfung, ob Dateiname & Endung eigegeben wurden
 				String filename  = file.getName();
 				boolean isjpg = filename.endsWith( ".jpg" );
-				
+
 				//wenn Dateiendung eigegeben wurde, wird einfach
 				//das Eingegebene als Dateiname gesetzt
 				if (isjpg == true) {
@@ -83,16 +81,16 @@ public class exportiereGrafikUI {
 				//falls nicht, wird die Endung .jpg hinten angefügt
 					export.setFile(file.getAbsolutePath()+".jpg");
 				}//if
-	
+
 				export.export();//startet den Export
-	
+
 			} else {
 				System.out.println( "Auswahl abgebrochen" );
 			} // if
-	
+
 			fc.setVisible(false); // is klar, ne
 		}
-		catch 
+		catch
 			//fängt die Exeption ab, wenn auf abbrechen gedrückt wurde
 			(NullPointerException except){
 			JOptionPane.showMessageDialog

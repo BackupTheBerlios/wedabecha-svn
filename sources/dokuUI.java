@@ -18,11 +18,10 @@
  ***************************************************************************/
 /**
     @author Matthias Tylkowski
-    @since 2005-01-26
  */
 
 /*
-	Diese Klasse dient zur Darstellung der Kurzanleitung. 
+	Diese Klasse dient zur Darstellung der Kurzanleitung.
 	Je nach übergebenen Werten wird die gewünschte html-seite
 	dargestellt.
 */
@@ -58,29 +57,29 @@ public class dokuUI extends JFrame {
 		}else if(title.equals("Dokumentation")){
 		    path = new File("../dokumentation/html/hilfe/anleitung.html");
 		}// else if()
-		
+
 		try {
 			// gibt an, wie die eingelesene Datei dargestellt werden soll
 			doku.setContentType("text/html");
 			doku.setEditable(false);
-			
+
 			/* Der eingelesene Pfad kann nur relativ sein, weil bei jedem,
 			 * das Programm ausführt der Pfad zum wedabecha-Ordner anders
 			 * sein kann. dieser relative Pfad wird dann vom Programm in
-			 * einen absoluten Pfad, nach dem Schema: file://c:/... um- 
+			 * einen absoluten Pfad, nach dem Schema: file://c:/... um-
 			 * gewandelt, der dann auch überall gleich ist, und dies wird
-			 * dann zu einer URL gemacht, die dann von dem JEditorPane 
+			 * dann zu einer URL gemacht, die dann von dem JEditorPane
 			 * interpretiert werden kann.
 			 */
-			
+
 		    URL url = path.toURI().toURL();
 		    doku.setPage(url);
-	    	    
-		    
+
+
 		    /* Der HyperlinkListener dient, wie der Name schon sagt, dazu, die html-Links
 		     * in der geladenen Seite anzusteuern.
 			 */
-		    
+
 		    doku.addHyperlinkListener(new HyperlinkListener(){
 				public void hyperlinkUpdate( HyperlinkEvent event ){
 					HyperlinkEvent.EventType typ = event.getEventType();
@@ -100,7 +99,7 @@ public class dokuUI extends JFrame {
 		    }// HyperlinkListener()
 		    );// addHyperlinkListener
 
-	    	    
+
 		} catch (IOException except){
 			// fehlermeldung falls datei nicht gelesen werden kann
 			JOptionPane.showMessageDialog(null,
@@ -108,7 +107,7 @@ public class dokuUI extends JFrame {
 				,"Dateifehler",
 				JOptionPane.ERROR_MESSAGE );
 		} // try-catch()
-	
+
 		this.pack();
 	} // dokuUI();
 
