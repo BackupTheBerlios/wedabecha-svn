@@ -32,6 +32,7 @@ class zeichneLinie extends JComponent{
     private int endX;
     private int endY;
     
+    
     public zeichneLinie(int startXP, int startYP, int endXP, int endYP){
 	startX = startXP;
 	startY = startYP;
@@ -52,13 +53,10 @@ class zeichnePfeil extends JComponent{
     private int startY;
     private int endX;
     private int endY;
-    private int spitze1X; // X-Koordinate Pfeilspitze oben
-    private int spitze1Y; // Y-Koordinate Pfeilspitze oben
-    private int spitze2X; // X-Koordinate Pfeilspitze unten
-    private int spitze2Y; // Y-Koordinate Pfeilspitze unten
-    private double winkel; // Winkel der Linie zur X-Achse
     private Point st;
     private Point end;
+    
+    
     public zeichnePfeil(int startXP, int startYP, int endXP, int endYP){
 	startX = startXP;
 	startY = startYP;
@@ -66,7 +64,7 @@ class zeichnePfeil extends JComponent{
 	endY = endYP;
 	this.setSize(700, 500);
     }// zeichnePfeil()
-    
+        
     
     /*Algorithmus zum zeichnen des Pfeils zum größten teil aus dem Buch 
      "Profesional Java Fundamentals" entnommen */
@@ -110,7 +108,7 @@ class zeichneText extends JComponent{
     private int startX;
     private int startY;
     private String text;
-    
+        
     
     public zeichneText(String textP, int startXP, int startYP){
 	text = textP;

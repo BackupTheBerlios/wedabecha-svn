@@ -104,9 +104,11 @@ public class hauptFensterUI extends JFrame {
 								"Bitte den darzustellenden Text eingeben",
 								"neues Textfeld erstellen.",
 								JOptionPane.QUESTION_MESSAGE);
-				    zeichneText zeichneText = new zeichneText(text, me.getX(), me.getY());
-				    layeredPane.add(zeichneText, new Integer(8));
-				    System.out.println(text);
+				    if(text != null){
+					zeichneText zeichneText = new zeichneText(text, me.getX(), me.getY());
+					layeredPane.add(zeichneText, new Integer(8));
+					System.out.println(text);
+				    }// if
 				}// if
 			    }// if
 			}// mouseReleased(MouseEvent me)
