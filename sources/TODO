@@ -1,6 +1,7 @@
 BUG beim Tabelle exportieren,
 wenn man gar nichts eingibt und auf [OK] klickt,
 erscheint in der Konsole eine Exception...
+genauso beim klick auf [Abbrechen]
 
 ##############################################################################
 
