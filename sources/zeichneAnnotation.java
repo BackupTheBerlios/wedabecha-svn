@@ -57,29 +57,52 @@ class zeichnePfeil extends JComponent{
     private int spitze2X; // X-Koordinate Pfeilspitze unten
     private int spitze2Y; // Y-Koordinate Pfeilspitze unten
     private double winkel; // Winkel der Linie zur X-Achse
-    
+    private Point st;
+    private Point end;
     public zeichnePfeil(int startXP, int startYP, int endXP, int endYP){
 	startX = startXP;
 	startY = startYP;
 	endX = endXP;
 	endY = endYP;
 	this.setSize(700, 500);
-    }// zeichneLinie()
+    }// zeichnePfeil()
     
     
+    /*Algorithmus zum zeichnen des Pfeils zum größten teil aus dem Buch 
+     "Profesional Java Fundamentals" entnommen */
     public void paintComponent(Graphics pfeil){
-	// Berechnung der Koordinaten für die Pfeilspitze
-	winkel = Math.toDegrees(Math.tan((endY-startY)/(endX-startX)));
-	spitze1X = (int)Math.sqrt((Math.pow(20,2))/(2*Math.pow( (Math.tan(20)+winkel),2 )))+endX;
-	spitze1Y = (int)(endY+((spitze1X-endX)*Math.tan(winkel+20)));
-	spitze2X = (int)Math.sqrt((Math.pow(20,2))/(2*Math.pow((Math.tan(-20)+winkel),2)))+endX;
-	spitze2Y = (int)(endY+((spitze1X-endX)*Math.tan(winkel-20)));
-	System.out.println(startX+" "+startY+" "+endX+" "+endY);
-	System.out.println(winkel);
-	pfeil.drawLine(startX, startY, endX, endY);
-	pfeil.drawLine(spitze1X, spitze1Y, endX, endY);
-	pfeil.drawLine(spitze2X, spitze2Y, endX, endY);	
-    }// paintComponent(Graphics pfeil)
+	st = new Point(startX, startY);
+	end = new Point(endX, endY);
+	Point upLine = new Point(0,0);
+	Point downLine = new Point(0,0);
+	int direction ;
+	double theta;
+	    if((end.y -st.y) >= 0) direction = -1;
+		else direction = 1;
+
+        // Rotate the point by 30 deg
+
+        double angle = Math.atan((double)(end.x-st.x)/(double)(end.y-st.y));
+        int len = 10;
+        Point rel = new Point(len, len);
+
+        angle += Math.PI/2;
+        theta = -(angle + Math.PI/6);
+        //Rotate the line up
+
+        upLine.x =end.x -(int)( len* Math.cos(theta)*direction);
+        upLine.y =end.y -(int)( len* Math.sin(theta)*direction);
+        // Rotate the line down
+
+        theta = -(angle - Math.PI/6);
+        downLine.x =end.x -(int)( len* Math.cos(theta)*direction);
+        downLine.y =end.y -(int)( len* Math.sin(theta)*direction);
+
+        // Now the draw the arrow lines
+        pfeil.drawLine(end.x, end.y, upLine.x, upLine.y);
+        pfeil.drawLine(end.x, end.y, downLine.x, downLine.y);
+	pfeil.drawLine(st.x, st.y, end.x, end.y);
+   }
 }// zeichnePfeil
 
 
