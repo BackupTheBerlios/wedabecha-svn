@@ -50,8 +50,8 @@ public class definiereDatumUI extends JDialog {
 
 	// code für dritte zeile
 	private JRadioButton konkretRB = new JRadioButton("eines anderen konkreten Datumsformates :");
-	private String datenFormate[] = {"YYYY-MM-DD","DD.MM.YYYY","MM.DD.YYYY","DD/MM/YYYY","MM/DD/YYYY"};
-	private JComboBox datumCombo = new JComboBox(this.datenFormate);
+
+	private JComboBox datumCombo = new JComboBox(importiereTabelle.getDatenFormate());
 
 	private JButton okKnopf = new JButton("OK");
 	private JButton abbrechenKnopf = new JButton("Abbrechen");

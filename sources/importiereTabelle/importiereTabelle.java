@@ -43,10 +43,11 @@ public class importiereTabelle {
 
 	private String trennzeichen;
 	private String datumsFormat;
+	static String datenFormate[] = {"YYYY-MM-DD","DD.MM.YYYY","MM.DD.YYYY","DD/MM/YYYY","MM/DD/YYYY"};
 
 	// an welcher stelle der ascii-datei das datum steht...
-	//erste spalte->true
-	//letzte spalte->false
+	// erste spalte->true
+	// letzte spalte->false
 	private boolean isDatumsPosFirstColumn;
 
 	// stelle, an welcher das datum in der ascii-datei steht
@@ -61,8 +62,8 @@ public class importiereTabelle {
 	private boolean speichern;
 
 	// erstellt ein Array mit dem Datum
-	private ArrayList datum = new ArrayList();
-	private ListIterator datumIt = datum.listIterator();
+	private ArrayList datumAL = new ArrayList();
+	private ListIterator datumIt = datumAL.listIterator();
 
 
 	/*
@@ -115,12 +116,12 @@ public class importiereTabelle {
 
 	protected String getDatumsFormat(){
 		return this.datumsFormat;
-	} // getDatum()
+	} // getDatumsFormat()
 
 
-	protected void getIsoDateForm(String datum){
-
-	} // getIsoForm(String datum)
+	protected static String[] getDatenFormate(){
+		return datenFormate;
+	} // getDatenFormate()
 
 
 	protected void setDatumsPos(int pos){
@@ -186,34 +187,34 @@ public class importiereTabelle {
 	} // finalize()
 
 
-	public int[][] getDaten(){
+	public ArrayList getDaten(){
 
 		// liefert ausschliesslich die zu verarbeitenden Daten zurück.
 		// das Datum für die jeweilige Zeile kann über die Methode getDates() aufgerufen werden
 
-		// letztendliches Array der Zeilen aus dem Puffer
+		// letztendliches array welches zurückgeliefert werden soll.
 		ArrayList resAL = new ArrayList();
 		ListIterator resALIt = resAL.listIterator();
-
 
 		// zeile als Zeichenkette
 		String zeile;
 
-		// statisches Array, d.h. die Zeile gesplittet am Trennzeichen
+		// die Zeile gesplittet am Trennzeichen als statisches Array
 		String zeileL[];
 
-		// das selbe als dynamisches Array
+		// die am Trennzeichen gesplittete Zeile als dynamisches Array
 		ArrayList zeileAL = new ArrayList();
 		ListIterator zeileALIt = zeileAL.listIterator();
 
-
 		int zeilenlaenge;
 
-		// eine zeile des ergebnisses
-		int resZeileL[] = {1};
-
-		// das gesamte ergebnis zusammengesetzt
-		int result[][] = {{1}};
+		// if Abfrage setzt die Position des Datums,
+		// ob in der ersten oder letzten Spalte der Tabelle
+		if(this.isDatumsPosFirstColumn){
+			this.setDatumsPos(0);
+		} else {
+			this.setDatumsPos(resAL.size());
+		} // if() else
 
 		try {
 			// 1. datei auslesen
@@ -288,23 +289,22 @@ public class importiereTabelle {
 				// sondern eine Zeichkette aus mehreren Zeichen (Leerzeichen)
 				zeileL = zeile.split(this.trennzeichen);
 
-				for(int i = 0 ; i < zeileL.length ; i++){
+				for( int i = 0 ; i < zeileL.length ; i++){
 					zeileALIt.add(zeileL[i]);
 					// Datum aus Array kopieren
 					this.datumIt.add(zeileAL.get(this.datumsPos));
 					// Datum an datumsPos entfernen
 					zeileAL.remove(this.datumsPos);
-					//zeileALIt.set(Integer.parseInt((String)zeileALIt.next()));
+					// zeileALIt.set(Integer.parseInt((String)zeileALIt.next()));
 					// fügt der zu übergebenden Liste die Daten hinzu
 
-					int j = 0;
-					zeilenlaenge = zeileAL.size();
-
 					while (zeileALIt.hasNext()){
-						resZeileL[j] = Integer.parseInt((String)zeileALIt.next());
-						j++;
+						zeileALIt.set( Integer.parseInt( (String)zeileALIt.next() ) );
 					} // while()
 				} // for()
+
+				resALIt.add(zeileAL);
+
 			} // while()
 
 		} catch (IOException except){
@@ -313,33 +313,21 @@ public class importiereTabelle {
             	JOptionPane.ERROR_MESSAGE );
         } // try catch()
 
-
-//		Integer result2[] = (Integer[]) resAL.toArray(new Integer[0]);
-
-
-		// if Abfrage setzt die Position des Datums,
-		// ob in der ersten oder letzten Spalte der Tabelle
-		if(this.isDatumsPosFirstColumn){
-			this.setDatumsPos(0);
-		} else {
-			this.setDatumsPos(resAL.size());
-		} // if() else
-
-
-		return result;
+		return resAL;
 
 	} // getDaten()
 
 
-	public int[][] getDatum(){
+	public void getDatum(){
 		/**
 		liefert eine Liste von Strings mit dem Datum für die jeweilige Zeile zurück.
 		Die Liste ist genauso lang wie die, die getDaten zurückliefert
 		*/
+		char datumsTrennzeichen;
 
-		// fake-code um dem missing-return-statement aus dem weg zu gehen
-		int text[][] = {{1}};
-		return text;
+		for (int i = 0; i < this.datenFormate.length; i++){
+
+		}
 	} // getDatum()
 
 } // importiereTabelle
