@@ -270,6 +270,11 @@ public class hauptMenuUI {
 				this.dokuMenuItem.addActionListener(new hauptMenuDokumentationListener());
 			this.hilfeMenu.addSeparator();
 			this.hilfeMenu.add(this.aboutMenuItem);
+				this.aboutMenuItem.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent event){
+						new ueber();
+					}
+				});
 		this.mainMenuBar.add(this.hilfeMenu);
 		// ende hilfeMenu
 	} // pack()
