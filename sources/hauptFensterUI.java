@@ -127,10 +127,10 @@ public class hauptFensterUI extends JFrame {
 			this.startDateSpinner.setValue(new Integer(1));
 			this.startDateSpinner.addChangeListener(new ChangeListener(){
 				public void stateChanged(ChangeEvent event){
-					if((Integer)startDateSpinner.getValue() <= 0){
+					if(((Integer)startDateSpinner.getValue()).intValue() <= 0){
 						startDateSpinner.setValue(new Integer(1));
 					}
-					endDateSpinner.setValue(new Integer( (Integer)startDateSpinner.getValue() + 299));
+					endDateSpinner.setValue(new Integer( ((Integer)startDateSpinner.getValue()).intValue() + 299));
 
 					for (int i = 1; i < 6; i++){
 						if (wedabecha.getKurve(i).isset()){
@@ -155,10 +155,10 @@ public class hauptFensterUI extends JFrame {
 
 			this.endDateSpinner.addChangeListener(new ChangeListener(){
 				public void stateChanged(ChangeEvent event){
-					startDateSpinner.setValue(new Integer( (Integer)endDateSpinner.getValue() - 299));
+					startDateSpinner.setValue(new Integer( ((Integer)endDateSpinner.getValue()).intValue() - 299));
 
-					if ( (Integer)endDateSpinner.getValue() >= maxDate){
-						endDateSpinner.setValue(maxDate);
+					if ( ((Integer)endDateSpinner.getValue()).intValue() >= maxDate){
+						endDateSpinner.setValue(new Integer(maxDate));
 					}
 				}
 			});
@@ -176,7 +176,7 @@ public class hauptFensterUI extends JFrame {
 		hauptFensterUI.mainPane.add(toolBar.getToolBar(), JLayeredPane.PALETTE_LAYER);
 
 		hauptFensterUI.hauptFenster.setLocation(Xposition,Yposition);
-		hauptFensterUI.hauptFenster.setMinimumSize(new Dimension(this.fensterBreite,this.fensterHoehe));
+		//hauptFensterUI.hauptFenster.setMinimumSize(new Dimension(this.fensterBreite,this.fensterHoehe));
 		hauptFensterUI.hauptFenster.setResizable(true);
 		hauptFensterUI.hauptFenster.setVisible(true);
 

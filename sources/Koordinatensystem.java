@@ -153,7 +153,7 @@ public class Koordinatensystem extends JComponent {
 		} // for
 
 		int tempBeschriftung = 0;
-		System.out.println(yBeschriftung);
+
 		// auf der Y-Achse
 
 		for (int j = startY; j >= 75; j -= (startY - 75) / 10){
