@@ -18,6 +18,7 @@
  ***************************************************************************/
 
 import java.util.ArrayList;
+import java.awt.*;
 
 public class kurve {
 	// Klassenvariablen
@@ -46,7 +47,7 @@ public class kurve {
 
 	private boolean exists = false;
 
-	private String farbe;
+	private Color farbe;
 	private int kurvenStilIndex; // enthält Index-wert für kurvenStile
 	private ArrayList werte = new ArrayList(
 		new ArrayList(1)
@@ -73,12 +74,12 @@ public class kurve {
 	} // isset()
 
 
-	protected String getFarbe(){
+	protected Color getFarbe(){
 		return this.farbe;
 	} // getFarbe()
 
 
-	protected void setFarbe(String farbe){
+	protected void setFarbe(Color farbe){
 		this.farbe = farbe;
 	} // setFarbe()
 
@@ -197,8 +198,20 @@ public class kurve {
 	
 	
 	protected void zeichneKurve(){
-		berechneMittelwerte berechneMittelwerte = new berechneMittelwerte();
-		hauptFensterUI.layeredPane.add(new zeichneLinienKurve(berechneMittelwerte.berechneJahresMittel()), new Integer(nummer+1));
+		berechneMittelwerte berechneMittelwerte = new berechneMittelwerte(this.getWerte(), this.getDaten());
+		switch(this.getKurvenStilIndex()){
+		    case 0: hauptFensterUI.layeredPane.add(new zeichneLinienKurve(berechneMittelwerte.berechneJahresMittel(), this.getFarbe()), new Integer(nummer+2));
+			    break;
+		    case 1: hauptFensterUI.layeredPane.add(new zeichneLinienKurve(berechneMittelwerte.berechneTagesMittel(), this.getFarbe()), new Integer(nummer+2));
+			    break;
+		    case 2: hauptFensterUI.layeredPane.add(new zeichneLinienKurve(berechneMittelwerte.berechneWochenMittel(), this.getFarbe()), new Integer(nummer+2));
+			    break;
+		    case 3: hauptFensterUI.layeredPane.add(new zeichneLinienKurve(berechneMittelwerte.berechneMonatsMittel(), this.getFarbe()), new Integer(nummer+2));
+			    break;
+		    case 4: hauptFensterUI.layeredPane.add(new zeichneLinienKurve(berechneMittelwerte.berechneJahresMittel(), this.getFarbe()), new Integer(nummer+2));
+			    break;
+		}// switch()
+		
 	} // zeichneKurve()
 	
 	

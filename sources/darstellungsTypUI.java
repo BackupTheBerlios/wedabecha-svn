@@ -81,7 +81,7 @@ class darstellungsTypUI extends JDialog {
 						wedabecha.getKurve(tabellenNummer).setKurvenStilIndex(
 							stilCombo.getSelectedIndex()
 						);
-						wedabecha.getKurve(tabellenNummer).setFarbe(""); // hier muss noch ein string übergeben werden
+						wedabecha.getKurve(tabellenNummer).setFarbe(farbe);
 						setVisible(false);
 					}
 				});

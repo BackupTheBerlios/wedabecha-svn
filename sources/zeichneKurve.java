@@ -18,12 +18,14 @@
  ***************************************************************************/
 
 import java.awt.Graphics;
+import java.awt.*;
 import javax.swing.JComponent;
 import java.util.ArrayList;
 
-class zeichneKurve {
+class zeichneKurve extends JComponent{
 
 	private int kurvenNummer;
+	private Color farbe;
 
 	// konstruktoren werden überladen, da man ja nich gleich zum Programmstart
 	// die Werte hat und zeichnen kann
@@ -31,23 +33,22 @@ class zeichneKurve {
 		// konstruktor ohne Parameter
 		// hier passiert nichts weiter
 	} // zeichneKurve
-
+	
 
 	public zeichneKurve(int kurvenNummer){
 		// kontruktor, welcher die berechnung durchführt,
 		// sobald ein objekt mit kurvenNummer erzeugt wird...
 		this.kurvenNummer = kurvenNummer;
-		new zeichneLinienKurve(wedabecha.getKurve(kurvenNummer).getWerte());
-		hauptFensterUI.koordSys = new zeichneKoordinatensystem(hauptFensterUI.fensterBreite,hauptFensterUI.fensterHoehe);
-
-	} // zeichneKurve()
+	
+	} // zeichneKurve()	
 } // zeichneKurve
 
 class zeichneLinienKurve extends JComponent {
     private ArrayList werte;
+    private Color farbe;
 
-
-    public zeichneLinienKurve(ArrayList werte) {
+    public zeichneLinienKurve(ArrayList werte, Color farbe) {
+	this.farbe = farbe;
 	this.werte = werte;
 	this.setSize(700,  500);
     }// zeichneKurve()
@@ -57,6 +58,7 @@ class zeichneLinienKurve extends JComponent {
 	int zaehler = 0;
 
 	for(int i = 0; i < this.werte.size()-1; i++){
+	    kurve.setColor(this.farbe);
 	    kurve.drawLine(zaehler, ((Double)this.werte.get(i)).intValue(),
 			   zaehler += 5, ((Double)this.werte.get(i+1)).intValue());
 	}// for

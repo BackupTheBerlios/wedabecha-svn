@@ -93,12 +93,7 @@ public class toolBarUI /*implements ActionListener*/{
 		
 		for(int i=0; i<5; i++){
 		    this.toolBar.add(kurveButton[i]);
-		    this.kurveButton[i].addActionListener(new ActionListener(){
-			    public void actionPerformed(ActionEvent event){
-				
-			    }// actionPerformed()
-			}// ActionListener()
-		    );
+		    this.kurveButton[i].addActionListener(new kurveButtonListener());
 			this.kurveButton[i].setEnabled(false);
 		}// for
 		
@@ -115,6 +110,19 @@ public class toolBarUI /*implements ActionListener*/{
 	public void kurveWaehlen(int kurve, boolean janein){
 		this.kurveButton[kurve-1].setEnabled(janein);
 	}// kurveWaehlen()
+	
+	
+	class kurveButtonListener implements ActionListener{
+	
+	    public void actionPerformed(ActionEvent e) {
+		for(int i = 0; i < 5; i++){
+		    if(kurveButton[i].isSelected()){
+			
+		    }//if()
+		}// for()
+	    }// actionPerformed()	    
+	    
+	}// kurveButtonListener
 	
 	
 	class linieButtonListener implements ActionListener{

@@ -30,8 +30,8 @@ public class berechneMittelwerte {
 	als Diagramm dargestellt werden können.
     */
     
-    private ArrayList werte = wedabecha.getKurve(1).getWerte();
-    private ArrayList datum = wedabecha.getKurve(1).getDaten();
+    private ArrayList werte;
+    private ArrayList datum;
     
     // zähler für die stelle im datum
     private int zaehler1 = 0;
@@ -45,7 +45,11 @@ public class berechneMittelwerte {
     private int start = 0;
    
 
-    public berechneMittelwerte(){
+    public berechneMittelwerte(ArrayList werte, ArrayList datum){
+	
+	this.datum = datum;
+	this.werte = werte;
+	
 	/*System.out.println(
 			"Jahresmittel = "+berechneJahresMittel()+
 			"\nWochenmittel = "+berechneWochenMittel()+
@@ -279,8 +283,5 @@ public class berechneMittelwerte {
 		return wochenMittel;
 	} // berechneWochenMittel
     
-
-    public static void main(String args[]){
-		new berechneMittelwerte();
-    }
+    
 } // berechneMittelwerte

@@ -96,7 +96,7 @@ public class hauptFensterUI extends JFrame {
 		layeredPane.setVisible(true);
 
 		// Raster der neuen ContentPane adden
-		hauptFensterUI.layeredPane.add(zeichneRaster, JLayeredPane.DEFAULT_LAYER);
+		hauptFensterUI.layeredPane.add(zeichneRaster, new Integer(0));
 
 		// Koordinatensystem der neuen ContentPane adden
 		hauptFensterUI.layeredPane.add(koordSys, JLayeredPane.DEFAULT_LAYER);
@@ -133,7 +133,7 @@ public class hauptFensterUI extends JFrame {
 								JOptionPane.QUESTION_MESSAGE);
 				    if(text != null){
 					zeichneText zeichneText = new zeichneText(text, me.getX(), me.getY());
-					layeredPane.add(zeichneText, new Integer(8));
+					layeredPane.add(zeichneText, new Integer(9));
 					System.out.println(text);
 				    }// if
 				}// if
@@ -174,7 +174,7 @@ public class hauptFensterUI extends JFrame {
 					    und der leyeredPane geadded */
 
 					    zeichneLinie zeichneLinie = new zeichneLinie(startX, startY, endX, endY);
-					    layeredPane.add(zeichneLinie, new Integer(7));
+					    layeredPane.add(zeichneLinie, new Integer(8));
 					    startX = startY = endX = endY = 0;
 					    break;
 				    }// switch(zaehler)
@@ -216,7 +216,7 @@ public class hauptFensterUI extends JFrame {
 					    und der leyeredPane geadded */
 
 					    zeichnePfeil zeichnePfeil = new zeichnePfeil(startX, startY, endX, endY);
-					    layeredPane.add(zeichnePfeil, new Integer(6));
+					    layeredPane.add(zeichnePfeil, new Integer(7));
 					    break;
 				    }// switch(zaehler)
 				}// if()
