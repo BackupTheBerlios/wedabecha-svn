@@ -17,6 +17,13 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
 
+/**
+	@author
+		Martin Müller (mrtnmueller at users.berlios.de),
+	@since 2004-11-26
+	@version 1.0
+*/
+
 // Diese Klasse dient zum Erstellen und Speichern eines Screenshots
 
 
