@@ -97,13 +97,17 @@ class darstellungsTypUI extends JDialog {
 			this.bottomPanel.add(this.okKnopf);
 				this.okKnopf.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
-						wedabecha.getKurve(tabellenNummer).setKurvenStilIndex(
-							stilCombo.getSelectedIndex()
-						);
 
- 						wedabecha.getKurve(tabellenNummer).setFarbe(farbe);
+						if (wedabecha.getKurve(tabellenNummer).isset()){
 
-						setVisible(false);
+							wedabecha.getKurve(tabellenNummer).setKurvenStilIndex(
+								stilCombo.getSelectedIndex()
+							);
+
+ 							wedabecha.getKurve(tabellenNummer).setFarbe(farbe);
+
+							setVisible(false);
+						}//if
 					}
 				});
 

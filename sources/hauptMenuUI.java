@@ -107,6 +107,8 @@ public class hauptMenuUI {
 			private JMenuItem dokuMenuItem = new JMenuItem("Dokumentation");
 			private JMenuItem aboutMenuItem = new JMenuItem("\u00dcber");
 
+		private int actionCounter;
+
 	// konstruktor
 	public hauptMenuUI(){
 		this.pack();
@@ -147,18 +149,41 @@ public class hauptMenuUI {
 // 						this.kurveSpeichernMenuItem[kurveIt].setEnabled(false);
 					this.kurveMenuList[kurveIt].add(this.kurveDarstellungMenuItem[kurveIt]);
 						this.kurveDarstellungMenuItem[kurveIt].setEnabled(false);
+
 					this.kurveMenuList[kurveIt].add(this.kurveNeuZeichnenMenuItem[kurveIt]);
 						this.kurveNeuZeichnenMenuItem[kurveIt].setEnabled(false);
-// 						this.kurveNeuZeichnenMenuItem[kurveIt].addActionListener(
-// 							new ActionListener(){
-// 								public void actionPerformed(ActionEvent event){
-// 									wedabecha.setZeichneKurve(kurveIt, new zeichneKurve(kurveIt));
-// 								}
-// 							} // ActionListener()
-// 						);
+						this.kurveNeuZeichnenMenuItem[kurveIt].addActionListener(
+							new ActionListener(){
+								public void actionPerformed(ActionEvent event){
+									int datenLaengen[] = new int[5];
+
+									for(int i = 1; i <= 5; i++){
+							    		// alle importierten Tabellen als Kurve zeichnen
+										if(wedabecha.getKurve(i).isset()){
+											wedabecha.getKurve(i).zeichneKurve();
+											datenLaengen[i] = wedabecha.getKurve(i).getDaten().size();
+										} // if
+
+										java.util.Arrays.sort(datenLaengen);
+										hauptFensterUI.maxDate = datenLaengen[4];
+									} // for
+
+									hauptFensterUI.layeredPane.repaint();
+								} // actionPerformed()
+							} // ActionListener()
+						);
 
 			} // for
 
+
+//			for (actionCounter=1; actionCounter<6; actionCounter++){
+				actionCounter = 1;
+				this.kurveDarstellungMenuItem[actionCounter - 1].addActionListener(new ActionListener(){
+							public void actionPerformed(ActionEvent event){
+								new darstellungsTypUI(actionCounter);
+							}
+						});
+//			}
 		this.mainMenuBar.add(this.kurveMenu);
 		// ende kurve-menues
 
