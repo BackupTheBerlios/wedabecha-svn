@@ -102,6 +102,7 @@ class darstellungsTypUI extends JDialog {
 						);
 
  						wedabecha.getKurve(tabellenNummer).setFarbe(farbe);
+
 						setVisible(false);
 					}
 				});

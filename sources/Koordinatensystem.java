@@ -45,13 +45,18 @@ public class Koordinatensystem extends JComponent {
 	*/
 	private double maxWert, maxDate;
 
-	private int dx, dy; // Distanz zwischen Nullpunkt und dem Maximalpunkt auf den Achsen
-	private int einheitx = 25; // Abstand der einzelnen Achseneinteilungsstriche
-	private int einheity = 20; // Abstand der einzelnen Achseneinteilungsstriche
+	private int dx, dy; // Länge der Achsen in px
+	private int ddx, ddy; // Abstand der Achsen von Nullpunkt bis Maximalwert in px
+	private int abstandx = 25; // Abstand der einzelnen Achseneinteilungsstriche
+	private int abstandy = 25; // Abstand der einzelnen Achseneinteilungsstriche
+
 	private int zeichenBreite, zeichenHoehe; // Zeichenbereich in Pixelkoordinaten
-	
+
 	private int yBeschriftung;
 	private double multiplikator;
+	private int startDateIndex; // Startwert für den horizontalen Zeichenbereich
+	private int endDateIndex; // Endwert für den horizontalen Zeichenbereich
+
 	//Konstruktor
 	Koordinatensystem(){
 	}
@@ -70,11 +75,11 @@ public class Koordinatensystem extends JComponent {
 		this.zeichenBreite = breite;
 		this.zeichenHoehe = hoehe;
 		// Start- und Endpunkt der Y-Achse in vertikaler Richtung
-		this.startY = hoehe - 25;
-		this.endY = 60;
+		this.startY = hoehe - 25; // 25 px vom unteren Rand
+		this.endY = 60; // 60 px vom oberen Rand des layeredPane (35 px für die toolBar, 25 px ab toolBar)
 		// Start- und Endpunkt der X-Achse in horizontaler Richtung
-		this.startX = 25;
-		this.endX = breite - 25;
+		this.startX = 25; // 25px vom linken Rand
+		this.endX = breite - 25; // 25 px vom rechten Rand
 
 		this.dx = this.endX - this.startX; // Breite
    		this.dy = this.endY - this.startY; // Hoehe
@@ -82,6 +87,26 @@ public class Koordinatensystem extends JComponent {
 		this.multiplikator =	(hauptFensterUI.layeredPane.getHeight() - 100) /
 								this.maxWert;
 	} // setGroesse()
+
+
+	protected void setStartDateIndex(int index){
+		this.startDateIndex = index;
+	}
+
+
+	protected int getStartDateIndex(){
+		return this.startDateIndex;
+	}
+
+
+	protected void setEndDateIndex(int index){
+		this.endDateIndex = index;
+	}
+
+
+	protected int getEndDateIndex(){
+		return this.endDateIndex;
+	}
 
 
 	protected void zeichnen() {
@@ -95,7 +120,7 @@ public class Koordinatensystem extends JComponent {
 
 		// Grösse der Zeichnungsfläche einstellen
 		this.berechneMaxima();
-		
+
 		this.yBeschriftung = (int)((Math.round(this.maxWert / 10)) * 10);
 		this.multiplikator =	(hauptFensterUI.layeredPane.getHeight() - 100) /
 								this.maxWert;
@@ -123,19 +148,21 @@ public class Koordinatensystem extends JComponent {
 
 		// Achseneinteilungsstriche zeichnen
 		// auf der X-Achse
-		for (int i = startX; i < (endX - 50); i+= einheitx){
+		for (int i = startX; i < (endX - 50); i+= abstandx){
 			g.drawLine( (startX + i) , (startY - 4) , (startX + i) , (startY + 4) );
 		} // for
-		
+
 		int tempBeschriftung = 0;
 		System.out.println(yBeschriftung);
 		// auf der Y-Achse
+
 		for (int j = startY; j >= 75; j -= (startY - 75) / 10){
 			g.drawString(""+tempBeschriftung, 0, j + 5);
 			g.drawLine( (startX - 4) , j ,  (startX + 4) , j );
 			tempBeschriftung += yBeschriftung / 10;
 		} // for
 	} // paintComponent()
+
 
 
 	private void berechneMaxima(){

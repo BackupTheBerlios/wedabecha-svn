@@ -35,6 +35,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.event.*;
 
 
 public class hauptFensterUI extends JFrame {
@@ -51,13 +52,22 @@ public class hauptFensterUI extends JFrame {
 		auf die fensterBreite und fensterHoehe muss
 		von anderen Klassen aus zugegriffen werden können.
 	*/
-	protected static int fensterBreite = 700;
+	protected static int fensterBreite = 750;
 	protected static int fensterHoehe = 500;
 
 	protected static toolBarUI toolBar = new toolBarUI(fensterBreite);
 	protected static zeichneRaster zeichneRaster = new zeichneRaster(fensterBreite, fensterHoehe);
 	protected static Koordinatensystem koordSys = new Koordinatensystem();
 	protected kontextMenuUI kontext = new kontextMenuUI();
+
+	// Elemente der GUI um den horizontalen Zeichenbereich festzulegen
+	private JLabel startDateLabel = new JLabel("Start-Datum ");
+	private JSpinner startDateSpinner =  new JSpinner();
+	private JLabel endDateLabel = new JLabel("End-Datum ");
+	private JSpinner endDateSpinner = new JSpinner();
+
+	protected static int maxDate = 300;
+
 
 	// konstruktor
 	public hauptFensterUI(int breite, int hoehe){
@@ -108,6 +118,51 @@ public class hauptFensterUI extends JFrame {
 		
 // 		toolbarPane.setSize(this.fensterBreite,35);
 
+		mainPane.add(this.startDateLabel, new Integer(510));
+			this.startDateLabel.setSize(100,20);
+			this.startDateLabel.setLocation(new Point(this.fensterBreite - 340,35));
+		mainPane.add(this.startDateSpinner, new Integer(510));
+			this.startDateSpinner.setSize(70,20);
+			this.startDateSpinner.setLocation(new Point(this.fensterBreite-250,35));
+			this.startDateSpinner.setValue(new Integer(1));
+			this.startDateSpinner.addChangeListener(new ChangeListener(){
+				public void stateChanged(ChangeEvent event){
+					if((Integer)startDateSpinner.getValue() <= 0){
+						startDateSpinner.setValue(new Integer(1));
+					}
+					endDateSpinner.setValue(new Integer( (Integer)startDateSpinner.getValue() + 299));
+
+					for (int i = 1; i < 6; i++){
+						if (wedabecha.getKurve(i).isset()){
+							if (wedabecha.getKurve(i).getKurvenStilIndex() == 0){
+								// waahhhhhhhhhh hier fehlt was, oh goth
+// 								wedabecha.getKurve(i).zeichneAktienKurve();
+							} else {
+								wedabecha.getKurve(i).zeichneLinienKurve.dateBeginIndex = ((Integer)startDateSpinner.getValue()).intValue();
+								wedabecha.getKurve(i).zeichneLinienKurve.dateEndIndex = ((Integer)endDateSpinner.getValue()).intValue();
+							}
+						}
+					}
+				}
+			});
+		mainPane.add(this.endDateLabel,  new Integer(510));
+			this.endDateLabel.setSize(100,20);
+			this.endDateLabel.setLocation(new Point(this.fensterBreite - 170,35));
+		mainPane.add(this.endDateSpinner,  new Integer(510));
+			this.endDateSpinner.setSize(70,20);
+			this.endDateSpinner.setLocation(new Point(this.fensterBreite - 80,35));
+			this.endDateSpinner.setValue(new Integer(300));
+
+			this.endDateSpinner.addChangeListener(new ChangeListener(){
+				public void stateChanged(ChangeEvent event){
+					startDateSpinner.setValue(new Integer( (Integer)endDateSpinner.getValue() - 299));
+
+					if ( (Integer)endDateSpinner.getValue() >= maxDate){
+						endDateSpinner.setValue(maxDate);
+					}
+				}
+			});
+
 		layeredPane.setSize(this.fensterBreite,this.fensterHoehe);
 		layeredPane.setVisible(true);
 
@@ -121,6 +176,7 @@ public class hauptFensterUI extends JFrame {
 		hauptFensterUI.mainPane.add(toolBar.getToolBar(), JLayeredPane.PALETTE_LAYER);
 
 		hauptFensterUI.hauptFenster.setLocation(Xposition,Yposition);
+		hauptFensterUI.hauptFenster.setMinimumSize(new Dimension(this.fensterBreite,this.fensterHoehe));
 		hauptFensterUI.hauptFenster.setResizable(true);
 		hauptFensterUI.hauptFenster.setVisible(true);
 
@@ -262,6 +318,11 @@ public class hauptFensterUI extends JFrame {
 					zeichneRaster.setGroesse(d.width, d.height);
 					hauptFensterUI.setGroesse(d.width, d.height);
 					koordSys.setGroesse(d.width, d.height);
+					startDateSpinner.setLocation(new Point(d.width - 250,35));
+					startDateLabel.setLocation(new Point(d.width - 340,35));
+					endDateLabel.setLocation(new Point(d.width - 170,35));
+					endDateSpinner.setLocation(new Point(d.width - 80,35));
+
 					for(int i = 1; i <= 5; i++){
 						if(wedabecha.getKurve(i).isset()){
 							if(wedabecha.getKurve(i).getKurvenStilIndex() == 0){

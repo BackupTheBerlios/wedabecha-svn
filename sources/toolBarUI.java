@@ -49,12 +49,13 @@ public class toolBarUI /*implements ActionListener*/{
 			protected JToggleButton pfeilzeichnenbutton = new JToggleButton(pfeilzeichnen);
 		private ImageIcon textzeichnen = new ImageIcon("Images/text.gif");
 			protected JToggleButton textzeichnenbutton = new JToggleButton(textzeichnen);
+		private JLabel kurveLabel = new JLabel("Kurve: ");
 		private JToggleButton kurveButton[] = {
-						    new JToggleButton("Kurve 1"),
-						    new JToggleButton("Kurve 2"),
-						    new JToggleButton("Kurve 3"),
-						    new JToggleButton("Kurve 4"),
-						    new JToggleButton("Kurve 5")
+						    new JToggleButton(" 1 "),
+						    new JToggleButton(" 2 "),
+						    new JToggleButton(" 3 "),
+						    new JToggleButton(" 4 "),
+						    new JToggleButton(" 5 ")
 		};
 
 		private int breite;
@@ -105,11 +106,15 @@ public class toolBarUI /*implements ActionListener*/{
 		this.toolBar.addSeparator();
 		this.toolBar.addSeparator();
 
+		this.toolBar.add(this.kurveLabel);
 		for(int i=0; i<5; i++){
 		    this.toolBar.add(kurveButton[i]);
 		    this.kurveButton[i].addActionListener(new kurveButtonListener());
 			this.kurveButton[i].setEnabled(false);
 		}// for
+
+		this.toolBar.addSeparator();
+		this.toolBar.addSeparator();
 
 		this.toolBar.setFloatable(false);
 		this.toolBar.setBorderPainted(true);

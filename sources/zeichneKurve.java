@@ -32,7 +32,8 @@ import java.util.ArrayList;
 class zeichneKurve extends JComponent{
 
 	private int kurvenNummer;
-	
+
+
 
 	// konstruktoren werden überladen, da man ja nich gleich zum Programmstart
 	// die Werte hat und zeichnen kann
@@ -54,9 +55,14 @@ class zeichneLinienKurve extends JComponent {
 	private ArrayList werte;
 	private Color farbe;
 	private int abstand;
-	
+
+	protected int dateBeginIndex;
+	protected int dateEndIndex;
+
+
 	private double multiplikator;
 	private double max;
+
 
 	public zeichneLinienKurve(ArrayList werte, Color farbe) {
 		this.farbe = farbe;
@@ -69,7 +75,7 @@ class zeichneLinienKurve extends JComponent {
 		this.setSize(breite, hoehe);
 	} // setGroesse()
 
-	
+
 	protected void getMax(){
 		for(int i = 0; i < this.werte.size(); i++){
 			double tempArray = ((Double)this.werte.get(i)).doubleValue();
@@ -90,15 +96,16 @@ class zeichneLinienKurve extends JComponent {
 						25) / this.werte.size());
 		} // if
 
-		for(int i = 0; i < this.werte.size() - 1; i++){
+
+		for(int i = dateBeginIndex; i < dateEndIndex; i++){
 			kurve.setColor(this.farbe);
 			kurve.drawLine(	zaehler,
 							(hauptFensterUI.layeredPane.getHeight() -
-							25) - (int)(this.multiplikator * 
+							25) - (int)(this.multiplikator *
 								((Double)this.werte.get(i)).doubleValue()),
 							zaehler += abstand,
 							(hauptFensterUI.layeredPane.getHeight() -
-							25) - (int)(this.multiplikator * 
+							25) - (int)(this.multiplikator *
 								((Double)this.werte.get(i+1)).doubleValue())
 			); // drawLine
 		} // for
@@ -111,10 +118,10 @@ class zeichneLinienKurve extends JComponent {
 class zeichneAktienKurve extends JComponent{
 	private ArrayList werte;
 	private Color farbe;
-	
+
 	private int abstand = 25;
 	private double[] kurse;
-	
+
 	private double multiplikator;
 	private double max;
 
@@ -122,19 +129,19 @@ class zeichneAktienKurve extends JComponent{
 	private int tief;
 	private int start;
 	private int ende;
-	
+
 	public zeichneAktienKurve(ArrayList werte, Color farbe){
 		this.werte = werte;
 		this.farbe = farbe;
 		this.setSize(hauptFensterUI.fensterBreite,  hauptFensterUI.fensterHoehe);
 	}// zeichneAktienKurve
-	
-	
+
+
 	protected void setGroesse(int breite, int hoehe){
 		this.setSize(breite, hoehe);
 	}// setGroesse()
-	
-	
+
+
 	protected void getMax(){
 		double[] tempArray = new double[this.werte.size()];
 		for(int i = 0; i < this.werte.size(); i++){
@@ -155,33 +162,33 @@ class zeichneAktienKurve extends JComponent{
 			this.ende = (int)this.kurse[1];
 			this.hoch = (int)this.kurse[2];
 			this.tief = (int)this.kurse[3];
-			
-			kurve.drawLine(this.abstand, 
-				hauptFensterUI.layeredPane.getHeight() - 25 - 
+
+			kurve.drawLine(this.abstand,
+				hauptFensterUI.layeredPane.getHeight() - 25 -
 				(int)(this.multiplikator * this.start),
 				this.abstand,
-				hauptFensterUI.layeredPane.getHeight() - 25 - 
+				hauptFensterUI.layeredPane.getHeight() - 25 -
 				(int)(this.multiplikator * this.hoch)
 			);
-			kurve.drawLine(this.abstand, 
-				hauptFensterUI.layeredPane.getHeight() - 25 - 
-				(int)(this.multiplikator * this.hoch), 
-				this.abstand, 
-				hauptFensterUI.layeredPane.getHeight() - 25 - 
+			kurve.drawLine(this.abstand,
+				hauptFensterUI.layeredPane.getHeight() - 25 -
+				(int)(this.multiplikator * this.hoch),
+				this.abstand,
+				hauptFensterUI.layeredPane.getHeight() - 25 -
 				(int)(this.multiplikator * this.tief)
 			);
-			kurve.drawLine(this.abstand, 
-				hauptFensterUI.layeredPane.getHeight() - 25 - 
-				(int)(this.multiplikator * this.tief), 
-				this.abstand, 
-				hauptFensterUI.layeredPane.getHeight() - 25 - 
+			kurve.drawLine(this.abstand,
+				hauptFensterUI.layeredPane.getHeight() - 25 -
+				(int)(this.multiplikator * this.tief),
+				this.abstand,
+				hauptFensterUI.layeredPane.getHeight() - 25 -
 				(int)(this.multiplikator * this.ende)
 			);
 			kurve.drawLine(this.abstand,
-				hauptFensterUI.layeredPane.getHeight() - 25 - 
+				hauptFensterUI.layeredPane.getHeight() - 25 -
 				(int)(this.multiplikator * this.ende),
 				this.abstand + 2,
-				hauptFensterUI.layeredPane.getHeight() - 25 - 
+				hauptFensterUI.layeredPane.getHeight() - 25 -
 				(int)(this.multiplikator * this.ende)
 			);
 			this.abstand += 2;

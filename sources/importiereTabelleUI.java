@@ -208,12 +208,12 @@ class importiereTabelleUI extends JDialog  {
 		this.bottomPanel.add(this.okKnopf);
 			this.okKnopf.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
-					setVisible(false);
-
+					int datenLaengen[] = new int[5];
 					for(int i = 1; i <= 5; i++){
 					    // beim klick auf [OK] alle importierten Tabellen als Kurve zeichnen
 						if(wedabecha.getKurve(i).isset()){
 							wedabecha.getKurve(i).zeichneKurve();
+							datenLaengen[i] = wedabecha.getKurve(i).getDaten().size();
 						} // if
 
 						if (speicherTabelle[i - 1].isSelected()){
@@ -222,8 +222,12 @@ class importiereTabelleUI extends JDialog  {
 						} // if
 					} // for
 
+					java.util.Arrays.sort(datenLaengen);
+					hauptFensterUI.maxDate = datenLaengen[4];
+
 					// hier muss das Koordinatensystem aufgerufen und gezeichnet werden
 					hauptFensterUI.koordSys.zeichnen();
+					setVisible(false);
 				} //  actionPerformed(ActionEvent event)
 			});
 
