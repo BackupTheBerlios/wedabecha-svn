@@ -39,16 +39,21 @@ public class Koordinatensystem extends JComponent {
 
 	private Graphics g; // wird von paint gesetzt, von drawLine benutzt
 
-
+	//Konstruktor
 	Koordinatensystem(){
-		// tu nichts, absolut nichts...
+
 	}
 
 
-	// Konstruktor
 	protected void zeichnen(int zeichenBreite, int zeichenHoehe) {
 		this.zeichenBreite = zeichenBreite;
 		this.zeichenHoehe = zeichenHoehe;
+		this.startY = this.zeichenHoehe - 25;
+		this.endY = (this.zeichenHoehe - 25) - this.maxWert;
+		this.startX = 25;
+		this.endX = this.zeichenBreite - 25;
+		dx = this.endX - this.startX; // Breite
+   		dy = this.endY - this.startY; // Hoehe
 		// Grösse der Zeichnungsfläche einstellen
 		this.setSize(zeichenBreite ,zeichenHoehe);
 		this.berechneMaxima();
@@ -90,24 +95,17 @@ public class Koordinatensystem extends JComponent {
 
 
 	private int convertXToPixel(double x) { // konvertiert x-Koordinaten in Pixel
-		return (int)((x-this.startX)/this.dx*this.zeichenBreite);
+		return (int)( (x - this.startX) / this.dx * this.zeichenBreite);
 	}
 
 
 	private int convertYToPixel(double y) { // Konvertiert y-Koordinaten in Pixel
-		return (int)((endY-y)/dy*zeichenHoehe); // beachte, dass y-Koord. und Pixel in
+		return (int)( (this.endY - y) / this.dy * this.zeichenHoehe); // beachte, dass y-Koord. und Pixel in
 		// unterschiedliche Richtung zeigen
 	}
 
 
 	private void zeichneKoordinatenachsen() {
-
-		this.startY = this.zeichenHoehe - 25;
-		this.endY = (this.zeichenHoehe - 25) - this.maxWert;
-		this.startX = 25;
-		this.endX = this.zeichenBreite - 25;
-		dx = this.endX - this.startX; // Breite
-   		dy = this.endY - this.startY; // Hoehe
 
 		// x-Achse mit Pfeil
 		drawLine( (int)(startX * 0.975), 0, (int)(endX * 0.975), 0);
@@ -192,7 +190,7 @@ public class Koordinatensystem extends JComponent {
 				} // for(j)
 
 				java.util.Arrays.sort(maxZeilenWerte);
-				maxKurvenWerte[i] = maxZeilenWerte[maxZeilenWerte.length];
+				maxKurvenWerte[i] = maxZeilenWerte[maxZeilenWerte.length - 1];
 			} // if
 		} // for(i)
 

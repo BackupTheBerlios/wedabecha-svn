@@ -208,8 +208,7 @@ class importiereTabelleUI extends JDialog  {
 							// hier gibts n problem,
 							// weil die hintergrundfunktion statisch is...
 							// der dateiname muss irgendwo her kommen :/
-							String name[] = tabellen[i -1].getImportName().split(".");
-							toWeda.writeFile(name[0] + ".weda",i);
+							toWeda.writeFile("../daten/" + tabellen[i -1].getImportName() + ".weda",i);
 						} // if
 					} // for
 

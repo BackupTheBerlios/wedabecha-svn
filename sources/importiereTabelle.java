@@ -286,7 +286,7 @@ public class importiereTabelle {
 
 			ergebnis.add(ergebnisDate);
 		} // for()
-// 		System.out.println(ergebnis); /7 debug-ausgabe
+// 		System.out.println(ergebnis); // debug-ausgabe
 		return ergebnis;
 	} // getDaten()
 
