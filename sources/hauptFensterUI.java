@@ -160,6 +160,7 @@ public class hauptFensterUI extends JFrame {
 					if ( ((Integer)endDateSpinner.getValue()).intValue() >= maxDate){
 						endDateSpinner.setValue(new Integer(maxDate));
 					}
+					layeredPane.repaint();
 				}
 			});
 
