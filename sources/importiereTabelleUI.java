@@ -56,11 +56,11 @@ class importiereTabelleUI extends JDialog  {
 	private JLabel tabelle4Label = new JLabel("Tabelle 4 :");
 	private JLabel tabelle5Label = new JLabel("Tabelle 5 :");
 
-	private JButton oeffneTabelle1 = new JButton("\u00D6ffnen");
-	private JButton oeffneTabelle2 = new JButton("\u00D6ffnen");
-	private JButton oeffneTabelle3 = new JButton("\u00D6ffnen");
-	private JButton oeffneTabelle4 = new JButton("\u00D6ffnen");
-	private JButton oeffneTabelle5 = new JButton("\u00D6ffnen");
+	protected JButton oeffneTabelle1 = new JButton("\u00D6ffnen");
+	protected JButton oeffneTabelle2 = new JButton("\u00D6ffnen");
+	protected JButton oeffneTabelle3 = new JButton("\u00D6ffnen");
+	protected JButton oeffneTabelle4 = new JButton("\u00D6ffnen");
+	protected JButton oeffneTabelle5 = new JButton("\u00D6ffnen");
 
 	private static JTextField pfadTabelle1 = new JTextField(20);
 	private static JTextField pfadTabelle2 = new JTextField(20);
@@ -120,6 +120,7 @@ class importiereTabelleUI extends JDialog  {
 				this.oeffneTabelle1.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
 						showSubDialog(1);
+
 					} // actionPerformed(ActionEvent event)
 				});
 			this.LTzeile1.add(pfadTabelle1);
@@ -135,6 +136,7 @@ class importiereTabelleUI extends JDialog  {
 		this.topPanel.add(this.LTzeile2);
 			this.LTzeile2.add(this.tabelle2Label);
 			this.LTzeile2.add(this.oeffneTabelle2);
+				this.oeffneTabelle2.setEnabled(false);
 				this.oeffneTabelle2.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
 						showSubDialog(2);
@@ -153,6 +155,7 @@ class importiereTabelleUI extends JDialog  {
 		this.topPanel.add(this.LTzeile3);
 			this.LTzeile3.add(this.tabelle3Label);
 			this.LTzeile3.add(this.oeffneTabelle3);
+				this.oeffneTabelle3.setEnabled(false);
 				this.oeffneTabelle3.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
 						showSubDialog(3);
@@ -171,6 +174,7 @@ class importiereTabelleUI extends JDialog  {
 		this.topPanel.add(this.LTzeile4);
 			this.LTzeile4.add(this.tabelle4Label);
 			this.LTzeile4.add(this.oeffneTabelle4);
+				this.oeffneTabelle4.setEnabled(false);
 				this.oeffneTabelle4.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
 						showSubDialog(4);
@@ -189,6 +193,7 @@ class importiereTabelleUI extends JDialog  {
 		this.topPanel.add(this.LTzeile5);
 			this.LTzeile5.add(this.tabelle5Label);
 			this.LTzeile5.add(this.oeffneTabelle5);
+				this.oeffneTabelle5.setEnabled(false);
 				this.oeffneTabelle5.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
 						showSubDialog(5);
@@ -210,9 +215,13 @@ class importiereTabelleUI extends JDialog  {
 				public void actionPerformed(ActionEvent event){
 					int datenLaengen[] = new int[5];
 					for(int i = 1; i <= 5; i++){
-					    // beim klick auf [OK] alle importierten Tabellen als Kurve zeichnen
+					    /* beim klick auf [OK] alle importierten Tabellen als 
+						 * Kurve zeichnen und die erste Kurve sichtbar machen
+						 */
+						
 						if(wedabecha.getKurve(i).isset()){
 							wedabecha.getKurve(i).zeichneKurve();
+							hauptFensterUI.toolBar.setKurve1Button();
 							datenLaengen[i] = wedabecha.getKurve(i).getDaten().size();
 						} // if
 

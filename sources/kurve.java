@@ -241,7 +241,8 @@ public class kurve {
 				hauptFensterUI.layeredPane.add(
 					zeichneLinienKurve = new zeichneLinienKurve(
 						berechneMittelwerte.berechneTagesMittel(),
-						this.getFarbe()
+						this.getFarbe(),
+						this.getWerte()
 					),
 					new Integer(nummer+2)
 				);
@@ -250,7 +251,8 @@ public class kurve {
 				hauptFensterUI.layeredPane.add(
 					zeichneLinienKurve = new zeichneLinienKurve(
 						berechneMittelwerte.berechneWochenMittel(),
-						this.getFarbe()
+						this.getFarbe(),
+						this.getWerte()
 					),
 					new Integer(nummer+2)
 				);
@@ -259,7 +261,8 @@ public class kurve {
 				hauptFensterUI.layeredPane.add(
 					zeichneLinienKurve = new zeichneLinienKurve(
 						berechneMittelwerte.berechneMonatsMittel(),
-						this.getFarbe()
+						this.getFarbe(),
+						this.getWerte()
 					),
 					new Integer(nummer+2)
 				);
@@ -268,7 +271,8 @@ public class kurve {
 				hauptFensterUI.layeredPane.add(
 					zeichneLinienKurve = new zeichneLinienKurve(
 						berechneMittelwerte.berechneJahresMittel(),
-						this.getFarbe()
+						this.getFarbe(),
+						this.getWerte()
 					),
 					new Integer(nummer+2)
 				);

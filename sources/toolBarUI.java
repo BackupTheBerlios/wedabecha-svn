@@ -50,7 +50,7 @@ public class toolBarUI /*implements ActionListener*/{
 		private ImageIcon textzeichnen = new ImageIcon("Images/text.gif");
 			protected JToggleButton textzeichnenbutton = new JToggleButton(textzeichnen);
 		private JLabel kurveLabel = new JLabel("Kurve: ");
-		private JToggleButton kurveButton[] = {
+		protected JToggleButton kurveButton[] = {
 						    new JToggleButton(" 1 "),
 						    new JToggleButton(" 2 "),
 						    new JToggleButton(" 3 "),
@@ -133,12 +133,24 @@ public class toolBarUI /*implements ActionListener*/{
 	class kurveButtonListener implements ActionListener{
 
 	    public void actionPerformed(ActionEvent e) {
-		for(int i = 0; i < 5; i++){
-		    if(kurveButton[i].isSelected()){
-
-		    }//if()
-		}// for()
-	    }// actionPerformed()
+			for(int i = 0; i < 5; i++){
+				if(wedabecha.getKurve(i + 1).isset()){
+					if(kurveButton[i].isSelected()){
+						if(wedabecha.getKurve(i + 1).getKurvenStilIndex() == 0){
+							wedabecha.getKurve(i + 1).zeichneAktienKurve.setVisibility(true);
+						}else{
+							wedabecha.getKurve(i + 1).zeichneLinienKurve.setVisibility(true);
+						} // if()-else
+					}else{
+						if(wedabecha.getKurve(i + 1).getKurvenStilIndex() == 0){
+							wedabecha.getKurve(i + 1).zeichneAktienKurve.setVisibility(false);
+						}else{
+							wedabecha.getKurve(i + 1).zeichneLinienKurve.setVisibility(false);
+						} // if()-else
+					} // if()-else
+				} // if()
+			} // for()
+	    } // actionPerformed()
 
 	}// kurveButtonListener
 
@@ -146,9 +158,9 @@ public class toolBarUI /*implements ActionListener*/{
 	class linieButtonListener implements ActionListener{
 
 	    public void actionPerformed(ActionEvent e) {
-		if(linieGewaehlt()){
-		    abwaehlen(3);
-		}// if
+			if(linieGewaehlt()){
+				abwaehlen(3);
+			}// if
 	    }// actionPerformed(ActionEvent e)
 
 	}// linienButtonListener
@@ -157,9 +169,9 @@ public class toolBarUI /*implements ActionListener*/{
 	class pfeilButtonListener implements ActionListener{
 
 	    public void actionPerformed(ActionEvent e) {
-		if(pfeilGewaehlt()){
-		    abwaehlen(1);
-		}// if
+			if(pfeilGewaehlt()){
+				abwaehlen(1);
+			}// if
 	    }// actionPerformed(ActionEvent e)
 
 	}// pfeilButtonListener
@@ -169,31 +181,34 @@ public class toolBarUI /*implements ActionListener*/{
 
 		public void actionPerformed(ActionEvent e) {
 		    if(textGewaehlt()){
-			abwaehlen(2);
+				abwaehlen(2);
 		    }//if
 		}// actionPerformed(ActionEvent e)
 
 	}// textButtonListener
 
-
+	/* Diese Methode sorgt dafür, dass man nur einen von den 3 Buttons (Text,
+	 * Line oder Pfeil) gleichzeitig anwählen kann
+	 */
+	
 	public void abwaehlen(int aus){
 	    switch(aus){
-		case 1:
-		    this.textzeichnenbutton.setSelected(false);
-		    this.liniezeichnenbutton.setSelected(false);
-		    break;
-		case 2:
-		    this.liniezeichnenbutton.setSelected(false);
-		    this.pfeilzeichnenbutton.setSelected(false);
-		    break;
-		case 3:
-		    this.pfeilzeichnenbutton.setSelected(false);
-		    this.textzeichnenbutton.setSelected(false);
-		    break;
+			case 1:
+				this.textzeichnenbutton.setSelected(false);
+				this.liniezeichnenbutton.setSelected(false);
+				break;
+			case 2:
+				this.liniezeichnenbutton.setSelected(false);
+				this.pfeilzeichnenbutton.setSelected(false);
+				break;
+			case 3:
+			    this.pfeilzeichnenbutton.setSelected(false);
+			    this.textzeichnenbutton.setSelected(false);
+			    break;
 	    }// switch
 	}// abwählen()
 
-
+	// get-Methoden für die jeweiligen Buttons in der Toolbar
 	public boolean textGewaehlt(){
 	    return textzeichnenbutton.isSelected();
 	}// textGewählt()
@@ -212,4 +227,19 @@ public class toolBarUI /*implements ActionListener*/{
 	public boolean linieGewaehlt(){
 	    return liniezeichnenbutton.isSelected();
 	}// linieGewaehlt
+	
+	/* Diese Methode sorgt dafür, dass die erste Kurve, die importiert wird auch
+	 * gleich angezeigt wird, damit man sieht, dass alles geklappt hat
+	 */
+	
+	public void setKurve1Button(){
+		this.kurveButton[0].setSelected(true);
+		if(wedabecha.getKurve(1).getKurvenStilIndex() == 0){
+			wedabecha.getKurve(1).zeichneAktienKurve.setVisibility(true);
+		}else{
+			wedabecha.getKurve(1).zeichneLinienKurve.setVisibility(true);
+		} // if()-else
+	} // setKurve1Button()
+	
+	
 } // toolBarUI

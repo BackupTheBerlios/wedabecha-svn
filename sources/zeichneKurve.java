@@ -38,18 +38,26 @@ class zeichneLinienKurve extends JComponent {
 
 	private double multiplikator;
 	private double max;
+	
+	private ArrayList ausgangsWerte;
 
-
-	public zeichneLinienKurve(ArrayList werte, Color farbe) {
+	public zeichneLinienKurve(ArrayList werte, Color farbe, ArrayList ausgangsWerte) {
 		this.farbe = farbe;
 		this.werte = werte;
-		this.setSize(hauptFensterUI.fensterBreite, hauptFensterUI.fensterHoehe);
+		this.setSize(hauptFensterUI.fensterBreite - 30, hauptFensterUI.fensterHoehe);
+		this.ausgangsWerte = ausgangsWerte;
+		this.setVisible(false);
 	} // zeichneKurve()
 
 
 	public void setGroesse(int breite, int hoehe){
 		this.setSize(breite, hoehe);
 	} // setGroesse()
+	
+	
+	protected void setVisibility(boolean sichtbar){
+		this.setVisible(sichtbar);
+	} // setVisibility()
 
 
 	protected void getMax(){
@@ -65,22 +73,16 @@ class zeichneLinienKurve extends JComponent {
 	public void paintComponent(Graphics kurve){
 		getMax();
 		int zaehler = 25;
-		if(	Math.round( (hauptFensterUI.layeredPane.getWidth() -
-			25) / this.werte.size() ) < 1){
-			this.abstand  = 1;
-		} else {
-			this.abstand = 	Math.round( (hauptFensterUI.layeredPane.getWidth() -
-						25) / this.werte.size());
-		} // if
-
-
-		for(int i = dateBeginIndex; i < dateEndIndex; i++){
+		
+		this.abstand = (2 * this.ausgangsWerte.size()) / this.werte.size();
+		
+		for(int i = dateBeginIndex / (this.abstand / 2); i < dateEndIndex / (this.abstand / 2); i ++){
 			kurve.setColor(this.farbe);
 			kurve.drawLine(	zaehler,
 							(hauptFensterUI.layeredPane.getHeight() -
 							25) - (int)(this.multiplikator *
 								((Double)this.werte.get(i)).doubleValue()),
-							zaehler += abstand,
+							zaehler += this.abstand,
 							(hauptFensterUI.layeredPane.getHeight() -
 							25) - (int)(this.multiplikator *
 								((Double)this.werte.get(i+1)).doubleValue())
@@ -114,12 +116,18 @@ class zeichneAktienKurve extends JComponent {
 		this.werte = werte;
 		this.farbe = farbe;
 		this.setSize(hauptFensterUI.fensterBreite,  hauptFensterUI.fensterHoehe);
+		this.setVisible(false);
 	}// zeichneAktienKurve
 
 
 	protected void setGroesse(int breite, int hoehe){
 		this.setSize(breite, hoehe);
 	}// setGroesse()
+	
+	
+	protected void setVisibility( boolean sichtbar){
+		this.setVisible(sichtbar);
+	} // setVisibility()
 
 
 	protected void getMax(){

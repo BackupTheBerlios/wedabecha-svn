@@ -139,6 +139,20 @@ public class subImportDialogUI extends JDialog {
 					hauptFensterUI.toolBar.kurveWaehlen(tabellenNummer, true);
 					hauptFensterUI.hauptMenu.setKurveEditable(tabellenNummer, true);
 
+					/*if (wedabecha.getKurve(tabellenNummer).isset()){
+						switch(tabellenNummer){
+							case 1:	hauptMenuListener.importiereTabelleListener().oeffneTabelle2.setEnabled(true);
+									break;
+							case 2:	importieretabelleUI.oeffneTabelle3.setEnabled(true);
+									break;
+							case 3:	importieretabelleUI.oeffneTabelle4.setEnabled(true);
+									break;
+							case 4:	importieretabelleUI.oeffneTabelle5.setEnabled(true);
+									break;
+						}
+					};
+					 */
+					
 					// entkäfern
 // 					System.out.println(importiereTabelle.zurZeichenKette());
 
