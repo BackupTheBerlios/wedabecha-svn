@@ -39,7 +39,14 @@ public class toolBarUI /*implements ActionListener*/{
 			protected JToggleButton pfeilzeichnenbutton = new JToggleButton(pfeilzeichnen);
 		private ImageIcon textzeichnen = new ImageIcon("Images/text.gif");
 			protected JToggleButton textzeichnenbutton = new JToggleButton(textzeichnen);
-
+		private JToggleButton tabelle1Button = new JToggleButton("Tabelle 1");
+		private JToggleButton tabelle2Button = new JToggleButton("Tabelle 2");
+		private JToggleButton tabelle3Button = new JToggleButton("Tabelle 3");
+		private JToggleButton tabelle4Button = new JToggleButton("Tabelle 4");
+		private JToggleButton tabelle5Button = new JToggleButton("Tabelle 5");
+				
+		private int breite;
+		
 
 	// Konstruktor
 	public toolBarUI(int breite){
@@ -47,24 +54,26 @@ public class toolBarUI /*implements ActionListener*/{
 		this.toolBar.setSize(breite, 35);
 	} // toolBarUI()
 
-
+	
 	protected void setBreite(int breite){
 	    this.toolBar.setSize(breite, 35);
 	}// setBreite(int breite)
 
+	
 	// Setzt die ToolBar zusammen
 	public void pack(){
 		this.toolBar.add(oeffnenbutton);
 			this.oeffnenbutton.setContentAreaFilled(true);
 		this.toolBar.add(speichernbutton);
 			this.speichernbutton.setContentAreaFilled(true);
-		this.toolBar.add(undobutton);
-			this.undobutton.setContentAreaFilled(true);
-		this.toolBar.add(redobutton);
-			this.redobutton.setContentAreaFilled(true);
-		this.toolBar.addSeparator();
-		this.toolBar.add(gitterbutton);
-			this.gitterbutton.setContentAreaFilled(true);
+		/* werden vielleicht noch Implementiert wenn noch Zeit ist */
+		//this.toolBar.add(undobutton);
+			//this.undobutton.setContentAreaFilled(true);
+		//this.toolBar.add(redobutton);
+			//this.redobutton.setContentAreaFilled(true);
+		//this.toolBar.addSeparator();
+		//this.toolBar.add(gitterbutton);
+			//this.gitterbutton.setContentAreaFilled(true);
 		this.toolBar.addSeparator();
 		this.toolBar.add(liniezeichnenbutton);
 			this.liniezeichnenbutton.setContentAreaFilled(true);
@@ -75,6 +84,21 @@ public class toolBarUI /*implements ActionListener*/{
 		this.toolBar.add(textzeichnenbutton);
 			this.textzeichnenbutton.setContentAreaFilled(true);
 			this.textzeichnenbutton.addActionListener(new textButtonListener());
+		/* die TabellenButtons werden erst gebraucht wenn mehrere Tabellen angezeigt werden können
+		this.toolBar.addSeparator();
+		this.toolBar.addSeparator();
+		this.toolBar.add(tabelle1Button);
+			this.tabelle1Button.setEnabled(false);
+		this.toolBar.add(tabelle2Button);
+			this.tabelle2Button.setEnabled(false);
+		this.toolBar.add(tabelle3Button);
+			this.tabelle3Button.setEnabled(false);
+		this.toolBar.add(tabelle4Button);
+			this.tabelle4Button.setEnabled(false);
+		this.toolBar.add(tabelle5Button);
+			this.tabelle5Button.setEnabled(false);
+		*/
+		
 		this.toolBar.setFloatable(false);
 		this.toolBar.setBorderPainted(true);
 	} // pack()

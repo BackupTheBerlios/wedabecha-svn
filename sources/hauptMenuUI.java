@@ -61,6 +61,7 @@ public class hauptMenuUI {
 			this.dateiMenu.add(this.verknuepfeTabelleMenuItem);
 				this.verknuepfeTabelleMenuItem.addActionListener(new verknuepfeTabelleListener());
 			this.dateiMenu.add(this.exportiereTabelleMenuItem);
+				this.exportiereTabelleMenuItem.addActionListener(new exportiereTabelleListener());
 			this.dateiMenu.add(this.exportiereGrafikMenuItem);
 				this.exportiereGrafikMenuItem.addActionListener(new exportiereGrafikListener());
 			this.dateiMenu.add(this.druckenMenuItem);
@@ -70,15 +71,17 @@ public class hauptMenuUI {
 		this.mainMenuBar.add(this.dateiMenu);
 		// ende dateiMenu
 
+		/* hier kommen dann mal die UNDO & REDO Schaltflächen rein*/
 		// beginn bearbeitenMenu
-		this.mainMenuBar.add(this.bearbeitenMenu);
+		//this.mainMenuBar.add(this.bearbeitenMenu);
 		// ende bearbeitenMenu
-
+		/* wird vielleicht noch Implementiert werden*/
 		// beginn ansichtMenu
-			this.ansichtMenu.add(this.zeigeGitterMenuItem);
-			/*this.ansichtMenu.add(this.zeigeToolBarItem);
-				this.zeigeToolBarItem.addActionListener(new zeigeToolBarListener());*/
-		this.mainMenuBar.add(this.ansichtMenu);
+		//this.ansichtMenu.add(this.zeigeGitterMenuItem);
+			//this.zeigeGitterMenuItem.addActionListener(new zeichneRasterListener());
+		/*this.ansichtMenu.add(this.zeigeToolBarItem);
+			this.zeigeToolBarItem.addActionListener(new zeigeToolBarListener());*/
+		//this.mainMenuBar.add(this.ansichtMenu);
 		// ende ansichtMenu
 
 		// beginn hilfeMenu

@@ -42,13 +42,14 @@ public class verknuepfeTabellenUI extends JDialog{
 		private JButton speicherButton = new JButton("Speichern");
 		private JButton abbrechenButton = new JButton("Abbrechen");
 
-		private String[] daten = {"erste Zeile", "zweite Zeile", "dritte Zeile", "vierte Zeile", "fünfte Zeile"};
+		private String[] daten = {"erste Zeile", "zweite Zeile", "dritte Zeile", "vierte Zeile", "f\u00fcnfte Zeile"};
 		/*
 			hier kommt dann später die Liste hin in der die Tabellendateien drin stehen,
 			welche verknuepft werden sollen
 		*/
 
 		private JList auswaehlen = new JList(daten);
+		private JLabel speicherpfadLabel = new JLabel("Pfad: ");
 		private JTextField speicherpfad = new JTextField(20);
 
 
@@ -73,9 +74,15 @@ public class verknuepfeTabellenUI extends JDialog{
 
 		this.verknuepfe.add((this.bottomPanel),BorderLayout.SOUTH);
 			this.bottomPanel.add(this.bottomTopPanel);
+				this.bottomTopPanel.add(this.speicherpfadLabel);
 				this.bottomTopPanel.add(this.speicherpfad);
 			this.bottomPanel.add(this.bottomBottomPanel);
 				this.bottomBottomPanel.add(this.speicherButton);
+					this.speicherButton.addActionListener(new ActionListener(){
+						public void actionPerformed(ActionEvent event){
+							setVisible(false);
+						} // actionPerformed(ActionEvent event)
+					});
 				this.bottomBottomPanel.add(this.abbrechenButton);
 					this.abbrechenButton.addActionListener(new ActionListener(){
 						public void actionPerformed(ActionEvent event){
