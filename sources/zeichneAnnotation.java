@@ -19,6 +19,7 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.lang.Math;
 
 public class zeichneAnnotation extends JComponent{
 
@@ -26,10 +27,10 @@ public class zeichneAnnotation extends JComponent{
 
 
 class zeichneLinie extends JComponent{
-    private static int startX;
-    private static int startY;
-    private static int endX;
-    private static int endY;
+    private int startX;
+    private int startY;
+    private int endX;
+    private int endY;
     
     public zeichneLinie(int startXP, int startYP, int endXP, int endYP){
 	startX = startXP;
@@ -45,30 +46,58 @@ class zeichneLinie extends JComponent{
     }// paintComponent(GGraphics linie)
 }// zeichneLinie
 
-/*
+
 class zeichnePfeil extends JComponent{
+    private int startX;
+    private int startY;
+    private int endX;
+    private int endY;
+    private int spitze1X; // X-Koordinate Pfeilspitze oben
+    private int spitze1Y; // Y-Koordinate Pfeilspitze oben
+    private int spitze2X; // X-Koordinate Pfeilspitze unten
+    private int spitze2Y; // Y-Koordinate Pfeilspitze unten
+    private double winkel; // Winkel der Linie zur X-Achse
+    
+    public zeichnePfeil(int startXP, int startYP, int endXP, int endYP){
+	startX = startXP;
+	startY = startYP;
+	endX = endXP;
+	endY = endYP;
+	this.setSize(700, 500);
+    }// zeichneLinie()
+    
+    
     public void paintComponent(Graphics pfeil){
-	    pfeil.drawLine(startx,starty,endx,endy);
-	    
+	// Berechnung der Koordinaten für die Pfeilspitze
+	winkel = Math.toDegrees(Math.tan((endY-startY)/(endX-startX)));
+	spitze1X = (int)Math.sqrt((Math.pow(20,2))/(2*Math.pow( (Math.tan(20)+winkel),2 )))+endX;
+	spitze1Y = (int)(endY+((spitze1X-endX)*Math.tan(winkel+20)));
+	spitze2X = (int)Math.sqrt((Math.pow(20,2))/(2*Math.pow((Math.tan(-20)+winkel),2)))+endX;
+	spitze2Y = (int)(endY+((spitze1X-endX)*Math.tan(winkel-20)));
+	System.out.println(startX+" "+startY+" "+endX+" "+endY);
+	System.out.println(winkel);
+	pfeil.drawLine(startX, startY, endX, endY);
+	pfeil.drawLine(spitze1X, spitze1Y, endX, endY);
+	pfeil.drawLine(spitze2X, spitze2Y, endX, endY);	
     }// paintComponent(Graphics pfeil)
 }// zeichnePfeil
-*/
+
 
 class zeichneText extends JComponent{
-    private static int startX;
-    private static int startY;
-    private static String text;
+    private int startX;
+    private int startY;
+    private String text;
     
     
     public zeichneText(String textP, int startXP, int startYP){
 	text = textP;
 	startX = startXP;
 	startY = startYP;
-	this.setSize(text.length(), 14);
+	this.setSize(700, 500);
     }// zeichneText()
     
     
     public void paintComponent(Graphics text){
-	    text.drawString(this.text, this.startX,this.startY);
+	    text.drawString(this.text, this.startX, this.startY);
     }// paintComponent(Graphics text)    
 }// zeichneText

@@ -22,6 +22,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.*;
 
 
 public class hauptFensterUI extends JFrame {
@@ -81,7 +82,8 @@ public class hauptFensterUI extends JFrame {
 		final kontextMenuUI kontext = new kontextMenuUI();
 
 		this.layeredPane.add(kontext.getKontextMenu(), JLayeredPane.POPUP_LAYER);
-
+		
+			
 		this.layeredPane.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent me ) {
 				if ( me.getButton() == me.BUTTON3) {
@@ -90,6 +92,8 @@ public class hauptFensterUI extends JFrame {
 			} // mouseReleased(MouseEvent me)
 		} ); // addMouseListener()
 		
+		
+		//dieser MouseListener sorgt dafür, dass die Textfelder dem Hauptfenster hinzugefügt werden können
 		this.layeredPane.addMouseListener(new MouseAdapter(){
 			public void mouseReleased(MouseEvent me) {
 			    // wenn der ToggleButton in der Toolbar aktiviert ist...
@@ -101,7 +105,7 @@ public class hauptFensterUI extends JFrame {
 								"neues Textfeld erstellen.",
 								JOptionPane.QUESTION_MESSAGE);
 				    zeichneText zeichneText = new zeichneText(text, me.getX(), me.getY());
-				    layeredPane.add(zeichneText, JLayeredPane.DRAG_LAYER, 8);
+				    layeredPane.add(zeichneText, new Integer(8));
 				    System.out.println(text);
 				}// if
 			    }// if
@@ -110,18 +114,22 @@ public class hauptFensterUI extends JFrame {
 		);// addMouseListener()
 		
 		
+		//dieser MouseListener sorgt dafür, dass die Linien im Hauptfenster gezeichnet werden können
 		this.layeredPane.addMouseListener(new MouseAdapter(){
 			private int startX;
 			private int endX;
 			private int startY;
 			private int endY;
-			private int zaehler;
+			private int zaehler; // legt die koordinaten für start- und endpunkte fest
+
 			
 			public void mouseReleased(MouseEvent me) {
 			    // wenn der ToggleButton in der Toolbar aktiviert ist...
 			    if(toolBar.linieGewaehlt()){
 				// ...reagiert erst der MouseListener auf den Linksklick
 				if(me.getButton() == me.BUTTON1){
+				    /* beim ersten klick werden die Startwerte gesetzt, beim
+				     *zweiten die endwerte*/
 				    switch(zaehler){
 					case 0:
 					    startX = me.getX();
@@ -132,15 +140,58 @@ public class hauptFensterUI extends JFrame {
 					    endX = me.getX();
 					    endY = me.getY();
 					    zaehler = 0;
+					    
+					    /* mit den so gewonnenen werten wird dann die linie gezeichnet 
+					    und der leyeredPane geadded */
+					    
+					    zeichneLinie zeichneLinie = new zeichneLinie(startX, startY, endX, endY);
+					    layeredPane.add(zeichneLinie, new Integer(7));
+					    startX = startY = endX = endY = 0;
 					    break;
 				    }// switch(zaehler)
-				    
-				    System.out.println(startX+" "+startY+" "+endX+" "+endY);
-				    zeichneLinie zeichneLinie = new zeichneLinie(startX, startY, endX, endY);
-				    zeichneLinie.setOpaque(true);
-				    layeredPane.add(zeichneLinie, JLayeredPane.DEFAULT_LAYER, 7);
-				}// if	
-			    }// if
+				}// if()
+			    }// if()
+			}// mouseReleased(MouseEvent me)
+		}// MouseAdapter
+		);// addMouseListener()
+		
+		
+		//dieser MouseListener sorgt dafür, dass die Pfeiel im Hauptfenster gezeichnet werden können
+		this.layeredPane.addMouseListener(new MouseAdapter(){
+			private int startX = 0;
+			private int endX = 0;
+			private int startY = 0;
+			private int endY = 0;
+			private int zaehler; // legt die koordinaten für start- und endpunkte fest
+
+			
+			public void mouseReleased(MouseEvent me) {
+			    // wenn der ToggleButton in der Toolbar aktiviert ist...
+			    if(toolBar.pfeilGewaehlt()){
+				// ...reagiert erst der MouseListener auf den Linksklick
+				if(me.getButton() == me.BUTTON1){
+				    /* beim ersten klick werden die Startwerte gesetzt, beim
+				     *zweiten die endwerte*/
+				    switch(zaehler){
+					case 0:
+					    startX = me.getX();
+					    startY = me.getY();
+					    zaehler = 1;
+					    break;
+					case 1:
+					    endX = me.getX();
+					    endY = me.getY();
+					    zaehler = 0;
+					    
+					    /* mit den so gewonnenen werten wird dann die linie gezeichnet 
+					    und der leyeredPane geadded */
+					    
+					    zeichnePfeil zeichnePfeil = new zeichnePfeil(startX, startY, endX, endY);
+					    layeredPane.add(zeichnePfeil, new Integer(6));
+					    break;
+				    }// switch(zaehler)    
+				}// if()
+			    }// if()
 			}// mouseReleased(MouseEvent me)
 		}// MouseAdapter
 		);// addMouseListener()

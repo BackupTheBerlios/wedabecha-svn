@@ -69,20 +69,55 @@ public class toolBarUI /*implements ActionListener*/{
 		this.toolBar.addSeparator();
 		this.toolBar.add(liniezeichnenbutton);
 			this.liniezeichnenbutton.setContentAreaFilled(true);
+			this.liniezeichnenbutton.addActionListener(new linieButtonListener());
 		this.toolBar.add(pfeilzeichnenbutton);
 			this.pfeilzeichnenbutton.setContentAreaFilled(true);
+			this.pfeilzeichnenbutton.addActionListener(new pfeilButtonListener());
 		this.toolBar.add(textzeichnenbutton);
 			this.textzeichnenbutton.setContentAreaFilled(true);
-			
+			this.textzeichnenbutton.addActionListener(new textButtonListener());
 		this.toolBar.setFloatable(false);
-		this.toolBar.setBorderPainted(true);
+		this.toolBar.setBorderPainted(true);		
 	} // pack()
 
 	public JToolBar getToolBar(){
 		return this.toolBar;
 	} // getToolBar()
 	
-		
+	
+	class linieButtonListener implements ActionListener{
+	    
+	    public void actionPerformed(ActionEvent e) {
+		if(linieGewaehlt()){
+		    abwaehlen(3);
+		}// if
+	    }// actionPerformed(ActionEvent e)
+	    
+	}// linienButtonListener
+	
+	
+	class pfeilButtonListener implements ActionListener{
+	    
+	    public void actionPerformed(ActionEvent e) {
+		if(pfeilGewaehlt()){
+		    abwaehlen(1);
+		}// if
+	    }// actionPerformed(ActionEvent e)
+	    
+	}// pfeilButtonListener
+	
+
+	class textButtonListener implements ActionListener{
+	    
+		public void actionPerformed(ActionEvent e) {
+		    if(textGewaehlt()){
+			abwaehlen(2);
+		    }//if
+		}// actionPerformed(ActionEvent e)
+	    
+	}// textButtonListener
+	
+	
 	public void abwaehlen(int aus){
 	    switch(aus){
 		case 1:
