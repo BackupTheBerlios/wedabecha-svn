@@ -25,7 +25,7 @@ import javax.swing.filechooser.FileFilter;
 	@author
 		Martin Müller (mrtnmueller at users.berlios.de),
 	@since 2005-01-28
-	@version 0.7
+	@version 1.1
 */
 
 // Diese Klasse dient zum Öffnen der .weda-Dateien
@@ -66,12 +66,41 @@ public class openWeda {
 				    	if(returnVal == JFileChooser.APPROVE_OPTION){
 				    		
 							importiereTabelle.setImportPfad(auswahlDialog.getSelectedFile().getPath());
-							importiereTabelle.setTrennzeichenIndex(0);
-							importiereTabelle.setDatumsFormatIndex(0);
-							importiereTabelle.setDatumsPosFirstColumn(true);
+							importiereTabelle.setTrennzeichenIndex(0); //das Trennzeichen ist immer Semikolon
+							importiereTabelle.setDatumsFormatIndex(0);//das Datumsformat ist immer YYYY-MM-DD
+							importiereTabelle.setDatumsPosFirstColumn(true);//das Datum steht immer an erster Stelle
+							
+							//Daten importieren
 							ArrayList resAL = importiereTabelle.getWerte();
 							ArrayList ergebnis = importiereTabelle.getDaten();
-				    	}//if
+							
+							//Werte auf Eingelesene setzen
+							wedabecha.getKurve(kurvennummer).setWerte(resAL);
+							
+							//Daten auf Eingelesene setzen
+							wedabecha.getKurve(kurvennummer).setDaten(ergebnis);
+							
+							//Kurve auf "existent" setzten
+							wedabecha.getKurve(kurvennummer).setExists(true);
+							
+							// Button zur jeweiligen eingelesenen Kurve anzeigen
+							hauptFensterUI.toolBar.kurveWaehlen(kurvennummer, true);
+							hauptFensterUI.hauptMenu.setKurveEditable(kurvennummer, true);
+							
+							//im Importdialog soll noch der Pfad erscheinen
+							importiereTabelleUI.setPfad(auswahlDialog.getSelectedFile().getPath(),kurvennummer);
+							
+							for(int i = 1; i <= 5; i++){
+							    // alle importierten Tabellen als Kurve zeichnen
+								if(wedabecha.getKurve(i).isset()){
+									wedabecha.getKurve(i).zeichneKurve();
+								} // if
+							} // for
+
+							// Koordinatensystem zeichnen
+							hauptFensterUI.koordSys.zeichnen();
+
+				    	}//if [JFileChooser.APPROVE_OPTION() ist nicht null]
 				
 				}else {
 				   	JOptionPane.showMessageDialog( null, "Die Tabellennummer war falsch !" );
