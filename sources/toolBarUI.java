@@ -20,44 +20,58 @@
 import java.awt.event.*;
 import javax.swing.*;
 
+
 public class toolBarUI /*implements ActionListener*/{
-	JToolBar toolBar = new JToolBar(JToolBar.HORIZONTAL);
-		ImageIcon oeffnen = new ImageIcon("oeffnen.jpg");
-			JButton oeffnenbutton = new JButton("oeffnen");
-		ImageIcon speichern = new ImageIcon("schliessen.jpg");
+	JToolBar toolBar = new JToolBar("Werkzeugleiste");
+		ImageIcon oeffnen = new ImageIcon("Images/oeffnen.gif");
+			JButton oeffnenbutton = new JButton(oeffnen);
+		ImageIcon speichern = new ImageIcon("Images/speichern.gif");
 			JButton speichernbutton = new JButton(speichern);
-		ImageIcon undo = new ImageIcon("undo.jpg");
+		ImageIcon undo = new ImageIcon("Images/undo.gif");
 			JButton undobutton = new JButton(undo);
-		ImageIcon redo = new ImageIcon("redo.jpg");
+		ImageIcon redo = new ImageIcon("Images/redo.gif");
 			JButton redobutton = new JButton(redo);
-		ImageIcon gitter = new ImageIcon("gitter.jpg");
+		ImageIcon gitter = new ImageIcon("Images/gitter.gif");
 			JButton gitterbutton = new JButton(gitter);
-		ImageIcon liniezeichnen = new ImageIcon("linie.jpg");
+		ImageIcon liniezeichnen = new ImageIcon("Images/linie.gif");
 			JButton liniezeichnenbutton = new JButton(liniezeichnen);
-		ImageIcon pfeilzeichnen = new ImageIcon("pfeil.jpg");
+		ImageIcon pfeilzeichnen = new ImageIcon("Images/pfeil.gif");
 			JButton pfeilzeichnenbutton = new JButton(pfeilzeichnen);
-		ImageIcon textzeichnen = new ImageIcon("text.jpg");
+		ImageIcon textzeichnen = new ImageIcon("Images/text.gif");
 			JButton textzeichnenbutton = new JButton(textzeichnen);
 		
 	
+	// Konstruktor
 	public toolBarUI(){
 		this.pack();
 	} // toolBarUI()
-
+	
 	
 	public void pack(){
 		this.toolBar.add(oeffnenbutton);
+			this.oeffnenbutton.setContentAreaFilled(false);
 		this.toolBar.add(speichernbutton);
+			this.speichernbutton.setContentAreaFilled(false);
 		this.toolBar.add(undobutton);
+			this.undobutton.setContentAreaFilled(false);
 		this.toolBar.add(redobutton);
+			this.redobutton.setContentAreaFilled(false);
+		this.toolBar.addSeparator();
 		this.toolBar.add(gitterbutton);
+			this.gitterbutton.setContentAreaFilled(false);
+		this.toolBar.addSeparator();
 		this.toolBar.add(liniezeichnenbutton);
+			this.liniezeichnenbutton.setContentAreaFilled(false);
 		this.toolBar.add(pfeilzeichnenbutton);
+			this.pfeilzeichnenbutton.setContentAreaFilled(false);
 		this.toolBar.add(textzeichnenbutton);
+			this.textzeichnenbutton.setContentAreaFilled(false);
 		
+		this.toolBar.setFloatable(true);
+		this.toolBar.setBorderPainted(true);
 	} // pack()
 	
 	public JToolBar getToolBar(){
 		return this.toolBar;
-	} // toolBar()
+	} // getToolBar()
 } // toolBarUI

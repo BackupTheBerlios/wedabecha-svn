@@ -23,6 +23,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+
 public class hauptFensterUI extends JFrame {
 	private JFrame hauptFenster = new JFrame("wedabecha");
 	private static kontextMenuUI popupMenu = new kontextMenuUI();
@@ -42,12 +43,11 @@ public class hauptFensterUI extends JFrame {
 		hauptMenuUI hauptMenu = new hauptMenuUI(); // Hauptmenu initialisieren
 		this.hauptFenster.setJMenuBar(hauptMenu.getHauptMenu()); // Hauptmenu in das Fenster einbinden
 		
-		toolBarUI toolBar = new toolBarUI();
-		this.hauptFenster.add (toolBar.getToolBar());
+		toolBarUI toolBar = new toolBarUI(); // Werkzeugleiste initialisieren
+		this.hauptFenster.getContentPane().add(toolBar.getToolBar(), BorderLayout.NORTH); // Werkzeugleiste einbinden
 		
 		this.hauptFenster.getContentPane().add(this.mainPanel);
-
-
+		
 		// Listener zum Fensterschliessen per "wegkreuzen"
 		this.hauptFenster.addWindowListener(new beendenListener());
 

@@ -24,6 +24,7 @@ import javax.swing.*;
 public class kontextMenuUI extends JComponent {
 	// alle Menuepunkte des Popup-Menues als Klassenatrribute deklarieren
 	private JPopupMenu popup = new JPopupMenu();
+		private JMenuItem head = new JMenuItem("Wedabecha");
 		private JMenuItem undo = new JMenuItem("R\u00fcckg\u00e4ngig");
 		private JMenuItem redo = new JMenuItem("Wiederherstellen");
 
@@ -40,11 +41,14 @@ public class kontextMenuUI extends JComponent {
 	} // kontextMenuUI()
 
 	public void pack(){
+		this.popup.add(this.head);
+			this.head.setEnabled(false);
+			this.popup.addSeparator();
 		this.popup.add(this.undo);
 		this.popup.add(this.redo);
-		this.popup.addSeparator();
+			this.popup.addSeparator();
 		this.popup.add(this.gitteranzeigen);
-		this.popup.addSeparator();
+			this.popup.addSeparator();
 		this.popup.add(this.liniezeichnen);
 		this.popup.add(this.schreibenItem);
 		this.popup.add(this.pfeilzeichnen);
