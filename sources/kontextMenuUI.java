@@ -21,10 +21,10 @@ import java.awt.event.*;
 import javax.swing.*;
 
 
-public class kontextMenuUI extends JPopupMenu {
+public class kontextMenuUI extends JComponent {
 	// alle Menuepunkte des Popup-Menues als Klassenatrribute deklarieren
 	private JPopupMenu popup = new JPopupMenu();
-		private JMenuItem undo = new JMenuItem("R\u00dcckg\u00e4ngig");
+		private JMenuItem undo = new JMenuItem("R\u00fcckg\u00e4ngig");
 		private JMenuItem redo = new JMenuItem("Wiederherstellen");
 
 		private JCheckBoxMenuItem gitteranzeigen = new JCheckBoxMenuItem("Gitter anzeigen");
@@ -48,10 +48,10 @@ public class kontextMenuUI extends JPopupMenu {
 		this.popup.add(this.liniezeichnen);
 		this.popup.add(this.schreibenItem);
 		this.popup.add(this.pfeilzeichnen);
-
-		setSize(200,300);
+		
+		this.popup.setPopupSize(120,140);
+		
 		setVisible(true);
-
 
 	} // pack()
 
@@ -60,8 +60,4 @@ public class kontextMenuUI extends JPopupMenu {
 		return this.popup;
 	} // getKontextMenu()
 
-/*	public static void main(String args[]){
-		new kontextMenuUI();
-	} // main()
-*/
 } // kontextMenuUI

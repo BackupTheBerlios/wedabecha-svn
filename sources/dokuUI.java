@@ -21,9 +21,9 @@
 
 
 import javax.swing.*; //brauche ich um die Swing Objekte darzustellen
-import java.awt.*; //wird fuer das Layout benoeigt
+import java.awt.*; //wird fuer das Layout benoetigt
 import java.awt.event.*;
-import java.io.*; //wird ben�igt um die textdateien einzulesen
+import java.io.*; //wird benoeigt um die textdateien einzulesen
 
 public class dokuUI extends JFrame {
     private JTextArea textArea = new JTextArea();
@@ -74,7 +74,8 @@ public class dokuUI extends JFrame {
         setResizable(true);
         setVisible(true);
     }//dokuUI();
-
+	
+	
     public void pack() {
         getContentPane().setLayout(new BorderLayout());
 
@@ -99,13 +100,15 @@ public class dokuUI extends JFrame {
         this.schliessenButton.addActionListener(new schliessenListener());
 	}//pack()
 
-	class schliessenListener implements ActionListener {
+	
+	class schliessenListener implements ActionListener{
             public void actionPerformed(ActionEvent event){
                 setVisible(false);
             } // actionPerformed(ActionEvent event)
 
-            public void windowClosing(WindowEvent event) {
+            public void windowClosing(WindowEvent event){
         	setVisible(false);
             } // windowClosing(WindowEvent event)
 	} // schliessenListener
+
 }//dokuUI

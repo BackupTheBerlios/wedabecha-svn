@@ -41,7 +41,10 @@ public class hauptFensterUI extends JFrame {
 		*/
 		hauptMenuUI hauptMenu = new hauptMenuUI(); // Hauptmenu initialisieren
 		this.hauptFenster.setJMenuBar(hauptMenu.getHauptMenu()); // Hauptmenu in das Fenster einbinden
-
+		
+		toolBarUI toolBar = new toolBarUI();
+		this.hauptFenster.add (toolBar.getToolBar());
+		
 		this.hauptFenster.getContentPane().add(this.mainPanel);
 
 
@@ -63,12 +66,11 @@ public class hauptFensterUI extends JFrame {
 
 		this.hauptFenster.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent me ) {
-				if ( me.isPopupTrigger() ){
+				//if ( me.isPopupTrigger() ) {
 					kontext.getKontextMenu().show( hauptFenster, me.getX(), me.getY() );
-				} // if()
+				//} // if()
 			} // mouseReleased(MouseEvent me)
 		} ); // addMouseListener()
-
 	} // pack()
 
 
