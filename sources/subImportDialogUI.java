@@ -139,19 +139,27 @@ public class subImportDialogUI extends JDialog {
 					hauptFensterUI.toolBar.kurveWaehlen(tabellenNummer, true);
 					hauptFensterUI.hauptMenu.setKurveEditable(tabellenNummer, true);
 
-					/*if (wedabecha.getKurve(tabellenNummer).isset()){
+					if (wedabecha.getKurve(tabellenNummer).isset()){
 						switch(tabellenNummer){
-							case 1:	hauptMenuListener.importiereTabelleListener().oeffneTabelle2.setEnabled(true);
+							case 1:	importiereTabelleUI.oeffneTabelle2.setEnabled(true);
+									importiereTabelleUI.speicherTabelle[1].setEnabled(true);
+									importiereTabelleUI.darstellungsTypButton2.setEnabled(true);
 									break;
-							case 2:	importieretabelleUI.oeffneTabelle3.setEnabled(true);
+							case 2:	importiereTabelleUI.oeffneTabelle3.setEnabled(true);
+									importiereTabelleUI.speicherTabelle[2].setEnabled(true);
+									importiereTabelleUI.darstellungsTypButton3.setEnabled(true);
 									break;
-							case 3:	importieretabelleUI.oeffneTabelle4.setEnabled(true);
+							case 3:	importiereTabelleUI.oeffneTabelle4.setEnabled(true);
+									importiereTabelleUI.speicherTabelle[3].setEnabled(true);
+									importiereTabelleUI.darstellungsTypButton4.setEnabled(true);
 									break;
-							case 4:	importieretabelleUI.oeffneTabelle5.setEnabled(true);
+							case 4:	importiereTabelleUI.oeffneTabelle5.setEnabled(true);
+									importiereTabelleUI.speicherTabelle[4].setEnabled(true);
+									importiereTabelleUI.darstellungsTypButton5.setEnabled(true);
 									break;
 						}
 					};
-					 */
+					
 					
 					// entkäfern
 // 					System.out.println(importiereTabelle.zurZeichenKette());

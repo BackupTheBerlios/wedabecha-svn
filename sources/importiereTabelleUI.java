@@ -56,11 +56,11 @@ class importiereTabelleUI extends JDialog  {
 	private JLabel tabelle4Label = new JLabel("Tabelle 4 :");
 	private JLabel tabelle5Label = new JLabel("Tabelle 5 :");
 
-	protected JButton oeffneTabelle1 = new JButton("\u00D6ffnen");
-	protected JButton oeffneTabelle2 = new JButton("\u00D6ffnen");
-	protected JButton oeffneTabelle3 = new JButton("\u00D6ffnen");
-	protected JButton oeffneTabelle4 = new JButton("\u00D6ffnen");
-	protected JButton oeffneTabelle5 = new JButton("\u00D6ffnen");
+	protected static JButton oeffneTabelle1 = new JButton("\u00D6ffnen");
+	protected static JButton oeffneTabelle2 = new JButton("\u00D6ffnen");
+	protected static JButton oeffneTabelle3 = new JButton("\u00D6ffnen");
+	protected static JButton oeffneTabelle4 = new JButton("\u00D6ffnen");
+	protected static JButton oeffneTabelle5 = new JButton("\u00D6ffnen");
 
 	private static JTextField pfadTabelle1 = new JTextField(20);
 	private static JTextField pfadTabelle2 = new JTextField(20);
@@ -70,7 +70,7 @@ class importiereTabelleUI extends JDialog  {
 
 	// mit einer Liste von Checkboxen kann leichter per schleife abgefragt werden
 	// welche nun gesetzt is und welche nich
-	private JCheckBox speicherTabelle[] = {
+	protected static JCheckBox speicherTabelle[] = {
 		new JCheckBox("Speichern"),
 		new JCheckBox("Speichern"),
 		new JCheckBox("Speichern"),
@@ -78,11 +78,11 @@ class importiereTabelleUI extends JDialog  {
 		new JCheckBox("Speichern")
 	};
 
-	private JButton darstellungsTypButton1 = new JButton("Darstellung");
-	private JButton darstellungsTypButton2 = new JButton("Darstellung");
-	private JButton darstellungsTypButton3 = new JButton("Darstellung");
-	private JButton darstellungsTypButton4 = new JButton("Darstellung");
-	private JButton darstellungsTypButton5 = new JButton("Darstellung");
+	protected static JButton darstellungsTypButton1 = new JButton("Darstellung");
+	protected static JButton darstellungsTypButton2 = new JButton("Darstellung");
+	protected static JButton darstellungsTypButton3 = new JButton("Darstellung");
+	protected static JButton darstellungsTypButton4 = new JButton("Darstellung");
+	protected static JButton darstellungsTypButton5 = new JButton("Darstellung");
 
 	// für fünf verschiedene Kurven brauchen wir fünf verschiedene Tabellen
 	protected static importiereTabelle tabellen[] = {
@@ -145,7 +145,9 @@ class importiereTabelleUI extends JDialog  {
 			this.LTzeile2.add(pfadTabelle2);
 				pfadTabelle2.setEnabled(false);
 			this.LTzeile2.add(this.speicherTabelle[1]);
+				this.speicherTabelle[1].setEnabled(false);
 			this.LTzeile2.add(this.darstellungsTypButton2);
+				this.darstellungsTypButton2.setEnabled(false);
 				this.darstellungsTypButton2.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
 						showDarstellungsDialog(2);
@@ -164,7 +166,9 @@ class importiereTabelleUI extends JDialog  {
 			this.LTzeile3.add(pfadTabelle3);
 				pfadTabelle3.setEnabled(false);
 			this.LTzeile3.add(this.speicherTabelle[2]);
+				this.speicherTabelle[2].setEnabled(false);
 			this.LTzeile3.add(this.darstellungsTypButton3);
+				this.darstellungsTypButton3.setEnabled(false);
 				this.darstellungsTypButton3.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
 						showDarstellungsDialog(3);
@@ -183,7 +187,9 @@ class importiereTabelleUI extends JDialog  {
 			this.LTzeile4.add(pfadTabelle4);
 				pfadTabelle4.setEnabled(false);
 			this.LTzeile4.add(this.speicherTabelle[3]);
+				this.speicherTabelle[3].setEnabled(false);
 			this.LTzeile4.add(this.darstellungsTypButton4);
+				this.darstellungsTypButton4.setEnabled(false);
 				this.darstellungsTypButton4.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
 						showDarstellungsDialog(4);
@@ -202,7 +208,9 @@ class importiereTabelleUI extends JDialog  {
 			this.LTzeile5.add(pfadTabelle5);
 				pfadTabelle5.setEnabled(false);
 			this.LTzeile5.add(this.speicherTabelle[4]);
+				this.speicherTabelle[4].setEnabled(false);
 			this.LTzeile5.add(this.darstellungsTypButton5);
+				this.darstellungsTypButton5.setEnabled(false);
 				this.darstellungsTypButton5.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
 						showDarstellungsDialog(5);

@@ -179,11 +179,17 @@ public class Koordinatensystem extends JComponent {
 		ArrayList daten; // mehrzahl von datum
 		int xTextPos = 0; // horizontale position der beschriftung
 		daten = wedabecha.getKurve(1).getDaten();
-
+		
 		for (int i = startDateIndex; i < endDateIndex; i+= abstandx){
+			if ( (i % 100) == 0 ){
+				g.setColor(Color.BLUE);
+			} else {
+				g.setColor(Color.BLACK);
+			}
+			g.drawLine( (startDateIndex + i) , (startY - 4) , (startDateIndex + i) , (startY + 4) );
 			g.setColor(Color.BLACK);
 			String text[] = (String[])daten.get(i);
-			g.drawString(text[0] + "-" + text[1] + "-" + text[2],xTextPos,startY + 18);
+			g.drawString(text[0] + "-" + text[1] + "-" + text[2],xTextPos,startY + 12);
 			xTextPos += 100;
 		} // for
 	} // paintComponent()

@@ -39,6 +39,8 @@ class zeichneLinienKurve extends JComponent {
 	private double multiplikator;
 	private double max;
 	
+	private int breite = 670;
+	
 	private ArrayList ausgangsWerte;
 
 	public zeichneLinienKurve(ArrayList werte, Color farbe, ArrayList ausgangsWerte) {
@@ -51,6 +53,7 @@ class zeichneLinienKurve extends JComponent {
 
 
 	public void setGroesse(int breite, int hoehe){
+		this.breite = breite;
 		this.setSize(breite, hoehe);
 	} // setGroesse()
 	
@@ -74,8 +77,8 @@ class zeichneLinienKurve extends JComponent {
 		getMax();
 		int zaehler = 25;
 		
-		this.abstand = (2 * this.ausgangsWerte.size()) / this.werte.size();
-		
+		this.abstand = (2 * this.ausgangsWerte.size() * this.breite / 670)  / this.werte.size();
+
 		for(int i = dateBeginIndex / (this.abstand / 2); i < dateEndIndex / (this.abstand / 2); i ++){
 			kurve.setColor(this.farbe);
 			kurve.drawLine(	zaehler,
