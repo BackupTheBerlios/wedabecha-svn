@@ -43,9 +43,12 @@ class darstellungsTypUI extends JDialog {
 
 	JButton okKnopf = new JButton("OK");
 
+	private int tabellenNummer;
+
 
 	// Konstruktor
-	public darstellungsTypUI(){
+	public darstellungsTypUI(int tabellenNummer){
+		this.tabellenNummer = tabellenNummer;
 		this.pack();
 	}
 
@@ -65,6 +68,10 @@ class darstellungsTypUI extends JDialog {
 			this.bottomPanel.add(this.okKnopf);
 				this.okKnopf.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
+						wedabecha.getKurve(tabellenNummer).setKurvenArtIndex(
+							stilCombo.getSelectedIndex()
+						);
+						wedabecha.getKurve(tabellenNummer).setFarbe(""); // hier muss noch ein string übergeben werden
 						setVisible(false);
 					}
 				});

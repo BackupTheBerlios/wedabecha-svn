@@ -30,7 +30,7 @@ import javax.swing.*;
 class importiereTabelleListener implements ActionListener {
 	// für den MenuPunkt [Datei]->[Tabelle importieren]
 	public void actionPerformed(ActionEvent event){
-		importiereTabelle.importiereTabelleUI importDialog = new importiereTabelle.importiereTabelleUI();
+		importiereTabelleUI importDialog = new importiereTabelleUI();
 	} // actionPerformed(ActionEvent event)
 } // importiereTabelleListener
 

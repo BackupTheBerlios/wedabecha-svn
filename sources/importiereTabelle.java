@@ -21,8 +21,6 @@
 	Diese Datei enthält die Hintergrundfunktionen für importiereTabelle
 */
 
-package importiereTabelle;
-
 import java.util.*;
 import java.io.*;
 import javax.swing.*;
@@ -34,12 +32,6 @@ public class importiereTabelle {
 
 	// der pfad setzt sich aus absolutem verzeichnis UND dateinamen zusammen
 	private String importPfad;
-
-	// wird gleich dem importNamen gesetzt
-	private String internerSpeicherName;
-
-	// internerSpeicherPfad is das verzeichnis relativ zum programm, wo .weda-dateien abgespeichert werden
-	private String internerSpeicherPfad = "./daten/";
 
 	// zeichenketten für die JComboBox in der subImportDialogUI
 	private static String trennzeichenStr[] = {"; (Semikolon)",", (Komma)","# (Raute)","  (Leerzeichen)"};
@@ -96,16 +88,6 @@ public class importiereTabelle {
 	protected String getImportPfad(){
 		return this.importPfad;
 	} // getImportPfad()
-
-
-	protected void setInternerSpeicherName(String name){
-		this.internerSpeicherName = name;
-	}
-
-
-	protected String getInternerSpeicherName(){
-		return this.internerSpeicherName;
-	} // getInternerSpeicherName()
 
 
 	protected void setTrennzeichenIndex(int zahl){
@@ -172,8 +154,6 @@ public class importiereTabelle {
 		String toString = new String(
 			"importName: \t\t\t" + this.importName +
 			",\n importPfad: \t\t\t" + this.importPfad +
-			",\n internerSpeicherName: \t\t" + this.internerSpeicherName +
-			",\n internerSpeicherPfad: \t\t" + this.internerSpeicherPfad +
 			",\n isDatumsPosFirstColumn: \t" + this.isDatumsPosFirstColumn +
 			",\n datumsPos \t\t\t" + this.datumsPos +
 			",\n inkZahlRep \t\t\t" + this.inkZahlRep
@@ -237,17 +217,13 @@ public class importiereTabelle {
 				);
 
 				for( int i = 0 ; i < zeileL.length ; i++){
-					zeileALIt.add(zeileL[i]);
+					zeileAL.add(zeileL[i]);
 					// Datum aus Array kopieren
 					this.datumALIt.add(zeileAL.get(this.datumsPos));
 					// Datum an datumsPos entfernen
 					zeileAL.remove(this.datumsPos);
-					// zeileALIt.set(Integer.parseInt((String)zeileALIt.next()));
 					// fügt der zu übergebenden Liste die Daten hinzu
-
-					while (zeileALIt.hasNext()){
-						zeileALIt.set( (String)zeileALIt.next() );
-					} // while()
+					zeileAL.set(i, (String)zeileALIt.next() );
 				} // for()
 
 				resALIt.add(zeileAL);

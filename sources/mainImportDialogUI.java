@@ -17,8 +17,6 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
 
-package importiereTabelle;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -102,6 +100,11 @@ public class mainImportDialogUI extends JDialog  {
 			this.LTzeile1.add(this.pfadTabelle1);
 			this.LTzeile1.add(this.speicherTabelle1);
 			this.LTzeile1.add(this.darstellungsTypButton1);
+				this.darstellungsTypButton1.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent event){
+
+					}
+				});
 		// zeile 2
 		this.topPanel.add(this.LTzeile2);
 			this.LTzeile2.add(this.tabelle2Label);
@@ -190,6 +193,11 @@ public class mainImportDialogUI extends JDialog  {
 	private void showSubDialog(int tabellenNummer) {
 		new subImportDialogUI(tabellenNummer);
 	} // showSubDialog
+
+
+	private void showDarstellungsDialog(int tabellenNummer){
+		new darstellungsTypUI(tabellenNummer);
+	}
 
 
 	public static void setPfad(String pfad, int nr){

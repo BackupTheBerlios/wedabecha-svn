@@ -17,8 +17,6 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
 
-package importiereTabelle;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -117,10 +115,6 @@ public class subImportDialogUI extends JDialog {
 					mainImportDialogUI.setPfad(
 						importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).getImportPfad(),
 						tabellenNummer
-					);
-
-					importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setInternerSpeicherName(
-						importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).getImportName()
 					);
 
 					importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setTrennzeichenIndex(

@@ -19,6 +19,23 @@
 
 /*hauptklasse die als programm aufgerufen wird*/
 class wedabecha {
+	private static kurve kurve[] = {
+		new kurve(),
+		new kurve(),
+		new kurve(),
+		new kurve(),
+		new kurve()
+	};
+
+
+	protected static kurve getKurve(int nummer){
+		/**
+			paramemeter nummer muss zahl von 1 bis 5 sein
+		*/
+		return kurve[nummer-1];
+	}
+
+
 	//konstruktor
 	public wedabecha(){
 		hauptFensterUI hauptFenster = new hauptFensterUI();

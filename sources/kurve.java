@@ -38,17 +38,15 @@ public class kurve {
 	private String farbe;
 	private int kurvenArtIndex; // enthält Index-wert für kurvenStile
 	private ArrayList werte = new ArrayList(
-		new ArrayList(/*new Float()*/)
+		new ArrayList(1)
 	);
 
 //	private ListIterator = werte.listIterator();
 
-	private ArrayList daten = new ArrayList( // Mehrzahl von Datum
-		/*new Integer()*/
-	);
+	private ArrayList daten = new ArrayList(1);// Mehrzahl von Datum
 
-	private ArrayList mittelWerte = new ArrayList();
-	private ArrayList mittelDaten = new ArrayList(/*new Integer()*/); // Mehrzahl von Datums
+	private ArrayList mittelWerte = new ArrayList(1);
+	private ArrayList mittelDaten = new ArrayList(1); // Mehrzahl von Datums
 
 	protected String getFarbe(){
 		return this.farbe;

@@ -24,7 +24,7 @@ die Daten für die Kurve und die jeweiligen Datumsangaben enthält.
 
 ##############################################################################
 
-exportiereTabelle:
+Speicherfunktion (WUNSCHKRITERIUM):
 ganzes Objekt mit darstellungsTyp und Linienart als Objekt
 mit serialize (?) abspeichern als .weda-Datei
 

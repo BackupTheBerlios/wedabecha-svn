@@ -17,9 +17,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
 
-package importiereTabelle;
-
-public class importiereTabelleUI {
+class importiereTabelleUI {
 	/*
 		es kann fünf tabellen mit verschiedenen eigenschaften geben, die importiert werden können,
 		also braucht es fünf instanzen (im array von 0 bis 4) der hinterGrundKlasse
