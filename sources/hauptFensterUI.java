@@ -62,7 +62,7 @@ public class hauptFensterUI extends JFrame {
 
 		final kontextMenuUI kontext = new kontextMenuUI();
 
-		this.hauptFenster.add(kontext.getKontextMenu());
+		this.hauptFenster.getContentPane().add(kontext.getKontextMenu());
 
 		this.hauptFenster.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent me ) {
