@@ -123,18 +123,20 @@ public class hauptMenuUI {
 
 		// beginn dateiMenu
 			this.dateiMenu.add(this.oeffneDateiItem);
+				this.oeffneDateiItem.addActionListener(new oeffnenListener());
+			this.dateiMenu.addSeparator();
 			this.dateiMenu.add(this.importiereTabelleMenuItem);
 				this.importiereTabelleMenuItem.addActionListener(new importiereTabelleListener());
 // 			this.dateiMenu.add(this.verknuepfeTabelleMenuItem);
 // 				this.verknuepfeTabelleMenuItem.addActionListener(new verknuepfeTabelleListener());
 			this.dateiMenu.add(this.exportiereTabelleMenuItem);
 				this.exportiereTabelleMenuItem.addActionListener(new exportiereTabelleListener());
+			this.dateiMenu.addSeparator();
 			this.dateiMenu.add(this.exportiereGrafikMenuItem);
 				this.exportiereGrafikMenuItem.addActionListener(new exportiereGrafikListener());
-			this.dateiMenu.add(this.oeffneDateiItem);
-				this.oeffneDateiItem.addActionListener(new oeffnenListener());
 			this.dateiMenu.add(this.druckenMenuItem);
 				this.druckenMenuItem.setEnabled(false);
+			this.dateiMenu.addSeparator();
 			this.dateiMenu.add(this.beendenMenuItem);
 				this.beendenMenuItem.addActionListener(new beendenListener());
 		this.mainMenuBar.add(this.dateiMenu);
@@ -160,8 +162,58 @@ public class hauptMenuUI {
 									for(int i = 1; i <= 5; i++){
 							    		// alle importierten Tabellen als Kurve zeichnen
 										if(wedabecha.getKurve(i).isset()){
-											wedabecha.getKurve(i).zeichneKurve();
+
+											try{
+												hauptFensterUI.layeredPane.remove(
+													hauptFensterUI.layeredPane.getIndexOf(
+														wedabecha.getKurve(i).zeichneAktienKurve
+													)
+												);
+
+											}catch(ArrayIndexOutOfBoundsException except){
+												try{
+													hauptFensterUI.layeredPane.remove(
+														hauptFensterUI.layeredPane.getIndexOf(
+															wedabecha.getKurve(i).zeichneLinienKurve
+														)
+													);
+
+												}catch(ArrayIndexOutOfBoundsException exception){
+												//mache von mir aus nix
+												}//try
+
+											}//try
+
+
+											hauptFensterUI.layeredPane.repaint();
+
+											if(wedabecha.getKurve(1).isset()){
+												wedabecha.getKurve(1).zeichneKurve();
+												hauptFensterUI.toolBar.setKurve1Button();
+											}//if
+
+											if(wedabecha.getKurve(2).isset()){
+												wedabecha.getKurve(2).zeichneKurve();
+												hauptFensterUI.toolBar.setKurve2Button();
+											}//if
+
+											if(wedabecha.getKurve(3).isset()){
+												wedabecha.getKurve(3).zeichneKurve();
+												hauptFensterUI.toolBar.setKurve3Button();
+											}//if
+
+											if(wedabecha.getKurve(4).isset()){
+												wedabecha.getKurve(4).zeichneKurve();
+												hauptFensterUI.toolBar.setKurve4Button();
+											}//if
+
+											if(wedabecha.getKurve(5).isset()){
+												wedabecha.getKurve(5).zeichneKurve();
+												hauptFensterUI.toolBar.setKurve5Button();
+											}//if
+
 											datenLaengen[i] = wedabecha.getKurve(i).getDaten().size();
+
 										} // if
 
 										java.util.Arrays.sort(datenLaengen);
@@ -216,6 +268,7 @@ public class hauptMenuUI {
 				this.kurzAnleitungMenuItem.addActionListener(new hauptMenuKurzAnleitungListener());
 			this.hilfeMenu.add(this.dokuMenuItem);
 				this.dokuMenuItem.addActionListener(new hauptMenuDokumentationListener());
+			this.hilfeMenu.addSeparator();
 			this.hilfeMenu.add(this.aboutMenuItem);
 		this.mainMenuBar.add(this.hilfeMenu);
 		// ende hilfeMenu

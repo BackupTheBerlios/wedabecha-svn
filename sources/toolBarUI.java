@@ -133,23 +133,28 @@ public class toolBarUI /*implements ActionListener*/{
 	class kurveButtonListener implements ActionListener{
 
 	    public void actionPerformed(ActionEvent e) {
-			for(int i = 0; i < 5; i++){
-				if(wedabecha.getKurve(i + 1).isset()){
-					if(kurveButton[i].isSelected()){
-						if(wedabecha.getKurve(i + 1).getKurvenStilIndex() == 0){
-							wedabecha.getKurve(i + 1).zeichneAktienKurve.setVisibility(true);
+			try{
+				for(int i = 0; i < 5; i++){
+					if(wedabecha.getKurve(i + 1).isset()){
+						if(kurveButton[i].isSelected()){
+							if(wedabecha.getKurve(i + 1).getKurvenStilIndex() == 0){
+								wedabecha.getKurve(i + 1).zeichneAktienKurve.setVisibility(true);
+							}else{
+								wedabecha.getKurve(i + 1).zeichneLinienKurve.setVisibility(true);
+							} // if()-else
 						}else{
-							wedabecha.getKurve(i + 1).zeichneLinienKurve.setVisibility(true);
+							if(wedabecha.getKurve(i + 1).getKurvenStilIndex() == 0){
+								wedabecha.getKurve(i + 1).zeichneAktienKurve.setVisibility(false);
+							}else{
+								wedabecha.getKurve(i + 1).zeichneLinienKurve.setVisibility(false);
+							} // if()-else
 						} // if()-else
-					}else{
-						if(wedabecha.getKurve(i + 1).getKurvenStilIndex() == 0){
-							wedabecha.getKurve(i + 1).zeichneAktienKurve.setVisibility(false);
-						}else{
-							wedabecha.getKurve(i + 1).zeichneLinienKurve.setVisibility(false);
-						} // if()-else
-					} // if()-else
-				} // if()
-			} // for()
+					} // if()
+				} // for()
+			}catch(NullPointerException exception){
+			JOptionPane.showMessageDialog( null, "Sie haben vergessen, die Kurve neu zeichnen zu lassen.\n"+
+											"Klicken sie auf [Kurve] --> [Kurvennummer] --> [Neu Zeichnen]" );
+			}
 	    } // actionPerformed()
 
 	}// kurveButtonListener
@@ -190,7 +195,7 @@ public class toolBarUI /*implements ActionListener*/{
 	/* Diese Methode sorgt dafür, dass man nur einen von den 3 Buttons (Text,
 	 * Line oder Pfeil) gleichzeitig anwählen kann
 	 */
-	
+
 	public void abwaehlen(int aus){
 	    switch(aus){
 			case 1:
@@ -227,11 +232,11 @@ public class toolBarUI /*implements ActionListener*/{
 	public boolean linieGewaehlt(){
 	    return liniezeichnenbutton.isSelected();
 	}// linieGewaehlt
-	
+
 	/* Diese Methode sorgt dafür, dass die erste Kurve, die importiert wird auch
 	 * gleich angezeigt wird, damit man sieht, dass alles geklappt hat
 	 */
-	
+
 	public void setKurve1Button(){
 		this.kurveButton[0].setSelected(true);
 		if(wedabecha.getKurve(1).getKurvenStilIndex() == 0){
@@ -240,6 +245,46 @@ public class toolBarUI /*implements ActionListener*/{
 			wedabecha.getKurve(1).zeichneLinienKurve.setVisibility(true);
 		} // if()-else
 	} // setKurve1Button()
-	
-	
+
+
+	public void setKurve2Button(){
+		this.kurveButton[1].setSelected(true);
+		if(wedabecha.getKurve(2).getKurvenStilIndex() == 0){
+			wedabecha.getKurve(2).zeichneAktienKurve.setVisibility(true);
+		}else{
+			wedabecha.getKurve(2).zeichneLinienKurve.setVisibility(true);
+		} // if()-else
+	} // setKurve1Button()
+
+
+	public void setKurve3Button(){
+		this.kurveButton[2].setSelected(true);
+		if(wedabecha.getKurve(3).getKurvenStilIndex() == 0){
+			wedabecha.getKurve(3).zeichneAktienKurve.setVisibility(true);
+		}else{
+			wedabecha.getKurve(3).zeichneLinienKurve.setVisibility(true);
+		} // if()-else
+	} // setKurve1Button()
+
+
+	public void setKurve4Button(){
+		this.kurveButton[3].setSelected(true);
+		if(wedabecha.getKurve(4).getKurvenStilIndex() == 0){
+			wedabecha.getKurve(4).zeichneAktienKurve.setVisibility(true);
+		}else{
+			wedabecha.getKurve(4).zeichneLinienKurve.setVisibility(true);
+		} // if()-else
+	} // setKurve1Button()
+
+
+	public void setKurve5Button(){
+		this.kurveButton[4].setSelected(true);
+		if(wedabecha.getKurve(5).getKurvenStilIndex() == 0){
+			wedabecha.getKurve(5).zeichneAktienKurve.setVisibility(true);
+		}else{
+			wedabecha.getKurve(5).zeichneLinienKurve.setVisibility(true);
+		} // if()-else
+	} // setKurve1Button()
+
+
 } // toolBarUI

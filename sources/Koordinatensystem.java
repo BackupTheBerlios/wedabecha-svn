@@ -158,6 +158,18 @@ public class Koordinatensystem extends JComponent {
 			tempBeschriftung += yBeschriftung / 10;
 		} // for
 
+		// Striche auf der X-Achse
+		for (int i = startX; i < endX - 25; i+=abstandx ){
+			if ( (i % 100) == 0 ){
+				g.setColor(Color.BLUE);
+				g.drawLine( (startX + i) , (startY - 8) , (startX + i) , (startY + 4) );
+			} else {
+				g.setColor(Color.BLACK);
+				g.drawLine( (startX + i) , (startY - 4) , (startX + i) , (startY + 4) );
+			} // if
+
+		} // for
+
 		/**
 			Beschriftung der X-Achse
 			Diese Beschriftung orientiert sich immer an der zuerst eingelesenen Tabelle,
@@ -166,42 +178,14 @@ public class Koordinatensystem extends JComponent {
 
 		ArrayList daten; // mehrzahl von datum
 		int xTextPos = 0; // horizontale position der beschriftung
-		try {
-			int welcheKurve = (wedabecha.getKurve(1).isset())? wedabecha.getKurve(1).getKurvenStilIndex() : null;
-			switch (welcheKurve){
-				case 2:	// wochenmittel
-					daten = wedabecha.getKurve(1).getDatumWochenMittel();
-					break;
-				case 3:	// monatsmittel
-					daten = wedabecha.getKurve(1).getDatumMonatsMittel();
-					break;
-				case 4:	// jahresmittel
-					daten = wedabecha.getKurve(1).getDatumJahresMittel();
-					break;
-				default: // tagesmittel und aktienkurve
-					daten = wedabecha.getKurve(1).getDaten();
-			} // switch
+		daten = wedabecha.getKurve(1).getDaten();
 
-
-			for (int i = startDateIndex; i < endDateIndex; i+= abstandx){
-				if ( (i % 100) == 0 ){
-					g.setColor(Color.BLUE);
-				} else {
-					g.setColor(Color.BLACK);
-				}
-				g.drawLine( (startDateIndex + i) , (startY - 4) , (startDateIndex + i) , (startY + 4) );
-				g.setColor(Color.BLACK);
-				String text[] = (String[])daten.get(i);
-				g.drawString(text[0] + "-" + text[1] + "-" + text[2],xTextPos,startY + 12);
-				xTextPos += 100;
-			} // for
-
-		} catch (NullPointerException NPE){
-			JOptionPane.showMessageDialog( null,"Die Achsenbeschriftung für das Datum orientiert sich an der ersten Kurve.\n" +
-											"Eine Kurve mit der Nummer 1 existiert nicht.", "Kurve existiert nicht",
-											JOptionPane.ERROR_MESSAGE
-			);
-		}
+		for (int i = startDateIndex; i < endDateIndex; i+= abstandx){
+			g.setColor(Color.BLACK);
+			String text[] = (String[])daten.get(i);
+			g.drawString(text[0] + "-" + text[1] + "-" + text[2],xTextPos,startY + 18);
+			xTextPos += 100;
+		} // for
 	} // paintComponent()
 
 
