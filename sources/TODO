@@ -5,31 +5,18 @@ lassen.
 
 ##############################################################################
 
-Zahlen auf Float umstellen. (Stehen im Moment noch auf Integer)
+Zahlen auf double umstellen. (Stehen im Moment noch auf Integer)
 
 ##############################################################################
 
 darstellungsTypUI:
-Auswahl zwischen verschiedenen Typen grafischer Darstellung dieser Daten
-(Punkte, durchgezogene Linie, Balken, aktienspezifische Balkendarstellung
-(Hoch-, Tiefstands- und Mittelwertbalken)
-
-Die Struktur der Darstellung muss neu überdacht werden, z.b.
-Hintergrundklasse implementiert werden etc.
-
+Interaktion mit der kurve
 ##############################################################################
 
 zeichneKurve
 neue Hintergrundklasse "Kurve", welche die Attribute für die Darstellung
 (Farbe, Kurvenart bzw. Linienart usw.)
 die Daten für die Kurve und die jeweiligen Datumsangaben enthält.
-
-##############################################################################
-
-toolBarUI:
-UNDO und REDO  auskommentieren, das ist Wunschkriterium und kann für später
-aufgehoben werden.
-Die Speichernschaltfläche ist nicht mehr erforderlich
 
 ##############################################################################
 

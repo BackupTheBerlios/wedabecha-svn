@@ -35,6 +35,8 @@ public class kurve {
 
 	// Objekt-Variablen
 
+	private boolean exists = false;
+
 	private String farbe;
 	private int kurvenStilIndex; // enthält Index-wert für kurvenStile
 	private ArrayList werte = new ArrayList(
@@ -46,9 +48,20 @@ public class kurve {
 	private ArrayList mittelWerte = new ArrayList(1);
 	private ArrayList mittelDaten = new ArrayList(1); // Mehrzahl von Datums
 
+	protected void setExists(boolean exists){
+		this.exists = exists;
+	}
+
+
+	protected boolean isset(){
+		return this.exists;
+	}
+
+
 	protected String getFarbe(){
 		return this.farbe;
 	}
+
 
 	protected void setFarbe(String farbe){
 		this.farbe = farbe;

@@ -17,28 +17,26 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
 
-//Diese Klasse dient zum Aufruf des "Speichern"-Dialoges
-
+/**
+	Diese Klasse dient zum Aufruf des "Speichern"-Dialoges
+*/
 
 import java.io.File;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 
 public class exportiereTabelleUI {
-	private exportiereTabelle export = new exportiereTabelle();
-
 	public exportiereTabelleUI () {
-		// erzeugen eines neuen Objekts "fc"
 		JFileChooser fc = new JFileChooser();
 
 		fc.setDialogTitle("Tabellendaten exportieren");
 		fc.setDialogType(JFileChooser.SAVE_DIALOG);
 
-
 		fc.setFileFilter( new FileFilter() {
 			public boolean accept( File f ) {
 				return 	f.isDirectory() ||
-						f.getName().toLowerCase().endsWith(".weda");
+						f.getName().toLowerCase().endsWith(".weda") ||
+						f.getName().toLowerCase().endsWith(".csv");
   			} // accept()
 
 			public String getDescription() {
@@ -52,24 +50,12 @@ public class exportiereTabelleUI {
 			// Rückgabe der gewählten Datei als "file"
 			File file = fc.getSelectedFile();
 			System.out.println( file.getName() );
-			export.setFile(file.getAbsolutePath());
-
-			try {
-				export.export(); // muss mit try-catch abgefangen werden!!!
-			} catch ( Exception e ) {
-				// io-Fehler abfangen
-				System.err.println( "Fehler beim Export!" );
-			} // try
-
+			// hier muss die tabellenNummer noch irgendwo herkommen
+			toWeda.writeFile(file.getName(), 1);
 		} else {
 			System.out.println( "Auswahl abgebrochen" );
 		} // fi
 
 		fc.setVisible(false); // is klar, ne
 	}
-
-	public static void main(String args[]){
-		new exportiereTabelleUI();
-	}
-
-}//exportiereTabelleUI()
+} //exportiereTabelleUI()

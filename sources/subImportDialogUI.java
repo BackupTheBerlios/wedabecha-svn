@@ -129,6 +129,8 @@ public class subImportDialogUI extends JDialog {
 						importiereTabelle.getDaten()
 					);
 
+					wedabecha.getKurve(tabellenNummer).setExists(true);
+
 					// entkäfern
 					System.out.println(importiereTabelle.zurZeichenKette());
 
@@ -138,6 +140,7 @@ public class subImportDialogUI extends JDialog {
 		this.bottomPanel.add(this.abbrechenKnopf);
 			this.abbrechenKnopf.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
+					wedabecha.getKurve(tabellenNummer).setExists(false);
 					setVisible(false);
 				}
 			});

@@ -189,4 +189,3 @@ public class berechneMittelwerte {
 		new berechneMittelwerte();
     }
 } // berechneMittelwerte
-
