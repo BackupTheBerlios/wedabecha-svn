@@ -51,13 +51,14 @@ class DReadData {
 	} // printWerte()
 
 	private void printDaten(){
-		int statArray[];
+		String statArray[];
 		String debug;
 		for (int i = 0; i < this.daten.size(); i++){
-			statArray = (int[])this.daten.get(i);
+			statArray = (String[])this.daten.get(i);
+// 			System.out.println(statArray);
 			debug = "";
 			for (int j = 0; j < statArray.length; j++){
-				debug += statArray[j];
+				debug += statArray[j] + "-";
 			} // for(j)
 			System.out.println(debug);
 		} // for(i)

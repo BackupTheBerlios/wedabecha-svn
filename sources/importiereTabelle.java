@@ -217,7 +217,7 @@ public class importiereTabelle {
 
 				resAL.add(zeileResL);
 				//System.out.println(debug);
-				//System.out.println(resAL);
+
 				//System.out.println(datumAL);
 			} // while()
 
@@ -226,7 +226,7 @@ public class importiereTabelle {
             	"Datei konnte nicht gelesen werden!","Dateifehler",
             	JOptionPane.ERROR_MESSAGE );
         } // try catch()
-
+		System.out.println(resAL);
 		return resAL;
 
 	} // getDaten()
@@ -240,11 +240,11 @@ public class importiereTabelle {
 
 		String splittedDate[];
 		String ergebnisDate[] = new String[3]; // splittedDate richtig sortiert nach YYYY MM DD
-		String tempDatum;
+		String tempDatum = "";
 		ArrayList ergebnis =  new ArrayList();
 		//ListIterator ergebnisIt =  ergebnis.listIterator();
 
-		for (int i = 0; i < datumAL.size(); i++){
+		for (int i = 0; i < 2/*datumAL.size()*/; i++){
 			tempDatum = (String)datumAL.get(i);
 			//System.out.println(tempDatum);
 			switch (datumsFormatIndex){
@@ -282,7 +282,7 @@ public class importiereTabelle {
 
 			ergebnis.add(ergebnisDate);
 		} // for()
-		//System.out.println(ergebnis);
+		System.out.println(ergebnis);
 		return ergebnis;
 	} // getDaten()
 
