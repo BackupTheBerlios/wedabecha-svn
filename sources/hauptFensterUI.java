@@ -42,7 +42,7 @@ public class hauptFensterUI extends JFrame {
 		hauptMenuUI hauptMenu = new hauptMenuUI(); // Hauptmenu initialisieren
 		this.hauptFenster.setJMenuBar(hauptMenu.getHauptMenu()); // Hauptmenu in das Fenster einbinden
 
-		this.hauptFenster.add(this.mainPanel);
+		this.hauptFenster.getContentPane().add(this.mainPanel);
 
 
 		// Listener zum Fensterschliessen per "wegkreuzen"

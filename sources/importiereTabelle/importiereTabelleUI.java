@@ -45,11 +45,11 @@ public class importiereTabelleUI extends JDialog  {
 	private JLabel tabelle4Label = new JLabel("Tabelle 4 :");
 	private JLabel tabelle5Label = new JLabel("Tabelle 5 :");
 
-	private JButton oeffneTabelle1 = new JButton("Oeffnen");
-	private JButton oeffneTabelle2 = new JButton("Oeffnen");
-	private JButton oeffneTabelle3 = new JButton("Oeffnen");
-	private JButton oeffneTabelle4 = new JButton("Oeffnen");
-	private JButton oeffneTabelle5 = new JButton("Oeffnen");
+	private JButton oeffneTabelle1 = new JButton("\u00D6ffnen");
+	private JButton oeffneTabelle2 = new JButton("\u00D6ffnen");
+	private JButton oeffneTabelle3 = new JButton("\u00D6ffnen");
+	private JButton oeffneTabelle4 = new JButton("\u00D6ffnen");
+	private JButton oeffneTabelle5 = new JButton("\u00D6ffnen");
 
 	private JTextField pfadTabelle1 = new JTextField(20);
 	private JTextField pfadTabelle2 = new JTextField(20);

@@ -26,7 +26,7 @@ public class hauptMenuUI {
 	// alle Bestandteile des Menüs als Klassenatrribute deklarieren
 	private JMenuBar mainMenuBar = new JMenuBar();
 		private JMenu dateiMenu = new JMenu("Datei");
-			private JMenuItem oeffneDateiItem = new JMenuItem("Oeffnen");
+			private JMenuItem oeffneDateiItem = new JMenuItem("\u00D6ffnen");
 			private JMenuItem importiereTabelleMenuItem = new JMenuItem("Tabelle importieren");
 			private JMenuItem exportiereTabelleMenuItem = new JMenuItem("Tabelle exportieren");
 			private JMenuItem exportiereGrafikMenuItem = new JMenuItem("Grafik exportieren");

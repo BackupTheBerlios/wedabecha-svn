@@ -42,7 +42,7 @@ class hauptMenuKurzAnleitungListener implements ActionListener {
 class hauptMenuDokumentationListener implements ActionListener {
 	// für den MenuPunkt [Hilfe]->Dokumentation
 	public void actionPerformed(ActionEvent event){
-		new dokuUI("Doku");
+		new dokuUI("Dokumentation");
 	} // actionPerformed(ActionEvent event)
 } // hauptMenuDokumentationListener
 
