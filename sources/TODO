@@ -1,3 +1,9 @@
+BUG beim Tabelle exportieren,
+wenn man gar nichts eingibt und auf [OK] klickt,
+erscheint in der Konsole eine Exception...
+
+##############################################################################
+
 !!!!!!!!!!!!
 importiereTabelle.definiereDatumUI
 die Möglichkeit ein Datum einzugeben ist da, aber evtl. nicht die beste,
