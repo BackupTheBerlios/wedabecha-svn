@@ -32,7 +32,7 @@ public class exportiereGrafik {
 
 	public void export() {
 
-		Dimension   size  = hauptFensterUI.layeredPane.getSize();
+		Dimension size  = hauptFensterUI.layeredPane.getSize();
 		Image image = hauptFensterUI.layeredPane.createImage(size.width, size.height);
 
 		Graphics g = image.getGraphics();

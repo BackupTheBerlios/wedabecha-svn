@@ -27,9 +27,9 @@ import javax.swing.*;
 
 public class hauptFensterUI extends JFrame {
 	static JFrame hauptFenster = new JFrame("wedabecha");
+	protected static JLayeredPane mainPane = new JLayeredPane();
 	protected static JLayeredPane layeredPane = new JLayeredPane();
 	protected static JLayeredPane toolbarPane = new JLayeredPane();
-	protected static JLayeredPane mainPane = new JLayeredPane();
 
 	Dimension d;
 
@@ -38,6 +38,7 @@ public class hauptFensterUI extends JFrame {
 
 	protected static toolBarUI toolBar = new toolBarUI(fensterBreite);
 	protected static zeichneRaster zeichneRaster = new zeichneRaster(fensterBreite, fensterHoehe);
+	protected static zeichneKoordinatensystem koordSys = new zeichneKoordinatensystem(fensterBreite,fensterHoehe);
 	protected kontextMenuUI kontext = new kontextMenuUI();
 
 	// konstruktor
@@ -46,13 +47,13 @@ public class hauptFensterUI extends JFrame {
 	    this.fensterHoehe = 500;
 	    this.pack();
 	} // hauptFensterUI()
-	
-	
+
+
 	public static void setGroesse(int breite, int hoehe){
 	    mainPane.setSize(breite, hoehe);
 	    layeredPane.setSize(breite, hoehe);
 	    toolbarPane.setSize(breite, hoehe);
-	}//setGroesse()
+	} //setGroesse()
 
 
 	public void pack(){
@@ -76,24 +77,29 @@ public class hauptFensterUI extends JFrame {
 		int Yposition = (bildSchirmHoehe - this.fensterHoehe) / 2;
 		hauptFensterUI.hauptFenster.setSize(this.fensterBreite,this.fensterHoehe);
 
-		// JLayeredPane wird als neue ContentPane eingesetzt
-		layeredPane.setOpaque(true); // ContentPane muss durchsichtig sein
-
 		hauptFensterUI.hauptFenster.setContentPane(mainPane);
-		mainPane.setSize(this.fensterBreite,this.fensterHoehe);
-		mainPane.setVisible(true);
 
 		mainPane.add(toolbarPane, JLayeredPane.PALETTE_LAYER);
 		mainPane.add(layeredPane, JLayeredPane.DEFAULT_LAYER);
 
-		//toolbarPane.setSize(this.fensterBreite,35);
+		mainPane.setSize(this.fensterBreite,this.fensterHoehe);
+		mainPane.setVisible(true);
+
+		// JLayeredPane wird als neue ContentPane eingesetzt
+		layeredPane.setOpaque(true); // ContentPane muss durchsichtig sein
+
+// 		toolbarPane.setSize(this.fensterBreite,35);
 
 		layeredPane.setSize(this.fensterBreite,this.fensterHoehe);
+		// !!! warum is das toolBarPane hier nich sichtbar???
 		toolbarPane.setVisible(false);
 		layeredPane.setVisible(true);
 
 		// Raster der neuen ContentPane adden
 		hauptFensterUI.layeredPane.add(zeichneRaster, JLayeredPane.DEFAULT_LAYER);
+
+		// Koordinatensystem der neuen ContentPane adden
+		hauptFensterUI.layeredPane.add(koordSys, JLayeredPane.DEFAULT_LAYER);
 
 		// Werkzeugleiste einbinden
 		hauptFensterUI.mainPane.add(toolBar.getToolBar(), JLayeredPane.PALETTE_LAYER);
@@ -102,19 +108,19 @@ public class hauptFensterUI extends JFrame {
 		hauptFensterUI.hauptFenster.setResizable(true);
 		hauptFensterUI.hauptFenster.setVisible(true);
 
-		//hauptFensterUI.layeredPane.add(kontext.getKontextMenu(), JLayeredPane.POPUP_LAYER);
+// 		hauptFensterUI.layeredPane.add(kontext.getKontextMenu(), JLayeredPane.POPUP_LAYER);
 
 
-		/*hauptFensterUI.layeredPane.addMouseListener(new MouseAdapter() {
-			public void mouseReleased(MouseEvent me ) {
-				if ( me.getButton() == MouseEvent.BUTTON3) {
-					kontext.getKontextMenu().show( layeredPane, me.getX(), me.getY() );
-				} // if()
-			} // mouseReleased(MouseEvent me)
-		} ); // addMouseListener()
-		*/
+// 		hauptFensterUI.layeredPane.addMouseListener(new MouseAdapter() {
+// 			public void mouseReleased(MouseEvent me ) {
+// 				if ( me.getButton() == MouseEvent.BUTTON3) {
+// 					kontext.getKontextMenu().show( layeredPane, me.getX(), me.getY() );
+// 				} // if()
+// 			} // mouseReleased(MouseEvent me)
+// 		} ); // addMouseListener()
+//
 
-		//dieser MouseListener sorgt dafür, dass die Textfelder dem Hauptfenster hinzugefügt werden können
+		// dieser MouseListener sorgt dafür, dass die Textfelder dem Hauptfenster hinzugefügt werden können
 		hauptFensterUI.layeredPane.addMouseListener(new MouseAdapter(){
 			public void mouseReleased(MouseEvent me) {
 			    // wenn der ToggleButton in der Toolbar aktiviert ist...
@@ -179,7 +185,7 @@ public class hauptFensterUI extends JFrame {
 		);// addMouseListener()
 
 
-		//dieser MouseListener sorgt dafür, dass die Pfeiel im Hauptfenster gezeichnet werden können
+		// dieser MouseListener sorgt dafür, dass die Pfeile im Hauptfenster gezeichnet werden können
 		hauptFensterUI.layeredPane.addMouseListener(new MouseAdapter(){
 			private int startX = 0;
 			private int endX = 0;
@@ -228,6 +234,7 @@ public class hauptFensterUI extends JFrame {
 				d = layeredPane.getSize();
 				zeichneRaster.setGroesse(d.width, d.height);
 				hauptFensterUI.setGroesse(d.width, d.height);
+				koordSys.setGroesse(d.width,d.height);
 				toolBar.setBreite(d.width);
 				System.out.println(d);
 			} // if
@@ -236,8 +243,8 @@ public class hauptFensterUI extends JFrame {
 		);
 
 	} // pack()
-	
-	
+
+
 	public static void main(String args[]){
 		hauptFensterUI wedabecha = new hauptFensterUI();
 	} // main(String args[])

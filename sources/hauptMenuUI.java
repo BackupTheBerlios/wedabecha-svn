@@ -20,6 +20,7 @@
 // in dieser Klasse brauchen wir nur Swing, da sie
 // von der hauptFensterUI aus weiterverwendet wird
 import javax.swing.*;
+import java.awt.event.*;
 
 
 public class hauptMenuUI {
@@ -74,6 +75,8 @@ public class hauptMenuUI {
 				new JMenuItem("Neu Zeichnen")
 			};
 
+			private int kurveIt;
+
 		private JMenu annotationMenu = new JMenu("Annotation");
 			private JMenuItem annotationPfeilMenuItem = new JMenuItem("Pfeil zeichnen");
 			private JMenuItem annotationLinieMenuItem = new JMenuItem("Linie zeichnen");
@@ -103,8 +106,8 @@ public class hauptMenuUI {
 			this.dateiMenu.add(this.oeffneDateiItem);
 			this.dateiMenu.add(this.importiereTabelleMenuItem);
 				this.importiereTabelleMenuItem.addActionListener(new importiereTabelleListener());
-			this.dateiMenu.add(this.verknuepfeTabelleMenuItem);
-				this.verknuepfeTabelleMenuItem.addActionListener(new verknuepfeTabelleListener());
+// 			this.dateiMenu.add(this.verknuepfeTabelleMenuItem);
+// 				this.verknuepfeTabelleMenuItem.addActionListener(new verknuepfeTabelleListener());
 			this.dateiMenu.add(this.exportiereTabelleMenuItem);
 				this.exportiereTabelleMenuItem.addActionListener(new exportiereTabelleListener());
 			this.dateiMenu.add(this.exportiereGrafikMenuItem);
@@ -117,7 +120,7 @@ public class hauptMenuUI {
 		// ende dateiMenu
 
 		// beginn kurve-menues
-			for (int kurveIt = 0; kurveIt < 5; kurveIt++){
+			for (kurveIt = 0; kurveIt < 5; kurveIt++){
 				this.kurveMenu.add(this.kurveMenuList[kurveIt]);
 					this.kurveMenuList[kurveIt].add(this.kurveOeffnenMenuItem[kurveIt]);
 						this.kurveOeffnenMenuItem[kurveIt].setEnabled(false);
@@ -127,6 +130,13 @@ public class hauptMenuUI {
 						this.kurveDarstellungMenuItem[kurveIt].setEnabled(false);
 					this.kurveMenuList[kurveIt].add(this.kurveNeuZeichnenMenuItem[kurveIt]);
 						this.kurveNeuZeichnenMenuItem[kurveIt].setEnabled(false);
+						this.kurveNeuZeichnenMenuItem[kurveIt].addActionListener(
+							new ActionListener(){
+								public void actionPerformed(ActionEvent event){
+									wedabecha.setZeichneKurve(kurveIt, new zeichneKurve(kurveIt));
+								}
+							} // ActionListener()
+						);
 			} // for
 
 		this.mainMenuBar.add(this.kurveMenu);

@@ -21,23 +21,32 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 import java.util.ArrayList;
 
-class zeichneLinienKurve extends JComponent{
+class zeichneKurve {
+	// konstruktor
+	private int kurvenNummer;
+
+	public zeichneKurve(int kurvenNummer){
+		this.kurvenNummer = kurvenNummer;
+	} // zeichneKurve()
+} // zeichneKurve
+
+class zeichneLinienKurve extends JComponent {
     private ArrayList werte;
-    
-    
+
+
     public zeichneLinienKurve(ArrayList werte) {
 	this.werte = werte;
     }// zeichneKurve()
-    
-    
+
+
     public void paintComponent(Graphics kurve){
 	int zaehler = 0;
-		
+
 	for(int i = 0; i < this.werte.size()-1; i++){
-	    kurve.drawLine(zaehler, ((Integer)this.werte.get(i)).intValue(), 
+	    kurve.drawLine(zaehler, ((Integer)this.werte.get(i)).intValue(),
 			   zaehler += 5, ((Integer)this.werte.get(i+1)).intValue());
 	}// for
     }// paintComponent()
-    
-    
-}// zeichneKurve
+
+
+}// zeichneLinienKurve
