@@ -27,7 +27,7 @@ import javax.swing.*;
 
 public class hauptFensterUI extends JFrame {
 	static JFrame hauptFenster = new JFrame("wedabecha");
-	protected JLayeredPane layeredPane = new JLayeredPane();
+	protected static JLayeredPane layeredPane = new JLayeredPane();
 	Dimension d;
 
 	protected int fensterBreite;
@@ -68,12 +68,12 @@ public class hauptFensterUI extends JFrame {
 
 		// Raster der neuen ContentPane adden
 		final zeichneRaster zeichneRaster = new zeichneRaster(this.fensterBreite,this.fensterHoehe);
-		this.layeredPane.add(zeichneRaster, JLayeredPane.DEFAULT_LAYER);
+		hauptFensterUI.layeredPane.add(zeichneRaster, JLayeredPane.DEFAULT_LAYER);
 
 		final toolBarUI toolBar = new toolBarUI(this.fensterBreite);
 
 		// Werkzeugleiste einbinden
-		this.layeredPane.add(toolBar.getToolBar(), JLayeredPane.PALETTE_LAYER);
+		hauptFensterUI.layeredPane.add(toolBar.getToolBar(), JLayeredPane.PALETTE_LAYER);
 
 		hauptFensterUI.hauptFenster.setLocation(Xposition,Yposition);
 		hauptFensterUI.hauptFenster.setResizable(true);
@@ -81,10 +81,10 @@ public class hauptFensterUI extends JFrame {
 
 		final kontextMenuUI kontext = new kontextMenuUI();
 
-		this.layeredPane.add(kontext.getKontextMenu(), JLayeredPane.POPUP_LAYER);
+		hauptFensterUI.layeredPane.add(kontext.getKontextMenu(), JLayeredPane.POPUP_LAYER);
 		
 			
-		this.layeredPane.addMouseListener(new MouseAdapter() {
+		hauptFensterUI.layeredPane.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent me ) {
 				if ( me.getButton() == MouseEvent.BUTTON3) {
 					kontext.getKontextMenu().show( layeredPane, me.getX(), me.getY() );
@@ -94,7 +94,7 @@ public class hauptFensterUI extends JFrame {
 		
 		
 		//dieser MouseListener sorgt dafür, dass die Textfelder dem Hauptfenster hinzugefügt werden können
-		this.layeredPane.addMouseListener(new MouseAdapter(){
+		hauptFensterUI.layeredPane.addMouseListener(new MouseAdapter(){
 			public void mouseReleased(MouseEvent me) {
 			    // wenn der ToggleButton in der Toolbar aktiviert ist...
 			    if(toolBar.textGewaehlt()){
@@ -117,7 +117,7 @@ public class hauptFensterUI extends JFrame {
 		
 		
 		//dieser MouseListener sorgt dafür, dass die Linien im Hauptfenster gezeichnet werden können
-		this.layeredPane.addMouseListener(new MouseAdapter(){
+		hauptFensterUI.layeredPane.addMouseListener(new MouseAdapter(){
 			private int startX;
 			private int endX;
 			private int startY;
@@ -159,7 +159,7 @@ public class hauptFensterUI extends JFrame {
 		
 		
 		//dieser MouseListener sorgt dafür, dass die Pfeiel im Hauptfenster gezeichnet werden können
-		this.layeredPane.addMouseListener(new MouseAdapter(){
+		hauptFensterUI.layeredPane.addMouseListener(new MouseAdapter(){
 			private int startX = 0;
 			private int endX = 0;
 			private int startY = 0;
@@ -200,7 +200,7 @@ public class hauptFensterUI extends JFrame {
 		
 
 		// Klasse zur dynamischen Größenbestimmung des Frames
-		this.layeredPane.addComponentListener(new ComponentAdapter(){
+		hauptFensterUI.layeredPane.addComponentListener(new ComponentAdapter(){
 			public void componentResized(ComponentEvent event){
 			if(event.getID() == ComponentEvent.COMPONENT_RESIZED){
 				JLayeredPane layeredPane = (JLayeredPane) event.getComponent();

@@ -30,7 +30,7 @@ import java.io.*;
 
 abstract class Component extends Object implements ImageObserver, MenuContainer, Serializable{}; 
 
-
+ 
 public class exportiereGrafik { 
    private String dateiname; 
 
@@ -38,7 +38,7 @@ public class exportiereGrafik {
 
       Dimension   size  = hauptFensterUI.layeredPane.getSize(); 
       BufferedImage image = (BufferedImage)hauptFensterUI.layeredPane.createImage(size.width, size.height); 
-       
+        
       Graphics g = image.getGraphics(); 
       hauptFensterUI.layeredPane.paint(g); 
        
