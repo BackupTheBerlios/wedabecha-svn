@@ -39,6 +39,18 @@ public class zeichneKoordinatensystem extends JComponent {
 
 	private Graphics g; // wird von paint gesetzt, von drawLine benutzt
 
+	/*
+		den konstruktor überladen,
+		zeichneKoordinatensystem wird gleich von der hauptFensterUI aufgerufen,
+		aber da noch keine Daten vorhanden sind, kann nichts berechnet werden,
+		also gibts auch keine Parameter :P
+	*/
+
+	zeichneKoordinatensystem(){
+		// tu nichts, absolut nichts...
+	}
+
+
 	// Konstruktor
 	zeichneKoordinatensystem(int zeichenBreite, int zeichenHoehe) {
 		this.zeichenBreite = zeichenBreite;

@@ -31,13 +31,14 @@ class zeichneKurve {
 		// konstruktor ohne Parameter
 		// hier passiert nichts weiter
 	} // zeichneKurve
-	
+
 
 	public zeichneKurve(int kurvenNummer){
 		// kontruktor, welcher die berechnung durchführt,
 		// sobald ein objekt mit kurvenNummer erzeugt wird...
 		this.kurvenNummer = kurvenNummer;
 		new zeichneLinienKurve(wedabecha.getKurve(kurvenNummer).getWerte());
+		hauptFensterUI.koordSys = new zeichneKoordinatensystem(hauptFensterUI.fensterBreite,hauptFensterUI.fensterHoehe);
 
 	} // zeichneKurve()
 } // zeichneKurve

@@ -38,7 +38,7 @@ public class hauptFensterUI extends JFrame {
 
 	protected static toolBarUI toolBar = new toolBarUI(fensterBreite);
 	protected static zeichneRaster zeichneRaster = new zeichneRaster(fensterBreite, fensterHoehe);
-	protected static zeichneKoordinatensystem koordSys = new zeichneKoordinatensystem(fensterBreite,fensterHoehe);
+	protected static zeichneKoordinatensystem koordSys = new zeichneKoordinatensystem();
 	protected kontextMenuUI kontext = new kontextMenuUI();
 
 	// konstruktor
