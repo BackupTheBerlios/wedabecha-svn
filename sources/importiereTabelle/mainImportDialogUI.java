@@ -199,7 +199,7 @@ public class mainImportDialogUI extends JDialog  {
 	private void clearAllFields(){
 		// die funktion sollte eigentlich die textfelder wieder leeren
 		// sobald der mainImportDialogUI geschlossen wurde
-		for (int i = 0; i < 4; i++){
+		for (int i = 1; i < 5; i++){
 			importiereTabelleUI.getHinterGrundKlasse(i).zerstoeren();
 		} // for
 	}

@@ -1,5 +1,5 @@
 /****************************************************************************
- *   Copyright (C) 2004 by BTU SWP GROUP 04/6.1										*
+ *   Copyright (C) 2004 by BTU SWP GROUP 04/6.1								*
  *																			*
  *   This program is free software; you can redistribute it and/or modify	*
  *   it under the terms of the GNU General Public License as published by	*
@@ -17,7 +17,9 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.				*
  ***************************************************************************/
 
-/**Diese Datei enthält die Hintergrundfunktionen für importiereTabelle*/
+/**
+	Diese Datei enthält die Hintergrundfunktionen für importiereTabelle
+*/
 
 package importiereTabelle;
 
@@ -61,7 +63,7 @@ public class importiereTabelle {
 	// erstellt ein Array mit dem Datum
 	private ArrayList datum = new ArrayList();
 	private ListIterator datumIt = datum.listIterator();
-		
+
 
 	/*
 	im folgenden alle nötigen get-und set-methoden, um die variabeln zu verändern
@@ -183,7 +185,7 @@ public class importiereTabelle {
 		this.importPfad = "";
 	} // finalize()
 
-/*
+
 	public int[][] getDaten(){
 
 		// liefert ausschliesslich die zu verarbeitenden Daten zurück.
@@ -204,19 +206,19 @@ public class importiereTabelle {
 		ArrayList zeileAL = new ArrayList();
 		ListIterator zeileALIt = zeileAL.listIterator();
 
-		
+
 		int zeilenlaenge;
-		
+
 		// eine zeile des ergebnisses
 		int resZeileL[] = {1};
-		
+
 		// das gesamte ergebnis zusammengesetzt
 		int result[][] = {{1}};
 
 		try {
 			// 1. datei auslesen
 			FileReader readfile = new FileReader(this.importPfad);
-			
+
 			// 2. datei im puffer zwischenspeichern
 			BufferedReader bufferread = new BufferedReader(readfile);
 
@@ -232,22 +234,22 @@ public class importiereTabelle {
 				for(int i = 0 ; i < zeileL.length ; i++){
 					zeileALIt.add(zeileL[i]);
 					// Datum aus Array kopieren
-					datumIt.add(zeileAL.get(this.datumsPos));
+					this.datumIt.add(zeileAL.get(this.datumsPos));
 					// Datum an datumsPos entfernen
 					zeileAL.remove(this.datumsPos);
 					//zeileALIt.set(Integer.parseInt((String)zeileALIt.next()));
 					// fügt der zu übergebenden Liste die Daten hinzu
-					
+
 					int j = 0;
 					zeilenlaenge = zeileAL.size();
-					
+
 					while (zeileALIt.hasNext()){
 						resZeileL[j] = Integer.parseInt((String)zeileALIt.next());
 						j++;
 					} // while()
 				} // for()
 			} // while()
-			
+
 		} catch (IOException except){
 			JOptionPane.showMessageDialog(null,
             	"Datei konnte nicht gelesen werden!","Dateifehler",
@@ -257,7 +259,7 @@ public class importiereTabelle {
 
 //		Integer result2[] = (Integer[]) resAL.toArray(new Integer[0]);
 
-		
+
 		// if Abfrage setzt die Position des Datums,
 		// ob in der ersten oder letzten Spalte der Tabelle
 		if(this.isDatumsPosFirstColumn){
@@ -265,13 +267,13 @@ public class importiereTabelle {
 		} else {
 			this.setDatumsPos(resAL.size());
 		} // if() else
-		
-		
+
+
 		return result;
 
 	} // getDaten()
-*/
-	
+
+
 	public int[][] getDatum(){
 		/**
 		liefert eine Liste von Strings mit dem Datum für die jeweilige Zeile zurück.
