@@ -102,7 +102,7 @@ class importiereTabelleUI extends JDialog  {
 			this.LTzeile1.add(this.darstellungsTypButton1);
 				this.darstellungsTypButton1.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
-
+						showDarstellungsDialog(1);
 					}
 				});
 		// zeile 2
@@ -117,6 +117,11 @@ class importiereTabelleUI extends JDialog  {
 			this.LTzeile2.add(pfadTabelle2);
 			this.LTzeile2.add(this.speicherTabelle2);
 			this.LTzeile2.add(this.darstellungsTypButton2);
+				this.darstellungsTypButton2.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent event){
+						showDarstellungsDialog(2);
+					}
+				});
 		// zeile 3
 		this.topPanel.add(this.LTzeile3);
 			this.LTzeile3.add(this.tabelle3Label);
@@ -129,6 +134,11 @@ class importiereTabelleUI extends JDialog  {
 			this.LTzeile3.add(pfadTabelle3);
 			this.LTzeile3.add(this.speicherTabelle3);
 			this.LTzeile3.add(this.darstellungsTypButton3);
+				this.darstellungsTypButton3.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent event){
+						showDarstellungsDialog(3);
+					}
+				});
 		// zeile 4
 		this.topPanel.add(this.LTzeile4);
 			this.LTzeile4.add(this.tabelle4Label);
@@ -141,6 +151,11 @@ class importiereTabelleUI extends JDialog  {
 			this.LTzeile4.add(pfadTabelle4);
 			this.LTzeile4.add(this.speicherTabelle4);
 			this.LTzeile4.add(this.darstellungsTypButton4);
+				this.darstellungsTypButton4.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent event){
+						showDarstellungsDialog(4);
+					}
+				});
 		// zeile 5
 		this.topPanel.add(this.LTzeile5);
 			this.LTzeile5.add(this.tabelle5Label);
@@ -153,6 +168,11 @@ class importiereTabelleUI extends JDialog  {
 			this.LTzeile5.add(pfadTabelle5);
 			this.LTzeile5.add(this.speicherTabelle5);
 			this.LTzeile5.add(this.darstellungsTypButton5);
+				this.darstellungsTypButton5.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent event){
+						showDarstellungsDialog(5);
+					}
+				});
 
 		// das Panel unten nur die Buttons für Ok und Abbrechen
 		this.bottomPanel.add(this.okKnopf);
