@@ -61,7 +61,6 @@ public class zeichneKoordinatensystem extends JComponent {
 
 
 	public void setzeEinheiten(int xachse, int yachse) {
-
 		// Einheiten auf der x- bzw. y-Achse bestimmen
 		einheitx = 12; // wenn die ganze Achse ein Jahr is, teilen wir nach Monaten auf
 		if (dx >= 240) einheitx = 12; // is die Achse grösser als ein Jahr auhc nach Monaten
@@ -97,32 +96,59 @@ public class zeichneKoordinatensystem extends JComponent {
 
 	private void zeichneKoordinatenachsen() {
 
-		this.startY = zeichenHoehe - 25;
-		this.endY = (zeichenHoehe - 25) - this.maxWert;
+		this.startY = this.zeichenHoehe - 25;
+		this.endY = (this.zeichenHoehe - 25) - this.maxWert;
 		this.startX = 25;
-		this.endX = zeichenBreite - 25;
-		dx = endX - startX; // Breite
-   		dy = endY - startY; // Hoehe
+		this.endX = this.zeichenBreite - 25;
+		dx = this.endX - this.startX; // Breite
+   		dy = this.endY - this.startY; // Hoehe
 
 		// x-Achse mit Pfeil
 		drawLine( (int)(startX * 0.975), 0, (int)(endX * 0.975), 0);
-		g.drawLine(convertXToPixel(endX * 0.975) - 15,convertYToPixel(0) - 10,
-		convertXToPixel(endX * 0.975),convertYToPixel(0) );
-		g.drawLine(convertXToPixel(endX * 0.975) - 15,convertYToPixel(0) + 10,
-		convertXToPixel(endX * 0.975),convertYToPixel(0));
+		g.drawLine(
+			convertXToPixel(endX * 0.975) - 15,
+			convertYToPixel(0) - 10,
+			convertXToPixel(endX * 0.975),
+			convertYToPixel(0)
+		);
+
+		g.drawLine(
+			convertXToPixel(endX * 0.975) - 15,
+			convertYToPixel(0) + 10,
+			convertXToPixel(endX * 0.975),
+			convertYToPixel(0)
+		);
 
 		// y-Achse mit Pfeil
 		drawLine(0, (int)(startY * 0.975),0, (int)(endY*0.975));
-		g.drawLine(convertXToPixel(0)+10,convertYToPixel(endY*0.975)+15,
-		convertXToPixel(0),convertYToPixel(endY*0.975));
-		g.drawLine(convertXToPixel(0)-10,convertYToPixel(endY*0.975)+15,
-		convertXToPixel(0),convertYToPixel(endY*0.975));
+		g.drawLine(
+			convertXToPixel(0)+10,
+			convertYToPixel(endY*0.975)+15,
+			convertXToPixel(0),
+			convertYToPixel(endY*0.975)
+		);
+
+		g.drawLine(
+			convertXToPixel(0)-10,
+			convertYToPixel(endY*0.975)+15,
+			convertXToPixel(0),
+			convertYToPixel(endY*0.975)
+		);
 
 		// Einheiten auf den Achsen
-		g.drawLine(convertXToPixel(einheitx),convertYToPixel(0)+5,
-		convertXToPixel(einheitx),convertYToPixel(0)-5);
-		g.drawLine(convertXToPixel(0)+5,convertYToPixel(einheity),
-		convertXToPixel(0)-5,convertYToPixel(einheity));
+		g.drawLine(
+			convertXToPixel(einheitx),
+			convertYToPixel(0)+5,
+			convertXToPixel(einheitx),
+			convertYToPixel(0)-5
+		);
+
+		g.drawLine(
+			convertXToPixel(0)+5,
+			convertYToPixel(einheity),
+			convertXToPixel(0)-5,
+			convertYToPixel(einheity)
+		);
 	} // zeichneKoordinatenachsen()
 
 
@@ -147,19 +173,21 @@ public class zeichneKoordinatensystem extends JComponent {
 		*/
 
 		for (int i = 1; i < 6;i++){
-			werte = wedabecha.getKurve(i).getWerte();
-			daten = wedabecha.getKurve(i).getDaten();
-			maxZeilenWerte = new double[werte.size()];
+			if (wedabecha.getKurve(i).isset()){
+				werte = wedabecha.getKurve(i).getWerte();
+				daten = wedabecha.getKurve(i).getDaten();
+				maxZeilenWerte = new double[werte.size()];
 
-			for (int j = 0; j < werte.size(); j++){
-				wertZeile = (double[])werte.get(j);
-				java.util.Arrays.sort(wertZeile);
-				// der letzte wert der aufsteigend sortierten liste, ist der maximale
-				maxZeilenWerte[j] = wertZeile[wertZeile.length - 1];
-			} // for(j)
+				for (int j = 0; j < werte.size(); j++){
+					wertZeile = (double[])werte.get(j);
+					java.util.Arrays.sort(wertZeile);
+					// der letzte wert der aufsteigend sortierten liste, ist der maximale
+					maxZeilenWerte[j] = wertZeile[wertZeile.length - 1];
+				} // for(j)
 
-			java.util.Arrays.sort(maxZeilenWerte);
-			maxKurvenWerte[i] = maxZeilenWerte[maxZeilenWerte.length - 1];
+				java.util.Arrays.sort(maxZeilenWerte);
+				maxKurvenWerte[i] = maxZeilenWerte[maxZeilenWerte.length];
+			} // if
 		} // for(i)
 
 		java.util.Arrays.sort(maxKurvenWerte);
@@ -175,6 +203,7 @@ public class zeichneKoordinatensystem extends JComponent {
 		g.setColor(Color.black);
 		zeichneKoordinatenachsen();
 		g.drawString("Einheit x = " + einheitx + " / y = " + einheity,10,20);
+
 /*
 		for (int i=0; i<funktionanzahl;i++) {
 			if (i==0) g.setColor(Color.red);
@@ -182,7 +211,8 @@ public class zeichneKoordinatensystem extends JComponent {
 			else g.setColor(Color.blue);
 			funk[i].zeichneDich(this);
 			g.drawString(""+funk[i], 10, 20+15*(i+1) );
-		} // for*/
+		} // for
+*/
 
 	} // paint()
 

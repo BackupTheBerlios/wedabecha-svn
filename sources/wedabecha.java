@@ -28,11 +28,11 @@ class wedabecha {
 	};
 
 	private static zeichneKurve zeichneKurve[] = {
-		new zeichneKurve(1),
-		new zeichneKurve(2),
-		new zeichneKurve(3),
-		new zeichneKurve(4),
-		new zeichneKurve(5)
+		new zeichneKurve(),
+		new zeichneKurve(),
+		new zeichneKurve(),
+		new zeichneKurve(),
+		new zeichneKurve()
 	};
 
 

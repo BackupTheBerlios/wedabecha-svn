@@ -22,11 +22,22 @@ import javax.swing.JComponent;
 import java.util.ArrayList;
 
 class zeichneKurve {
-	// konstruktor
+
 	private int kurvenNummer;
 
+	// konstruktoren werden überladen, da man ja nich gleich zum Programmstart
+	// die Werte hat und zeichnen kann
+	public zeichneKurve(){
+		// konstruktor ohne Parameter
+		// hier passiert nichts weiter
+	} // zeichneKurve
+
+
 	public zeichneKurve(int kurvenNummer){
+		// kontruktor, welcher die berechnung durchführt,
+		// sobald ein objekt mit kurvenNummer erzeugt wird...
 		this.kurvenNummer = kurvenNummer;
+
 	} // zeichneKurve()
 } // zeichneKurve
 
