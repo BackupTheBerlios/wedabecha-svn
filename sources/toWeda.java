@@ -36,7 +36,7 @@ class toWeda {
 
 		String zeile = new String("");
 		String subZeile = new String("");
-		int werteA[];
+		double werteA[];
 		String datenA[];
 
 		werteAL = wedabecha.getKurve(tabellenNummer).getWerte();
@@ -57,7 +57,7 @@ class toWeda {
 			FileWriter fa = new FileWriter(fileName, true);
 
 			for (int i = 0; i < werteAL.size(); i++){
-				werteA = (int[])werteAL.get(i);
+				werteA = (double[])werteAL.get(i);
 				datenA = (String[])datenAL.get(i);
 				for (int j = 0; j < werteA.length; j++){
 

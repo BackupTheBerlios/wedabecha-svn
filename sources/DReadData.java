@@ -37,10 +37,10 @@ class DReadData {
 	} // DReadData()
 
 	private void printWerte(){
-		int statArray[];
+		double statArray[];
 		String debug;
 		for (int i = 0; i < this.werte.size(); i++){
-			statArray = (int[])this.werte.get(i);
+			statArray = (double[])this.werte.get(i);
 			debug = "";
 			for (int j = 0; j < statArray.length; j++){
 				debug += statArray[j];

@@ -192,7 +192,7 @@ public class importiereTabelle {
 					)
 				);
 
-				int zeileResL[] = new int[zeileL.length - 1];
+				double zeileResL[] = new double[zeileL.length - 1];
 
 				// if Abfrage setzt die Position des Datums,
 				// ob in der ersten oder letzten Spalte der Tabelle
@@ -208,7 +208,7 @@ public class importiereTabelle {
 
 				for(i = anfang, j = 0; i < ende && j < ende; i++, j++){
 					 // System.out.println(zeileL[i]); // debug-ausgabe
-					zeileResL[j] = Integer.parseInt(zeileL[i]);
+					zeileResL[j] = Double.parseDouble(zeileL[i]);
 					// debug += zeileResL[j] + "|";
 				} // for()
 
@@ -223,8 +223,8 @@ public class importiereTabelle {
 
 		} catch (IOException except){
 			JOptionPane.showMessageDialog(null,
-            	"Datei konnte nicht gelesen werden!","Dateifehler",
-            	JOptionPane.ERROR_MESSAGE );
+            "Datei konnte nicht gelesen werden!","Dateifehler",
+            JOptionPane.ERROR_MESSAGE );
         } // try catch()
 		System.out.println(resAL);
 		return resAL;
