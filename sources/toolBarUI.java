@@ -19,7 +19,7 @@
 
 import java.awt.event.*;
 import javax.swing.*;
- 
+
 
 public class toolBarUI /*implements ActionListener*/{
 	protected JToolBar toolBar = new JToolBar("Werkzeugleiste");
@@ -47,7 +47,7 @@ public class toolBarUI /*implements ActionListener*/{
 		this.toolBar.setSize(breite, 35);
 	} // toolBarUI()
 
-	
+
 	protected void setBreite(int breite){
 	    this.toolBar.setSize(breite, 35);
 	}// setBreite(int breite)
@@ -76,47 +76,47 @@ public class toolBarUI /*implements ActionListener*/{
 			this.textzeichnenbutton.setContentAreaFilled(true);
 			this.textzeichnenbutton.addActionListener(new textButtonListener());
 		this.toolBar.setFloatable(false);
-		this.toolBar.setBorderPainted(true);		
+		this.toolBar.setBorderPainted(true);
 	} // pack()
 
 	public JToolBar getToolBar(){
 		return this.toolBar;
 	} // getToolBar()
-	
-	
+
+
 	class linieButtonListener implements ActionListener{
-	    
+
 	    public void actionPerformed(ActionEvent e) {
 		if(linieGewaehlt()){
 		    abwaehlen(3);
 		}// if
 	    }// actionPerformed(ActionEvent e)
-	    
+
 	}// linienButtonListener
-	
-	
+
+
 	class pfeilButtonListener implements ActionListener{
-	    
+
 	    public void actionPerformed(ActionEvent e) {
 		if(pfeilGewaehlt()){
 		    abwaehlen(1);
 		}// if
 	    }// actionPerformed(ActionEvent e)
-	    
+
 	}// pfeilButtonListener
-	
+
 
 	class textButtonListener implements ActionListener{
-	    
+
 		public void actionPerformed(ActionEvent e) {
 		    if(textGewaehlt()){
 			abwaehlen(2);
 		    }//if
 		}// actionPerformed(ActionEvent e)
-	    
+
 	}// textButtonListener
-	
-	
+
+
 	public void abwaehlen(int aus){
 	    switch(aus){
 		case 1:
@@ -133,23 +133,23 @@ public class toolBarUI /*implements ActionListener*/{
 		    break;
 	    }// switch
 	}// abwählen()
-	
-	
+
+
 	public boolean textGewaehlt(){
 	    return textzeichnenbutton.isSelected();
 	}// textGewählt()
-	
-	
+
+
 	public boolean gitterGewaehlt(){
 	    return gitterbutton.isSelected();
 	}// gitterGewaehlt()
-	
-	
+
+
 	public boolean pfeilGewaehlt(){
 	    return pfeilzeichnenbutton.isSelected();
 	}// pfeilGewaehlt()
-	
-	
+
+
 	public boolean linieGewaehlt(){
 	    return liniezeichnenbutton.isSelected();
 	}// linieGewaehlt

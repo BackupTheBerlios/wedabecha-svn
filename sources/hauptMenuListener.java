@@ -53,7 +53,8 @@ class zeigeToolBarListener implements ActionListener {
 	// für den MenuPunkt [Ansicht]->Werkzeugleiste anzeigen
 	public void actionPerformed(ActionEvent event){
 		//toolBarUI toolBar = new toolBarUI();
-		//hauptFensterUI.hauptFenster.getContentPane().add(toolBar.getToolBar(), BorderLayout.NORTH);
+
+		//hauptFensterUI.toolBar.setVisible(false);
 	} // actionPerformed(ActionEvent event)
 } // zeigeToolBarListener
 

@@ -68,7 +68,7 @@ class darstellungsTypUI extends JDialog {
 			this.bottomPanel.add(this.okKnopf);
 				this.okKnopf.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
-						wedabecha.getKurve(tabellenNummer).setKurvenArtIndex(
+						wedabecha.getKurve(tabellenNummer).setKurvenStilIndex(
 							stilCombo.getSelectedIndex()
 						);
 						wedabecha.getKurve(tabellenNummer).setFarbe(""); // hier muss noch ein string übergeben werden

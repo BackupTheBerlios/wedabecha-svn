@@ -76,8 +76,8 @@ public class hauptMenuUI {
 
 		// beginn ansichtMenu
 			this.ansichtMenu.add(this.zeigeGitterMenuItem);
-			this.ansichtMenu.add(this.zeigeToolBarItem);
-				this.zeigeToolBarItem.addActionListener(new zeigeToolBarListener());
+			/*this.ansichtMenu.add(this.zeigeToolBarItem);
+				this.zeigeToolBarItem.addActionListener(new zeigeToolBarListener());*/
 		this.mainMenuBar.add(this.ansichtMenu);
 		// ende ansichtMenu
 

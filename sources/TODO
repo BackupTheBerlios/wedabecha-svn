@@ -33,7 +33,7 @@ mit serialize (?) abspeichern als .weda-Datei
 toolBarUI:
 UNDO und REDO  auskommentieren, das ist Wunschkriterium und kann für später
 aufgehoben werden.
-Die Speichernschaltfläche ist nicht mehr erforlderlich
+Die Speichernschaltfläche ist nicht mehr erforderlich
 
 ##############################################################################
 
@@ -42,11 +42,6 @@ Kalenderfunktion und konkrete Datumsbeschriftung der Zeitachse
 ##############################################################################
 
 Berechnung und DARSTELLUNG von Wochen-,Monats- und Jahresmitteln
-
-##############################################################################
-
-Interaktives Einfügen von Pfeilen, Textblöcken und Hilfslinien für die
-„technische Analyse“ der Kurse (Annotation der Kurven)
 
 ##############################################################################
 
@@ -72,9 +67,15 @@ Hilfe, Dokumentation, Kurzanleitung
 
 ##############################################################################
 
+Farbauswahldialog fehlt noch und die Übergabe der "Farbwerte" an kurve.java
+
+##############################################################################
+
 QUALITÄTSMANAGEMENT:
 Grösse, Breite, Titel der Fenster im "Standard"-Bereich der pack()-Methoden
 durchgehen, und ggf. ändern.
+Die ganzen Texte auf Rechtschreibung und Umlaute durchsehen und Umlaute ala
+ae, oe, usw. durch den richtigen Code Ersetzen... 
 
 
 ##############################################################################

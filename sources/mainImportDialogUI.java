@@ -161,7 +161,13 @@ public class mainImportDialogUI extends JDialog  {
 					//clearAllFields();
 					//System.out.println(importiereTabelleUI.getHinterGrundKlasse(1).getDaten());
 					setVisible(false);
-					importiereTabelleUI.getHinterGrundKlasse(1).getDaten();
+					wedabecha.getKurve(1).setWerte(
+						importiereTabelleUI.getHinterGrundKlasse(1).getWerte()
+					);
+
+					wedabecha.getKurve(1).setDaten(
+						importiereTabelleUI.getHinterGrundKlasse(1).getDaten()
+					);
 				} //  actionPerformed(ActionEvent event)
 			});
 

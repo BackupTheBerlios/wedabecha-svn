@@ -34,7 +34,8 @@ public class exportiereTabelle {
 		fileWriter fw = null;
 		try {
 			fw = new fileWriter( this.dateiname );
-			fw.write( "Hallo Welt geht in eine Datei" );
+			fw.write( //kurve.getwerte
+						"Hallo Welt geht in eine Datei" );
 		} catch ( IOException e ) {
 			System.out.println( "Konnte Datei nicht erstellen" );
 		}

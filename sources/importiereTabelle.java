@@ -43,10 +43,6 @@ public class importiereTabelle {
 	// letzte spalte->false
 	private boolean isDatumsPosFirstColumn;
 
-	// stelle, an welcher das datum in der ascii-datei steht
-	// als zahl (letzte spalte muss ja dynamisch bleiben)
-	private int datumsPos;
-
 	// Formate für die JComboBox in definiereDatumUI
 	private static String datenFormate[] = {"YYYY-MM-DD","DD.MM.YYYY","MM.DD.YYYY","DD/MM/YYYY","MM/DD/YYYY"};
 
@@ -55,7 +51,7 @@ public class importiereTabelle {
 
 	// erstellt ein Array mit dem Datum
 	private ArrayList datumAL = new ArrayList();
-	private ListIterator datumALIt = datumAL.listIterator();
+	//private ListIterator datumALIt = datumAL.listIterator();
 
 
 	// falls das datum nur eine inkrementierende Zahl ist,
@@ -110,16 +106,6 @@ public class importiereTabelle {
 	} // getDatenFormate()
 
 
-	protected void setDatumsPos(int pos){
-		this.datumsPos = pos;
-	} // setDatumsPos(int pos)
-
-
-	protected int getDatumsPos(){
-		return this.datumsPos;
-	} // getDatumsPos()
-
-
 	protected void setDatumsPosFirstColumn(boolean bla){
 		this.isDatumsPosFirstColumn = bla;
 	} // setDatumsPosFirstColumn(boolean bla)
@@ -155,7 +141,6 @@ public class importiereTabelle {
 			"importName: \t\t\t" + this.importName +
 			",\n importPfad: \t\t\t" + this.importPfad +
 			",\n isDatumsPosFirstColumn: \t" + this.isDatumsPosFirstColumn +
-			",\n datumsPos \t\t\t" + this.datumsPos +
 			",\n inkZahlRep \t\t\t" + this.inkZahlRep
 		);
 
@@ -169,14 +154,13 @@ public class importiereTabelle {
 	} // finalize()
 
 
-	public ArrayList getDaten(){
+	public ArrayList getWerte(){
 
 		// liefert ausschliesslich die zu verarbeitenden Daten zurück.
 		// das Datum für die jeweilige Zeile kann über die Methode getDates() aufgerufen werden
 
 		// letztendliches array welches zurückgeliefert werden soll.
 		ArrayList resAL = new ArrayList();
-		ListIterator resALIt = resAL.listIterator();
 
 		// zeile als Zeichenkette
 		String zeile;
@@ -184,19 +168,12 @@ public class importiereTabelle {
 		// die Zeile gesplittet am Trennzeichen als statisches Array
 		String zeileL[];
 
-		// die am Trennzeichen gesplittete Zeile als dynamisches Array
-		ArrayList zeileAL = new ArrayList();
-		ListIterator zeileALIt = zeileAL.listIterator();
+		int anfang; int ende;
+		int i; int j;
+		int datumsPos;
 
-		int zeilenlaenge;
+		// String debug = new String("");
 
-		// if Abfrage setzt die Position des Datums,
-		// ob in der ersten oder letzten Spalte der Tabelle
-		if(this.isDatumsPosFirstColumn){
-			this.setDatumsPos(0);
-		} else {
-			this.setDatumsPos(resAL.size());
-		} // if() else
 
 		try {
 			// 1. datei auslesen
@@ -205,29 +182,43 @@ public class importiereTabelle {
 			// 2. datei im puffer zwischenspeichern
 			BufferedReader bufferread = new BufferedReader(readfile);
 
-
 			// Tabelle wird Zeile für Zeile eingelesen
 			// Zeilen werden im Puffer zwischengespeichert
 			while((zeile = bufferread.readLine()) != null){
-				//zeile = bufferread.readLine();
+				//debug = "";
 
 				zeileL = zeile.split( Character.toString(
 						importiereTabelle.trennzeichenStr[this.trennzeichenIndex].charAt(0)
 					)
 				);
 
-				for( int i = 0 ; i < zeileL.length ; i++){
-					zeileAL.add(zeileL[i]);
-					// Datum aus Array kopieren
-					this.datumALIt.add(zeileAL.get(this.datumsPos));
-					// Datum an datumsPos entfernen
-					zeileAL.remove(this.datumsPos);
-					// fügt der zu übergebenden Liste die Daten hinzu
-					//zeileAL.set(i, (String)zeileALIt.next() );
+				int zeileResL[] = new int[zeileL.length - 1];
+
+				// if Abfrage setzt die Position des Datums,
+				// ob in der ersten oder letzten Spalte der Tabelle
+				if(this.isDatumsPosFirstColumn){
+					anfang = 1;
+					ende = zeileL.length;
+					datumsPos = 0;
+				} else {
+					anfang = 0;
+					ende = zeileL.length - 1;
+					datumsPos = zeileL.length - 1;
+				} // if() else
+
+				for(i = anfang, j = 0; i < ende && j < ende; i++, j++){
+					 // System.out.println(zeileL[i]); // debug-ausgabe
+					zeileResL[j] = Integer.parseInt(zeileL[i]);
+					// debug += zeileResL[j] + "|";
 				} // for()
 
-				resALIt.add(zeileAL);
+				// Datum aus Array kopieren
+				this.datumAL.add(zeileL[datumsPos]);
 
+				resAL.add(zeileResL);
+				//System.out.println(debug);
+				//System.out.println(resAL);
+				//System.out.println(this.datumAL);
 			} // while()
 
 		} catch (IOException except){
@@ -241,20 +232,21 @@ public class importiereTabelle {
 	} // getDaten()
 
 
-	public void getDatum(){
+	public ArrayList getDaten(){
 		/**
 		liefert eine Liste von Strings mit dem Datum für die jeweilige Zeile zurück.
 		Die Liste ist genauso lang wie die, die getDaten zurückliefert
 		*/
 
 		String splittedDate[];
-		String ergebnisDate[] = {"0000","11","22"}; // splittedDate richtig sortiert nach YYYY MM DD
+		String ergebnisDate[] = new String[3]; // splittedDate richtig sortiert nach YYYY MM DD
 		String tempDatum;
 		ArrayList ergebnis =  new ArrayList();
-		ListIterator ergebnisIt =  ergebnis.listIterator();
+		//ListIterator ergebnisIt =  ergebnis.listIterator();
 
-		while (datumALIt.hasNext()){
-			tempDatum = (String)this.datumALIt.next();
+		for (int i = 0; i < datumAL.size(); i++){
+			tempDatum = (String)this.datumAL.get(i);
+			//System.out.println(tempDatum);
 			switch (this.datumsFormatIndex){
 				case 0: /*yyyy-mm-dd*/
 					splittedDate = tempDatum.split("-");
@@ -284,14 +276,14 @@ public class importiereTabelle {
 					ergebnisDate[1] = splittedDate[0];
 					ergebnisDate[2] = splittedDate[1];
 				break;
-				default:
-
-				break;
 			} // switch
 
+			System.out.println(ergebnisDate[0] + "-" + ergebnisDate[1] + "-" + ergebnisDate[2]);
+
 			ergebnis.add(ergebnisDate);
-		} // while
+		} // for()
 		//System.out.println(ergebnis);
-	} // getDatum()
+		return ergebnis;
+	} // getDaten()
 
 } // importiereTabelle

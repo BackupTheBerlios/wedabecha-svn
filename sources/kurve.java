@@ -36,7 +36,7 @@ public class kurve {
 	// Objekt-Variablen
 
 	private String farbe;
-	private int kurvenArtIndex; // enthält Index-wert für kurvenStile
+	private int kurvenStilIndex; // enthält Index-wert für kurvenStile
 	private ArrayList werte = new ArrayList(
 		new ArrayList(1)
 	);
@@ -57,18 +57,19 @@ public class kurve {
 	}
 
 
-	protected int getKurvenArtIndex(){
-		return this.kurvenArtIndex;
+	protected int getKurvenStilIndex(){
+		return this.kurvenStilIndex;
 	}
 
 
 	protected String getKurvenStil(){
-		return kurve.kurvenStile[this.kurvenArtIndex];
+		return this.kurvenStile[this.kurvenStilIndex];
+
 	}
 
 
-	protected void setKurvenArtIndex(int index){
-		this.kurvenArtIndex = index;
+	protected void setKurvenStilIndex(int index){
+		this.kurvenStilIndex = index;
 	}
 
 

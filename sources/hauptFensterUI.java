@@ -30,10 +30,15 @@ public class hauptFensterUI extends JFrame {
 	protected static JLayeredPane layeredPane = new JLayeredPane();
 	protected static JLayeredPane toolbarPane = new JLayeredPane();
 	protected static JLayeredPane mainPane = new JLayeredPane();
+
 	Dimension d;
 
-	protected int fensterBreite;
-	protected int fensterHoehe;
+	protected int fensterBreite = 700;
+	protected int fensterHoehe = 500;
+
+	protected toolBarUI toolBar = new toolBarUI(this.fensterBreite);
+	protected zeichneRaster zeichneRaster = new zeichneRaster(this.fensterBreite,this.fensterHoehe);
+	protected kontextMenuUI kontext = new kontextMenuUI();
 
 	// konstruktor
 	public hauptFensterUI(){
@@ -47,8 +52,8 @@ public class hauptFensterUI extends JFrame {
 	    layeredPane.setSize(breite, hoehe);
 	    toolbarPane.setSize(breite, hoehe);
 	}//setGroesse()
-	
-	
+
+
 	public void pack(){
 		/**
 		pack() setzt das Fenster als Ganzes aus den einzelnen
@@ -72,25 +77,23 @@ public class hauptFensterUI extends JFrame {
 
 		// JLayeredPane wird als neue ContentPane eingesetzt
 		layeredPane.setOpaque(true); // ContentPane muss durchsichtig sein
-		
+
 		hauptFensterUI.hauptFenster.setContentPane(mainPane);
 		mainPane.setSize(this.fensterBreite,this.fensterHoehe);
 		mainPane.setVisible(true);
-		
+
 		mainPane.add(toolbarPane, JLayeredPane.PALETTE_LAYER);
 		mainPane.add(layeredPane, JLayeredPane.DEFAULT_LAYER);
-		
-		//toolbarPane.setSize(this.fensterBreite,35);
-		
-		layeredPane.setSize(this.fensterBreite,this.fensterHoehe);
-		toolbarPane.setVisible(true);
-		layeredPane.setVisible(true);
-		
-		// Raster der neuen ContentPane adden
-		final zeichneRaster zeichneRaster = new zeichneRaster(this.fensterBreite,this.fensterHoehe);
-		hauptFensterUI.layeredPane.add(zeichneRaster, JLayeredPane.DEFAULT_LAYER);
 
-		final toolBarUI toolBar = new toolBarUI(this.fensterBreite);
+		//toolbarPane.setSize(this.fensterBreite,35);
+
+		layeredPane.setSize(this.fensterBreite,this.fensterHoehe);
+		toolbarPane.setVisible(false);
+		layeredPane.setVisible(true);
+
+		// Raster der neuen ContentPane adden
+
+		hauptFensterUI.layeredPane.add(zeichneRaster, JLayeredPane.DEFAULT_LAYER);
 
 		// Werkzeugleiste einbinden
 		hauptFensterUI.mainPane.add(toolBar.getToolBar(), JLayeredPane.PALETTE_LAYER);
@@ -99,11 +102,9 @@ public class hauptFensterUI extends JFrame {
 		hauptFensterUI.hauptFenster.setResizable(true);
 		hauptFensterUI.hauptFenster.setVisible(true);
 
-		final kontextMenuUI kontext = new kontextMenuUI();
-
 		hauptFensterUI.layeredPane.add(kontext.getKontextMenu(), JLayeredPane.POPUP_LAYER);
-		
-			
+
+
 		hauptFensterUI.layeredPane.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent me ) {
 				if ( me.getButton() == MouseEvent.BUTTON3) {
@@ -111,8 +112,8 @@ public class hauptFensterUI extends JFrame {
 				} // if()
 			} // mouseReleased(MouseEvent me)
 		} ); // addMouseListener()
-		
-		
+
+
 		//dieser MouseListener sorgt dafür, dass die Textfelder dem Hauptfenster hinzugefügt werden können
 		hauptFensterUI.layeredPane.addMouseListener(new MouseAdapter(){
 			public void mouseReleased(MouseEvent me) {
@@ -120,7 +121,7 @@ public class hauptFensterUI extends JFrame {
 			    if(toolBar.textGewaehlt()){
 				// ...reagiert erst der MouseListener auf den Linksklick
 				if(me.getButton() == MouseEvent.BUTTON1){
-				    String text = JOptionPane.showInputDialog(null, 
+				    String text = JOptionPane.showInputDialog(null,
 								"Bitte den darzustellenden Text eingeben",
 								"neues Textfeld erstellen.",
 								JOptionPane.QUESTION_MESSAGE);
@@ -134,8 +135,8 @@ public class hauptFensterUI extends JFrame {
 			}// mouseReleased(MouseEvent me)
 		}// MouseAdapter
 		);// addMouseListener()
-		
-		
+
+
 		//dieser MouseListener sorgt dafür, dass die Linien im Hauptfenster gezeichnet werden können
 		hauptFensterUI.layeredPane.addMouseListener(new MouseAdapter(){
 			private int startX;
@@ -144,7 +145,7 @@ public class hauptFensterUI extends JFrame {
 			private int endY;
 			private int zaehler; // legt die koordinaten für start- und endpunkte fest
 
-			
+
 			public void mouseReleased(MouseEvent me) {
 			    // wenn der ToggleButton in der Toolbar aktiviert ist...
 			    if(toolBar.linieGewaehlt()){
@@ -162,10 +163,10 @@ public class hauptFensterUI extends JFrame {
 					    endX = me.getX();
 					    endY = me.getY();
 					    zaehler = 0;
-					    
-					    /* mit den so gewonnenen werten wird dann die linie gezeichnet 
+
+					    /* mit den so gewonnenen werten wird dann die linie gezeichnet
 					    und der leyeredPane geadded */
-					    
+
 					    zeichneLinie zeichneLinie = new zeichneLinie(startX, startY, endX, endY);
 					    layeredPane.add(zeichneLinie, new Integer(7));
 					    startX = startY = endX = endY = 0;
@@ -176,8 +177,8 @@ public class hauptFensterUI extends JFrame {
 			}// mouseReleased(MouseEvent me)
 		}// MouseAdapter
 		);// addMouseListener()
-		
-		
+
+
 		//dieser MouseListener sorgt dafür, dass die Pfeiel im Hauptfenster gezeichnet werden können
 		hauptFensterUI.layeredPane.addMouseListener(new MouseAdapter(){
 			private int startX = 0;
@@ -186,7 +187,7 @@ public class hauptFensterUI extends JFrame {
 			private int endY = 0;
 			private int zaehler; // legt die koordinaten für start- und endpunkte fest
 
-			
+
 			public void mouseReleased(MouseEvent me) {
 			    // wenn der ToggleButton in der Toolbar aktiviert ist...
 			    if(toolBar.pfeilGewaehlt()){
@@ -204,20 +205,20 @@ public class hauptFensterUI extends JFrame {
 					    endX = me.getX();
 					    endY = me.getY();
 					    zaehler = 0;
-					    
-					    /* mit den so gewonnenen werten wird dann die linie gezeichnet 
+
+					    /* mit den so gewonnenen werten wird dann die linie gezeichnet
 					    und der leyeredPane geadded */
-					    
+
 					    zeichnePfeil zeichnePfeil = new zeichnePfeil(startX, startY, endX, endY);
 					    layeredPane.add(zeichnePfeil, new Integer(6));
 					    break;
-				    }// switch(zaehler)    
+				    }// switch(zaehler)
 				}// if()
 			    }// if()
 			}// mouseReleased(MouseEvent me)
 		}// MouseAdapter
 		);// addMouseListener()
-		
+
 
 		// Klasse zur dynamischen Größenbestimmung des Frames
 		hauptFensterUI.mainPane.addComponentListener(new ComponentAdapter(){
