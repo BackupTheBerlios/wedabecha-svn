@@ -38,7 +38,7 @@ public class hauptMenuUI {
 		private JMenu hilfeMenu = new JMenu("Hilfe");
 			private JMenuItem kurzAnleitungMenuItem = new JMenuItem("Kurzanleitung");
 			private JMenuItem dokuMenuItem = new JMenuItem("Dokumentation");
-			private JMenuItem aboutMenuItem = new JMenuItem("Über");
+			private JMenuItem aboutMenuItem = new JMenuItem("\u00dcber");
 
 	// konstruktor
 	public hauptMenuUI(){
