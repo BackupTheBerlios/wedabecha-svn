@@ -208,8 +208,8 @@ public class importiereTabelle {
 
 			// Tabelle wird Zeile für Zeile eingelesen
 			// Zeilen werden im Puffer zwischengespeichert
-			while(bufferread.readLine() != null){
-				zeile = bufferread.readLine();
+			while((zeile = bufferread.readLine()) != null){
+				//zeile = bufferread.readLine();
 
 				zeileL = zeile.split( Character.toString(
 						importiereTabelle.trennzeichenStr[this.trennzeichenIndex].charAt(0)
@@ -223,7 +223,7 @@ public class importiereTabelle {
 					// Datum an datumsPos entfernen
 					zeileAL.remove(this.datumsPos);
 					// fügt der zu übergebenden Liste die Daten hinzu
-					zeileAL.set(i, (String)zeileALIt.next() );
+					//zeileAL.set(i, (String)zeileALIt.next() );
 				} // for()
 
 				resALIt.add(zeileAL);
