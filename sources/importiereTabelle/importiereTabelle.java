@@ -299,7 +299,7 @@ public class importiereTabelle {
 					// fügt der zu übergebenden Liste die Daten hinzu
 
 					while (zeileALIt.hasNext()){
-						zeileALIt.set( Integer.parseInt( (String)zeileALIt.next() ) );
+						zeileALIt.set( (String)zeileALIt.next() );
 					} // while()
 				} // for()
 
