@@ -33,24 +33,24 @@ public class exportiereGrafik {
 	public void export() {
 
 		Dimension   size  = hauptFensterUI.layeredPane.getSize();
-		BufferedImage image = (BufferedImage)hauptFensterUI.layeredPane.createImage(size.width, size.height);
+		Image image = hauptFensterUI.layeredPane.createImage(size.width, size.height);
 
 		Graphics g = image.getGraphics();
 		hauptFensterUI.layeredPane.paint(g);
 		try {
 			OutputStream  out  = new FileOutputStream( this.dateiname );
 			try {
-				JPEGCodec.createJPEGEncoder( out ).encode( image );
+				JPEGCodec.createJPEGEncoder( out ).encode( (BufferedImage)image );
 			} catch (IOException ochnoe){
 				exportiereGrafikUI.showEncodeError();
-			}
+			} // try
 
 			try { out.close(); } catch (IOException sonmist){
 				exportiereGrafikUI.showCouldNotCloseError();
 			}
 		} catch (FileNotFoundException dateinichda){
 			exportiereGrafikUI.showFileNotFoundError(this.dateiname);
-		}
+		} // try
 	} // export()
 
 	protected void setFile(String name){

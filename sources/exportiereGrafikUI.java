@@ -53,22 +53,18 @@ public class exportiereGrafikUI {
 			// Rückgabe der gew�lten Datei als "file"
 			File file = fc.getSelectedFile();
 			System.out.println( file.getName() );
-			
+
 			//Prüfung, ob Dateiname & Endung eigegeben wurden
 			String filename  = file.getName();
-			boolean isjpg = filename.  endsWith  ( ".jpg" );
+			boolean isjpg = filename.endsWith( ".jpg" );
 
-			if (isjpg == true) { 
+			if (isjpg == true) {
 				export.setFile(file.getAbsolutePath());
 			} else {
-				export.setFile(file.getAbsolutePath()+".jpg");				
+				export.setFile(file.getAbsolutePath()+".jpg");
 			}//if
 
-			try{
-				export.export(); // muss mit try-catch abgefangen werden!!!
-			} catch ( Exception e ) {
-				System.err.println( "Fehler beim Export!" );
-			}
+			export.export();
 
 		} else {
 			System.out.println( "Auswahl abgebrochen" );
@@ -77,8 +73,32 @@ public class exportiereGrafikUI {
 		fc.setVisible(false); // is klar, ne
 	} // exportiereGrafikUI()
 
+
+	protected static void showEncodeError(){
+		JOptionPane.showMessageDialog(null,
+		"Die JPEG-Datei konnte nicht encodiert werden.","Dateifehler",
+		JOptionPane.ERROR_MESSAGE );
+	} // showEncodeError()
+
+
+	protected static void showCouldNotCloseError(){
+		JOptionPane.showMessageDialog(null,
+		"Konnte den JPEG-Output-Stream nicht schliessen.","Dateifehler",
+		JOptionPane.ERROR_MESSAGE );
+	} // showCouldNotCloseError()
+
+
+	protected static void showFileNotFoundError(String dateiname){
+		JOptionPane.showMessageDialog(null,
+		"Die Datei " + dateiname + "konnte nicht geschrieben werden","Dateifehler",
+		JOptionPane.ERROR_MESSAGE );
+	} // showFileNotFoundError()
+
+
+	/*
 	public static void main(String args[]){
 		new exportiereGrafikUI();
 	}
+	*/
 
 } // exportiereGrafikUI()

@@ -1,9 +1,11 @@
-Fehler beim Importieren der Tabellen beheben.
+!!!!!!!!!!!!
+importiereTabelle.definiereDatumUI
+braucht eine möglichkeit, den user das startdatum der zahlenreihe angeben zu
+lassen.
 
 ##############################################################################
 
-verknuepfeTabellen:
-JLabel für den Speicherpfad
+Zahlen auf Float umstellen. (Stehen im Moment noch auf Integer)
 
 ##############################################################################
 
@@ -24,12 +26,6 @@ die Daten für die Kurve und die jeweiligen Datumsangaben enthält.
 
 ##############################################################################
 
-Speicherfunktion (WUNSCHKRITERIUM):
-ganzes Objekt mit darstellungsTyp und Linienart als Objekt
-mit serialize (?) abspeichern als .weda-Datei
-
-##############################################################################
-
 toolBarUI:
 UNDO und REDO  auskommentieren, das ist Wunschkriterium und kann für später
 aufgehoben werden.
@@ -42,10 +38,6 @@ Kalenderfunktion und konkrete Datumsbeschriftung der Zeitachse
 ##############################################################################
 
 Berechnung und DARSTELLUNG von Wochen-,Monats- und Jahresmitteln
-
-##############################################################################
-
-Ausgabe der Datei im jpg- oder PNG (?) -Format
 
 ##############################################################################
 
@@ -63,6 +55,9 @@ Beschriftungen der x-Achse auf Tages-, Monats-, Jahresbasis
 ##############################################################################
 
 Veränderung des Maßstabs der Achsen
+
+##############################################################################
+
 Hilfe, Dokumentation, Kurzanleitung
 
 ##############################################################################
@@ -80,6 +75,16 @@ ae, oe, usw. durch den richtigen Code Ersetzen...
 
 ##############################################################################
 
+BUG:
+exportiereGrafik.java:43 -> wirft unter Linux eine 
+Exception in thread "AWT-EventQueue-0" java.lang.ClassCastException:
+sun.awt.image.DataBufferNative
+funktioniert auf einer win32-maschine ohne probleme,
+scheinbar unabhängig von der java-version
+
+
+##############################################################################
+
 WÜNSCHE :
 
  - Druckfunktion direkt aus dem Softwareprodukt heraus
@@ -93,3 +98,10 @@ WÜNSCHE :
  - Proportionales vergrössern des HauptFensters
  - Tooltips und Statusleiste
  - Menupunkt [Hilfe]->[Lizenz] ?
+
+##############################################################################
+
+WUNSCHKRITERIUM: 
+Speicherfunktion 
+ganzes Objekt mit darstellungsTyp und Linienart als Objekt
+mit serialize (?) abspeichern als .weda-Datei
