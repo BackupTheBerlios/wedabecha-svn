@@ -104,7 +104,7 @@ public class kurve {
 	}
 
 
-	protected ArrayList geMittelWerte(){
+	protected ArrayList getMittelWerte(){
 		return this.mittelWerte;
 	}
 

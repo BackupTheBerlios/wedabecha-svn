@@ -23,12 +23,12 @@ public class berechneMittelwerte {
 
     /*
 	diese Klasse dient zur Berechnung der Verschiedenen Mittelwerte die dann
-    als Diagramm dargestellt werden können.
-	*/
+	als Diagramm dargestellt werden können.
+    */
 
     // Datum im Format [Zeile][jjjj,mm,tt]
 	// array zu testzwecken
-    private int[][] neuesDatum = {
+    /*private int[][] neuesDatum = {
 		{2004,9,1},
 		{2004,9,2},
 		{2004,10,3},
@@ -54,7 +54,11 @@ public class berechneMittelwerte {
 
 
     private int[] werte = {1,2,3,4,5,6,7,1,2,3,4,5,6,7,1,2,3,4,5,6,7};
-
+    */
+    
+    private ArrayList werte = wedabecha.getKurve(1).getWerte();
+    private ArrayList datum = wedabecha.getKurve(1).getDaten();
+    
     // zähler für die stelle im datum[]
     private int zaehler1 = 0;
     // zähler für die stelle im monatsMittel[]
@@ -62,67 +66,92 @@ public class berechneMittelwerte {
     // zähler für die teilende anzahl
     private int zaehler3 = 0;
 
-    private int summe = 0;
+    private double summe = 0;
     // start dient der zu Bestimmung, wann ein Monat zu ende ist
     private int start = 0;
-    // Länge des neuen zu erstellenden arrays
-    private int neueLaenge = 0;
+   
 
     public berechneMittelwerte(){
-		System.out.println(
-			"JahresMittel = "+berechneJahresMittel()+
+	System.out.println(
+			"Jahresmittel = "+berechneJahresMittel()+
 			"\nWochenmittel = "+berechneWochenMittel()+
-			"\nMonatsmittel = "+berechneMonatsMittel()
-		);
+			"\nMonatsmittel = "+berechneMonatsMittel()+
+			"\nTagesmittel = "+berechneTagesMittel()
+	);
     }
 
+    
+    public ArrayList berechneTagesMittel(){
+	ArrayList tagesMittel = new ArrayList();
+	double statArray[];
+		
+	for (int i = 0; i < this.werte.size(); i++){
+	    statArray = (double[])this.werte.get(i);
+	    double zeilenSumme = 0;
+	
+	    for (int j = 0; j < statArray.length; j++){
+		zeilenSumme += statArray[j];	
+	    }// for()
+	    tagesMittel.add(new Double(zeilenSumme/statArray.length));
+	}// for ()
+	return tagesMittel;
+    }// berechneTagesMittel()
+    
+    
     public ArrayList berechneMonatsMittel() {
-		int monat;
-		int naechsterMonat;
+		String monat;
+		String naechsterMonat;
+		String[] tempDatum = new String[3];
 		ArrayList monatsMittel = new ArrayList();
-
+		
 		zaehler1 = 0;
 		zaehler2 = 0;
 		zaehler3 = 0;
 		summe = 0;
 		start = 0;
 
-		// der Monat steht immer an zweiter Stelle im zweiten Array
-		monat = this.neuesDatum[0][1];
+		// der Monat steht immer an zweiter Stelle in der ArrayList datum
+		tempDatum = (String[])this.datum.get(0);
+		monat = tempDatum[1];
+				
 
-		for(zaehler1 = 0; zaehler1 < this.neuesDatum.length; zaehler1++){
+		for(zaehler1 = 0; zaehler1 < this.datum.size(); zaehler1++){
 		    zaehler3++;
-	    	naechsterMonat = this.neuesDatum[start++][1];
+		    tempDatum = (String[])this.datum.get(start++);
+		    naechsterMonat = tempDatum[1];
 
-	    	if(naechsterMonat == monat){
-				summe += werte[zaehler1];
-	    	} else {
-				monatsMittel.add(""+summe/(zaehler3-1));
-				zaehler2++;
-				zaehler3 = 0;
-				summe = 0;
-				zaehler1--;
-				start--;
-				monat = this.neuesDatum[start][1];
-	    	} // else
+		    if(naechsterMonat.equals(monat)){
+			summe += ((Double)berechneTagesMittel().get(zaehler1)).doubleValue();
+		    } else {
+			monatsMittel.add(new Double(summe/(zaehler3-1)));
+			zaehler2++;
+			zaehler3 = 0;
+			summe = 0;
+			zaehler1--;
+			start--;
+			tempDatum = (String[])this.datum.get(start);
+			monat = tempDatum[1];
+		    } // else
 		} // for
 
 		/*
 			da sich nich unbedingt beim letzten wert des Arrays der Monat ändern muss,
-	 		muss man diesen Wert mit diser if-Schleife hinzufügen
+	 		muss man diesen Wert mit diser if-Anweisung hinzufügen
 		*/
 
-		if(zaehler1 == this.neuesDatum.length){
-		    monatsMittel.add(""+summe/(zaehler3));
+		if(zaehler1 == this.datum.size()){
+		    monatsMittel.add(new Double(summe/(zaehler3)));
 		} // if
 
 		return monatsMittel;
     } // berechneMonatsMittel()
 
+    
     public ArrayList berechneJahresMittel(){
 		ArrayList jahresMittel = new ArrayList();
-		int jahr;
-		int naechstesJahr;
+		String[] tempDatum = new String[3];
+		String jahr;
+		String naechstesJahr;
 
 		zaehler1 = 0;
 		zaehler2 = 0;
@@ -131,23 +160,26 @@ public class berechneMittelwerte {
 		start = 0;
 
 		// das Jahr steht immer an der ersten Stelle des Arrays
-		jahr = neuesDatum[0][0];
-
-		for(zaehler1 = 0; zaehler1 < neuesDatum.length; zaehler1++){
-	    	zaehler3++;
-	    	naechstesJahr = neuesDatum[start++][0];
-
-	    	if(naechstesJahr == jahr){
-				summe += werte[zaehler1];
-	    	} else {
-				jahresMittel.add(""+summe/(zaehler3-1));
-				zaehler2++;
-				zaehler3 = 0;
-				summe = 0;
-				zaehler1--;
-				start--;
-				jahr = this.neuesDatum[start][0];
-	    	} //else
+		tempDatum = (String[])this.datum.get(0);
+		jahr = tempDatum[0];
+		
+		for(zaehler1 = 0; zaehler1 < datum.size(); zaehler1++){
+		    zaehler3++;
+		    tempDatum = (String[])this.datum.get(start++);
+		    naechstesJahr = tempDatum[0];
+		    
+		    if(naechstesJahr.equals(jahr)){
+			summe += ((Double)berechneTagesMittel().get(zaehler1)).doubleValue();
+		    } else {
+			jahresMittel.add(new Double(summe/(zaehler3-1)));
+			zaehler2++;
+			zaehler3 = 0;
+			summe = 0;
+			zaehler1--;
+			start--;
+			tempDatum = (String[])this.datum.get(start);
+			jahr = tempDatum[0];
+		    } //else
 		} //for
 
 		/*
@@ -155,35 +187,38 @@ public class berechneMittelwerte {
 	 		muss man diesen Wert mit diser if-Schleife hinzufügen
 		*/
 
-		if(zaehler1 == this.neuesDatum.length){
-	    	jahresMittel.add(""+summe/(zaehler3));
+		if(zaehler1 == this.datum.size()){
+		    jahresMittel.add(new Double(summe/(zaehler3)));
 		} // if
 
 
 		return jahresMittel;
     } // berechneJahresMittel()
 
+    
     public ArrayList berechneWochenMittel(){
 		ArrayList wochenMittel = new ArrayList();
+		String[] tempDatum = new String[3];
 		zaehler1 = 0;
 		zaehler2 = 0;
 		zaehler3 = 0;
 		summe = 0;
 
-		for(zaehler1=0; zaehler1<neuesDatum.length; zaehler1++){
-			zaehler2++;
-			summe += werte[zaehler1];
+		for(zaehler1=0; zaehler1<datum.size(); zaehler1++){
+		    zaehler2++;
+		    summe += ((Double)berechneTagesMittel().get(zaehler1)).doubleValue();
 
-			if(zaehler2 >= 7){
-				wochenMittel.add(""+summe/7);
-				zaehler3++;
-				zaehler2 = 0;
-				summe = 0;
-	    	} // if
+		    if(zaehler2 >= 7){
+			wochenMittel.add(new Double(summe/7));
+			zaehler3++;
+			zaehler2 = 0;
+			summe = 0;
+		    } // if
 		} // for
 
 		return wochenMittel;
 	} // berechneWochenMittel
+    
 
     public static void main(String args[]){
 		new berechneMittelwerte();

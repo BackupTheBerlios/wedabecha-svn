@@ -26,13 +26,15 @@
 
 
 import javax.swing.*; //brauche ich um die Swing Objekte darzustellen
-import javax.swing.event.*;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
 import javax.swing.text.html.*;
 import java.awt.*; //wird fuer das Layout benoetigt
 import java.awt.event.*;
 import java.io.*; //wird benoeigt um die textdateien einzulesen
 import java.io.File.*;
-import java.net.*;
+import java.net.URI;
+import java.net.URL;
 
 public class dokuUI extends JFrame {
     private JEditorPane doku = new JEditorPane();
