@@ -35,14 +35,8 @@ class darstellungsTypUI extends JDialog {
 	private JPanel bottomPanel = new JPanel( new FlowLayout() );
 
 	private JLabel stilLabel = new JLabel("Kurvenstil:");
-	private String kurvenStile[] = {
-		"Aktienkurve",
-		"durchgezogene Linie"/*,
-		"gepunktete Linie",
-		"Balkendiagramm",
-		"gleitende Kurve"*/
-	};
-	private JComboBox stilCombo = new JComboBox(kurvenStile);
+
+	private JComboBox stilCombo = new JComboBox(kurve.getKurvenStile());
 
 	JLabel farbeLabel = new JLabel("Farbe:");
 	JButton farbeButton = new JButton("w\u00e4hlen...");
