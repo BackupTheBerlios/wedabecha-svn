@@ -55,12 +55,13 @@ class zeichneLinienKurve extends JComponent {
 
 
     public void paintComponent(Graphics kurve){
-		int zaehler = 0;
+		int zaehler = 25;
 
 		for(int i = 0; i < this.werte.size()-1; i++){
 			kurve.setColor(this.farbe);
-			kurve.drawLine(	zaehler, ((Double)this.werte.get(i)).intValue(),
-							zaehler += 5, ((Double)this.werte.get(i+1)).intValue());
+			kurve.drawLine(	zaehler, hauptFensterUI.layeredPane.getHeight() - 25 - ((Double)this.werte.get(i)).intValue(),
+							zaehler += 5, hauptFensterUI.layeredPane.getHeight() - 25 - ((Double)this.werte.get(i+1)).intValue()
+			);
 		} // for
     } // paintComponent()
 

@@ -208,12 +208,12 @@ class importiereTabelleUI extends JDialog  {
 							// hier gibts n problem,
 							// weil die hintergrundfunktion statisch is...
 							// der dateiname muss irgendwo her kommen :/
-							toWeda.writeFile("../daten/" + tabellen[i -1].getImportName() + ".weda",i);
+							toWeda.writeFile("../daten/" + tabellen[i - 1].getImportName() + ".weda",i);
 						} // if
 					} // for
 
 					// hier muss das Koordinatensystem aufgerufen und gezeichnet werden
-					hauptFensterUI.koordSys.zeichnen(hauptFensterUI.fensterBreite,hauptFensterUI.fensterHoehe);
+					hauptFensterUI.koordSys.zeichnen();
 				} //  actionPerformed(ActionEvent event)
 			});
 

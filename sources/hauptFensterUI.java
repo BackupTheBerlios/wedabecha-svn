@@ -90,15 +90,13 @@ public class hauptFensterUI extends JFrame {
 // 		toolbarPane.setSize(this.fensterBreite,35);
 
 		layeredPane.setSize(this.fensterBreite,this.fensterHoehe);
-		// !!! warum is das toolBarPane hier nich sichtbar???
-		toolbarPane.setVisible(false);
 		layeredPane.setVisible(true);
 
 		// Raster der neuen ContentPane adden
 		hauptFensterUI.layeredPane.add(zeichneRaster, new Integer(0));
 
 		// Koordinatensystem der neuen ContentPane adden
-		hauptFensterUI.layeredPane.add(koordSys, JLayeredPane.DEFAULT_LAYER);
+		hauptFensterUI.layeredPane.add(koordSys, new Integer(1));
 
 		// Werkzeugleiste einbinden
 		hauptFensterUI.mainPane.add(toolBar.getToolBar(), JLayeredPane.PALETTE_LAYER);

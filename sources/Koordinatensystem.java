@@ -18,7 +18,10 @@
  ***************************************************************************/
 
 /**
-	@author Martin Müller (mrtnmueller at users.berlios.de), Dominic Hopf (dmaphy at users.berlios.de)
+	@author
+		Martin Müller (mrtnmueller at users.berlios.de),
+		Dominic Hopf (dmaphy at users.berlios.de),
+		Robert Exner (ashrak at users.berlios.de)
 	@since 2005-01-26
 	@version 0.0.1
 
@@ -37,123 +40,54 @@ public class Koordinatensystem extends JComponent {
 	private int einheitx, einheity; // Abstand der einzelnen Achseneinteilungsstriche
 	private int zeichenBreite, zeichenHoehe; // Zeichenbereich in Pixelkoordinaten
 
-	private Graphics g; // wird von paint gesetzt, von drawLine benutzt
-
 	//Konstruktor
 	Koordinatensystem(){
 
 	}
 
 
-	protected void zeichnen(int zeichenBreite, int zeichenHoehe) {
-		this.zeichenBreite = zeichenBreite;
-		this.zeichenHoehe = zeichenHoehe;
-		this.startY = this.zeichenHoehe - 25;
-		this.endY = (this.zeichenHoehe - 25) - this.maxWert;
-		this.startX = 25;
-		this.endX = this.zeichenBreite - 25;
-		dx = this.endX - this.startX; // Breite
-   		dy = this.endY - this.startY; // Hoehe
-		// Grösse der Zeichnungsfläche einstellen
-		this.setSize(zeichenBreite ,zeichenHoehe);
-		this.berechneMaxima();
-		this.setzeEinheiten(endX-startX, endY-startY); // xy-Bereich setzen
-		this.zeichneKoordinatenachsen();
-		this.setVisible(true); // sichtbar machen
-		this.setOpaque(true); // transparent machen
-	} // zeichneKoordinatensystem
-
-
 	protected void setGroesse(int breite, int hoehe){
 		this.zeichenBreite = breite;
 		this.zeichenHoehe = hoehe;
+		this.startY = this.zeichenHoehe - 25;
+		this.endY = 60;
+		this.startX = 25;
+		this.endX = this.zeichenBreite - 25;
+		this.dx = this.endX - this.startX; // Breite
+   		this.dy = this.endY - this.startY; // Hoehe
 		this.setSize(breite, hoehe);
 	} // setGroesse()
 
 
-	public void setzeEinheiten(int xachse, int yachse) {
-		// Einheiten auf der x- bzw. y-Achse bestimmen
-		einheitx = 12; // wenn die ganze Achse ein Jahr is, teilen wir nach Monaten auf
-		if (dx >= 240) einheitx = 12; // is die Achse grösser als ein Jahr auhc nach Monaten
-		if (dx <= 20) einheitx = 1; // is die achse kleiner oder gleich einem Monat teilen wir sie nach tagen
-		if ( (dx > 20) && (dx < 240) ) einheitx = 10;
-		einheity = 100;
-		if (dy < 300) einheity =10;
-		if (dy < 30) einheity = 1;
-		if (dy < 3) einheity = 3;
-		if (dy < 2) einheity = 2;
-		if (dy < 1) einheity = 1;
-	} // setzeEinheiten()
+	protected void zeichnen() {
+		this.setGroesse(
+			hauptFensterUI.layeredPane.getWidth(),
+			hauptFensterUI.layeredPane.getHeight()
+		);
+
+		// Grösse der Zeichnungsfläche einstellen
+		System.out.println(zeichenBreite + "|" + zeichenHoehe);
+		this.setSize(zeichenBreite ,zeichenHoehe);
+
+		this.berechneMaxima();
+// 		this.zeichneKoordinatenachsen();
+
+		setGroesse(hauptFensterUI.layeredPane.getWidth()-25,hauptFensterUI.layeredPane.getHeight()-50);
+		this.setVisible(true); // sichtbar machen
+	} // zeichneKoordinatensystem
 
 
+	public void paintComponent(Graphics g){
+		g.drawLine(startX,startY,endX,startY);
+		g.drawLine(startX,startY,startX,endY);
+		// Pfeilspitze Y-Achse
+		g.drawLine(21,(endY + 8),25,endY);
+		g.drawLine(29,(endY + 8),25,endY);
 
-
-	private void drawLine(int x1,int y1, int x2,int y2) {
-		// Wandelt die xy-Koordinaten in Pixelkoordinaten um und zeichnet eine
-		// Gerade zwischen den beiden Punkten
+		// Pfeilspitze X-Achse
+		g.drawLine((endX - 8),(startY + 4),endX,startY);
+		g.drawLine((endX - 8),(startY - 4),endX,startY);
 	}
-
-
-	private int convertXToPixel(double x) { // konvertiert x-Koordinaten in Pixel
-		return (int)( (x - this.startX) / this.dx * this.zeichenBreite);
-	}
-
-
-	private int convertYToPixel(double y) { // Konvertiert y-Koordinaten in Pixel
-		return (int)( (this.endY - y) / this.dy * this.zeichenHoehe); // beachte, dass y-Koord. und Pixel in
-		// unterschiedliche Richtung zeigen
-	}
-
-
-	private void zeichneKoordinatenachsen() {
-
-		// x-Achse mit Pfeil
-		drawLine( (int)(startX * 0.975), 0, (int)(endX * 0.975), 0);
-		g.drawLine(
-			convertXToPixel(endX * 0.975) - 15,
-			convertYToPixel(0) - 10,
-			convertXToPixel(endX * 0.975),
-			convertYToPixel(0)
-		);
-
-		g.drawLine(
-			convertXToPixel(endX * 0.975) - 15,
-			convertYToPixel(0) + 10,
-			convertXToPixel(endX * 0.975),
-			convertYToPixel(0)
-		);
-
-		// y-Achse mit Pfeil
-		drawLine(0, (int)(startY * 0.975),0, (int)(endY*0.975));
-		g.drawLine(
-			convertXToPixel(0)+10,
-			convertYToPixel(endY*0.975)+15,
-			convertXToPixel(0),
-			convertYToPixel(endY*0.975)
-		);
-
-		g.drawLine(
-			convertXToPixel(0)-10,
-			convertYToPixel(endY*0.975)+15,
-			convertXToPixel(0),
-			convertYToPixel(endY*0.975)
-		);
-
-		// Einheiten auf den Achsen
-		g.drawLine(
-			convertXToPixel(einheitx),
-			convertYToPixel(0)+5,
-			convertXToPixel(einheitx),
-			convertYToPixel(0)-5
-		);
-
-		g.drawLine(
-			convertXToPixel(0)+5,
-			convertYToPixel(einheity),
-			convertXToPixel(0)-5,
-			convertYToPixel(einheity)
-		);
-	} // zeichneKoordinatenachsen()
 
 
 	private void berechneMaxima(){
@@ -201,36 +135,9 @@ public class Koordinatensystem extends JComponent {
 	} // berechneMaxima()
 
 
-	public void paint(Graphics g) {
-		this.g = g; // wird von drawLine benötigt
-// 		bestimmePixelangabenDesFensters(); // diese könnten sich geändert haben
-		g.setColor(Color.black);
-		zeichneKoordinatenachsen();
-		g.drawString("Einheit x = " + einheitx + " / y = " + einheity,10,20);
-
-/*
-		for (int i=0; i<funktionanzahl;i++) {
-			if (i==0) g.setColor(Color.red);
-			else if (i==1) g.setColor(Color.green);
-			else g.setColor(Color.blue);
-			funk[i].zeichneDich(this);
-			g.drawString(""+funk[i], 10, 20+15*(i+1) );
-		} // for
-*/
-
-	} // paint()
-
-
 	public String toString() {
 		return	" Zeichenbereich:\n" +
 				" X-Achse: |" + this.startX + " - " + this.endX + "| = " + this.dx + "\n" +
 				" Y-Achse: |" + this.startY + " - " + this.endY + "| = " + this.dy + "\n";
 	}
 } // Koordinatensystem
-
-/*
-* Diese Klasse basiert auf der Grundlage, eines bereits existierenden Programms,
-* welches ohne Hinweise auf Urheberrecht o.ä. im Internet gefunden wurde.
-* @author W.Seyboldt, GZG
-* @version 1.1, Dez03, Sep 01 <br>
-*/
