@@ -44,9 +44,9 @@ public class toolBarUI /*implements ActionListener*/{
 		private JToggleButton tabelle3Button = new JToggleButton("Tabelle 3");
 		private JToggleButton tabelle4Button = new JToggleButton("Tabelle 4");
 		private JToggleButton tabelle5Button = new JToggleButton("Tabelle 5");
-				
+
 		private int breite;
-		
+
 
 	// Konstruktor
 	public toolBarUI(int breite){
@@ -54,12 +54,12 @@ public class toolBarUI /*implements ActionListener*/{
 		this.toolBar.setSize(breite, 35);
 	} // toolBarUI()
 
-	
+
 	protected void setBreite(int breite){
 	    this.toolBar.setSize(breite, 35);
 	}// setBreite(int breite)
 
-	
+
 	// Setzt die ToolBar zusammen
 	public void pack(){
 		this.toolBar.add(oeffnenbutton);
@@ -99,7 +99,7 @@ public class toolBarUI /*implements ActionListener*/{
 		this.toolBar.add(tabelle5Button);
 			this.tabelle5Button.setEnabled(false);
 		*/
-		
+
 		this.toolBar.setFloatable(false);
 		this.toolBar.setBorderPainted(true);
 	} // pack()
@@ -108,7 +108,7 @@ public class toolBarUI /*implements ActionListener*/{
 		return this.toolBar;
 	} // getToolBar()
 
-	
+
 	class linieButtonListener implements ActionListener{
 
 	    public void actionPerformed(ActionEvent e) {

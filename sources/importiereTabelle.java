@@ -239,12 +239,12 @@ public class importiereTabelle {
 		*/
 
 		String splittedDate[];
-		String ergebnisDate[] = new String[3]; // splittedDate richtig sortiert nach YYYY MM DD
 		String tempDatum = "";
 		ArrayList ergebnis =  new ArrayList();
 		//ListIterator ergebnisIt =  ergebnis.listIterator();
 
-		for (int i = 0; i < 2/*datumAL.size()*/; i++){
+		for (int i = 0; i < datumAL.size(); i++){
+			String ergebnisDate[] = new String[3]; // splittedDate richtig sortiert nach YYYY MM DD
 			tempDatum = (String)datumAL.get(i);
 			//System.out.println(tempDatum);
 			switch (datumsFormatIndex){
