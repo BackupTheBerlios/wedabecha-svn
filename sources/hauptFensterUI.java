@@ -33,11 +33,11 @@ public class hauptFensterUI extends JFrame {
 
 	Dimension d;
 
-	protected int fensterBreite = 700;
-	protected int fensterHoehe = 500;
+	protected static int fensterBreite = 700;
+	protected static int fensterHoehe = 500;
 
-	protected toolBarUI toolBar = new toolBarUI(this.fensterBreite);
-	protected zeichneRaster zeichneRaster = new zeichneRaster(this.fensterBreite,this.fensterHoehe);
+	protected static toolBarUI toolBar = new toolBarUI(fensterBreite);
+	protected static zeichneRaster zeichneRaster = new zeichneRaster(fensterBreite, fensterHoehe);
 	protected kontextMenuUI kontext = new kontextMenuUI();
 
 	// konstruktor
@@ -46,7 +46,8 @@ public class hauptFensterUI extends JFrame {
 	    this.fensterHoehe = 500;
 	    this.pack();
 	} // hauptFensterUI()
-
+	
+	
 	public static void setGroesse(int breite, int hoehe){
 	    mainPane.setSize(breite, hoehe);
 	    layeredPane.setSize(breite, hoehe);
@@ -92,7 +93,6 @@ public class hauptFensterUI extends JFrame {
 		layeredPane.setVisible(true);
 
 		// Raster der neuen ContentPane adden
-
 		hauptFensterUI.layeredPane.add(zeichneRaster, JLayeredPane.DEFAULT_LAYER);
 
 		// Werkzeugleiste einbinden
@@ -236,7 +236,8 @@ public class hauptFensterUI extends JFrame {
 		);
 
 	} // pack()
-
+	
+	
 	public static void main(String args[]){
 		hauptFensterUI wedabecha = new hauptFensterUI();
 	} // main(String args[])

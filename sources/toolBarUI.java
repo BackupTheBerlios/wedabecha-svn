@@ -71,9 +71,10 @@ public class toolBarUI /*implements ActionListener*/{
 			//this.undobutton.setContentAreaFilled(true);
 		//this.toolBar.add(redobutton);
 			//this.redobutton.setContentAreaFilled(true);
-		//this.toolBar.addSeparator();
-		//this.toolBar.add(gitterbutton);
-			//this.gitterbutton.setContentAreaFilled(true);
+		this.toolBar.addSeparator();
+		this.toolBar.add(gitterbutton);
+			this.gitterbutton.setContentAreaFilled(true);
+			this.gitterbutton.addActionListener(new gitterButtonListener());
 		this.toolBar.addSeparator();
 		this.toolBar.add(liniezeichnenbutton);
 			this.liniezeichnenbutton.setContentAreaFilled(true);
@@ -107,7 +108,7 @@ public class toolBarUI /*implements ActionListener*/{
 		return this.toolBar;
 	} // getToolBar()
 
-
+	
 	class linieButtonListener implements ActionListener{
 
 	    public void actionPerformed(ActionEvent e) {

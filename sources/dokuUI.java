@@ -26,56 +26,72 @@
 
 
 import javax.swing.*; //brauche ich um die Swing Objekte darzustellen
+import javax.swing.event.*;
+import javax.swing.text.html.*;
 import java.awt.*; //wird fuer das Layout benoetigt
 import java.awt.event.*;
 import java.io.*; //wird benoeigt um die textdateien einzulesen
+import java.io.File.*;
+import java.net.*;
 
 public class dokuUI extends JFrame {
-    private JTextArea textArea = new JTextArea();
+    private JEditorPane doku = new JEditorPane();
     private JButton schliessenButton;
-    private String title;
-    private String areaInhalt = "";
+    private String text;
+    File path;
 
     public dokuUI(String title) {
 		/*
 			der konstruktor soll noch zwei parameter erhalten (siehe
 			HauptMenuListener) die parameter sind vom Typ String und
-			können folgende Werte enthalten: "Kurzanleitung" und "Doku"
+			können folgende Werte enthalten: "Kurzanleitung" und "Dokumentation"
 		*/
 
 		setTitle(title);
-
 		if(title.equals("Kurzanleitung")){
-			try {
-				FileReader textKurzAnleitung = new FileReader("kurzAnleitung.txt");
-				BufferedReader bufferKurzAnleitung = new BufferedReader(textKurzAnleitung);
-				String buffer;
+		    path = new File("../dokumentation/html/hilfe/anleitung.html");
+		}else if(title.equals("Dokumentation")){
+		    path = new File("../dokumentation/html/hilfe/anleitung.html");
+		}// else if()
+		
+		try {
+		    doku.setContentType("text/html");
+		    doku.setEditable(false);
+	    
+		    URL url = path.toURI().toURL();
+		    doku.setPage(url);
+	    	    
+		    
+		    /*Der HyperlinkListener dient, wie der Name schon sagt, dazu, die html-Links
+		     *in der geladenen Seite anzusteuern.*/
+		    
+		    doku.addHyperlinkListener(new HyperlinkListener(){
+			public void hyperlinkUpdate( HyperlinkEvent event ){
+			    HyperlinkEvent.EventType typ = event.getEventType();
+			    if ( typ == HyperlinkEvent.EventType.ACTIVATED ){
+			        try{
+				    setTitle( ""+event.getURL() );
+				    doku.setPage( event.getURL() );
+				} catch( IOException e ) {
+				    JOptionPane.showMessageDialog( null,
+						    "Can't follow link to "
+						    + event.getURL().toExternalForm(),
+						    "Error",
+						    JOptionPane.ERROR_MESSAGE);
+				}// try-catch()
+			    }// if()
+			}// hyperlinkUpdate()
+		    }// HyperlinkListener()
+		    );// addHyperlinkListener
 
-				while ((buffer = bufferKurzAnleitung.readLine()) != null) {
-		    		this.textArea.append(buffer + "\n");
-				} // while()
-	    	} catch (IOException except){
-                // fehlermeldung falls datei nicht gelesen werden kann
-				JOptionPane.showMessageDialog(null,
-				"Die Datei, welche die Kurzanleitung enthaelt, konnte nicht gelesen werden.","Dateifehler",
-				JOptionPane.ERROR_MESSAGE );
-            } // try-catch
-		} else if (title.equals("Dokumentation")){
-            try {
-				FileReader textDoku = new FileReader("doku.txt");
-				BufferedReader bufferDoku = new BufferedReader(textDoku);
-				String buffer;
-				while ((buffer = bufferDoku.readLine()) != null){
-					this.textArea.append(buffer +"\n");
-				} // while()
-            } catch (IOException except){
-                // fehlermeldung, falls datei nicht gelesen werden kann
-				JOptionPane.showMessageDialog(null,
-				"Die Datei welche die Dokumentation enthaelt, konnte nicht gelesen werden.","Dateifehler",
-				JOptionPane.ERROR_MESSAGE );
-			} // try-catch
-		} // if
-
+	    	    
+		 } catch (IOException except){
+		     // fehlermeldung falls datei nicht gelesen werden kann
+		    JOptionPane.showMessageDialog(null,
+			"Die Datei, welche die Kurzanleitung enthaelt, konnte nicht gelesen werden.","Dateifehler",
+			JOptionPane.ERROR_MESSAGE );
+		 } // try-catch()
+	
 		this.pack();
 	} // dokuUI();
 
@@ -87,11 +103,8 @@ public class dokuUI extends JFrame {
 		getContentPane().add((gridLayoutPanel),BorderLayout.CENTER);
 		gridLayoutPanel.setLayout(new GridLayout(1,1));
 
-		textArea.setLineWrap(true); // Zeilenumbruch generell
-		textArea.setWrapStyleWord(true); // keine Wörter unterbrechen bei Zeilenumbruch
-		textArea.setEditable(false);
-		gridLayoutPanel.add(textArea);
-		gridLayoutPanel.add(new JScrollPane(textArea));
+		gridLayoutPanel.add(doku);
+		gridLayoutPanel.add(new JScrollPane(doku));
 
 		JPanel flowLayoutPanel = new JPanel();
 		getContentPane().add((flowLayoutPanel),BorderLayout.SOUTH);
@@ -102,8 +115,8 @@ public class dokuUI extends JFrame {
 
 		this.schliessenButton.addActionListener(new schliessenListener());
 
-		setSize(400, 400);
-		setLocation((getToolkit().getScreenSize().width-400) / 2,
+		setSize(600, 400);
+		setLocation((getToolkit().getScreenSize().width-600) / 2,
 					(getToolkit().getScreenSize().height-400) / 2);
 		setResizable(true);
 		setVisible(true);

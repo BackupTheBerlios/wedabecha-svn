@@ -29,11 +29,16 @@ public class zeichneRaster extends JComponent {
 		this.hoehe = hoehe;
 		this.setSize(breite, hoehe);
 	} // setGroesse()
+	
+	protected void setVisibility(boolean sichtbar){
+		this.setVisible(sichtbar);
+	}// setVisibility();
 
         public zeichneRaster(int breite, int hoehe){
 		this.hoehe = hoehe;
 		this.breite = breite;
 		this.setSize(breite, hoehe);
+		this.setVisible(false);
 	} // zeichneRaster()
 
 	public void paintComponent(Graphics raster){

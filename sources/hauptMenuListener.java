@@ -83,19 +83,18 @@ class exportiereGrafikListener implements ActionListener {
 } // exportiereGrafikListener
 
 
-class rasterSichtbarkeitsListener implements ActionListener {
-	// für den MenuPunkt [Ansicht]->Raster anzeigen
-
-	public void actionPerformed(ActionEvent event){
-
-	    /*   final zeichneRaster zeichneRaster = new zeichneRaster(hauptFensterUI.fensterBreite, hauptFensterUI.fensterHoehe);
-	    hauptFensterUI.layeredPane.add(zeichneRaster, JLayeredPane.DEFAULT_LAYER);
-	    */
-
-	} // actionPerformed(ActionEvent event)
-} // rasterSichtbarkeitsListener
-
-
+class gitterButtonListener implements ActionListener{
+        public void actionPerformed(ActionEvent e) {
+		if(hauptFensterUI.toolBar.gitterGewaehlt()){
+		    hauptFensterUI.zeichneRaster.setVisibility(true);
+		}// if
+		else {
+		    hauptFensterUI.zeichneRaster.setVisibility(false);
+		}// else
+	}// actionPerformed	    
+}// gitterButtonListener
+	
+		
 class beendenListener extends WindowAdapter implements ActionListener {
 	// Die Klasse ist der Listener für den Menüpunkt [Datei]->[Programm beenden]
 	// kann ggf. noch für andere Einsatzmöglichkeiten verwendet werden.
