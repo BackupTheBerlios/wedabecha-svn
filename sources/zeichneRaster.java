@@ -24,33 +24,31 @@ public class zeichneRaster extends JComponent {
 	private int breite;
 	private int hoehe;
 
-	protected void setBreite(int breite){
+	protected void setGroesse(int breite, int hoehe){
 		this.breite = breite;
-	} // setBreite()
-
-	protected void setHoehe(int hoehe){
 		this.hoehe = hoehe;
-	} // setHoehe()
+		this.setSize(breite, hoehe);
+	} // setGroesse()
 
-    public zeichneRaster(){
+        public zeichneRaster(int breite, int hoehe){
+		this.hoehe = hoehe;
+		this.breite = breite;
+		this.setSize(breite, hoehe);
+	} // zeichneRaster()
 
-    } // zeichneRaster()
-
-	public void paint(Graphics raster){
-		this.update(raster);
-
+	public void paintComponent(Graphics raster){
+		// bestimmt den Abstand zwischen den Linien
 		int abstand = 25;
-
+		// zeichnet die senkrechten Linien im Abstand von 25 nach rechts
 		for(int i=0; i<this.breite;i+=abstand){
-	    	for(int j=0; j<this.hoehe; j+=abstand){
-				raster.drawLine(i, 0, i, this.hoehe);
-				raster.drawLine(0, j, this.breite, j);
-	    	} // for(j)
+		    // zeichnet die horizontalen Linien im Abstand von 25 nach oben
+		    for(int j=this.hoehe; j>0; j-=abstand){
+				// zeichnet eine Linie von unten nach oben
+				raster.drawLine(i, this.hoehe, i, 0);
+				// zeichnet eine Linie von links nach rechts
+				raster.drawLine(0, j, this.breite , j);
+		    } // for(j)
 		} // for(i)
 	} // paint()
-
-	public void update(Graphics raster){
-
-	}
 
 } // zeichneRaster

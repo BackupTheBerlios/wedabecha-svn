@@ -26,9 +26,7 @@ import javax.swing.*;
 
 public class hauptFensterUI extends JFrame {
 	static JFrame hauptFenster = new JFrame("wedabecha");
-	private JPanel mainPanel = new JPanel();
 	private JLayeredPane layeredPane = new JLayeredPane();
-	private zeichneRaster zeichneRaster = new zeichneRaster();
 	Dimension d;
 
 	private int fensterBreite;
@@ -38,8 +36,6 @@ public class hauptFensterUI extends JFrame {
 	public hauptFensterUI(){
 	    this.fensterBreite = 700;
 	    this.fensterHoehe = 500;
-	    this.zeichneRaster.setBreite(this.fensterBreite);
-	    this.zeichneRaster.setHoehe(this.fensterHoehe);
 	    this.pack();
 	} // hauptFensterUI()
 
@@ -66,15 +62,17 @@ public class hauptFensterUI extends JFrame {
 		this.hauptFenster.setSize(this.fensterBreite,this.fensterHoehe);
 
 		// JLayeredPane wird als neue ContentPane eingesetzt
+		layeredPane.setOpaque(true); // ContentPane muss durchsichtig sein
 		this.hauptFenster.setContentPane(layeredPane);
-		layeredPane.setOpaque(true); // contentpanes müssen opaque sein
-		this.layeredPane.add(zeichneRaster, JLayeredPane.DEFAULT_LAYER);
-
-		final toolBarUI toolBar = new toolBarUI();
+		
+		// Raster der neuen ContentPane adden
+		final zeichneRaster zeichneRaster = new zeichneRaster(this.fensterBreite,this.fensterHoehe);
+		this.layeredPane.add(zeichneRaster, JLayeredPane.DEFAULT_LAYER);		
+		
+		final toolBarUI toolBar = new toolBarUI(this.fensterBreite);
 
 		// Werkzeugleiste einbinden
 		this.layeredPane.add(toolBar.getToolBar(), JLayeredPane.PALETTE_LAYER);
-
 
 		this.hauptFenster.setLocation(Xposition,Yposition);
 		this.hauptFenster.setResizable(true);
@@ -84,23 +82,22 @@ public class hauptFensterUI extends JFrame {
 
 		this.layeredPane.add(kontext.getKontextMenu(), JLayeredPane.POPUP_LAYER);
 
-		this.hauptFenster.addMouseListener(new MouseAdapter() {
+		this.layeredPane.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent me ) {
 				//if ( me.isPopupTrigger() ) {
-					kontext.getKontextMenu().show( hauptFenster, me.getX(), me.getY() );
+					kontext.getKontextMenu().show( layeredPane, me.getX(), me.getY() );
 				//} // if()
 			} // mouseReleased(MouseEvent me)
 		} ); // addMouseListener()
 
 		// Klasse zur dynamischen Größenbestimmung des Frames
-		this.hauptFenster.addComponentListener(new ComponentAdapter(){
+		this.layeredPane.addComponentListener(new ComponentAdapter(){
 			public void componentResized(ComponentEvent event){
 			if(event.getID() == ComponentEvent.COMPONENT_RESIZED){
-				JFrame hauptFenster = (JFrame) event.getComponent();
-				d = hauptFenster.getSize();
-				zeichneRaster.setBreite(d.width);
-				zeichneRaster.setHoehe(d.height);
-				zeichneRaster.repaint();
+				JLayeredPane layeredPane = (JLayeredPane) event.getComponent();
+				d = layeredPane.getSize();
+				zeichneRaster.setGroesse(d.width, d.height);
+				toolBar.setBreite(d.width);
 				System.out.println(d);
 			} // if
 		   } // componentResized()

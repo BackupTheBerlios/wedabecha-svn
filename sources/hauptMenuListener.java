@@ -66,6 +66,14 @@ class verknuepfeTabelleListener implements ActionListener {
 } // verknuepfeTabellenListener
 
 
+class rasterSichtbarkeitsListener implements ActionListener {
+	// für den MenuPunkt [Ansicht]->Raster anzeigen
+	public void actionPerformed(ActionEvent event){
+	    
+	} // actionPerformed(ActionEvent event)
+} // rasterSichtbarkeitsListener
+
+
 class beendenListener extends WindowAdapter implements ActionListener {
 	// Die Klasse ist der Listener für den Menüpunkt [Datei]->[Programm beenden]
 	// kann ggf. noch für andere Einsatzmöglichkeiten verwendet werden.

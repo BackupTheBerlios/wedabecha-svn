@@ -33,7 +33,7 @@ public class toolBarUI /*implements ActionListener*/{
 		private ImageIcon redo = new ImageIcon("Images/redo.gif");
 			private JButton redobutton = new JButton(redo);
 		private ImageIcon gitter = new ImageIcon("Images/gitter.gif");
-			private JButton gitterbutton = new JButton(gitter);
+			private JToggleButton gitterbutton = new JToggleButton(gitter);
 		private ImageIcon liniezeichnen = new ImageIcon("Images/linie.gif");
 			private JButton liniezeichnenbutton = new JButton(liniezeichnen);
 		private ImageIcon pfeilzeichnen = new ImageIcon("Images/pfeil.gif");
@@ -43,10 +43,15 @@ public class toolBarUI /*implements ActionListener*/{
 
 
 	// Konstruktor
-	public toolBarUI(){
+	public toolBarUI(int breite){
 		this.pack();
+		this.toolBar.setSize(breite, 35);
 	} // toolBarUI()
 
+	
+	protected void setBreite(int breite){
+	    this.toolBar.setSize(breite, 35);
+	}// setBreite(int breite)
 
 	// Setzt die ToolBar zusammen
 	public void pack(){
