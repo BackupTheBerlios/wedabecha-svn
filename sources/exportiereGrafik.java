@@ -27,10 +27,6 @@ import java.io.*;
 //import java.awt.Component.*;
 //import java.awt.Toolkit.*;
 
-// wasn das???????
-abstract class Component extends Object implements ImageObserver, MenuContainer, Serializable{};
-
-
 public class exportiereGrafik {
    private String dateiname;
 
@@ -41,15 +37,6 @@ public class exportiereGrafik {
 
       Graphics g = image.getGraphics();
       hauptFensterUI.layeredPane.paint(g);
-
-      //Bildteile abschneiden
-
-
-      ImageFilter cropFilter = new CropImageFilter( 0, 35, size.width, size.height-35 );
-      final Image cropImage;
-      //cropImage = createImage (new FilteredImageSource((ImageProducer) image, cropFilter));
-
-      //Bildteile abschneiden fertig
 
       OutputStream  out  = new FileOutputStream( this.dateiname );
       JPEGCodec.createJPEGEncoder( out ).encode( image );
@@ -64,4 +51,3 @@ public class exportiereGrafik {
 		return this.dateiname;
 	}
 } // exportiereGrafik
-
