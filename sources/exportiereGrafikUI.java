@@ -1,8 +1,3 @@
-/*
- * Created on 19.11.2004
- * @author Martin Müller
- */
-
 /****************************************************************************
  *   Copyright (C) 2004 by BTU SWP GROUP 04/6.1								*
  *																			*
@@ -26,7 +21,6 @@
 
 
 import java.io.File;
-import java.io.*;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 
@@ -44,13 +38,13 @@ public class exportiereGrafikUI {
 		fc.setFileFilter( new FileFilter() {
 			public boolean accept( File f ) {
 				return 	f.isDirectory() ||
-						f.getName().toLowerCase().endsWith(".png");
+						f.getName().toLowerCase().endsWith(".jpg");
   			} // accept()
 			
 			public String getDescription() {
-				return "Portierbare NetzwerkGrafik (*.png)";
+				return "JPEG-Bilddatei (*.jpg)";
   			}
-  		} ); //zeigt nur Dateien mit der Endung .png an
+  		} ); //zeigt nur Dateien mit der Endung .jpg an
     
 		int returnVal = fc.showSaveDialog( null );
 		
@@ -64,14 +58,16 @@ public class exportiereGrafikUI {
 			export.export(); // muss mit try-catch abgefangen werden!!! 
 			}
 			
-			//Datei gibt's nich'
+			//
 			catch ( Exception e ) {
-					System.err.println( "Datei gibt's nicht." );
+					System.err.println( "Fehler beim Export!" );
 					}
 
 		} else {
 			System.out.println( "Auswahl abgebrochen" );
 		} // fi
+		
+		fc.setVisible(false); //is klar, ne
 	}//exportiereGrafikUI()
 	
 	public static void main(String args[]){

@@ -1,8 +1,3 @@
-/*
- * Created on 11.11.2004
- * @author Martin Müller
- */
-
 /****************************************************************************
  *   Copyright (C) 2004 by BTU SWP GROUP 04/6.1								*
  *																			*
@@ -30,33 +25,53 @@ import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 
 public class exportiereTabelleUI {
+	private exportiereTabelle export = new exportiereTabelle();
 	
-	public static void main( String args[] ) {
-		JFileChooser fc = new JFileChooser(); //erzeugen eines neuen Objekts "fc"
+	public exportiereTabelleUI () {
+		//erzeugen eines neuen Objekts "fc"
+		JFileChooser fc = new JFileChooser();
 		
+		fc.setDialogTitle("Tabellendaten exportieren");	
 		fc.setDialogType(JFileChooser.SAVE_DIALOG);
-		fc.setDialogTitle("Tabelle exportieren");	
+		
     
 		fc.setFileFilter( new FileFilter() {
-  		public boolean accept( File f ) {
-  			return f.isDirectory() ||
-				f.getName().toLowerCase().endsWith(".csv");
+			public boolean accept( File f ) {
+				return 	f.isDirectory() ||
+						f.getName().toLowerCase().endsWith(".weda");
+  			} // accept()
+			
+			public String getDescription() {
+				return "WeDaBeCha Tabellendatei (*.weda)";
   			}
-  		public String getDescription() {
-  			return "Comma Separated Values File (*.csv)";
-  			}
-  		} ); //zeigt nur Dateien mit der Endung .csv an
+  		} ); //zeigt nur Dateien mit der Endung .jpg an
     
 		int returnVal = fc.showSaveDialog( null );
-    
+		
 		if ( returnVal == JFileChooser.APPROVE_OPTION ) {
+			//Rückgabe der gewählten Datei als "file"
 			File file = fc.getSelectedFile();
 			System.out.println( file.getName() );
-		} //Rückgabe der gewählten Datei als "file"
-		
-		else
+			export.setFile(file.getAbsolutePath());
+			
+			try{
+			export.export(); // muss mit try-catch abgefangen werden!!! 
+			}
+			
+			// io-Fehler abfangen
+			catch ( Exception e ) {
+					System.err.println( "Fehler beim Export!" );
+					}
+
+		} else {
 			System.out.println( "Auswahl abgebrochen" );
-    
-		System.exit( 0 );
+		} // fi
+		
+		fc.setVisible(false); //is klar, ne
 	}
-}
+	
+	public static void main(String args[]){
+		new exportiereTabelleUI();	
+	}
+	
+}//exportiereTabelleUI()

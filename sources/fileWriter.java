@@ -17,35 +17,19 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.				*
  ***************************************************************************/
 
-//Diese Klasse dient zum Erstellen und Speichern eines Screenshots
+//Diese Klasse ist nur der FileWriter für exportiereTabelle.java
 
 
-import com.sun.image.codec.jpeg.JPEGCodec;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
 
-public class exportiereGrafik {
-	private String dateiname;
-	
-	public void export () throws Exception {
-    
-		Thread.sleep( 2000 );    
-		BufferedImage flaeche = new Robot().createScreenCapture(
-				new Rectangle(200,100,640,480) 
-		);
+public class fileWriter extends OutputStreamWriter
+{
+  public fileWriter(String fileName) throws IOException {
+    super(new FileOutputStream(fileName));
+  }
+  public fileWriter(String fileName, boolean append)
+      throws IOException {
+    super(new FileOutputStream(fileName, append));
+  }
 
-		OutputStream  out  = new FileOutputStream( this.dateiname );
-		JPEGCodec.createJPEGEncoder( out ).encode( flaeche );
-		out.close();
-		} // export()
-  
-	protected void setFile(String name){
-		this.dateiname = name;
- 	} // setFile()
-	
-	protected String getFile(){
-		return this.dateiname;
-	}
-} // exportiereGrafik
-
+}

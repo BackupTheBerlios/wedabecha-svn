@@ -17,35 +17,43 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.				*
  ***************************************************************************/
 
-//Diese Klasse dient zum Erstellen und Speichern eines Screenshots
+//Diese Klasse dient zum Speichern der .weda-Dateien
 
 
-import com.sun.image.codec.jpeg.JPEGCodec;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
 
-public class exportiereGrafik {
-	private String dateiname;
-	
-	public void export () throws Exception {
-    
-		Thread.sleep( 2000 );    
-		BufferedImage flaeche = new Robot().createScreenCapture(
-				new Rectangle(200,100,640,480) 
-		);
 
-		OutputStream  out  = new FileOutputStream( this.dateiname );
-		JPEGCodec.createJPEGEncoder( out ).encode( flaeche );
-		out.close();
-		} // export()
-  
+public class exportiereTabelle {
+	private String dateiname;
+
+
+		public void export () throws Exception {
+	    	//hier fehlt wohl noch was
+		
+			
+			    fileWriter fw = null;
+			    try
+			    {
+			      fw = new fileWriter( this.dateiname );
+			      fw.write( "Hallo Welt geht in eine Datei" );
+			    }
+			    catch ( IOException e ) {
+			      System.out.println( "Konnte Datei nicht erstellen" );
+			    }
+			    finally {
+			      try {
+			        if ( fw != null ) fw.close();
+			      } catch (IOException e) {}
+			    }
+			  }
+	  
+	
 	protected void setFile(String name){
 		this.dateiname = name;
  	} // setFile()
 	
 	protected String getFile(){
 		return this.dateiname;
-	}
-} // exportiereGrafik
+	} // getFile()
 
+}//exportiereTabelle
