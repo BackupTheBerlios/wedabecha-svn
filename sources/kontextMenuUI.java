@@ -44,11 +44,11 @@ public class kontextMenuUI extends JComponent {
 		this.popup.add(this.head);
 			this.head.setEnabled(false);
 			this.popup.addSeparator();
-		this.popup.add(this.undo);
-		this.popup.add(this.redo);
-			this.popup.addSeparator();
-		this.popup.add(this.gitteranzeigen);
-			this.popup.addSeparator();
+		//this.popup.add(this.undo);
+		//this.popup.add(this.redo);
+			//this.popup.addSeparator();
+		//this.popup.add(this.gitteranzeigen);
+			//this.popup.addSeparator();
 		this.popup.add(this.liniezeichnen);
 		this.popup.add(this.schreibenItem);
 		this.popup.add(this.pfeilzeichnen);

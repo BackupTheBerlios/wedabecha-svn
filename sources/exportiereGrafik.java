@@ -28,24 +28,34 @@ import java.io.*;
 //import java.awt.Toolkit.*;
 
 public class exportiereGrafik {
-   private String dateiname;
+	private String dateiname;
 
-   public void export() throws Exception {
+	public void export() {
 
-      Dimension   size  = hauptFensterUI.layeredPane.getSize();
-      BufferedImage image = (BufferedImage)hauptFensterUI.layeredPane.createImage(size.width, size.height);
+		Dimension   size  = hauptFensterUI.layeredPane.getSize();
+		BufferedImage image = (BufferedImage)hauptFensterUI.layeredPane.createImage(size.width, size.height);
 
-      Graphics g = image.getGraphics();
-      hauptFensterUI.layeredPane.paint(g);
+		Graphics g = image.getGraphics();
+		hauptFensterUI.layeredPane.paint(g);
+		try {
+			OutputStream  out  = new FileOutputStream( this.dateiname );
+			try {
+				JPEGCodec.createJPEGEncoder( out ).encode( image );
+			} catch (IOException ochnoe){
+				exportiereGrafikUI.showEncodeError();
+			}
 
-      OutputStream  out  = new FileOutputStream( this.dateiname );
-      JPEGCodec.createJPEGEncoder( out ).encode( image );
-      out.close();
-      } // export()
+			try { out.close(); } catch (IOException sonmist){
+				exportiereGrafikUI.showCouldNotCloseError();
+			}
+		} catch (FileNotFoundException dateinichda){
+			exportiereGrafikUI.showFileNotFoundError(this.dateiname);
+		}
+	} // export()
 
 	protected void setFile(String name){
 		this.dateiname = name;
- 	} // setFile()
+	} // setFile()
 
 	protected String getFile(){
 		return this.dateiname;

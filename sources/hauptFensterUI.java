@@ -102,17 +102,17 @@ public class hauptFensterUI extends JFrame {
 		hauptFensterUI.hauptFenster.setResizable(true);
 		hauptFensterUI.hauptFenster.setVisible(true);
 
-		hauptFensterUI.layeredPane.add(kontext.getKontextMenu(), JLayeredPane.POPUP_LAYER);
+		//hauptFensterUI.layeredPane.add(kontext.getKontextMenu(), JLayeredPane.POPUP_LAYER);
 
 
-		hauptFensterUI.layeredPane.addMouseListener(new MouseAdapter() {
+		/*hauptFensterUI.layeredPane.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent me ) {
 				if ( me.getButton() == MouseEvent.BUTTON3) {
 					kontext.getKontextMenu().show( layeredPane, me.getX(), me.getY() );
 				} // if()
 			} // mouseReleased(MouseEvent me)
 		} ); // addMouseListener()
-
+		*/
 
 		//dieser MouseListener sorgt dafür, dass die Textfelder dem Hauptfenster hinzugefügt werden können
 		hauptFensterUI.layeredPane.addMouseListener(new MouseAdapter(){

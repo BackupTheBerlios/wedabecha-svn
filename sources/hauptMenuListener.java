@@ -123,6 +123,7 @@ class endProgram {
 	public static void end(){
 		// end_program() enthält code, der zum beenden des programms erforderlich ist
 		// macht sich ganz gut, weil der punkt ja von mehreren stellen aufgerufen werden kann
+		new DReadData();
 		System.exit(0);
 	}
 } // endProgram

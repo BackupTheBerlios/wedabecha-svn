@@ -112,17 +112,25 @@ public class subImportDialogUI extends JDialog {
 				public void actionPerformed(ActionEvent event){
 					//System.out.println( event.getActionCommand());
 
-					mainImportDialogUI.setPfad(
-						importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).getImportPfad(),
+					importiereTabelleUI.setPfad(
+						importiereTabelle.getImportPfad(),
 						tabellenNummer
 					);
 
-					importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setTrennzeichenIndex(
+					importiereTabelle.setTrennzeichenIndex(
 						trennzeichenBox.getSelectedIndex()
 					);
 
+					wedabecha.getKurve(tabellenNummer).setWerte(
+						importiereTabelle.getWerte()
+					);
+
+					wedabecha.getKurve(tabellenNummer).setDaten(
+						importiereTabelle.getDaten()
+					);
+
 					// entkäfern
-					System.out.println(importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).toString());
+					System.out.println(importiereTabelle.zurZeichenKette());
 
 					setVisible(false);
 				}
@@ -154,11 +162,11 @@ public class subImportDialogUI extends JDialog {
     	int returnVal = auswahlDialog.showOpenDialog(this);
     	if(returnVal == JFileChooser.APPROVE_OPTION) {
 			this.pfadField.setText(auswahlDialog.getSelectedFile().getPath());
-			importiereTabelleUI.getHinterGrundKlasse(this.tabellenNummer).setImportPfad(
+			importiereTabelle.setImportPfad(
 				auswahlDialog.getSelectedFile().getPath()
 			);
 
-			importiereTabelleUI.getHinterGrundKlasse(this.tabellenNummer).setImportName(
+			importiereTabelle.setImportName(
 				auswahlDialog.getSelectedFile().getName()
 			);
 		} // fi

@@ -41,8 +41,6 @@ public class kurve {
 		new ArrayList(1)
 	);
 
-//	private ListIterator = werte.listIterator();
-
 	private ArrayList daten = new ArrayList(1);// Mehrzahl von Datum
 
 	private ArrayList mittelWerte = new ArrayList(1);

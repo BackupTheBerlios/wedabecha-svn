@@ -28,66 +28,66 @@ import javax.swing.*;
 public class importiereTabelle {
 
 	// enthält nur den Namen der Datei
-	private String importName;
+	private static String importName;
 
 	// der pfad setzt sich aus absolutem verzeichnis UND dateinamen zusammen
-	private String importPfad;
+	private static String importPfad;
 
 	// zeichenketten für die JComboBox in der subImportDialogUI
 	private static String trennzeichenStr[] = {"; (Semikolon)",", (Komma)","# (Raute)","  (Leerzeichen)"};
 	// wird von der subImportDialogUI bei klick auf [OK] gesetzt
-	private int trennzeichenIndex;
+	private static int trennzeichenIndex;
 
 	// an welcher stelle der ascii-datei das datum steht...
 	// erste spalte->true
 	// letzte spalte->false
-	private boolean isDatumsPosFirstColumn;
+	private static boolean isDatumsPosFirstColumn;
 
 	// Formate für die JComboBox in definiereDatumUI
 	private static String datenFormate[] = {"YYYY-MM-DD","DD.MM.YYYY","MM.DD.YYYY","DD/MM/YYYY","MM/DD/YYYY"};
 
 	// wird von definiereDatumUI bei klick auf [OK] gesetzt
-	private int datumsFormatIndex;
+	private static int datumsFormatIndex;
 
 	// erstellt ein Array mit dem Datum
-	private ArrayList datumAL = new ArrayList();
-	//private ListIterator datumALIt = datumAL.listIterator();
+	private static ArrayList datumAL = new ArrayList();
+	//private static ListIterator datumALIt = datumAL.listIterator();
 
 
 	// falls das datum nur eine inkrementierende Zahl ist,
 	// enthält diese Variable einen String, was die Zahl repräsentiert
-	private String inkZahlRep;
+	private static String inkZahlRep;
 
 	// ob dieses instanz der tabelle gespeichert werden soll
-	private boolean speichern;
+	private static boolean speichern;
 
 
 
 	/*
 		im folgenden alle nötigen get-und set-methoden, um die variabeln zu verändern
 	*/
-	protected void setImportName(String name){
-		this.importName = name;
+	protected static void setImportName(String name){
+		importName = name;
 	} // setImportName(String name)
 
 
-	protected String getImportName(){
-		return this.importName;
+	protected static String getImportName(){
+		return importName;
 	} // getImportName()
 
 
-	protected void setImportPfad(String pfad){
-		this.importPfad = pfad;
+	protected static void setImportPfad(String pfad){
+		importPfad = pfad;
 	} // setImportPfad(String pfad)
 
 
-	protected String getImportPfad(){
-		return this.importPfad;
+	protected static String getImportPfad(){
+		return importPfad;
 	} // getImportPfad()
 
 
-	protected void setTrennzeichenIndex(int zahl){
-		this.trennzeichenIndex = zahl;
+	protected static void setTrennzeichenIndex(int zahl){
+		trennzeichenIndex = zahl;
 	} // setTrennzeichenIndex()
 
 
@@ -96,8 +96,8 @@ public class importiereTabelle {
 	}
 
 
-	protected void setDatumsFormatIndex(int zahl){
-		this.datumsFormatIndex = zahl;
+	protected static void setDatumsFormatIndex(int zahl){
+		datumsFormatIndex = zahl;
 	} // setDatum(Datum datum)
 
 
@@ -106,42 +106,42 @@ public class importiereTabelle {
 	} // getDatenFormate()
 
 
-	protected void setDatumsPosFirstColumn(boolean bla){
-		this.isDatumsPosFirstColumn = bla;
+	protected static void setDatumsPosFirstColumn(boolean bla){
+		isDatumsPosFirstColumn = bla;
 	} // setDatumsPosFirstColumn(boolean bla)
 
 
-	protected boolean isDatumsPosFirstColumn(){
-		return this.isDatumsPosFirstColumn;
+	protected static boolean isDatumsPosFirstColumn(){
+		return isDatumsPosFirstColumn;
 	} // isDatumsPosFirstColumn()
 
 
-	protected void setInkZahlRep(String blo){
-		this.inkZahlRep = blo;
+	protected static void setInkZahlRep(String blo){
+		inkZahlRep = blo;
 	} // setInkZahlRep(boolean blo)
 
 
-	protected String getInkZahlRep(){
-		return this.inkZahlRep;
+	protected static String getInkZahlRep(){
+		return inkZahlRep;
 	} // getInkZahlRep()
 
 
-	protected void setSpeichern(boolean speichern){
-		this.speichern = speichern;
+	protected static void setSpeichern(boolean speichern){
+		speichern = speichern;
 	} // setSpeichern()
 
 
-	protected boolean isSpeichern(){
-		return this.speichern;
+	protected static boolean isSpeichern(){
+		return speichern;
 	} // isSpeichern()
 
 
-	public String toString(){
+	public static String zurZeichenKette(){
 		String toString = new String(
-			"importName: \t\t\t" + this.importName +
-			",\n importPfad: \t\t\t" + this.importPfad +
-			",\n isDatumsPosFirstColumn: \t" + this.isDatumsPosFirstColumn +
-			",\n inkZahlRep \t\t\t" + this.inkZahlRep
+			"importName: \t\t\t" + importName +
+			",\n importPfad: \t\t\t" + importPfad +
+			",\n isDatumsPosFirstColumn: \t" + isDatumsPosFirstColumn +
+			",\n inkZahlRep \t\t\t" + inkZahlRep
 		);
 
 		return toString;
@@ -149,12 +149,12 @@ public class importiereTabelle {
 
 
 	// destruktor
-	protected void zerstoeren(){
-		this.importPfad = "";
+	protected static void zerstoeren(){
+		importPfad = "";
 	} // finalize()
 
 
-	public ArrayList getWerte(){
+	public static ArrayList getWerte(){
 
 		// liefert ausschliesslich die zu verarbeitenden Daten zurück.
 		// das Datum für die jeweilige Zeile kann über die Methode getDates() aufgerufen werden
@@ -177,7 +177,7 @@ public class importiereTabelle {
 
 		try {
 			// 1. datei auslesen
-			FileReader readfile = new FileReader(this.importPfad);
+			FileReader readfile = new FileReader(importPfad);
 
 			// 2. datei im puffer zwischenspeichern
 			BufferedReader bufferread = new BufferedReader(readfile);
@@ -188,7 +188,7 @@ public class importiereTabelle {
 				//debug = "";
 
 				zeileL = zeile.split( Character.toString(
-						importiereTabelle.trennzeichenStr[this.trennzeichenIndex].charAt(0)
+						importiereTabelle.trennzeichenStr[trennzeichenIndex].charAt(0)
 					)
 				);
 
@@ -196,7 +196,7 @@ public class importiereTabelle {
 
 				// if Abfrage setzt die Position des Datums,
 				// ob in der ersten oder letzten Spalte der Tabelle
-				if(this.isDatumsPosFirstColumn){
+				if(isDatumsPosFirstColumn){
 					anfang = 1;
 					ende = zeileL.length;
 					datumsPos = 0;
@@ -213,12 +213,12 @@ public class importiereTabelle {
 				} // for()
 
 				// Datum aus Array kopieren
-				this.datumAL.add(zeileL[datumsPos]);
+				datumAL.add(zeileL[datumsPos]);
 
 				resAL.add(zeileResL);
 				//System.out.println(debug);
 				//System.out.println(resAL);
-				//System.out.println(this.datumAL);
+				//System.out.println(datumAL);
 			} // while()
 
 		} catch (IOException except){
@@ -232,7 +232,7 @@ public class importiereTabelle {
 	} // getDaten()
 
 
-	public ArrayList getDaten(){
+	public static ArrayList getDaten(){
 		/**
 		liefert eine Liste von Strings mit dem Datum für die jeweilige Zeile zurück.
 		Die Liste ist genauso lang wie die, die getDaten zurückliefert
@@ -245,9 +245,9 @@ public class importiereTabelle {
 		//ListIterator ergebnisIt =  ergebnis.listIterator();
 
 		for (int i = 0; i < datumAL.size(); i++){
-			tempDatum = (String)this.datumAL.get(i);
+			tempDatum = (String)datumAL.get(i);
 			//System.out.println(tempDatum);
-			switch (this.datumsFormatIndex){
+			switch (datumsFormatIndex){
 				case 0: /*yyyy-mm-dd*/
 					splittedDate = tempDatum.split("-");
 					ergebnisDate = splittedDate;
