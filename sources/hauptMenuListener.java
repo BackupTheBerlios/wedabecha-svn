@@ -91,10 +91,10 @@ class gitterButtonListener implements ActionListener{
 		else {
 		    hauptFensterUI.zeichneRaster.setVisibility(false);
 		}// else
-	}// actionPerformed	    
+	}// actionPerformed
 }// gitterButtonListener
-	
-		
+
+
 class beendenListener extends WindowAdapter implements ActionListener {
 	// Die Klasse ist der Listener für den Menüpunkt [Datei]->[Programm beenden]
 	// kann ggf. noch für andere Einsatzmöglichkeiten verwendet werden.
@@ -122,8 +122,8 @@ class endProgram {
 	public static void end(){
 		// end_program() enthält code, der zum beenden des programms erforderlich ist
 		// macht sich ganz gut, weil der punkt ja von mehreren stellen aufgerufen werden kann
-		new DReadData();
-		new berechneMittelwerte();
+// 		new DReadData(); // debug-klasse, überprüft eingelesene tabellen (import)
+// 		new berechneMittelwerte();
 		System.exit(0);
 	}
 } // endProgram

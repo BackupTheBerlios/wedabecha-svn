@@ -21,15 +21,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class definiereDatumUI extends JDialog {
+class definiereDatumUI extends JDialog {
 	/*
 		die Bestandteile des Dialogs erzeugen
 	*/
 	private Container dialog = getContentPane();
-	private JPanel	topPanel = new JPanel(new GridLayout(3,1));
+	private JPanel	topPanel = new JPanel(new GridLayout(4,1));
 		private JPanel panel1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		private JPanel panel2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		private JPanel panel3 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		private JPanel panel3 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		private JPanel panel4 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 	private JPanel buttonPanel = new JPanel(new FlowLayout());
 
 	private ButtonGroup gruppeRB = new ButtonGroup();
@@ -46,7 +47,15 @@ public class definiereDatumUI extends JDialog {
 	private JComboBox inkZahlCombo = new JComboBox(this.inkRepraesentiert);
 	private JLabel repraesentLabel = new JLabel("repr\u00e4sentiert.");
 
-	// code für dritte zeile
+	// code für dritte Zeile
+	private JLabel startDatumLabel = new JLabel("Das Startdatum ist (YYYY-MM-DD)");
+	private JTextField startYearField = new JTextField(3);
+	private JTextField startMonthField = new JTextField(2);
+	private JTextField startDayField = new JTextField(2);
+	private JLabel startTrennStrich1 = new JLabel("-");
+	private JLabel startTrennStrich2 = new JLabel("-");
+
+	// code für vierte zeile
 	private JRadioButton konkretRB = new JRadioButton("eines anderen konkreten Datumsformates :");
 
 	private JComboBox datumCombo = new JComboBox(importiereTabelle.getDatenFormate());
@@ -83,6 +92,7 @@ public class definiereDatumUI extends JDialog {
 			this.topPanel.add(this.panel1);
 			this.topPanel.add(this.panel2);
 			this.topPanel.add(this.panel3);
+			this.topPanel.add(this.panel4);
 		this.dialog.add(this.buttonPanel);
 
 		// zeile1 zusammensetzen
@@ -101,8 +111,16 @@ public class definiereDatumUI extends JDialog {
 		this.panel2.add(this.repraesentLabel);
 
 		// zeile3 zusammensetzen
-		this.panel3.add(this.konkretRB);
-		this.panel3.add(this.datumCombo);
+		this.panel3.add(this.startDatumLabel);
+		this.panel3.add(this.startYearField);
+		this.panel3.add(this.startTrennStrich1);
+		this.panel3.add(this.startMonthField);
+		this.panel3.add(this.startTrennStrich2);
+		this.panel3.add(this.startDayField);
+
+		// zeile4 zusammensetzen
+		this.panel4.add(this.konkretRB);
+		this.panel4.add(this.datumCombo);
 			this.datumCombo.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
 					konkretRB.setSelected(true);
@@ -148,9 +166,9 @@ public class definiereDatumUI extends JDialog {
 		*/
 		int bildSchirmBreite = getToolkit().getScreenSize().width;
 		int bildSchirmHoehe = getToolkit().getScreenSize().height;
-		int Xposition = (bildSchirmBreite - 600) / 2;
-		int Yposition = (bildSchirmHoehe - 280) / 2;
-		setSize(500,200);
+		int Xposition = (bildSchirmBreite - 500) / 2;
+		int Yposition = (bildSchirmHoehe - 220) / 2;
+		setSize(500,220);
 		setLocation(Xposition,Yposition);
 		setResizable(false);
 		setModal(true);
@@ -158,12 +176,12 @@ public class definiereDatumUI extends JDialog {
 		setVisible(true);
 	} // pack()
 
-	/*
-	main methode zu debugging-zwecken
+/*
+	//main methode zu debugging-zwecken
 
 	public static void main(String args[]){
-		new definiereDatumUI();
+		new definiereDatumUI(1);
 	} // main(String args[])
+*/
 
-	*/
 } // definiereDatumUI

@@ -1,7 +1,9 @@
 !!!!!!!!!!!!
 importiereTabelle.definiereDatumUI
-braucht eine möglichkeit, den user das startdatum der zahlenreihe angeben zu
-lassen.
+die Möglichkeit ein Datum einzugeben ist da, aber evtl. nicht die beste,
+andere Vorschläge erwünscht...
+das eingegebene Datum müsste an sich noch auf Korrektheit überprüft werden,
+dass niemand son schrott wie 30. februar eingibt und so...
 
 ##############################################################################
 

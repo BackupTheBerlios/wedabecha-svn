@@ -33,6 +33,51 @@ public class hauptMenuUI {
 			private JMenuItem exportiereGrafikMenuItem = new JMenuItem("Grafik exportieren");
 			private JMenuItem druckenMenuItem = new JMenuItem("Drucken");
 			private JMenuItem beendenMenuItem = new JMenuItem("Programm beenden");
+		private JMenu kurveMenu = new JMenu("Kurve");
+			private JMenu kurveMenuList[] = {
+				new JMenu("Kurve 1"),
+				new JMenu("Kurve 2"),
+				new JMenu("Kurve 3"),
+				new JMenu("Kurve 4"),
+				new JMenu("Kurve 5")
+			};
+
+			private JMenuItem kurveOeffnenMenuItem[] = {
+				new JMenuItem("Oeffnen"),
+				new JMenuItem("Oeffnen"),
+				new JMenuItem("Oeffnen"),
+				new JMenuItem("Oeffnen"),
+				new JMenuItem("Oeffnen")
+			};
+
+			private JMenuItem kurveSpeichernMenuItem[] = {
+				new JMenuItem("Speichern"),
+				new JMenuItem("Speichern"),
+				new JMenuItem("Speichern"),
+				new JMenuItem("Speichern"),
+				new JMenuItem("Speichern")
+			};
+
+			private JMenuItem kurveDarstellungMenuItem[] = {
+				new JMenuItem("Darstellung"),
+				new JMenuItem("Darstellung"),
+				new JMenuItem("Darstellung"),
+				new JMenuItem("Darstellung"),
+				new JMenuItem("Darstellung")
+			};
+
+			private JMenuItem kurveNeuZeichnenMenuItem[] = {
+				new JMenuItem("Neu Zeichnen"),
+				new JMenuItem("Neu Zeichnen"),
+				new JMenuItem("Neu Zeichnen"),
+				new JMenuItem("Neu Zeichnen"),
+				new JMenuItem("Neu Zeichnen")
+			};
+
+		private JMenu annotationMenu = new JMenu("Annotation");
+			private JMenuItem annotationPfeilMenuItem = new JMenuItem("Pfeil zeichnen");
+			private JMenuItem annotationLinieMenuItem = new JMenuItem("Linie zeichnen");
+			private JMenuItem annotationTextMenuItem = new JMenuItem("Text einf\u00fcgen");
 		private JMenu bearbeitenMenu = new JMenu("Bearbeiten");
 		private JMenu ansichtMenu = new JMenu("Ansicht");
 			private JCheckBoxMenuItem zeigeGitterMenuItem = new JCheckBoxMenuItem("Gitter anzeigen");
@@ -71,17 +116,44 @@ public class hauptMenuUI {
 		this.mainMenuBar.add(this.dateiMenu);
 		// ende dateiMenu
 
-		/* hier kommen dann mal die UNDO & REDO Schaltflächen rein*/
+		// beginn kurve-menues
+			for (int kurveIt = 0; kurveIt < 5; kurveIt++){
+				this.kurveMenu.add(this.kurveMenuList[kurveIt]);
+					this.kurveMenuList[kurveIt].add(this.kurveOeffnenMenuItem[kurveIt]);
+						this.kurveOeffnenMenuItem[kurveIt].setEnabled(false);
+					this.kurveMenuList[kurveIt].add(this.kurveSpeichernMenuItem[kurveIt]);
+						this.kurveSpeichernMenuItem[kurveIt].setEnabled(false);
+					this.kurveMenuList[kurveIt].add(this.kurveDarstellungMenuItem[kurveIt]);
+						this.kurveDarstellungMenuItem[kurveIt].setEnabled(false);
+					this.kurveMenuList[kurveIt].add(this.kurveNeuZeichnenMenuItem[kurveIt]);
+						this.kurveNeuZeichnenMenuItem[kurveIt].setEnabled(false);
+			} // for
+
+		this.mainMenuBar.add(this.kurveMenu);
+		// ende kurve-menues
+
+
+		// beginn annotationMenu
+// 			this.annotationMenu.add(this.annotationPfeilMenuItem);
+// 			this.annotationMenu.add(this.annotationLinieMenuItem);
+// 			this.annotationMenu.add(this.annotationTextMenuItem);
+// 		this.mainMenuBar.add(annotationMenu);
+		// ende annotationMenu
+
 		// beginn bearbeitenMenu
-		//this.mainMenuBar.add(this.bearbeitenMenu);
+// 		this.mainMenuBar.add(this.bearbeitenMenu);
 		// ende bearbeitenMenu
-		/* wird vielleicht noch Implementiert werden*/
+
+		/*
+			wird vielleicht noch Implementiert werden
+		*/
+
 		// beginn ansichtMenu
-		//this.ansichtMenu.add(this.zeigeGitterMenuItem);
-			//this.zeigeGitterMenuItem.addActionListener(new zeichneRasterListener());
-		/*this.ansichtMenu.add(this.zeigeToolBarItem);
-			this.zeigeToolBarItem.addActionListener(new zeigeToolBarListener());*/
-		//this.mainMenuBar.add(this.ansichtMenu);
+// 		this.ansichtMenu.add(this.zeigeGitterMenuItem);
+// 			this.zeigeGitterMenuItem.addActionListener(new zeichneRasterListener());
+// 		this.ansichtMenu.add(this.zeigeToolBarItem);
+// 			this.zeigeToolBarItem.addActionListener(new zeigeToolBarListener());
+// 		this.mainMenuBar.add(this.ansichtMenu);
 		// ende ansichtMenu
 
 		// beginn hilfeMenu
@@ -93,6 +165,11 @@ public class hauptMenuUI {
 		this.mainMenuBar.add(this.hilfeMenu);
 		// ende hilfeMenu
 	} // pack()
+
+	public void setKurveEditable(int kurvenNummer, boolean wasnjetz){
+		this.kurveDarstellungMenuItem[kurvenNummer].setEnabled(wasnjetz);
+		this.kurveNeuZeichnenMenuItem[kurvenNummer].setEnabled(wasnjetz);
+	}
 
 
 	public JMenuBar getHauptMenu(){
