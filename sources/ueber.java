@@ -74,8 +74,8 @@ class ueber extends JDialog {
 		int bildSchirmBreite = getToolkit().getScreenSize().width;
 		int bildSchirmHoehe = getToolkit().getScreenSize().height;
 		int Xposition = (bildSchirmBreite - 430) / 2;
-		int Yposition = (bildSchirmHoehe - 280) / 2;
-		setSize(430,280);
+		int Yposition = (bildSchirmHoehe - 300) / 2;
+		setSize(430,300);
 		setLocation(Xposition,Yposition);
 		setResizable(true);
 		setModal(true);
