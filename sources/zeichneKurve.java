@@ -28,37 +28,13 @@ import java.awt.*;
 import javax.swing.JComponent;
 import java.util.ArrayList;
 
-
-class zeichneKurve extends JComponent{
-
-	private int kurvenNummer;
-
-
-
-	// konstruktoren werden überladen, da man ja nich gleich zum Programmstart
-	// die Werte hat und zeichnen kann
-	public zeichneKurve(){
-		// konstruktor ohne Parameter
-		// hier passiert nichts weiter
-	} // zeichneKurve
-
-
-	public zeichneKurve(int kurvenNummer){
-		// kontruktor, welcher die berechnung durchführt,
-		// sobald ein objekt mit kurvenNummer erzeugt wird...
-		this.kurvenNummer = kurvenNummer;
-
-	} // zeichneKurve()
-} // zeichneKurve
-
 class zeichneLinienKurve extends JComponent {
 	private ArrayList werte;
 	private Color farbe;
 	private int abstand;
 
-	protected int dateBeginIndex;
-	protected int dateEndIndex;
-
+	protected int dateBeginIndex = 0;
+	protected int dateEndIndex = 299;
 
 	private double multiplikator;
 	private double max;
@@ -84,6 +60,7 @@ class zeichneLinienKurve extends JComponent {
 		this.multiplikator =	(hauptFensterUI.layeredPane.getHeight() - 100) /
 								this.max;
 	} // getMax()
+
 
 	public void paintComponent(Graphics kurve){
 		getMax();
@@ -115,7 +92,7 @@ class zeichneLinienKurve extends JComponent {
 } // zeichneLinienKurve
 
 
-class zeichneAktienKurve extends JComponent{
+class zeichneAktienKurve extends JComponent {
 	private ArrayList werte;
 	private Color farbe;
 
@@ -129,6 +106,9 @@ class zeichneAktienKurve extends JComponent{
 	private int tief;
 	private int start;
 	private int ende;
+
+	protected int dateBeginIndex = 0;
+	protected int dateEndIndex = 299;
 
 	public zeichneAktienKurve(ArrayList werte, Color farbe){
 		this.werte = werte;
@@ -153,10 +133,12 @@ class zeichneAktienKurve extends JComponent{
 		this.multiplikator =	(hauptFensterUI.layeredPane.getHeight() - 100) /
 								this.max;
 	} // getMax
+
+
 	public void paintComponent(Graphics kurve){
 		getMax();
 		kurve.setColor(farbe);
-		for(int i = 0; i < this.werte.size(); i++){
+		for(int i = dateBeginIndex; i < dateEndIndex; i++){
 			this.kurse = (double[])this.werte.get(i);
 			this.start = (int)this.kurse[0];
 			this.ende = (int)this.kurse[1];

@@ -205,7 +205,6 @@ public class Koordinatensystem extends JComponent {
 
 		java.util.Arrays.sort(maxKurvenWerte);
 		this.maxWert = maxKurvenWerte[maxKurvenWerte.length - 1];
-// 		this.maxDate = da kommt noch was rein (vielleicht);
 
 	} // berechneMaxima()
 

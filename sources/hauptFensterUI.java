@@ -115,7 +115,7 @@ public class hauptFensterUI extends JFrame {
 
 		// JLayeredPane wird als neue ContentPane eingesetzt
 		layeredPane.setOpaque(true); // ContentPane muss durchsichtig sein
-		
+
 // 		toolbarPane.setSize(this.fensterBreite,35);
 
 		mainPane.add(this.startDateLabel, new Integer(510));
@@ -135,14 +135,14 @@ public class hauptFensterUI extends JFrame {
 					for (int i = 1; i < 6; i++){
 						if (wedabecha.getKurve(i).isset()){
 							if (wedabecha.getKurve(i).getKurvenStilIndex() == 0){
-								// waahhhhhhhhhh hier fehlt was, oh goth
-// 								wedabecha.getKurve(i).zeichneAktienKurve();
+								wedabecha.getKurve(i).zeichneAktienKurve.dateBeginIndex = ((Integer)startDateSpinner.getValue()).intValue();
+								wedabecha.getKurve(i).zeichneAktienKurve.dateEndIndex = ((Integer)endDateSpinner.getValue()).intValue();
 							} else {
 								wedabecha.getKurve(i).zeichneLinienKurve.dateBeginIndex = ((Integer)startDateSpinner.getValue()).intValue();
 								wedabecha.getKurve(i).zeichneLinienKurve.dateEndIndex = ((Integer)endDateSpinner.getValue()).intValue();
-							}
-						}
-					}
+							} // if
+						} // if
+					} // for
 				}
 			});
 		mainPane.add(this.endDateLabel,  new Integer(510));
@@ -329,7 +329,7 @@ public class hauptFensterUI extends JFrame {
 								wedabecha.getKurve(i).zeichneAktienKurve.setGroesse(d.width, d.height);
 							}else{
 								wedabecha.getKurve(i).zeichneLinienKurve.setGroesse(d.width, d.height);
-							}// if-else()							
+							}// if-else()
 						} // if()
 					} // for
 					toolBar.setBreite(d.width);
