@@ -46,12 +46,13 @@ public class berechneMittelwerte {
    
 
     public berechneMittelwerte(){
-	System.out.println(
+	/*System.out.println(
 			"Jahresmittel = "+berechneJahresMittel()+
 			"\nWochenmittel = "+berechneWochenMittel()+
 			"\nMonatsmittel = "+berechneMonatsMittel()+
 			"\nTagesmittel = "+berechneTagesMittel()
 	);
+	 */
     }
 
     /* Diese Methode berechnet die Mittelwerte der einzelnen Tage, die ja meistens

@@ -37,6 +37,7 @@ class zeichneKurve {
 		// kontruktor, welcher die berechnung durchführt,
 		// sobald ein objekt mit kurvenNummer erzeugt wird...
 		this.kurvenNummer = kurvenNummer;
+		new zeichneLinienKurve(wedabecha.getKurve(kurvenNummer).getWerte());
 
 	} // zeichneKurve()
 } // zeichneKurve
@@ -47,6 +48,7 @@ class zeichneLinienKurve extends JComponent {
 
     public zeichneLinienKurve(ArrayList werte) {
 	this.werte = werte;
+	this.setSize(700,  500);
     }// zeichneKurve()
 
 
@@ -54,8 +56,8 @@ class zeichneLinienKurve extends JComponent {
 	int zaehler = 0;
 
 	for(int i = 0; i < this.werte.size()-1; i++){
-	    kurve.drawLine(zaehler, ((Integer)this.werte.get(i)).intValue(),
-			   zaehler += 5, ((Integer)this.werte.get(i+1)).intValue());
+	    kurve.drawLine(zaehler, ((Double)this.werte.get(i)).intValue(),
+			   zaehler += 5, ((Double)this.werte.get(i+1)).intValue());
 	}// for
     }// paintComponent()
 

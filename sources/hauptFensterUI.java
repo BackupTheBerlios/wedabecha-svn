@@ -235,6 +235,7 @@ public class hauptFensterUI extends JFrame {
 				zeichneRaster.setGroesse(d.width, d.height);
 				hauptFensterUI.setGroesse(d.width, d.height);
 				koordSys.setGroesse(d.width,d.height);
+				zeichneLinie.setGroesse(d.width, d.height);
 				toolBar.setBreite(d.width);
 				System.out.println(d);
 			} // if

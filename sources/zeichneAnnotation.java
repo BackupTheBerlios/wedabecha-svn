@@ -41,7 +41,11 @@ class zeichneLinie extends JComponent{
 	this.setSize(700, 500);
     }// zeichneLinie()
     
-    
+    protected void setGroesse(int breite, int hoehe){
+	this.setSize(breite, hoehe);
+    }//setGroesse()
+	
+	
     public void paintComponent(Graphics linie){
 	    linie.drawLine(startX, startY, endX, endY);
     }// paintComponent(GGraphics linie)

@@ -179,6 +179,13 @@ class importiereTabelleUI extends JDialog  {
 			this.okKnopf.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
 					setVisible(false);
+					
+					
+					for(int i = 1; i <= 5; i++){
+					    if(wedabecha.getKurve(i).isset()){
+						    wedabecha.getKurve(i).zeichneKurve();
+					    }// if
+					}// for
 				} //  actionPerformed(ActionEvent event)
 			});
 

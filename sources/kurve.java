@@ -196,4 +196,10 @@ public class kurve {
 	} // setDatumJahresMittel()
 	
 	
+	protected void zeichneKurve(){
+		berechneMittelwerte berechneMittelwerte = new berechneMittelwerte();
+		hauptFensterUI.layeredPane.add(new zeichneLinienKurve(berechneMittelwerte.berechneJahresMittel()), new Integer(nummer+1));
+	} // zeichneKurve()
+	
+	
 } // kurve
