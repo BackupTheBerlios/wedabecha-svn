@@ -144,7 +144,7 @@ public class mainImportDialogUI extends JDialog  {
 		this.bottomPanel.add(this.okKnopf);
 			this.okKnopf.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
-					clearAllFields();
+					//clearAllFields();
 					//System.out.println(importiereTabelleUI.getHinterGrundKlasse(1).getDaten());
 					setVisible(false);
 				} //  actionPerformed(ActionEvent event)
@@ -153,7 +153,7 @@ public class mainImportDialogUI extends JDialog  {
 		this.bottomPanel.add(this.abbrechenKnopf);
 			this.abbrechenKnopf.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
-					clearAllFields();
+					//clearAllFields();
 					setVisible(false);
 				} // actionPerformed(ActionEvent event)
 			});
