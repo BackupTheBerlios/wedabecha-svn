@@ -19,26 +19,28 @@
 
 import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
 
 
 public class toolBarUI /*implements ActionListener*/{
-	JToolBar toolBar = new JToolBar("Werkzeugleiste");
-		ImageIcon oeffnen = new ImageIcon("Images/oeffnen.gif");
-			JButton oeffnenbutton = new JButton(oeffnen);
-		ImageIcon speichern = new ImageIcon("Images/speichern.gif");
-			JButton speichernbutton = new JButton(speichern);
-		ImageIcon undo = new ImageIcon("Images/undo.gif");
-			JButton undobutton = new JButton(undo);
-		ImageIcon redo = new ImageIcon("Images/redo.gif");
-			JButton redobutton = new JButton(redo);
-		ImageIcon gitter = new ImageIcon("Images/gitter.gif");
-			JButton gitterbutton = new JButton(gitter);
-		ImageIcon liniezeichnen = new ImageIcon("Images/linie.gif");
-			JButton liniezeichnenbutton = new JButton(liniezeichnen);
-		ImageIcon pfeilzeichnen = new ImageIcon("Images/pfeil.gif");
-			JButton pfeilzeichnenbutton = new JButton(pfeilzeichnen);
-		ImageIcon textzeichnen = new ImageIcon("Images/text.gif");
-			JButton textzeichnenbutton = new JButton(textzeichnen);
+	private JToolBar toolBar = new JToolBar("Werkzeugleiste");
+		private ImageIcon oeffnen = new ImageIcon("Images/oeffnen.gif");
+			private JButton oeffnenbutton = new JButton(oeffnen);
+		private ImageIcon speichern = new ImageIcon("Images/speichern.gif");
+			private JButton speichernbutton = new JButton(speichern);
+		private ImageIcon undo = new ImageIcon("Images/undo.gif");
+			private JButton undobutton = new JButton(undo);
+		private ImageIcon redo = new ImageIcon("Images/redo.gif");
+			private JButton redobutton = new JButton(redo);
+		private ImageIcon gitter = new ImageIcon("Images/gitter.gif");
+			private JButton gitterbutton = new JButton(gitter);
+		private ImageIcon liniezeichnen = new ImageIcon("Images/linie.gif");
+			private JButton liniezeichnenbutton = new JButton(liniezeichnen);
+		private ImageIcon pfeilzeichnen = new ImageIcon("Images/pfeil.gif");
+			private JButton pfeilzeichnenbutton = new JButton(pfeilzeichnen);
+		private ImageIcon textzeichnen = new ImageIcon("Images/text.gif");
+			private JButton textzeichnenbutton = new JButton(textzeichnen);
+		//private Graphics rand = new Graphics();
 		
 	
 	// Konstruktor
@@ -49,26 +51,30 @@ public class toolBarUI /*implements ActionListener*/{
 	
 	public void pack(){
 		this.toolBar.add(oeffnenbutton);
-			this.oeffnenbutton.setContentAreaFilled(false);
+			this.oeffnenbutton.setContentAreaFilled(true);
 		this.toolBar.add(speichernbutton);
-			this.speichernbutton.setContentAreaFilled(false);
+			this.speichernbutton.setContentAreaFilled(true);
 		this.toolBar.add(undobutton);
-			this.undobutton.setContentAreaFilled(false);
+			this.undobutton.setContentAreaFilled(true);
 		this.toolBar.add(redobutton);
-			this.redobutton.setContentAreaFilled(false);
+			this.redobutton.setContentAreaFilled(true);
 		this.toolBar.addSeparator();
 		this.toolBar.add(gitterbutton);
-			this.gitterbutton.setContentAreaFilled(false);
+			this.gitterbutton.setContentAreaFilled(true);
+			//this.gitterbutton.setMargin();
 		this.toolBar.addSeparator();
 		this.toolBar.add(liniezeichnenbutton);
-			this.liniezeichnenbutton.setContentAreaFilled(false);
+			this.liniezeichnenbutton.setContentAreaFilled(true);
 		this.toolBar.add(pfeilzeichnenbutton);
-			this.pfeilzeichnenbutton.setContentAreaFilled(false);
+			this.pfeilzeichnenbutton.setContentAreaFilled(true);
 		this.toolBar.add(textzeichnenbutton);
-			this.textzeichnenbutton.setContentAreaFilled(false);
+			this.textzeichnenbutton.setContentAreaFilled(true);
 		
-		this.toolBar.setFloatable(true);
+		//this.rand.setColor(Color.BLACK);
+		//this.toolBar.paintBorder(this.rand);
+		this.toolBar.setFloatable(false);
 		this.toolBar.setBorderPainted(true);
+		
 	} // pack()
 	
 	public JToolBar getToolBar(){

@@ -34,7 +34,7 @@ public class hauptMenuUI {
 			private JMenuItem beendenMenuItem = new JMenuItem("Programm beenden");
 		private JMenu bearbeitenMenu = new JMenu("Bearbeiten");
 		private JMenu ansichtMenu = new JMenu("Ansicht");
-			private JMenuItem zeigeGitterMenuItem = new JMenuItem("Gitter anzeigen");
+			private JCheckBoxMenuItem zeigeGitterMenuItem = new JCheckBoxMenuItem("Gitter anzeigen");
 		private JMenu hilfeMenu = new JMenu("Hilfe");
 			private JMenuItem kurzAnleitungMenuItem = new JMenuItem("Kurzanleitung");
 			private JMenuItem dokuMenuItem = new JMenuItem("Dokumentation");

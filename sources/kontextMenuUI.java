@@ -41,6 +41,7 @@ public class kontextMenuUI extends JComponent {
 	} // kontextMenuUI()
 
 	public void pack(){
+		this.popup.setPopupSize(120,140);
 		this.popup.add(this.head);
 			this.head.setEnabled(false);
 			this.popup.addSeparator();
@@ -52,8 +53,6 @@ public class kontextMenuUI extends JComponent {
 		this.popup.add(this.liniezeichnen);
 		this.popup.add(this.schreibenItem);
 		this.popup.add(this.pfeilzeichnen);
-		
-		this.popup.setPopupSize(120,140);
 		
 		setVisible(true);
 
