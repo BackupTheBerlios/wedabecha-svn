@@ -27,7 +27,7 @@ import java.awt.event.*;
 class importiereTabelleListener implements ActionListener {
 	// für den MenuPunkt [Datei]->[Tabelle importieren]
 	public void actionPerformed(ActionEvent event){
-		new importiereTabelle.importiereTabelleUI();
+		importiereTabelle.importiereTabelleUI importDialog = new importiereTabelle.importiereTabelleUI();
 	} // actionPerformed(ActionEvent event)
 } // importiereTabelleListener
 

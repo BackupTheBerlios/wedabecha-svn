@@ -21,7 +21,7 @@
 class wedabecha {
 	//konstruktor
 	public wedabecha(){
-		new hauptFensterUI();
+		hauptFensterUI hauptFenster = new hauptFensterUI();
 	} //wedabecha()
 
 	public static void main(String args[]){

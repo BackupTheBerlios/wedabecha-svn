@@ -23,9 +23,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class subImportiereTabelleUI extends JDialog {
+public class subImportDialogUI extends JDialog {
 	private Container fenster = getContentPane();
-	private JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		private JPanel topPanel = new JPanel(new GridLayout(3,2));
+		private JPanel middlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		private JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
+			private JPanel label1Panel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+			private JPanel label2Panel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+			private JPanel label3Panel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+
+			private JPanel edit1Panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			private JPanel edit2Panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			private JPanel edit3Panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
 	private JLabel lokalLabel = new JLabel("lokale Datei");
 	private JLabel datumsFormatLabel = new JLabel("DatumsFormat");
 	private JLabel trennzeichenLabel = new JLabel("Trennzeichen");
@@ -37,59 +48,93 @@ public class subImportiereTabelleUI extends JDialog {
 	private JButton datumsFormatKnopf = new JButton("Datum"); // die beschriftung muss dynamisch anngepasst werden
 
 	private JLabel pfadLabel = new JLabel("Pfad:");
-	private JTextField pfadField = new JTextField(20);
+	private JTextField pfadField = new JTextField(30);
 
 	private JButton okKnopf = new JButton("OK");
 	private JButton abbrechenKnopf = new JButton("Abbrechen");
 
+	private int tabellenNummer;
 
 	// konstruktor
-	public subImportiereTabelleUI(){
+	public subImportDialogUI(int tabellenNummer){
+		/*parameter tabellenNummer kann nur ganze Zahl von 1 bis 5 sein*/
+		setTitle("Tabelle "+tabellenNummer+" f\u00fcr den Import vorbereiten - wedabecha");
+		this.tabellenNummer = tabellenNummer;
 		this.pack();
-	} // subImportiereTabelleUI()
+	} // subImportDialogUI()
 
 	public void pack(){
-		this.mainPanel.add(this.lokalLabel);
-		this.mainPanel.add(this.durchsuchenKnopf);
-		this.mainPanel.add(this.datumsFormatLabel);
-		this.mainPanel.add(this.datumsFormatKnopf);
-		this.mainPanel.add(this.trennzeichenLabel);
-		this.mainPanel.add(this.trennzeichenBox);
-		this.mainPanel.add(this.pfadLabel);
-		this.mainPanel.add(this.pfadField);
-		this.mainPanel.add(this.okKnopf);
+		this.fenster.setLayout(new FlowLayout());
+		this.fenster.add(this.topPanel);
+		this.fenster.add(this.middlePanel);
+		this.fenster.add(this.bottomPanel);
+
+		this.topPanel.add(this.label1Panel);
+			this.label1Panel.add(this.lokalLabel);
+		this.topPanel.add(this.edit1Panel);
+			this.edit1Panel.add(this.durchsuchenKnopf);
+				this.durchsuchenKnopf.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent event){
+						 chooseFile();
+					}
+				});
+		this.topPanel.add(this.label2Panel);
+			this.label2Panel.add(this.datumsFormatLabel);
+		this.topPanel.add(this.edit2Panel);
+			this.edit2Panel.add(this.datumsFormatKnopf);
+				this.datumsFormatKnopf.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent event){
+						new definiereDatumUI();
+					}
+				});
+		this.topPanel.add(this.label3Panel);
+			this.label3Panel.add(this.trennzeichenLabel);
+		this.topPanel.add(this.edit3Panel);
+			this.edit3Panel.add(this.trennzeichenBox);
+				this.trennzeichenBox.setEditable(false);
+
+		this.middlePanel.add(this.pfadLabel);
+		this.middlePanel.add(this.pfadField);
+
+		this.bottomPanel.add(this.okKnopf);
 			this.okKnopf.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
 					System.out.println( event.getActionCommand());
 					setVisible(false);
 				}
 			});
-		this.mainPanel.add(this.abbrechenKnopf);
+		this.bottomPanel.add(this.abbrechenKnopf);
 			this.abbrechenKnopf.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
 					setVisible(false);
 				}
 			});
 
-		this.fenster.add(this.mainPanel);
-
 		int bildSchirmBreite = getToolkit().getScreenSize().width;
 		int bildSchirmHoehe = getToolkit().getScreenSize().height;
 		int Xposition = (bildSchirmBreite - 600) / 2;
 		int Yposition = (bildSchirmHoehe - 280) / 2;
-		setSize(250,280);
+		setSize(400,225);
 		setLocation(Xposition,Yposition);
 		setResizable(false);
 		setModal(true);
 		setVisible(true);
 	} // pack()
 
+
 	public void chooseFile(){
 		JFileChooser auswahlDialog = new JFileChooser();
     	int returnVal = auswahlDialog.showOpenDialog(this);
     	if(returnVal == JFileChooser.APPROVE_OPTION) {
-			this.pfadField.setText(auswahlDialog.getSelectedFile().getName());
+			this.pfadField.setText(auswahlDialog.getSelectedFile().getPath());
+//			hauptFenster.importDialog.setPfad(auswahlDialog.getSelectedFile().getPath(),this.tabellenNummer);
 		} // fi
 
 	} // chooseFile()
+
+
+	/*public static void main(String args[]){
+		new subImportDialogUI(1);
+	}*/
+
 } // subImportiereTabelleUI
