@@ -21,8 +21,9 @@
 
 package importiereTabelle;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.io.*;
+import javax.swing.*;
 
 public class importiereTabelle {
 
@@ -57,7 +58,10 @@ public class importiereTabelle {
 	// ob dieses instanz der tabelle gespeichert werden soll
 	private boolean speichern;
 
-
+	// erstellt ein Array mit dem Datum
+	private ArrayList datum = new ArrayList();
+	private ListIterator datumIt = datum.listIterator();
+		
 
 	/*
 	im folgenden alle nötigen get-und set-methoden, um die variabeln zu verändern
@@ -169,6 +173,7 @@ public class importiereTabelle {
 			",\n datumsPos \t\t\t" + this.datumsPos +
 			",\n inkZahlRep \t\t\t" + this.inkZahlRep
 		);
+
 		return toString;
 	} // toString()
 
@@ -184,15 +189,10 @@ public class importiereTabelle {
 		// liefert ausschliesslich die zu verarbeitenden Daten zurück.
 		// das Datum für die jeweilige Zeile kann über die Methode getDates() aufgerufen werden
 
-
-		// 1. datei auslesen
-		FileReader readfile = new FileReader(this.importPfad);
-
-		// 2. datei im puffer zwischenspeichern
-		BufferedReader bufferread = new BufferedReader(readfile);
-
-		// letztendlich zu übergebende Liste
+		// letztendliches Array der Zeilen aus dem Puffer
 		ArrayList resAL = new ArrayList();
+		ListIterator resALIt = resAL.listIterator();
+
 
 		// zeile als Zeichenkette
 		String zeile;
@@ -202,48 +202,76 @@ public class importiereTabelle {
 
 		// das selbe als dynamisches Array
 		ArrayList zeileAL = new ArrayList();
+		ListIterator zeileALIt = zeileAL.listIterator();
 
+		
+		int zeilenlaenge;
+		
 		// eine zeile des ergebnisses
-		int resZeileL[];
-
+		int resZeileL[] = {1};
+		
 		// das gesamte ergebnis zusammengesetzt
-		int result[][];
+		int result[][] = {{1}};
 
+		try {
+			// 1. datei auslesen
+			FileReader readfile = new FileReader(this.importPfad);
+			
+			// 2. datei im puffer zwischenspeichern
+			BufferedReader bufferread = new BufferedReader(readfile);
+
+			// Tabelle wird Zeile für Zeile eingelesen
+			// Zeilen werden im Puffer zwischengespeichert
+			while(bufferread.readLine() != null){
+				zeile = bufferread.readLine();
+
+				// !!! this.trennzeichen enthält noch KEIN separates Trennzeichen,
+				// sondern eine Zeichkette aus mehreren Zeichen (Leerzeichen)
+				zeileL = zeile.split(this.trennzeichen);
+
+				for(int i = 0 ; i < zeileL.length ; i++){
+					zeileALIt.add(zeileL[i]);
+					// Datum aus Array kopieren
+					datumIt.add(zeileAL.get(this.datumsPos));
+					// Datum an datumsPos entfernen
+					zeileAL.remove(this.datumsPos);
+					//zeileALIt.set(Integer.parseInt((String)zeileALIt.next()));
+					// fügt der zu übergebenden Liste die Daten hinzu
+					
+					int j = 0;
+					zeilenlaenge = zeileAL.size();
+					
+					while (zeileALIt.hasNext()){
+						resZeileL[j] = Integer.parseInt((String)zeileALIt.next());
+						j++;
+					} // while()
+				} // for()
+			} // while()
+			
+		} catch (IOException except){
+			JOptionPane.showMessageDialog(null,
+            	"Datei konnte nicht gelesen werden!","Dateifehler",
+            	JOptionPane.ERROR_MESSAGE );
+        } // try catch()
+
+
+//		Integer result2[] = (Integer[]) resAL.toArray(new Integer[0]);
+
+		
 		// if Abfrage setzt die Position des Datums,
 		// ob in der ersten oder letzten Spalte der Tabelle
 		if(this.isDatumsPosFirstColumn){
 			this.setDatumsPos(0);
 		} else {
-			this.setDatumsPos(zerlegteListe.size());
+			this.setDatumsPos(resAL.size());
 		} // if() else
-
-		// Tabelle wird Zeile für Zeile eingelesen
-		// Zeilen werden im Puffer zwischengespeichert
-		while(bufferread.readLine() != null){
-			zeile = bufferread.readLine();
-
-			// !!! this.trennzeichen enthält noch KEIN separates Trennzeichen,
-			// sondern eine Zeichkette aus mehreren Zeichen (Leerzeichen)
-			zeileL = zeile.split(this.trennzeichen);
-			zeileAL.addAll(zeileL);
-
-			// Datum an datumsPos entfernen
-			zeileAL.remove(this.datumsPos);
-
-			// wandelt Zeichen für Zeichen die Zeilen in Integer um
-			for(int i = 0 ; i < zeileAL.size(); i++){
-				resZeileL[i] = Integer.parseInt(zeileAL[i]);
-			} // for()
-
-			// fügt der zu übergebenden Liste die Daten hinzu
-			resAL.add(resZeileL);
-		} // while()
-
-		return resAL.toArray();
+		
+		
+		return result;
 
 	} // getDaten()
 */
-
+	
 	public int[][] getDatum(){
 		/**
 		liefert eine Liste von Strings mit dem Datum für die jeweilige Zeile zurück.
