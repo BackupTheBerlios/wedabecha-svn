@@ -43,13 +43,15 @@ public class Koordinatensystem extends JComponent {
 		maxWert für die Y-Achse
 		maxDate für die x-Achse
 	*/
-	private int maxWert, maxDate;
+	private double maxWert, maxDate;
 
 	private int dx, dy; // Distanz zwischen Nullpunkt und dem Maximalpunkt auf den Achsen
 	private int einheitx = 25; // Abstand der einzelnen Achseneinteilungsstriche
-	private int einheity = 25; // Abstand der einzelnen Achseneinteilungsstriche
+	private int einheity = 20; // Abstand der einzelnen Achseneinteilungsstriche
 	private int zeichenBreite, zeichenHoehe; // Zeichenbereich in Pixelkoordinaten
-
+	
+	private int yBeschriftung;
+	private double multiplikator;
 	//Konstruktor
 	Koordinatensystem(){
 	}
@@ -77,6 +79,8 @@ public class Koordinatensystem extends JComponent {
 		this.dx = this.endX - this.startX; // Breite
    		this.dy = this.endY - this.startY; // Hoehe
 		this.setSize(breite, hoehe);
+		this.multiplikator =	(hauptFensterUI.layeredPane.getHeight() - 100) /
+								this.maxWert;
 	} // setGroesse()
 
 
@@ -90,8 +94,11 @@ public class Koordinatensystem extends JComponent {
 		*/
 
 		// Grösse der Zeichnungsfläche einstellen
-
 		this.berechneMaxima();
+		
+		this.yBeschriftung = (int)((Math.round(this.maxWert / 10)) * 10);
+		this.multiplikator =	(hauptFensterUI.layeredPane.getHeight() - 100) /
+								this.maxWert;
 		this.setGroesse(690,452);
 		this.setVisible(true); // sichtbar machen
 	} // zeichneKoordinatensystem
@@ -104,28 +111,31 @@ public class Koordinatensystem extends JComponent {
 			dann noch die Einteilung...
 		*/
 
-		g.drawLine(startX,startY,endX,startY); // X-Achse
-		g.drawLine(startX,startY,startX,endY); // Y-Achse
+		g.drawLine(startX, startY, endX, startY); // X-Achse
+		g.drawLine(startX, startY, startX, endY); // Y-Achse
 		// Pfeilspitze Y-Achse
-		g.drawLine(21,(endY + 8),25,endY);
-		g.drawLine(29,(endY + 8),25,endY);
+		g.drawLine(21, (endY + 8), 25, endY);
+		g.drawLine(29, (endY + 8), 25, endY);
 
 		// Pfeilspitze X-Achse
-		g.drawLine((endX - 8),(startY + 4),endX,startY);
-		g.drawLine((endX - 8),(startY - 4),endX,startY);
+		g.drawLine((endX - 8), (startY + 4), endX, startY);
+		g.drawLine((endX - 8), (startY - 4), endX, startY);
 
 		// Achseneinteilungsstriche zeichnen
-
 		// auf der X-Achse
 		for (int i = startX; i < (endX - 50); i+= einheitx){
 			g.drawLine( (startX + i) , (startY - 4) , (startX + i) , (startY + 4) );
 		} // for
-
+		
+		int tempBeschriftung = 0;
+		System.out.println(yBeschriftung);
 		// auf der Y-Achse
-		for (int j = 25; j < (startY - 75) ; j+= einheity){
-			g.drawLine( (startX - 4) , (startY - j) ,  (startX + 4) , (startY - j) );
-		}
-	}
+		for (int j = startY; j >= 75; j -= (startY - 75) / 10){
+			g.drawString(""+tempBeschriftung, 0, j + 5);
+			g.drawLine( (startX - 4) , j ,  (startX + 4) , j );
+			tempBeschriftung += yBeschriftung / 10;
+		} // for
+	} // paintComponent()
 
 
 	private void berechneMaxima(){
@@ -167,7 +177,7 @@ public class Koordinatensystem extends JComponent {
 		} // for(i)
 
 		java.util.Arrays.sort(maxKurvenWerte);
-		this.maxWert = (int)maxKurvenWerte[maxKurvenWerte.length - 1];
+		this.maxWert = maxKurvenWerte[maxKurvenWerte.length - 1];
 // 		this.maxDate = da kommt noch was rein (vielleicht);
 
 	} // berechneMaxima()

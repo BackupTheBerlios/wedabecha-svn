@@ -105,7 +105,7 @@ public class hauptFensterUI extends JFrame {
 
 		// JLayeredPane wird als neue ContentPane eingesetzt
 		layeredPane.setOpaque(true); // ContentPane muss durchsichtig sein
-
+		
 // 		toolbarPane.setSize(this.fensterBreite,35);
 
 		layeredPane.setSize(this.fensterBreite,this.fensterHoehe);
@@ -264,7 +264,11 @@ public class hauptFensterUI extends JFrame {
 					koordSys.setGroesse(d.width, d.height);
 					for(int i = 1; i <= 5; i++){
 						if(wedabecha.getKurve(i).isset()){
-							wedabecha.getKurve(i).zeichneLinienKurve.setGroesse(d.width, d.height);
+							if(wedabecha.getKurve(i).getKurvenStilIndex() == 0){
+								wedabecha.getKurve(i).zeichneAktienKurve.setGroesse(d.width, d.height);
+							}else{
+								wedabecha.getKurve(i).zeichneLinienKurve.setGroesse(d.width, d.height);
+							}// if-else()							
 						} // if()
 					} // for
 					toolBar.setBreite(d.width);

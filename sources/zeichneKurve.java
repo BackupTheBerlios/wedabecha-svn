@@ -32,7 +32,7 @@ import java.util.ArrayList;
 class zeichneKurve extends JComponent{
 
 	private int kurvenNummer;
-	private Color farbe;
+	
 
 	// konstruktoren werden überladen, da man ja nich gleich zum Programmstart
 	// die Werte hat und zeichnen kann
@@ -54,11 +54,14 @@ class zeichneLinienKurve extends JComponent {
 	private ArrayList werte;
 	private Color farbe;
 	private int abstand;
+	
+	private double multiplikator;
+	private double max;
 
 	public zeichneLinienKurve(ArrayList werte, Color farbe) {
 		this.farbe = farbe;
 		this.werte = werte;
-		this.setSize(690, 452);
+		this.setSize(hauptFensterUI.fensterBreite, hauptFensterUI.fensterHoehe);
 	} // zeichneKurve()
 
 
@@ -66,28 +69,123 @@ class zeichneLinienKurve extends JComponent {
 		this.setSize(breite, hoehe);
 	} // setGroesse()
 
+	
+	protected void getMax(){
+		for(int i = 0; i < this.werte.size(); i++){
+			double tempArray = ((Double)this.werte.get(i)).doubleValue();
+			this.max = Math.max(this.max, tempArray);
+ 		} // for
+		this.multiplikator =	(hauptFensterUI.layeredPane.getHeight() - 100) /
+								this.max;
+	} // getMax()
 
 	public void paintComponent(Graphics kurve){
+		getMax();
 		int zaehler = 25;
 		if(	Math.round( (hauptFensterUI.layeredPane.getWidth() -
 			25) / this.werte.size() ) < 1){
-			abstand  = 1;
+			this.abstand  = 1;
 		} else {
-			abstand = 	Math.round( (hauptFensterUI.layeredPane.getWidth() -
+			this.abstand = 	Math.round( (hauptFensterUI.layeredPane.getWidth() -
 						25) / this.werte.size());
 		} // if
 
 		for(int i = 0; i < this.werte.size() - 1; i++){
 			kurve.setColor(this.farbe);
 			kurve.drawLine(	zaehler,
-							hauptFensterUI.layeredPane.getHeight() -
-							25 - ((Double)this.werte.get(i)).intValue(),
+							(hauptFensterUI.layeredPane.getHeight() -
+							25) - (int)(this.multiplikator * 
+								((Double)this.werte.get(i)).doubleValue()),
 							zaehler += abstand,
-							hauptFensterUI.layeredPane.getHeight() -
-							25 - ((Double)this.werte.get(i+1)).intValue()
+							(hauptFensterUI.layeredPane.getHeight() -
+							25) - (int)(this.multiplikator * 
+								((Double)this.werte.get(i+1)).doubleValue())
 			); // drawLine
 		} // for
 	} // paintComponent()
 
 
 } // zeichneLinienKurve
+
+
+class zeichneAktienKurve extends JComponent{
+	private ArrayList werte;
+	private Color farbe;
+	
+	private int abstand = 25;
+	private double[] kurse;
+	
+	private double multiplikator;
+	private double max;
+
+	private int hoch;
+	private int tief;
+	private int start;
+	private int ende;
+	
+	public zeichneAktienKurve(ArrayList werte, Color farbe){
+		this.werte = werte;
+		this.farbe = farbe;
+		this.setSize(hauptFensterUI.fensterBreite,  hauptFensterUI.fensterHoehe);
+	}// zeichneAktienKurve
+	
+	
+	protected void setGroesse(int breite, int hoehe){
+		this.setSize(breite, hoehe);
+	}// setGroesse()
+	
+	
+	protected void getMax(){
+		double[] tempArray = new double[this.werte.size()];
+		for(int i = 0; i < this.werte.size(); i++){
+			tempArray = (double[])this.werte.get(i);
+			for(int j = 0; j < tempArray.length; j++){
+				this.max = Math.max(this.max, tempArray[j]);
+			} // for
+ 		} // for
+		this.multiplikator =	(hauptFensterUI.layeredPane.getHeight() - 100) /
+								this.max;
+	} // getMax
+	public void paintComponent(Graphics kurve){
+		getMax();
+		kurve.setColor(farbe);
+		for(int i = 0; i < this.werte.size(); i++){
+			this.kurse = (double[])this.werte.get(i);
+			this.start = (int)this.kurse[0];
+			this.ende = (int)this.kurse[1];
+			this.hoch = (int)this.kurse[2];
+			this.tief = (int)this.kurse[3];
+			
+			kurve.drawLine(this.abstand, 
+				hauptFensterUI.layeredPane.getHeight() - 25 - 
+				(int)(this.multiplikator * this.start),
+				this.abstand,
+				hauptFensterUI.layeredPane.getHeight() - 25 - 
+				(int)(this.multiplikator * this.hoch)
+			);
+			kurve.drawLine(this.abstand, 
+				hauptFensterUI.layeredPane.getHeight() - 25 - 
+				(int)(this.multiplikator * this.hoch), 
+				this.abstand, 
+				hauptFensterUI.layeredPane.getHeight() - 25 - 
+				(int)(this.multiplikator * this.tief)
+			);
+			kurve.drawLine(this.abstand, 
+				hauptFensterUI.layeredPane.getHeight() - 25 - 
+				(int)(this.multiplikator * this.tief), 
+				this.abstand, 
+				hauptFensterUI.layeredPane.getHeight() - 25 - 
+				(int)(this.multiplikator * this.ende)
+			);
+			kurve.drawLine(this.abstand,
+				hauptFensterUI.layeredPane.getHeight() - 25 - 
+				(int)(this.multiplikator * this.ende),
+				this.abstand + 2,
+				hauptFensterUI.layeredPane.getHeight() - 25 - 
+				(int)(this.multiplikator * this.ende)
+			);
+			this.abstand += 2;
+		}//for()
+		this.abstand = 25;
+	}// paintComponent()
+}// zeichneAktienKurve

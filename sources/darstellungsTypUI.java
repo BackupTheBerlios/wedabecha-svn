@@ -100,10 +100,8 @@ class darstellungsTypUI extends JDialog {
 						wedabecha.getKurve(tabellenNummer).setKurvenStilIndex(
 							stilCombo.getSelectedIndex()
 						);
- 						hauptFensterUI.layeredPane.remove(hauptFensterUI.layeredPane.getIndexOf(
-							wedabecha.getKurve(tabellenNummer).zeichneLinienKurve)
-						);
-						wedabecha.getKurve(tabellenNummer).setFarbe(farbe);
+
+ 						wedabecha.getKurve(tabellenNummer).setFarbe(farbe);
 						setVisible(false);
 					}
 				});

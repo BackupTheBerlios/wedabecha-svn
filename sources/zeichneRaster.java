@@ -49,7 +49,7 @@ public class zeichneRaster extends JComponent {
 
 	public void paintComponent(Graphics raster){
 		// bestimmt den Abstand zwischen den Linien
-		int abstand = 25;
+		int abstand = 12;
 		// zeichnet die senkrechten Linien im Abstand von 25 nach rechts
 		for(int i=0; i<this.breite;i+=abstand){
 		    // zeichnet die horizontalen Linien im Abstand von 25 nach oben

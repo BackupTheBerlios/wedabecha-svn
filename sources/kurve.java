@@ -88,6 +88,7 @@ public class kurve {
 	private ArrayList datumWochenMittel = new ArrayList(1);
 
 	protected zeichneLinienKurve zeichneLinienKurve;
+	protected zeichneAktienKurve zeichneAktienKurve;
 
 	// set- und get-Methoden für die Attribute der Kurve
 	protected void setExists(boolean exists){
@@ -228,9 +229,9 @@ public class kurve {
 		switch(this.getKurvenStilIndex()){
 		    case 0:
 				hauptFensterUI.layeredPane.add(
-					zeichneLinienKurve = new zeichneLinienKurve(
+					zeichneAktienKurve = new zeichneAktienKurve(
 						// wird später durch aktienkurve ersetzt
-						berechneMittelwerte.berechneJahresMittel(),
+						this.getWerte(),
 						this.getFarbe()
 					),
 					new Integer(nummer+2)
