@@ -33,13 +33,15 @@ class zeichneLinienKurve extends JComponent {
 
 	protected int dateBeginIndex = 0;
 	protected int dateEndIndex = 299;
-
+	
+	// zur Berechnung der neuen Werte bei Größenänderung des Fensters
 	private double multiplikator;
+	// höchster Wert in der ArrayList werte
 	private double max;
 
 	private int breite = 700;
 
-	private ArrayList ausgangsWerte;
+	private ArrayList ausgangsWerte; // unveränderte Werte vom Import
 
 	public zeichneLinienKurve(ArrayList werte, Color farbe, ArrayList ausgangsWerte) {
 		this.farbe = farbe;
@@ -60,7 +62,10 @@ class zeichneLinienKurve extends JComponent {
 		this.setVisible(sichtbar);
 	} // setVisibility()
 
-
+	/* diese Methode berechnet den höchsten wert in der ArrayList, damit
+	 * Kurve immer die volle Fensterhöhe ausnutzt
+	 */
+	
 	protected void getMax(){
 		for(int i = 0; i < this.werte.size(); i++){
 			double tempArray = ((Double)this.werte.get(i)).doubleValue();
@@ -102,13 +107,15 @@ class zeichneAktienKurve extends JComponent {
 	private int abstand;
 	private double[] kurse;
 
+	// zur Berechnung der neuen Werte bei Größenänderung des Fensters
 	private double multiplikator;
+	// höchster Wert in der ArrayList werte
 	private double max;
 
-	private int hoch;
-	private int tief;
-	private int start;
-	private int ende;
+	private int hoch; // Tageshöchststand
+	private int tief; // Tagestiefststand
+	private int start; // Tageseingangswert
+	private int ende; // Tagesendwert
 
 	protected int dateBeginIndex = 0;
 	protected int dateEndIndex = 299;
@@ -134,6 +141,10 @@ class zeichneAktienKurve extends JComponent {
 	} // setVisibility()
 
 
+	/* diese Methode berechnet den höchsten wert in der ArrayList, damit
+	 * Kurve immer die volle Fensterhöhe ausnutzt
+	 */
+	
 	protected void getMax(){
 		double[] tempArray = new double[this.werte.size()];
 		for(int i = 0; i < this.werte.size(); i++){
