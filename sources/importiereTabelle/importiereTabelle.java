@@ -31,6 +31,7 @@ public class importiereTabelle {
 	private boolean isDatumsPosFirstColumn;
 	private int datumsPos;
 	private String inkZahlRep;
+	private boolean speichern;
 
 	protected void setImportName(String name){
 		this.importName = name;
@@ -138,6 +139,16 @@ public class importiereTabelle {
 	} // getInkZahlRep()
 
 
+	protected void setSpeichern(boolean speichern){
+		this.speichern = speichern;
+	} // setSpeichern()
+
+
+	protected boolean isSpeichern(){
+		return this.speichern;
+	} // isSpeichern()
+
+
 	public String toString(){
 		String toString = new String(
 			"importName: \t\t\t" + this.importName +
@@ -152,4 +163,10 @@ public class importiereTabelle {
 		);
 		return toString;
 	} // toString()
+
+
+	// destruktor
+	protected void zerstoeren(){
+		this.importPfad = "";
+	} // finalize()
 } // importiereTabelle

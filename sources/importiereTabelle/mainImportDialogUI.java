@@ -141,12 +141,14 @@ public class mainImportDialogUI extends JDialog  {
 		this.bottomPanel.add(this.okKnopf);
 			this.okKnopf.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
+					clearAllFields();
 					setVisible(false);
 				} //  actionPerformed(ActionEvent event)
 			});
 		this.bottomPanel.add(this.abbrechenKnopf);
 			this.abbrechenKnopf.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
+					clearAllFields();
 					setVisible(false);
 				} // actionPerformed(ActionEvent event)
 			});
@@ -180,8 +182,10 @@ public class mainImportDialogUI extends JDialog  {
 	} // setPfad
 
 
-	private void clearFields(){
-
-	} // clearFields()
+	private void clearAllFields(){
+		for (int i = 0; i < 4; i++){
+			importiereTabelleUI.getHinterGrundKlasse(i).zerstoeren();
+		} // for
+	}
 
 } // importiereTabelleUI
