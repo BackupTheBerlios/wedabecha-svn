@@ -19,8 +19,7 @@
 
 import java.awt.event.*;
 import javax.swing.*;
-import java.awt.*;
-
+ 
 
 public class toolBarUI /*implements ActionListener*/{
 	protected JToolBar toolBar = new JToolBar("Werkzeugleiste");

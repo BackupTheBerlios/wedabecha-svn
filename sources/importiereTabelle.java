@@ -212,7 +212,7 @@ public class importiereTabelle {
 				zeile = bufferread.readLine();
 
 				zeileL = zeile.split( Character.toString(
-						this.trennzeichenStr[this.trennzeichenIndex].charAt(0)
+						importiereTabelle.trennzeichenStr[this.trennzeichenIndex].charAt(0)
 					)
 				);
 

@@ -97,7 +97,7 @@ public class mainImportDialogUI extends JDialog  {
 						showSubDialog(1);
 					} // actionPerformed(ActionEvent event)
 				});
-			this.LTzeile1.add(this.pfadTabelle1);
+			this.LTzeile1.add(mainImportDialogUI.pfadTabelle1);
 			this.LTzeile1.add(this.speicherTabelle1);
 			this.LTzeile1.add(this.darstellungsTypButton1);
 				this.darstellungsTypButton1.addActionListener(new ActionListener(){
@@ -114,7 +114,7 @@ public class mainImportDialogUI extends JDialog  {
 						showSubDialog(2);
 					} // actionPerformed(ActionEvent event)
 				});
-			this.LTzeile2.add(this.pfadTabelle2);
+			this.LTzeile2.add(mainImportDialogUI.pfadTabelle2);
 			this.LTzeile2.add(this.speicherTabelle2);
 			this.LTzeile2.add(this.darstellungsTypButton2);
 		// zeile 3
@@ -126,7 +126,7 @@ public class mainImportDialogUI extends JDialog  {
 						showSubDialog(3);
 					} // actionPerformed(ActionEvent event)
 				});
-			this.LTzeile3.add(this.pfadTabelle3);
+			this.LTzeile3.add(mainImportDialogUI.pfadTabelle3);
 			this.LTzeile3.add(this.speicherTabelle3);
 			this.LTzeile3.add(this.darstellungsTypButton3);
 		// zeile 4
@@ -138,7 +138,7 @@ public class mainImportDialogUI extends JDialog  {
 						showSubDialog(4);
 					} // actionPerformed(ActionEvent event)
 				});
-			this.LTzeile4.add(this.pfadTabelle4);
+			this.LTzeile4.add(mainImportDialogUI.pfadTabelle4);
 			this.LTzeile4.add(this.speicherTabelle4);
 			this.LTzeile4.add(this.darstellungsTypButton4);
 		// zeile 5
@@ -150,7 +150,7 @@ public class mainImportDialogUI extends JDialog  {
 						showSubDialog(5);
 					} // actionPerformed(ActionEvent event)
 				});
-			this.LTzeile5.add(this.pfadTabelle5);
+			this.LTzeile5.add(mainImportDialogUI.pfadTabelle5);
 			this.LTzeile5.add(this.speicherTabelle5);
 			this.LTzeile5.add(this.darstellungsTypButton5);
 

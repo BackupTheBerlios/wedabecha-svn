@@ -63,7 +63,7 @@ public class kurve {
 
 
 	protected String getKurvenStil(){
-		return this.kurvenStile[this.kurvenArtIndex];
+		return kurve.kurvenStile[this.kurvenArtIndex];
 	}
 
 

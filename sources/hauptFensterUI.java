@@ -21,8 +21,8 @@
 // dies ist das Hauptfenster.
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
-import java.util.*;
 
 
 public class hauptFensterUI extends JFrame {
@@ -51,20 +51,20 @@ public class hauptFensterUI extends JFrame {
 		hauptMenuUI hauptMenu = new hauptMenuUI();
 
 		// Hauptmenu in das Fenster einbinden
-		this.hauptFenster.setJMenuBar(hauptMenu.getHauptMenu());
+		hauptFensterUI.hauptFenster.setJMenuBar(hauptMenu.getHauptMenu());
 
 		// Listener zum Fensterschliessen per "wegkreuzen"
-		this.hauptFenster.addWindowListener(new beendenListener());
+		hauptFensterUI.hauptFenster.addWindowListener(new beendenListener());
 
 		int bildSchirmBreite = getToolkit().getScreenSize().width;
 		int bildSchirmHoehe = getToolkit().getScreenSize().height;
 		int Xposition = (bildSchirmBreite - this.fensterBreite) / 2;
 		int Yposition = (bildSchirmHoehe - this.fensterHoehe) / 2;
-		this.hauptFenster.setSize(this.fensterBreite,this.fensterHoehe);
+		hauptFensterUI.hauptFenster.setSize(this.fensterBreite,this.fensterHoehe);
 
 		// JLayeredPane wird als neue ContentPane eingesetzt
 		layeredPane.setOpaque(true); // ContentPane muss durchsichtig sein
-		this.hauptFenster.setContentPane(layeredPane);
+		hauptFensterUI.hauptFenster.setContentPane(layeredPane);
 
 		// Raster der neuen ContentPane adden
 		final zeichneRaster zeichneRaster = new zeichneRaster(this.fensterBreite,this.fensterHoehe);
@@ -75,9 +75,9 @@ public class hauptFensterUI extends JFrame {
 		// Werkzeugleiste einbinden
 		this.layeredPane.add(toolBar.getToolBar(), JLayeredPane.PALETTE_LAYER);
 
-		this.hauptFenster.setLocation(Xposition,Yposition);
-		this.hauptFenster.setResizable(true);
-		this.hauptFenster.setVisible(true);
+		hauptFensterUI.hauptFenster.setLocation(Xposition,Yposition);
+		hauptFensterUI.hauptFenster.setResizable(true);
+		hauptFensterUI.hauptFenster.setVisible(true);
 
 		final kontextMenuUI kontext = new kontextMenuUI();
 
@@ -86,7 +86,7 @@ public class hauptFensterUI extends JFrame {
 			
 		this.layeredPane.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent me ) {
-				if ( me.getButton() == me.BUTTON3) {
+				if ( me.getButton() == MouseEvent.BUTTON3) {
 					kontext.getKontextMenu().show( layeredPane, me.getX(), me.getY() );
 				} // if()
 			} // mouseReleased(MouseEvent me)
@@ -99,7 +99,7 @@ public class hauptFensterUI extends JFrame {
 			    // wenn der ToggleButton in der Toolbar aktiviert ist...
 			    if(toolBar.textGewaehlt()){
 				// ...reagiert erst der MouseListener auf den Linksklick
-				if(me.getButton() == me.BUTTON1){
+				if(me.getButton() == MouseEvent.BUTTON1){
 				    String text = JOptionPane.showInputDialog(null, 
 								"Bitte den darzustellenden Text eingeben",
 								"neues Textfeld erstellen.",
@@ -127,7 +127,7 @@ public class hauptFensterUI extends JFrame {
 			    // wenn der ToggleButton in der Toolbar aktiviert ist...
 			    if(toolBar.linieGewaehlt()){
 				// ...reagiert erst der MouseListener auf den Linksklick
-				if(me.getButton() == me.BUTTON1){
+				if(me.getButton() == MouseEvent.BUTTON1){
 				    /* beim ersten klick werden die Startwerte gesetzt, beim
 				     *zweiten die endwerte*/
 				    switch(zaehler){
@@ -169,7 +169,7 @@ public class hauptFensterUI extends JFrame {
 			    // wenn der ToggleButton in der Toolbar aktiviert ist...
 			    if(toolBar.pfeilGewaehlt()){
 				// ...reagiert erst der MouseListener auf den Linksklick
-				if(me.getButton() == me.BUTTON1){
+				if(me.getButton() == MouseEvent.BUTTON1){
 				    /* beim ersten klick werden die Startwerte gesetzt, beim
 				     *zweiten die endwerte*/
 				    switch(zaehler){

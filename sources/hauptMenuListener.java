@@ -23,8 +23,6 @@ und ActionListener-Klassen für die hauptMenuUI
 */
 
 import java.awt.event.*;
-import java.awt.*;
-import javax.swing.*;
 
 
 class importiereTabelleListener implements ActionListener {
@@ -101,11 +99,11 @@ class beendenListener extends WindowAdapter implements ActionListener {
 	// Die Klasse ist der Listener für den Menüpunkt [Datei]->[Programm beenden]
 	// kann ggf. noch für andere Einsatzmöglichkeiten verwendet werden.
 	public void actionPerformed(ActionEvent event){
-		endProgram.endProgram();
+		endProgram.end();
 	} // actionPerformed(ActionEvent event)
 
 	public void windowClosing(WindowEvent event) {
-		endProgram.endProgram();
+		endProgram.end();
 	} // windowClosing(WindowEvent event)
 } // beendenListener
 
@@ -121,7 +119,7 @@ class endProgram {
 	für die Sicherheitsabfrage kopieren und einfügen müsste,
 	denn es gibt ja mehrere Möglichkeiten um das Programm zu beenden.
 	*/
-	public static void endProgram(){
+	public static void end(){
 		// end_program() enthält code, der zum beenden des programms erforderlich ist
 		// macht sich ganz gut, weil der punkt ja von mehreren stellen aufgerufen werden kann
 		System.exit(0);
