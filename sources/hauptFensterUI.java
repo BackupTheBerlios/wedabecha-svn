@@ -49,7 +49,7 @@ public class hauptFensterUI extends JFrame {
 		auf die fensterBreite und fensterHoehe muss
 		von anderen Klassen aus zugegriffen werden können.
 	*/
-	protected static int fensterBreite = 750;
+	protected static int fensterBreite = 700;
 	protected static int fensterHoehe = 500;
 
 	protected static toolBarUI toolBar = new toolBarUI(fensterBreite);
@@ -334,6 +334,7 @@ public class hauptFensterUI extends JFrame {
 						} // if()
 					} // for
 					toolBar.setBreite(d.width);
+					toolbarPane.setSize(d.width, 35);
 					System.out.println(d);
 				} // if
 			} // componentResized()

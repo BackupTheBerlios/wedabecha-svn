@@ -230,7 +230,6 @@ public class kurve {
 		    case 0:
 				hauptFensterUI.layeredPane.add(
 					zeichneAktienKurve = new zeichneAktienKurve(
-						// wird später durch aktienkurve ersetzt
 						this.getWerte(),
 						this.getFarbe()
 					),

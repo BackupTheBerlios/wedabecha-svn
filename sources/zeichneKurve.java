@@ -104,7 +104,7 @@ class zeichneAktienKurve extends JComponent {
 	private ArrayList werte;
 	private Color farbe;
 
-	private int abstand = 25;
+	private int abstand;
 	private double[] kurse;
 
 	private double multiplikator;
@@ -117,6 +117,8 @@ class zeichneAktienKurve extends JComponent {
 
 	protected int dateBeginIndex = 0;
 	protected int dateEndIndex = 299;
+	
+	private int breite = 670;
 
 	public zeichneAktienKurve(ArrayList werte, Color farbe){
 		this.werte = werte;
@@ -127,6 +129,7 @@ class zeichneAktienKurve extends JComponent {
 
 
 	protected void setGroesse(int breite, int hoehe){
+		this.breite = breite;
 		this.setSize(breite, hoehe);
 	}// setGroesse()
 
@@ -151,7 +154,12 @@ class zeichneAktienKurve extends JComponent {
 
 	public void paintComponent(Graphics kurve){
 		getMax();
+		int zaehler = 25;
+		
 		kurve.setColor(farbe);
+		
+		this.abstand = 2 * this.breite / 670;
+		
 		for(int i = dateBeginIndex; i < dateEndIndex; i++){
 			this.kurse = (double[])this.werte.get(i);
 			this.start = (int)this.kurse[0];
@@ -159,36 +167,35 @@ class zeichneAktienKurve extends JComponent {
 			this.hoch = (int)this.kurse[2];
 			this.tief = (int)this.kurse[3];
 
-			kurve.drawLine(this.abstand,
+			kurve.drawLine(zaehler,
 				hauptFensterUI.layeredPane.getHeight() - 25 -
 				(int)(this.multiplikator * this.start),
-				this.abstand,
+				zaehler,
 				hauptFensterUI.layeredPane.getHeight() - 25 -
 				(int)(this.multiplikator * this.hoch)
 			);
-			kurve.drawLine(this.abstand,
+			kurve.drawLine(zaehler,
 				hauptFensterUI.layeredPane.getHeight() - 25 -
 				(int)(this.multiplikator * this.hoch),
-				this.abstand,
+				zaehler,
 				hauptFensterUI.layeredPane.getHeight() - 25 -
 				(int)(this.multiplikator * this.tief)
 			);
-			kurve.drawLine(this.abstand,
+			kurve.drawLine(zaehler,
 				hauptFensterUI.layeredPane.getHeight() - 25 -
 				(int)(this.multiplikator * this.tief),
-				this.abstand,
+				zaehler,
 				hauptFensterUI.layeredPane.getHeight() - 25 -
 				(int)(this.multiplikator * this.ende)
 			);
-			kurve.drawLine(this.abstand,
+			kurve.drawLine(zaehler,
 				hauptFensterUI.layeredPane.getHeight() - 25 -
 				(int)(this.multiplikator * this.ende),
-				this.abstand + 2,
+				zaehler + this.abstand,
 				hauptFensterUI.layeredPane.getHeight() - 25 -
 				(int)(this.multiplikator * this.ende)
 			);
-			this.abstand += 2;
+			zaehler += this.abstand;
 		}//for()
-		this.abstand = 25;
 	}// paintComponent()
 }// zeichneAktienKurve
