@@ -1,24 +1,28 @@
 /****************************************************************************
- *   Copyright (C) 2004 by Matthias Tylkowski				    *
- *									    *
+ *   Copyright (C) 2004 by BTU SWP GROUP 04/6.1 - Matthias Tylkowski        *
+ *                                                                          *
  *   This program is free software; you can redistribute it and/or modify   *
  *   it under the terms of the GNU General Public License as published by   *
  *   the Free Software Foundation; either version 2 of the License, or	    *
- *   (at your option) any later version.				    *
- *									    *
- *   This program is distributed in the hope that it will be useful,	    *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of	    *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the	    *
- *   GNU General Public License for more details.			    *
- *									    *
- *   You should have received a copy of the GNU General Public License	    *
- *   along with this program; if not, write to the			    *
- *   Free Software Foundation, Inc.,					    *
- *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.		    *
+ *   (at your option) any later version                                     *
+ *                                                                          *
+ *   This program is distributed in the hope that it will be useful,        *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+ *   GNU General Public License for more details                            *
+ *                                                                          *
+ *   You should have received a copy of the GNU General Public License      *
+ *   along with this program; if not, write to the                          *
+ *   Free Software Foundation, Inc.,                                        *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
-/*Diese Klasse dient zur Darstellung der Dokumentation, Kurzanleitung und der 
- *Hilfe. je nach bergebenen Werten wird der gewnschte Text in der TexrArea
- *dargestellt*/
+
+
+/*
+	Diese Klasse dient zur Darstellung der Dokumentation, Kurzanleitung und der
+ 	Hilfe. je nach bergebenen Werten wird der gewnschte Text in der TexrArea
+ 	dargestellt
+*/
 
 
 import javax.swing.*; //brauche ich um die Swing Objekte darzustellen
@@ -33,82 +37,87 @@ public class dokuUI extends JFrame {
     private String areaInhalt = "";
 
     public dokuUI(String title) {
-		/*der konstruktor soll noch zwei parameter erhalten (siehe 
-		 *HauptMenuListener) die parameter sind vom Typ String und 
-		 *können folgende Werte enthalten: "Kurzanleitung" und "Doku"*/
-	setTitle(title);
+		/*
+			der konstruktor soll noch zwei parameter erhalten (siehe
+			HauptMenuListener) die parameter sind vom Typ String und
+			können folgende Werte enthalten: "Kurzanleitung" und "Doku"
+		*/
 
-        if(title.equals("Kurzanleitung")){
-            try {
-                FileReader textKurzAnleitung = new FileReader("kurzAnleitung.txt");
-            	BufferedReader bufferKurzAnleitung = new BufferedReader(textKurzAnleitung);
-                String buffer;
-		while ((buffer = bufferKurzAnleitung.readLine()) != null) {
-		    this.textArea.append(buffer+"\n");
-		} // while()
-	    } catch (IOException except){
+		setTitle(title);
+
+		if(title.equals("Kurzanleitung")){
+			try {
+				FileReader textKurzAnleitung = new FileReader("kurzAnleitung.txt");
+				BufferedReader bufferKurzAnleitung = new BufferedReader(textKurzAnleitung);
+				String buffer;
+
+				while ((buffer = bufferKurzAnleitung.readLine()) != null) {
+		    		this.textArea.append(buffer + "\n");
+				} // while()
+	    	} catch (IOException except){
                 // fehlermeldung falls datei nicht gelesen werden kann
-		JOptionPane.showMessageDialog(null,
-            	"Die Datei, welche die Kurzanleitung enthaelt, konnte nicht gelesen werden.","Dateifehler",
-            	JOptionPane.ERROR_MESSAGE );
+				JOptionPane.showMessageDialog(null,
+				"Die Datei, welche die Kurzanleitung enthaelt, konnte nicht gelesen werden.","Dateifehler",
+				JOptionPane.ERROR_MESSAGE );
             } // try-catch
-        }else if(title.equals("Dokumentation")){
+		} else if (title.equals("Dokumentation")){
             try {
-		FileReader textDoku = new FileReader("doku.txt");
-            	BufferedReader bufferDoku = new BufferedReader(textDoku);
-                String buffer;
-                while ((buffer = bufferDoku.readLine()) != null){
-                    this.textArea.append(buffer +"\n");
-                }//while
+				FileReader textDoku = new FileReader("doku.txt");
+				BufferedReader bufferDoku = new BufferedReader(textDoku);
+				String buffer;
+				while ((buffer = bufferDoku.readLine()) != null){
+					this.textArea.append(buffer +"\n");
+				} // while()
             } catch (IOException except){
                 // fehlermeldung, falls datei nicht gelesen werden kann
-		JOptionPane.showMessageDialog(null,
-            	"Die Datei welche die Dokumentation enthaelt, konnte nicht gelesen werden.","Dateifehler",
-            	JOptionPane.ERROR_MESSAGE );
-            } // try-catch
-        }
+				JOptionPane.showMessageDialog(null,
+				"Die Datei welche die Dokumentation enthaelt, konnte nicht gelesen werden.","Dateifehler",
+				JOptionPane.ERROR_MESSAGE );
+			} // try-catch
+		} // if
 
-	this.pack();
-        setSize(400, 400);
-        setLocation((getToolkit().getScreenSize().width-400) / 2,
-                    (getToolkit().getScreenSize().height-400) / 2);
-        setResizable(true);
-        setVisible(true);
-    }//dokuUI();
-	
-	
-    public void pack() {
-        getContentPane().setLayout(new BorderLayout(5,5));
+		this.pack();
+	} // dokuUI();
 
-        JPanel gridLayoutPanel = new JPanel();
-        getContentPane().add((gridLayoutPanel),BorderLayout.CENTER);
-        gridLayoutPanel.setLayout(new GridLayout(1,1));
 
-        textArea.setLineWrap(true); //Zeilenumbruch generell
-        textArea.setWrapStyleWord(true);//keine Wörter unterbrechen bei Zeilenumbruch
-        textArea.setEditable(false);
-        gridLayoutPanel.add(textArea);
-        gridLayoutPanel.add(new JScrollPane(textArea));
+	public void pack() {
+		getContentPane().setLayout(new BorderLayout(5,5));
 
-        JPanel flowLayoutPanel = new JPanel();
-        getContentPane().add((flowLayoutPanel),BorderLayout.SOUTH);
-        flowLayoutPanel.setLayout(new FlowLayout());
+		JPanel gridLayoutPanel = new JPanel();
+		getContentPane().add((gridLayoutPanel),BorderLayout.CENTER);
+		gridLayoutPanel.setLayout(new GridLayout(1,1));
 
-        schliessenButton = new JButton("Schliessen");
-        flowLayoutPanel.add(schliessenButton);
+		textArea.setLineWrap(true); // Zeilenumbruch generell
+		textArea.setWrapStyleWord(true); // keine Wörter unterbrechen bei Zeilenumbruch
+		textArea.setEditable(false);
+		gridLayoutPanel.add(textArea);
+		gridLayoutPanel.add(new JScrollPane(textArea));
 
-        this.schliessenButton.addActionListener(new schliessenListener());
-	}//pack()
+		JPanel flowLayoutPanel = new JPanel();
+		getContentPane().add((flowLayoutPanel),BorderLayout.SOUTH);
+		flowLayoutPanel.setLayout(new FlowLayout());
 
-	
-	class schliessenListener implements ActionListener{
-            public void actionPerformed(ActionEvent event){
-                setVisible(false);
-            } // actionPerformed(ActionEvent event)
+		schliessenButton = new JButton("Schliessen");
+		flowLayoutPanel.add(schliessenButton);
 
-            public void windowClosing(WindowEvent event){
-        	setVisible(false);
-            } // windowClosing(WindowEvent event)
+		this.schliessenButton.addActionListener(new schliessenListener());
+
+		setSize(400, 400);
+		setLocation((getToolkit().getScreenSize().width-400) / 2,
+					(getToolkit().getScreenSize().height-400) / 2);
+		setResizable(true);
+		setVisible(true);
+	} // pack()
+
+
+	class schliessenListener implements ActionListener {
+		public void actionPerformed(ActionEvent event){
+			setVisible(false);
+		} // actionPerformed(ActionEvent event)
+
+		public void windowClosing(WindowEvent event){
+			setVisible(false);
+		} // windowClosing(WindowEvent event)
 	} // schliessenListener
 
-}//dokuUI
+} // dokuUI

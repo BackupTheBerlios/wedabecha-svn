@@ -1,20 +1,20 @@
 /****************************************************************************
- *   Copyright (C) 2004 by BTU SWP GROUP 04/6.1								*
- *																			*
- *   This program is free software; you can redistribute it and/or modify	*
- *   it under the terms of the GNU General Public License as published by	*
- *   the Free Software Foundation; either version 2 of the License, or		*
- *   (at your option) any later version.									*
- *																			*
- *   This program is distributed in the hope that it will be useful,		*
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of			*
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the			*
- *   GNU General Public License for more details.							*
- *																			*
- *   You should have received a copy of the GNU General Public License		*
- *   along with this program; if not, write to the							*
- *   Free Software Foundation, Inc.,										*
- *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.				*
+ *   Copyright (C) 2004 by BTU SWP GROUP 04/6.1                             *
+ *                                                                          *
+ *   This program is free software; you can redistribute it and/or modify   *
+ *   it under the terms of the GNU General Public License as published by   *
+ *   the Free Software Foundation; either version 2 of the License, or	    *
+ *   (at your option) any later version                                     *
+ *                                                                          *
+ *   This program is distributed in the hope that it will be useful,        *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+ *   GNU General Public License for more details                            *
+ *                                                                          *
+ *   You should have received a copy of the GNU General Public License      *
+ *   along with this program; if not, write to the                          *
+ *   Free Software Foundation, Inc.,                                        *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
 
 package importiereTabelle;
@@ -114,13 +114,18 @@ public class subImportDialogUI extends JDialog {
 				public void actionPerformed(ActionEvent event){
 					//System.out.println( event.getActionCommand());
 
-					mainImportDialogUI.setPfad(importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).getImportPfad(),tabellenNummer);
+					mainImportDialogUI.setPfad(
+						importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).getImportPfad(),
+						tabellenNummer
+					);
 
 					importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setInternerSpeicherName(
 						importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).getImportName()
 					);
 
-					importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setTrennzeichen(trennzeichenBox.getSelectedItem().toString());
+					importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setTrennzeichen(
+						trennzeichenBox.getSelectedItem().toString()
+					);
 
 					// entkäfern
 					System.out.println(importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).toString());
@@ -155,8 +160,13 @@ public class subImportDialogUI extends JDialog {
     	int returnVal = auswahlDialog.showOpenDialog(this);
     	if(returnVal == JFileChooser.APPROVE_OPTION) {
 			this.pfadField.setText(auswahlDialog.getSelectedFile().getPath());
-			importiereTabelleUI.getHinterGrundKlasse(this.tabellenNummer).setImportPfad(auswahlDialog.getSelectedFile().getPath());
-			importiereTabelleUI.getHinterGrundKlasse(this.tabellenNummer).setImportName(auswahlDialog.getSelectedFile().getName());
+			importiereTabelleUI.getHinterGrundKlasse(this.tabellenNummer).setImportPfad(
+				auswahlDialog.getSelectedFile().getPath()
+			);
+
+			importiereTabelleUI.getHinterGrundKlasse(this.tabellenNummer).setImportName(
+				auswahlDialog.getSelectedFile().getName()
+			);
 		} // fi
 
 	} // chooseFile()

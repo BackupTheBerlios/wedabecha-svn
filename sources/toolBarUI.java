@@ -1,20 +1,20 @@
 /****************************************************************************
- *   Copyright (C) 2004 by BTU SWP GROUP 04/6.1								*
- *																			*
- *   This program is free software; you can redistribute it and/or modify	*
- *   it under the terms of the GNU General Public License as published by	*
- *   the Free Software Foundation; either version 2 of the License, or		*
- *   (at your option) any later version.									*
- *																			*
- *   This program is distributed in the hope that it will be useful,		*
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of			*
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the			*
- *   GNU General Public License for more details.							*
- *																			*
- *   You should have received a copy of the GNU General Public License		*
- *   along with this program; if not, write to the							*
- *   Free Software Foundation, Inc.,										*
- *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.				*
+ *   Copyright (C) 2004 by BTU SWP GROUP 04/6.1                             *
+ *                                                                          *
+ *   This program is free software; you can redistribute it and/or modify   *
+ *   it under the terms of the GNU General Public License as published by   *
+ *   the Free Software Foundation; either version 2 of the License, or	    *
+ *   (at your option) any later version                                     *
+ *                                                                          *
+ *   This program is distributed in the hope that it will be useful,        *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+ *   GNU General Public License for more details                            *
+ *                                                                          *
+ *   You should have received a copy of the GNU General Public License      *
+ *   along with this program; if not, write to the                          *
+ *   Free Software Foundation, Inc.,                                        *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
 
 import java.awt.event.*;
@@ -40,14 +40,14 @@ public class toolBarUI /*implements ActionListener*/{
 			private JButton pfeilzeichnenbutton = new JButton(pfeilzeichnen);
 		private ImageIcon textzeichnen = new ImageIcon("Images/text.gif");
 			private JButton textzeichnenbutton = new JButton(textzeichnen);
-		
-	
+
+
 	// Konstruktor
 	public toolBarUI(){
 		this.pack();
 	} // toolBarUI()
-	
-	
+
+
 	// Setzt die ToolBar zusammen
 	public void pack(){
 		this.toolBar.add(oeffnenbutton);
@@ -68,11 +68,11 @@ public class toolBarUI /*implements ActionListener*/{
 			this.pfeilzeichnenbutton.setContentAreaFilled(true);
 		this.toolBar.add(textzeichnenbutton);
 			this.textzeichnenbutton.setContentAreaFilled(true);
-		
+
 		this.toolBar.setFloatable(false);
 		this.toolBar.setBorderPainted(true);
 	} // pack()
-	
+
 	public JToolBar getToolBar(){
 		return this.toolBar;
 	} // getToolBar()
