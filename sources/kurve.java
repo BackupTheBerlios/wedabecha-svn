@@ -1,5 +1,5 @@
 /****************************************************************************
- *   Copyright (C) 2005 by BTU SWP GROUP 04/6.1                                       *
+ *   Copyright (C) 2005 by BTU SWP GROUP 04/6.1                             *
  *                                                                          *
  *   This program is free software; you can redistribute it and/or modify   *
  *   it under the terms of the GNU General Public License as published by   *
@@ -38,17 +38,17 @@ public class kurve {
 	private String farbe;
 	private int kurvenArtIndex; // enthält Index-wert für kurvenStile
 	private ArrayList werte = new ArrayList(
-		new ArrayList(new Float())
+		new ArrayList(/*new Float()*/)
 	);
 
-	private ListIterator = werte.listIterator();
+//	private ListIterator = werte.listIterator();
 
 	private ArrayList daten = new ArrayList( // Mehrzahl von Datum
-		new Integer()
+		/*new Integer()*/
 	);
 
 	private ArrayList mittelWerte = new ArrayList();
-	private ArrayList mittelDaten = new ArrayList(new Integer()); // Mehrzahl von Datums
+	private ArrayList mittelDaten = new ArrayList(/*new Integer()*/); // Mehrzahl von Datums
 
 	protected String getFarbe(){
 		return this.farbe;
@@ -115,4 +115,4 @@ public class kurve {
 
 
 
-}
+} // kurve
