@@ -26,8 +26,7 @@ import javax.swing.*;
 public class hauptFensterUI extends JFrame {
 	private JFrame hauptFenster = new JFrame("wedabecha");
 	private static kontextMenuUI popupMenu = new kontextMenuUI();
-	private Container mainPanel = getContentPane();
-	private Container subMainPanel = new JPanel();
+	private JPanel mainPanel = new JPanel();
 
 	// konstruktor
 	public hauptFensterUI(){
@@ -44,7 +43,6 @@ public class hauptFensterUI extends JFrame {
 		this.hauptFenster.setJMenuBar(hauptMenu.getHauptMenu()); // Hauptmenu in das Fenster einbinden
 
 		this.hauptFenster.add(this.mainPanel);
-			this.mainPanel.add(this.subMainPanel);
 
 
 		// Listener zum Fensterschliessen per "wegkreuzen"
