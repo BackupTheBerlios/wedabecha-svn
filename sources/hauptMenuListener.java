@@ -65,6 +65,12 @@ class verknuepfeTabelleListener implements ActionListener {
 	} // actionPerformed(ActionEvent event)
 } // verknuepfeTabellenListener
 
+class exportiereGrafikListener implements ActionListener {
+	// für den MenuPunkt [Datei]->Tabellen verknuepfen
+	public void actionPerformed(ActionEvent event){
+		exportiereGrafikUI exportdialog = new exportiereGrafikUI();
+	} // actionPerformed(ActionEvent event)
+} // verknuepfeTabellenListener
 
 class rasterSichtbarkeitsListener implements ActionListener {
 	// für den MenuPunkt [Ansicht]->Raster anzeigen

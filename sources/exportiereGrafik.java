@@ -30,13 +30,11 @@ public class exportiereGrafik {
 
 	public void export() throws Exception {
 
-		Thread.sleep( 2000 );
-		BufferedImage flaeche = new Robot().createScreenCapture(
-				new Rectangle(200,100,640,480)
-		);
-
+		Dimension     size  = hauptFensterUI.hauptFenster.getSize();
+		BufferedImage image = (BufferedImage)hauptFensterUI.hauptFenster.createImage(size.width, size.height);
+		
 		OutputStream  out  = new FileOutputStream( this.dateiname );
-		JPEGCodec.createJPEGEncoder( out ).encode( flaeche );
+		JPEGCodec.createJPEGEncoder( out ).encode( image );
 		out.close();
 		} // export()
 

@@ -62,6 +62,7 @@ public class hauptMenuUI {
 				this.verknuepfeTabelleMenuItem.addActionListener(new verknuepfeTabelleListener());
 			this.dateiMenu.add(this.exportiereTabelleMenuItem);
 			this.dateiMenu.add(this.exportiereGrafikMenuItem);
+				this.exportiereGrafikMenuItem.addActionListener(new exportiereGrafikListener());
 			this.dateiMenu.add(this.druckenMenuItem);
 				this.druckenMenuItem.setEnabled(false);
 			this.dateiMenu.add(this.beendenMenuItem);
