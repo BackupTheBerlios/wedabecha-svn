@@ -18,6 +18,15 @@
  ***************************************************************************/
 
 /**
+	@author
+		Dominic Hopf (dmaphy at users.berlios.de),
+		Robert Exner (ashrak at users.berlios.de)
+	@since 2005-01-31
+	@version 0.0.1
+
+*/
+
+/**
 	Debug
 	Testklasse zum auslesen der Daten,
 	kann evtl. in zeichneKurve übernommen und bearbeitet werden.
@@ -37,12 +46,16 @@ class DReadData {
 	} // DReadData()
 
 	private void printWerte(){
+		// gibt die Werte aus
+
 		double statArray[];
 		String debug;
 		for (int i = 0; i < this.werte.size(); i++){
+			// zeile für zeile
 			statArray = (double[])this.werte.get(i);
 			debug = "";
 			for (int j = 0; j < statArray.length; j++){
+				// element für element einer zeile...
 				debug += statArray[j];
 			} // for(j)
 			System.out.println(debug);

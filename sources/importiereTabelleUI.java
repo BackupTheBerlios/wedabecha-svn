@@ -17,6 +17,15 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
 
+/**
+	@author
+		Dominic Hopf (dmaphy at users.berlios.de),
+		Robert Exner (ashrak at users.berlios.de)
+	@since 2005-01-31
+	@version 0.0.1
+
+*/
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -24,6 +33,9 @@ import java.awt.event.*;
 class importiereTabelleUI extends JDialog  {
 	/*
 		die bestandteile des dialogs erzeugen
+		ACHTUNG!!! anschauen des Codes kann zu epileptischen Anfällen führen!!!
+		daher nicht zu schnell durch den Code scrollen!!!
+
 	*/
 
 	private Container importDialog = getContentPane();
@@ -205,9 +217,6 @@ class importiereTabelleUI extends JDialog  {
 					    } // if
 
 						if (speicherTabelle[i - 1].isSelected()){
-							// hier gibts n problem,
-							// weil die hintergrundfunktion statisch is...
-							// der dateiname muss irgendwo her kommen :/
 							toWeda.writeFile("../daten/" + tabellen[i - 1].getImportName() + ".weda",i);
 						} // if
 					} // for

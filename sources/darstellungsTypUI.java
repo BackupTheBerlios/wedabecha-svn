@@ -17,12 +17,24 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
 
+/**
+	@author
+		Dominic Hopf (dmaphy at users.berlios.de),
+		Robert Exner (ashrak at users.berlios.de)
+	@since 2005-01-31
+	@version 0.0.1
 
+*/
+
+/**
+	verändert die Darstellungseigenschaften der Kurve
+*/
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
 class darstellungsTypUI extends JDialog {
+	// die ganzen bestandteile des dialogs
 	private Container fenster = getContentPane();
 	private FlowLayout fensterLayout = new FlowLayout();
 
@@ -43,19 +55,22 @@ class darstellungsTypUI extends JDialog {
 
 	JButton okKnopf = new JButton("OK");
 
+	// die nummer der Tabelle bzw. Kurve
 	private int tabellenNummer;
-	
+	// Farbe, welche im JColorChooser ausgewählt wurde
 	Color farbe;
 
 
 	// Konstruktor
 	public darstellungsTypUI(int tabellenNummer){
+		// erzeugen eines neuen Dialogs speziell für jede kurve...
 		this.tabellenNummer = tabellenNummer;
 		this.pack();
 	}
 
 
 	public void pack(){
+		// zusammenpacken der ganzen Dialogbestandteile
 		this.fenster.setLayout(this.fensterLayout);
 		this.fenster.add(this.topPanel);
 			this.topPanel.add(this.topLeftPanel);
@@ -70,6 +85,9 @@ class darstellungsTypUI extends JDialog {
 					this.farbeButton.addActionListener( new ActionListener(){
 						public void actionPerformed( ActionEvent event ){
 							farbe = JColorChooser.showDialog(
+								/*
+									farbe auswählen, und den Hintergrund des buttons verändern
+								*/
 								null, "Darstellungsfarbe der Kurve", farbeButton.getBackground() );
 							farbeButton.setBackground(farbe);
 						}
@@ -101,13 +119,5 @@ class darstellungsTypUI extends JDialog {
 		setVisible(true);
 
 	} // pack()
-
-
-	/*
-	// debuggen
-	public static void main(String args[]){
-		new darstellungsTypUI();
-	}
-	*/
 
 } // darstellungsTypUI

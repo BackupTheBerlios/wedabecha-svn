@@ -17,17 +17,22 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
 
+/**
+	Dies ist eine das "Basisklassen" für wedabecha.
+	hier werden alle Eigenschaften und Informationen einer Kurve gespeichert.
+	Die meisten UI's verändern diese Eigenschaften.
+	Damit können dann weitere Berechnungen angestellt werden,
+	um die letztendliche grafische Darstellung zu berechnen und auf dem Bildschirm
+	auszugeben...
+*/
+
 import java.util.ArrayList;
 import java.awt.*;
 
 public class kurve {
 	// Klassenvariablen
-	private int nummer;
 
-	public void kurve(int nummer){
-		this.nummer = nummer;
-	}// kurve()
-
+	// Diese Liste wird von der DarstellungsTypUI für die JComboBox benötigt
 	private static String kurvenStile[] = {
 		"Aktienkurve",
 		"Linienkurve (Tagesmittelwerte)",
@@ -44,16 +49,28 @@ public class kurve {
 	}
 
 	// Objekt-Variablen
+	// fünf verschiedene Kurven, jede hat eine Nummer
+	private int nummer;
 
+	public void kurve(int nummer){
+		this.nummer = nummer;
+	} // kurve()
+
+	/*
+		ob eine Kurve mit einer bestimmten Nummer von
+		1 bis 5 existiert oder nicht
+		wird vom subImportDialog auf true oder false gesetzt,
+		da nur dieser bestimmen kann, ob die benötigten
+		Werte für die Kurve existieren
+	*/
 	private boolean exists = false;
 
 	private Color farbe;
-	private int kurvenStilIndex; // enthält Index-wert für kurvenStile
-	private ArrayList werte = new ArrayList(
-		new ArrayList(1)
-	);
 
-	private ArrayList daten = new ArrayList(1);// Mehrzahl von Datum
+	private int kurvenStilIndex; // enthält Index-wert für kurvenStile
+
+	private ArrayList werte = new ArrayList(1);
+	private ArrayList daten = new ArrayList(1); // Mehrzahl von Datum
 
 	private ArrayList tagesMittel = new ArrayList(1);
 	private ArrayList wochenMittel = new ArrayList(1);
@@ -64,6 +81,7 @@ public class kurve {
 	private ArrayList datumJahresMittel = new ArrayList(1);
 	private ArrayList datumWochenMittel = new ArrayList(1);
 
+	// set- und get-Methoden für die Attribute der Kurve
 	protected void setExists(boolean exists){
 		this.exists = exists;
 	} // setExists()

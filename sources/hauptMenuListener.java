@@ -18,6 +18,17 @@
  ***************************************************************************/
 
 /**
+	@author
+		Martin Müller (mrtnmueller at users.berlios.de),
+		Dominic Hopf (dmaphy at users.berlios.de),
+		Robert Exner (ashrak at users.berlios.de),
+		Matthias Tylkowski (micron at users.berlios.de)
+	@since 2005-01-31
+	@version 0.0.1
+
+*/
+
+/**
 Diese Datei enhaelt Hintergrundfunktionen bzw. Hintergrundklassen
 und ActionListener-Klassen für die hauptMenuUI
 */
@@ -49,22 +60,30 @@ class hauptMenuDokumentationListener implements ActionListener {
 } // hauptMenuDokumentationListener
 
 
-class zeigeToolBarListener implements ActionListener {
-	// für den MenuPunkt [Ansicht]->Werkzeugleiste anzeigen
-	public void actionPerformed(ActionEvent event){
-		//toolBarUI toolBar = new toolBarUI();
+/*
+	wird gebraucht um später die Toolbar ausblendbar zu machen
+*/
 
-		//hauptFensterUI.toolBar.setVisible(false);
-	} // actionPerformed(ActionEvent event)
-} // zeigeToolBarListener
+// class zeigeToolBarListener implements ActionListener {
+// 	// für den MenuPunkt [Ansicht]->Werkzeugleiste anzeigen
+// 	public void actionPerformed(ActionEvent event){
+// 		//toolBarUI toolBar = new toolBarUI();
+//
+// 		//hauptFensterUI.toolBar.setVisible(false);
+// 	} // actionPerformed(ActionEvent event)
+// } // zeigeToolBarListener
 
 
-class verknuepfeTabelleListener implements ActionListener {
-	// für den MenuPunkt [Datei]->Tabellen verknuepfen
-	public void actionPerformed(ActionEvent event){
-		verknuepfeTabellenUI verknuepfe = new verknuepfeTabellenUI();
-	} // actionPerformed(ActionEvent event)
-} // verknuepfeTabellenListener
+/*
+	Wird gebraucht um später den Dialog zum verknüpfen von Tabellen aufzurufen
+*/
+
+// class verknuepfeTabelleListener implements ActionListener {
+// 	// für den MenuPunkt [Datei]->Tabellen verknuepfen
+// 	public void actionPerformed(ActionEvent event){
+// 		verknuepfeTabellenUI verknuepfe = new verknuepfeTabellenUI();
+// 	} // actionPerformed(ActionEvent event)
+// } // verknuepfeTabellenListener
 
 
 class exportiereTabelleListener implements ActionListener {
@@ -87,10 +106,9 @@ class gitterButtonListener implements ActionListener{
         public void actionPerformed(ActionEvent e) {
 		if(hauptFensterUI.toolBar.gitterGewaehlt()){
 		    hauptFensterUI.zeichneRaster.setVisibility(true);
-		}// if
-		else {
+		} else {
 		    hauptFensterUI.zeichneRaster.setVisibility(false);
-		}// else
+		}// if
 	}// actionPerformed
 }// gitterButtonListener
 
@@ -123,7 +141,7 @@ class endProgram {
 		// end_program() enthält code, der zum beenden des programms erforderlich ist
 		// macht sich ganz gut, weil der punkt ja von mehreren stellen aufgerufen werden kann
 // 		new DReadData(); // debug-klasse, überprüft eingelesene tabellen (import)
-// 		new berechneMittelwerte();
+// 		new berechneMittelwerte(); // zum debuggen der Käfer
 		System.exit(0);
 	}
 } // endProgram

@@ -17,6 +17,15 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
 
+/**
+	@author
+		Dominic Hopf (dmaphy at users.berlios.de),
+		Robert Exner (ashrak at users.berlios.de)
+	@since 2005-01-31
+	@version 0.0.1
+
+*/
+
 // in dieser Klasse brauchen wir nur Swing, da sie
 // von der hauptFensterUI aus weiterverwendet wird
 import javax.swing.*;
@@ -130,22 +139,22 @@ public class hauptMenuUI {
 		// beginn kurve-menues
 			for (kurveIt = 0; kurveIt < 5; kurveIt++){
 				this.kurveMenu.add(this.kurveMenuList[kurveIt]);
-					//this.kurveMenuList[kurveIt].add(this.kurveOeffnenMenuItem[kurveIt]);
-					//	this.kurveOeffnenMenuItem[kurveIt].setEnabled(false);
-					//this.kurveMenuList[kurveIt].add(this.kurveSpeichernMenuItem[kurveIt]);
-					//	this.kurveSpeichernMenuItem[kurveIt].setEnabled(false);
+// 					this.kurveMenuList[kurveIt].add(this.kurveOeffnenMenuItem[kurveIt]);
+// 						this.kurveOeffnenMenuItem[kurveIt].setEnabled(false);
+// 					this.kurveMenuList[kurveIt].add(this.kurveSpeichernMenuItem[kurveIt]);
+// 						this.kurveSpeichernMenuItem[kurveIt].setEnabled(false);
 					this.kurveMenuList[kurveIt].add(this.kurveDarstellungMenuItem[kurveIt]);
 						this.kurveDarstellungMenuItem[kurveIt].setEnabled(false);
 					this.kurveMenuList[kurveIt].add(this.kurveNeuZeichnenMenuItem[kurveIt]);
 						this.kurveNeuZeichnenMenuItem[kurveIt].setEnabled(false);
-/*						this.kurveNeuZeichnenMenuItem[kurveIt].addActionListener(
-							new ActionListener(){
-								public void actionPerformed(ActionEvent event){
-									wedabecha.setZeichneKurve(kurveIt, new zeichneKurve(kurveIt));
-								}
-							} // ActionListener()
-						);
-*/
+// 						this.kurveNeuZeichnenMenuItem[kurveIt].addActionListener(
+// 							new ActionListener(){
+// 								public void actionPerformed(ActionEvent event){
+// 									wedabecha.setZeichneKurve(kurveIt, new zeichneKurve(kurveIt));
+// 								}
+// 							} // ActionListener()
+// 						);
+
 			} // for
 
 		this.mainMenuBar.add(this.kurveMenu);

@@ -17,7 +17,10 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-/*hauptklasse die als programm aufgerufen wird*/
+/*
+	hauptklasse die als programm aufgerufen wird.
+	das programm soll fünf kurven zeichnen können.
+*/
 class wedabecha {
 	private static kurve kurve[] = {
 		new kurve(),

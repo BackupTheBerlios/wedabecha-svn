@@ -17,11 +17,23 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
 
-// hier brauchen wir alle Imports für die GUI,
-// dies ist das Hauptfenster.
+/**
+	@author
+		Martin Müller (mrtnmueller at users.berlios.de),
+		Dominic Hopf (dmaphy at users.berlios.de),
+		Robert Exner (ashrak at users.berlios.de),
+		Matthias Tylkowski (micron at users.berlios.de)
+	@since 2005-01-31
+	@version 0.0.1
+
+*/
+
+/*
+	dies ist das hauptFenster des Programms
+*/
+
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 
@@ -35,6 +47,10 @@ public class hauptFensterUI extends JFrame {
 
 	Dimension d;
 
+	/*
+		auf die fensterBreite und fensterHoehe muss
+		von anderen Klassen aus zugegriffen werden können.
+	*/
 	protected static int fensterBreite = 700;
 	protected static int fensterHoehe = 500;
 
@@ -105,6 +121,10 @@ public class hauptFensterUI extends JFrame {
 		hauptFensterUI.hauptFenster.setResizable(true);
 		hauptFensterUI.hauptFenster.setVisible(true);
 
+		/*
+			für den Fall das irgendwann mal ein Kontextmenü gebraucht wird dann is das hier schon hinzugefügt
+		*/
+
 // 		hauptFensterUI.layeredPane.add(kontext.getKontextMenu(), JLayeredPane.POPUP_LAYER);
 
 
@@ -115,7 +135,7 @@ public class hauptFensterUI extends JFrame {
 // 				} // if()
 // 			} // mouseReleased(MouseEvent me)
 // 		} ); // addMouseListener()
-//
+
 
 		// dieser MouseListener sorgt dafür, dass die Textfelder dem Hauptfenster hinzugefügt werden können
 		hauptFensterUI.layeredPane.addMouseListener(new MouseAdapter(){
@@ -154,8 +174,10 @@ public class hauptFensterUI extends JFrame {
 			    if(toolBar.linieGewaehlt()){
 				// ...reagiert erst der MouseListener auf den Linksklick
 				if(me.getButton() == MouseEvent.BUTTON1){
-				    /* beim ersten klick werden die Startwerte gesetzt, beim
-				     *zweiten die endwerte*/
+					/*
+						beim ersten klick werden die Startwerte gesetzt, beim
+						zweiten die endwerte
+					*/
 				    switch(zaehler){
 					case 0:
 					    startX = me.getX();
@@ -167,8 +189,10 @@ public class hauptFensterUI extends JFrame {
 					    endY = me.getY();
 					    zaehler = 0;
 
-					    /* mit den so gewonnenen werten wird dann die linie gezeichnet
-					    und der leyeredPane geadded */
+						/*
+							mit den so gewonnenen werten wird dann die linie gezeichnet
+							und der leyeredPane geadded
+						*/
 
 					    zeichneLinie zeichneLinie = new zeichneLinie(startX, startY, endX, endY);
 					    layeredPane.add(zeichneLinie, new Integer(8));
@@ -192,32 +216,34 @@ public class hauptFensterUI extends JFrame {
 
 
 			public void mouseReleased(MouseEvent me) {
-			    // wenn der ToggleButton in der Toolbar aktiviert ist...
+			    // wenn der JToggleButton in der Toolbar aktiviert ist...
 			    if(toolBar.pfeilGewaehlt()){
 				// ...reagiert erst der MouseListener auf den Linksklick
-				if(me.getButton() == MouseEvent.BUTTON1){
-				    /* beim ersten klick werden die Startwerte gesetzt, beim
-				     *zweiten die endwerte*/
-				    switch(zaehler){
-					case 0:
-					    startX = me.getX();
-					    startY = me.getY();
-					    zaehler = 1;
-					    break;
-					case 1:
-					    endX = me.getX();
-					    endY = me.getY();
-					    zaehler = 0;
+					if(me.getButton() == MouseEvent.BUTTON1){
+						/*
+							beim ersten klick werden die Startwerte gesetzt, beim
+							zweiten die endwerte
+						*/
+						switch(zaehler){
+							case 0:
+								startX = me.getX();
+								startY = me.getY();
+								zaehler = 1;
+								break;
+							case 1:
+								endX = me.getX();
+								endY = me.getY();
+								zaehler = 0;
 
-					    /* mit den so gewonnenen werten wird dann die linie gezeichnet
-					    und der leyeredPane geadded */
+								/* mit den so gewonnenen werten wird dann die linie gezeichnet
+								und der leyeredPane geadded */
 
-					    zeichnePfeil zeichnePfeil = new zeichnePfeil(startX, startY, endX, endY);
-					    layeredPane.add(zeichnePfeil, new Integer(7));
-					    break;
-				    }// switch(zaehler)
+								zeichnePfeil zeichnePfeil = new zeichnePfeil(startX, startY, endX, endY);
+								layeredPane.add(zeichnePfeil, new Integer(7));
+								break;
+						}// switch(zaehler)
+					}// if()
 				}// if()
-			    }// if()
 			}// mouseReleased(MouseEvent me)
 		}// MouseAdapter
 		);// addMouseListener()
@@ -226,19 +252,18 @@ public class hauptFensterUI extends JFrame {
 		// Klasse zur dynamischen Größenbestimmung des Frames
 		hauptFensterUI.mainPane.addComponentListener(new ComponentAdapter(){
 			public void componentResized(ComponentEvent event){
-			if(event.getID() == ComponentEvent.COMPONENT_RESIZED){
-				JLayeredPane layeredPane = (JLayeredPane) event.getComponent();
-				d = layeredPane.getSize();
-				zeichneRaster.setGroesse(d.width, d.height);
-				hauptFensterUI.setGroesse(d.width, d.height);
-				koordSys.setGroesse(d.width,d.height);
-				//zeichneLinie.setGroesse(d.width, d.height);
-				toolBar.setBreite(d.width);
-				System.out.println(d);
-			} // if
-		   } // componentResized()
-		} // addComponentListener()
-		);
+				if(event.getID() == ComponentEvent.COMPONENT_RESIZED){
+					JLayeredPane layeredPane = (JLayeredPane) event.getComponent();
+					d = layeredPane.getSize();
+					zeichneRaster.setGroesse(d.width, d.height);
+					hauptFensterUI.setGroesse(d.width, d.height);
+					koordSys.setGroesse(d.width,d.height);
+					//zeichneLinie.setGroesse(d.width, d.height);
+					toolBar.setBreite(d.width);
+					System.out.println(d);
+				} // if
+			} // componentResized()
+		}); // addComponentListener()
 
 	} // pack()
 

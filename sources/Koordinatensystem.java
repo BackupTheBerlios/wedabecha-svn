@@ -33,9 +33,20 @@ import java.util.ArrayList;
 
 public class Koordinatensystem extends JComponent {
 
-	private int startX, endX, startY, endY;  // Zeichenbereich in xyKoordinaten
-	private int maxWert;
-	private int maxDate;
+	/*
+		auf geht's. heute zeichnen wir ein koordinatensystem.
+		dazu brauchen wir erstmal die start- und endpunkte
+		für die beiden achsen...
+	*/
+	private int startX, endX, startY, endY;
+
+	/*
+		für die einteilung der achsen müssen wir die maximalen werte kennen.
+		maxWert für die Y-Achse
+		maxDate für die x-Achse
+	*/
+	private int maxWert, maxDate;
+
 	private int dx, dy; // Distanz zwischen Nullpunkt und dem Maximalpunkt auf den Achsen
 	private int einheitx, einheity; // Abstand der einzelnen Achseneinteilungsstriche
 	private int zeichenBreite, zeichenHoehe; // Zeichenbereich in Pixelkoordinaten
@@ -47,12 +58,24 @@ public class Koordinatensystem extends JComponent {
 
 
 	protected void setGroesse(int breite, int hoehe){
+		/**
+			setGroesse legt die Grösse für das Koordinatensystem
+			fest. Diese Methode wird von verschiedenen Punkten aufgerufen.
+			Einmal vom Konstruktor, beim erzeugen,
+			und einmal von dem ActionListener der hauptFensterUI,
+			welcher für die Grössenänderung des Fensters verantwortlich ist.
+			Die Werte, die wir für das System benötigen, können wir erst anhand
+			der Fenstergrösse berechnen...
+		*/
 		this.zeichenBreite = breite;
 		this.zeichenHoehe = hoehe;
+		// Start- und Endpunkt der Y-Achse in vertikaler Richtung
 		this.startY = this.zeichenHoehe - 25;
 		this.endY = 60;
+		// Start- und Endpunkt der X-Achse in horizontaler Richtung
 		this.startX = 25;
 		this.endX = this.zeichenBreite - 25;
+
 		this.dx = this.endX - this.startX; // Breite
    		this.dy = this.endY - this.startY; // Hoehe
 		this.setSize(breite, hoehe);
@@ -60,26 +83,37 @@ public class Koordinatensystem extends JComponent {
 
 
 	protected void zeichnen() {
-		this.setGroesse(
-			hauptFensterUI.layeredPane.getWidth(),
-			hauptFensterUI.layeredPane.getHeight()
-		);
+		/**
+			die Methode zeichnen() rufen wir vom ActionListener für den
+			[OK] - Button in importiereTabelleUI auf.
+			das Koordinatensystem kann ja erst gezeichnet werden,
+			wenn wir die Werte aus den Tabellen kennen und maximalWerte etc.
+			berechnen können
+		*/
 
 		// Grösse der Zeichnungsfläche einstellen
-		System.out.println(zeichenBreite + "|" + zeichenHoehe);
 		this.setSize(zeichenBreite ,zeichenHoehe);
 
 		this.berechneMaxima();
-// 		this.zeichneKoordinatenachsen();
 
-		setGroesse(hauptFensterUI.layeredPane.getWidth()-25,hauptFensterUI.layeredPane.getHeight()-50);
+		this.setGroesse(
+			hauptFensterUI.layeredPane.getWidth()-25,
+			hauptFensterUI.layeredPane.getHeight()-50
+		);
+
 		this.setVisible(true); // sichtbar machen
 	} // zeichneKoordinatensystem
 
 
 	public void paintComponent(Graphics g){
-		g.drawLine(startX,startY,endX,startY);
-		g.drawLine(startX,startY,startX,endY);
+		/**
+			Mit paintComponent() zeichnen wir das letztendliche Koordinatensystem.
+			Erst Achsen, dann Pfeilspitzen für die Achsen,
+			dann noch die Einteilung...
+		*/
+
+		g.drawLine(startX,startY,endX,startY); // X-Achse
+		g.drawLine(startX,startY,startX,endY); // Y-Achse
 		// Pfeilspitze Y-Achse
 		g.drawLine(21,(endY + 8),25,endY);
 		g.drawLine(29,(endY + 8),25,endY);
@@ -92,8 +126,8 @@ public class Koordinatensystem extends JComponent {
 
 	private void berechneMaxima(){
 		/**
-			berechnet die Endpunkte der Achsen anhand der Maximalwerte
-			die in den Tabellen vorkommen.
+			hier berechnen wir die Maximalwerte,
+			die brauchen wir für die Einteilung der Achsen.
 		*/
 
 		double maximalWert;
@@ -106,7 +140,7 @@ public class Koordinatensystem extends JComponent {
 
 		/*
 			Maximalwerte der Kurven bestimmen
-			for(i) geht die Kurven naacheinander durch,
+			for(i) geht die Kurven nacheinander durch,
 			for(j) geht die Zeilen einer Kurve nacheinander durch
 		*/
 
@@ -130,7 +164,7 @@ public class Koordinatensystem extends JComponent {
 
 		java.util.Arrays.sort(maxKurvenWerte);
 		this.maxWert = (int)maxKurvenWerte[maxKurvenWerte.length - 1];
-// 		this.maxDate = das;
+// 		this.maxDate = da kommt noch was rein (vielleicht);
 
 	} // berechneMaxima()
 

@@ -18,6 +18,15 @@
  ***************************************************************************/
 
 /**
+	@author
+		Dominic Hopf (dmaphy at users.berlios.de),
+		Robert Exner (ashrak at users.berlios.de)
+	@since 2005-01-26
+	@version 0.0.1
+
+*/
+
+/**
 	Diese Datei enthält die Hintergrundfunktionen für importiereTabelle
 */
 
@@ -206,11 +215,16 @@ public class importiereTabelle {
 					datumsPos = zeileL.length - 1;
 				} // if() else
 
+
 				for(i = anfang, j = 0; i < ende && j < ende; i++, j++){
-					 // System.out.println(zeileL[i]); // debug-ausgabe
-					 if (zeileL[i].matches(",")){
-					 	zeileL[i] = zeileL[i].replace(',','.');
-					 }
+// 					System.out.println(zeileL[i]); // debug-ausgabe
+					/*
+						Falls die Werte in der Datei Kommazahlen sind,
+						wird das Komma durch nen Punkt ersetzt
+					*/
+					if (zeileL[i].matches(",")){
+						zeileL[i] = zeileL[i].replace(',','.');
+					}
 					zeileResL[j] = Double.parseDouble(zeileL[i]);
 					// debug += zeileResL[j] + "|";
 				} // for()
@@ -219,9 +233,9 @@ public class importiereTabelle {
 				datumAL.add(zeileL[datumsPos]);
 
 				resAL.add(zeileResL);
-				//System.out.println(debug);
+// 				System.out.println(debug);
 
-				//System.out.println(datumAL);
+// 				System.out.println(datumAL);
 			} // while()
 
 		} catch (IOException except){
@@ -244,12 +258,11 @@ public class importiereTabelle {
 		String splittedDate[];
 		String tempDatum = "";
 		ArrayList ergebnis =  new ArrayList();
-		//ListIterator ergebnisIt =  ergebnis.listIterator();
 
 		for (int i = 0; i < datumAL.size(); i++){
 			String ergebnisDate[] = new String[3]; // splittedDate richtig sortiert nach YYYY MM DD
 			tempDatum = (String)datumAL.get(i);
-			//System.out.println(tempDatum);
+// 			System.out.println(tempDatum);
 			switch (datumsFormatIndex){
 				case 0: /*yyyy-mm-dd*/
 					splittedDate = tempDatum.split("-");
