@@ -22,105 +22,105 @@
 package importiereTabelle;
 
 public class importiereTabelle {
-	private static String importName; // enthält nur den Namen der Datei
-	private static String importPfad; // enthält Pfad UND Namen der Datei, also den kompletten Pfad
-	private static String internerSpeicherName; // ist normalerweise gleich importName
-	private static String internerSpeicherPfad; // wird aus ProgrammPfad und internerSpeicherName zusammengesetzt
-	private static char trennzeichen;
-	private static String datumsFormat;
-	private static boolean isDatumsPosFirstColumn;
-	private static int datumsPos;
-	private static String inkZahlRep;
+	private String importName; // enthält nur den Namen der Datei
+	private String importPfad; // enthält Pfad UND Namen der Datei, also den kompletten Pfad
+	private String internerSpeicherName; // ist normalerweise gleich importName
+	private String internerSpeicherPfad; // wird aus ProgrammPfad und internerSpeicherName zusammengesetzt
+	private char trennzeichen;
+	private String datumsFormat;
+	private boolean isDatumsPosFirstColumn;
+	private int datumsPos;
+	private String inkZahlRep;
 
-	protected static void setImportName(String name){
+	protected void setImportName(String name){
 		this.importName = name;
 	} // setImportName(String name)
 
-	protected static String getImportName(){
+	protected String getImportName(){
 		return this.importName;
 	} // getImportName()
 
-	protected static void setImportPfad(String pfad){
+	protected void setImportPfad(String pfad){
 		this.importPfad = pfad;
 	} // setImportPfad(String pfad)
 
-	protected static String getImportPfad(){
+	protected String getImportPfad(){
 		return this.importPfad;
 	} // getImportPfad()
 
-	protected static void setInternerSpeicherName(String name){
+	protected void setInternerSpeicherName(String name){
 		this.internerSpeicherName = name;
 	}
 
-	protected static String getInternerSpeicherName(){
+	protected String getInternerSpeicherName(){
 		return this.internerSpeicherName;
 	} // getInternerSpeicherName()
 
-	protected static void setTrennzeichen(char zeichen){
+	protected void setTrennzeichen(char zeichen){
 		this.trennzeichen = zeichen;
 	} // setTrennzeichen(char zeichen)
 
-	protected static char getTrennzeichen(){
+	protected char getTrennzeichen(){
 		return this.trennzeichen;
 	}
 
-	protected static void setDatumsFormat(String datumsFormat){
+	protected void setDatumsFormat(String datumsFormat){
 		this.datumsFormat = datumsFormat;
 	} // setDatum(Datum datum)
 
-	protected static String getDatumsFormat(){
+	protected String getDatumsFormat(){
 		return this.datumsFormat;
 	} // getDatum()
 
-	protected static void getIsoDateForm(String datum){
+	protected void getIsoDateForm(String datum){
 
 	} // getIsoForm(String datum)
 
-	protected static void setDatumsPos(int pos){
+	protected void setDatumsPos(int pos){
 		this.datumsPos = pos;
 	} // setDatumsPos(int pos)
 
-	protected static int getDatumsPos(){
+	protected int getDatumsPos(){
 		return this.datumsPos;
 	} // getDatumsPos()
 
-	public static int[][] getDaten(){
+	public int[][] getDaten(){
 		/**liefert ausschliesslich die zu verarbeitenden Daten zurück.
 		das Datum für die jeweilige Zeile kann über die Methode getDates() aufgerufen werden*/
 
 		// hier kommt der letztliche Code für den Import
 	}
 
-	public static String[] getDates(){
+	public String[] getDates(){
 		/**liefert eine Liste von Strings mit dem Datum für die jeweilige Zeile zurück.
 		Die Liste ist genauso lang wie die, die getDaten zurückliefert*/
 	} // getDates()
 
-	protected static void setDatumsPosFirstColumn(boolean bla){
+	protected void setDatumsPosFirstColumn(boolean bla){
 		this.isDatumsPosFirstColumn = bla;
 	} // setDatumsPosFirstColumn(boolean bla)
 
 
-	protected static boolean isDatumsPosFirstColumn(){
+	protected boolean isDatumsPosFirstColumn(){
 		return this.isDatumsPosFirstColumn;
 	} // isDatumsPosFirstColumn()
 
 
-	protected static void setInkZahlRep(String blo){
+	protected void setInkZahlRep(String blo){
 		this.inkZahlRep = blo;
 	} // setInkZahlRep(boolean blo)
 
 
-	protected static String getInkZahlRep(){
+	protected String getInkZahlRep(){
 		return this.inkZahlRep;
 	} // getInkZahlRep()
 
-
-	public static String toString(){
+/*
+	public String toString(){
 		String toString = new String("importName:"+this.importName+",\n importPfad:"+this.importPfad+",\n internerSpeicherName:"+this.internerSpeicherPfad+
 		",\n internerSpeicherPfad:"+this.internerSpeicherPfad+",\n trennzeichen"+this.trennzeichen+",\n datumsFormat"+this.datumsFormat+",\n " +
 		"isDatumsPosFirstColumn:"+this.isDatumsPosFirstColumn+",\n datumsPos"+this.datumsPos+",\n inkZahlRep"+this.inkZahlRep);
 		return toString;
 	} // toString()
-
+*/
 } // importiereTabelle

@@ -23,6 +23,8 @@ und ActionListener-Klassen für die hauptMenuUI
 */
 
 import java.awt.event.*;
+import java.awt.*;
+import javax.swing.*;
 
 class importiereTabelleListener implements ActionListener {
 	// für den MenuPunkt [Datei]->[Tabelle importieren]
@@ -45,6 +47,24 @@ class hauptMenuDokumentationListener implements ActionListener {
 		new dokuUI("Dokumentation");
 	} // actionPerformed(ActionEvent event)
 } // hauptMenuDokumentationListener
+
+
+class zeigeToolBarListener implements ActionListener {
+	// für den MenuPunkt [Ansicht]->Werkzeugleiste anzeigen
+	public void actionPerformed(ActionEvent event){
+		//toolBarUI toolBar = new toolBarUI();
+		//hauptFensterUI.hauptFenster.getContentPane().add(toolBar.getToolBar(), BorderLayout.NORTH);
+	} // actionPerformed(ActionEvent event)
+} // zeigeToolBarListener
+
+
+class verknuepfeTabelleListener implements ActionListener {
+	// für den MenuPunkt [Datei]->Tabellen verknuepfen
+	public void actionPerformed(ActionEvent event){
+		verknuepfeTabellenUI verknuepfe = new verknuepfeTabellenUI();
+	} // actionPerformed(ActionEvent event)
+} // verknuepfeTabellenListener
+
 
 class beendenListener extends WindowAdapter implements ActionListener {
 	// Die Klasse ist der Listener für den Menüpunkt [Datei]->[Programm beenden]

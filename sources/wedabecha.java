@@ -28,4 +28,4 @@ class wedabecha {
 		//einstiegspunkt für das programm
 		new wedabecha();
 	} // main(String args[])
- }
+} // wedabecha

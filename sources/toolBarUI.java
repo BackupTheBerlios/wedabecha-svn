@@ -40,7 +40,6 @@ public class toolBarUI /*implements ActionListener*/{
 			private JButton pfeilzeichnenbutton = new JButton(pfeilzeichnen);
 		private ImageIcon textzeichnen = new ImageIcon("Images/text.gif");
 			private JButton textzeichnenbutton = new JButton(textzeichnen);
-		//private Graphics rand = new Graphics();
 		
 	
 	// Konstruktor
@@ -49,6 +48,7 @@ public class toolBarUI /*implements ActionListener*/{
 	} // toolBarUI()
 	
 	
+	// Setzt die ToolBar zusammen
 	public void pack(){
 		this.toolBar.add(oeffnenbutton);
 			this.oeffnenbutton.setContentAreaFilled(true);
@@ -61,7 +61,6 @@ public class toolBarUI /*implements ActionListener*/{
 		this.toolBar.addSeparator();
 		this.toolBar.add(gitterbutton);
 			this.gitterbutton.setContentAreaFilled(true);
-			//this.gitterbutton.setMargin();
 		this.toolBar.addSeparator();
 		this.toolBar.add(liniezeichnenbutton);
 			this.liniezeichnenbutton.setContentAreaFilled(true);
@@ -70,11 +69,8 @@ public class toolBarUI /*implements ActionListener*/{
 		this.toolBar.add(textzeichnenbutton);
 			this.textzeichnenbutton.setContentAreaFilled(true);
 		
-		//this.rand.setColor(Color.BLACK);
-		//this.toolBar.paintBorder(this.rand);
 		this.toolBar.setFloatable(false);
 		this.toolBar.setBorderPainted(true);
-		
 	} // pack()
 	
 	public JToolBar getToolBar(){

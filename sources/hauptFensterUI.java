@@ -24,11 +24,12 @@ import java.awt.event.*;
 import javax.swing.*;
 
 
-public class hauptFensterUI extends JFrame {
+public class hauptFensterUI extends JFrame{
 	private JFrame hauptFenster = new JFrame("wedabecha");
 	private static kontextMenuUI popupMenu = new kontextMenuUI();
 	private JPanel mainPanel = new JPanel();
-
+	
+	
 	// konstruktor
 	public hauptFensterUI(){
 		this.pack();
@@ -43,7 +44,7 @@ public class hauptFensterUI extends JFrame {
 		hauptMenuUI hauptMenu = new hauptMenuUI(); // Hauptmenu initialisieren
 		this.hauptFenster.setJMenuBar(hauptMenu.getHauptMenu()); // Hauptmenu in das Fenster einbinden
 		
-		toolBarUI toolBar = new toolBarUI(); // Werkzeugleiste initialisieren
+		toolBarUI toolBar = new toolBarUI();
 		this.hauptFenster.getContentPane().add(toolBar.getToolBar(), BorderLayout.NORTH); // Werkzeugleiste einbinden
 		
 		this.hauptFenster.getContentPane().add(this.mainPanel);
@@ -53,9 +54,9 @@ public class hauptFensterUI extends JFrame {
 
 		int bildSchirmBreite = getToolkit().getScreenSize().width;
 		int bildSchirmHoehe = getToolkit().getScreenSize().height;
-		int Xposition = (bildSchirmBreite - 800) / 2;
-		int Yposition = (bildSchirmHoehe - 400) / 2;
-		this.hauptFenster.setSize(800, 400);
+		int Xposition = (bildSchirmBreite - 700) / 2;
+		int Yposition = (bildSchirmHoehe - 500) / 2;
+		this.hauptFenster.setSize(700, 500);
 		this.hauptFenster.setLocation(Xposition,Yposition);
 		this.hauptFenster.setResizable(true);
 		this.hauptFenster.setVisible(true);
@@ -63,7 +64,9 @@ public class hauptFensterUI extends JFrame {
 		final kontextMenuUI kontext = new kontextMenuUI();
 
 		this.hauptFenster.getContentPane().add(kontext.getKontextMenu());
-
+		
+		//this.hauptFenster.add();
+		
 		this.hauptFenster.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent me ) {
 				//if ( me.isPopupTrigger() ) {
@@ -72,8 +75,8 @@ public class hauptFensterUI extends JFrame {
 			} // mouseReleased(MouseEvent me)
 		} ); // addMouseListener()
 	} // pack()
-
-
+	
+	
 	public static void main(String args[]){
 		hauptFensterUI wedabecha = new hauptFensterUI();
 	} // main(String args[])

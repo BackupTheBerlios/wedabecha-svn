@@ -36,6 +36,7 @@ public class hauptMenuUI {
 		private JMenu bearbeitenMenu = new JMenu("Bearbeiten");
 		private JMenu ansichtMenu = new JMenu("Ansicht");
 			private JCheckBoxMenuItem zeigeGitterMenuItem = new JCheckBoxMenuItem("Gitter anzeigen");
+			private JCheckBoxMenuItem zeigeToolBarItem = new JCheckBoxMenuItem("Werkzeugleiste anzeigen");
 		private JMenu hilfeMenu = new JMenu("Hilfe");
 			private JMenuItem kurzAnleitungMenuItem = new JMenuItem("Kurzanleitung");
 			private JMenuItem dokuMenuItem = new JMenuItem("Dokumentation");
@@ -58,6 +59,7 @@ public class hauptMenuUI {
 			this.dateiMenu.add(this.importiereTabelleMenuItem);
 				this.importiereTabelleMenuItem.addActionListener(new importiereTabelleListener());
 			this.dateiMenu.add(this.verknuepfeTabelleMenuItem);
+				this.verknuepfeTabelleMenuItem.addActionListener(new verknuepfeTabelleListener());
 			this.dateiMenu.add(this.exportiereTabelleMenuItem);
 			this.dateiMenu.add(this.exportiereGrafikMenuItem);
 			this.dateiMenu.add(this.druckenMenuItem);
@@ -73,6 +75,8 @@ public class hauptMenuUI {
 
 		// beginn ansichtMenu
 			this.ansichtMenu.add(this.zeigeGitterMenuItem);
+			this.ansichtMenu.add(this.zeigeToolBarItem);
+				this.zeigeToolBarItem.addActionListener(new zeigeToolBarListener());
 		this.mainMenuBar.add(this.ansichtMenu);
 		// ende ansichtMenu
 

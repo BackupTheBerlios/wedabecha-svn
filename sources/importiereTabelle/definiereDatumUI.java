@@ -41,7 +41,7 @@ public class definiereDatumUI extends JDialog {
 	// code für zweite zeile
 	private JRadioButton inkRB = new JRadioButton("einer inkrementierenden Zahl, welche",true);
 	private String inkRepraesentiert[] = {"einen Tag","eine Woche","einen Monat","ein Jahr"};
-	private JComboBox inkZahlCombo = new JComboBox(this.inkrepraesentiert);
+	private JComboBox inkZahlCombo = new JComboBox(this.inkRepraesentiert);
 	private JLabel repraesentLabel = new JLabel("repr\u00e4sentiert.");
 	// code für dritte zeile
 	private JRadioButton konkretRB = new JRadioButton("eines anderen konkreten Datumsformates :");
@@ -93,7 +93,7 @@ public class definiereDatumUI extends JDialog {
 			this.buttonPanel.add(this.okKnopf);
 				this.okKnopf.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
-						if(spalteCombo.getSelectedIndex() == 0){
+						/*if(spalteCombo.getSelectedIndex() == 0){
 							importiereTabelle.setDatumsPosFirstColumn(true);						// setDatumsPosFirstColumn(true)
 						} else {
 							importiereTabelle.setDatumsPosFirstColumn(false);						// setDatumsPosFirstColumn(false)
@@ -102,7 +102,7 @@ public class definiereDatumUI extends JDialog {
 							importiereTabelle.setInkZahlRep(inkZahlCombo.getSelectedItem());		// setInkZahlRep
 						} else {
 							importiereTabelle.setDatumsFormat();									// setDatumsFormat
-						} // if() else
+						} // if() else*/
 						setVisible(false);
 					}
 				});

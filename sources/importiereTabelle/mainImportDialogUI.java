@@ -134,7 +134,7 @@ public class mainImportDialogUI extends JDialog  {
 		this.bottomPanel.add(this.okKnopf);
 			this.okKnopf.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
-					System.out.println(importiereTabelle.toString());
+					//System.out.println(importiereTabelle.toString());
 					setVisible(false);
 				} //  actionPerformed(ActionEvent event)
 			});
