@@ -222,9 +222,9 @@ public class importiereTabelle {
 						Falls die Werte in der Datei Kommazahlen sind,
 						wird das Komma durch nen Punkt ersetzt
 					*/
-					if (zeileL[i].matches(",")){
-						zeileL[i] = zeileL[i].replace(',','.');
-					}
+// 					if (zeileL[i].matches(",")){
+					zeileL[i] = zeileL[i].replace(',','.');
+// 					}
 					zeileResL[j] = Double.parseDouble(zeileL[i]);
 					// debug += zeileResL[j] + "|";
 				} // for()
@@ -269,13 +269,13 @@ public class importiereTabelle {
 					ergebnisDate = splittedDate;
 				break;
 				case 1: /*dd.mm.yyyy*/
-					splittedDate = tempDatum.split(".");
+					splittedDate = tempDatum.split("\\.");
 					ergebnisDate[0] = splittedDate[2];
 					ergebnisDate[1] = splittedDate[1];
 					ergebnisDate[2] = splittedDate[0];
 				break;
 				case 2: /*mm.dd.yyyy*/
-					splittedDate = tempDatum.split(".");
+					splittedDate = tempDatum.split("\\.");
 					ergebnisDate[0] = splittedDate[2];
 					ergebnisDate[1] = splittedDate[0];
 					ergebnisDate[2] = splittedDate[1];

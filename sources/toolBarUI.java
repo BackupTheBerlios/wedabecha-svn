@@ -16,14 +16,11 @@
  *   Free Software Foundation, Inc.,                                        *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
+
 /**
 	@author
-		Dominic Hopf (dmaphy at users.berlios.de),
 		Robert Exner (ashrak at users.berlios.de),
 		Matthias Tylkowski (micron at users.berlios.de)
-	@since 2005-02-01
-	@version 0.0.1
-
 */
 
 import java.awt.event.*;
@@ -43,7 +40,7 @@ public class toolBarUI /*implements ActionListener*/{
 // 			private JButton undobutton = new JButton(undo);
 // 		private ImageIcon redo = new ImageIcon("Images/redo.gif");
 // 			private JButton redobutton = new JButton(redo);
-		
+
 		private ImageIcon gitter = new ImageIcon("Images/gitter.gif");
 			private JToggleButton gitterbutton = new JToggleButton(gitter);
 		private ImageIcon liniezeichnen = new ImageIcon("Images/linie.gif");
@@ -104,16 +101,16 @@ public class toolBarUI /*implements ActionListener*/{
 			this.textzeichnenbutton.setContentAreaFilled(true);
 			this.textzeichnenbutton.addActionListener(new textButtonListener());
 			this.textzeichnenbutton.setToolTipText("Text einf\u00fcgen");
-		
+
 		this.toolBar.addSeparator();
 		this.toolBar.addSeparator();
-		
+
 		for(int i=0; i<5; i++){
 		    this.toolBar.add(kurveButton[i]);
 		    this.kurveButton[i].addActionListener(new kurveButtonListener());
 			this.kurveButton[i].setEnabled(false);
 		}// for
-		
+
 		this.toolBar.setFloatable(false);
 		this.toolBar.setBorderPainted(true);
 	} // pack()
@@ -122,25 +119,25 @@ public class toolBarUI /*implements ActionListener*/{
 		return this.toolBar;
 	} // getToolBar()
 
-	
+
 	public void kurveWaehlen(int kurve, boolean janein){
 		this.kurveButton[kurve-1].setEnabled(janein);
 	}// kurveWaehlen()
-	
-	
+
+
 	class kurveButtonListener implements ActionListener{
-	
+
 	    public void actionPerformed(ActionEvent e) {
 		for(int i = 0; i < 5; i++){
 		    if(kurveButton[i].isSelected()){
-			
+
 		    }//if()
 		}// for()
-	    }// actionPerformed()	    
-	    
+	    }// actionPerformed()
+
 	}// kurveButtonListener
-	
-	
+
+
 	class linieButtonListener implements ActionListener{
 
 	    public void actionPerformed(ActionEvent e) {

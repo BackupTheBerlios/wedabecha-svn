@@ -7,43 +7,20 @@ dass niemand son schrott wie 30. februar eingibt und so...
 
 ##############################################################################
 
-darstellungsTypUI:
-Interaktion mit der kurve
-neues element in der GUI, um die art mittelwerte für durchgezogene linie 
-festzulegen
-
-##############################################################################
-
 zeichneKurve:
 Aktienkurve
 DARSTELLUNG von Wochen-,Monats- und Jahresmitteln
 Zeitachse zoombar
 Veränderung des Maßstabs der Achsen
+
 ##############################################################################
 
 Kalenderfunktion und konkrete Datumsbeschriftung der Zeitachse
 (Beschriftungen der x-Achse auf Tages-, Monats-, Jahresbasis)
-##############################################################################
-
-mehrere Kurven in einem Diagramm darstellbar (verschiedene Farben,
-Strichtypen)
 
 ##############################################################################
 
 Hilfe, Dokumentation, Kurzanleitung
-
-##############################################################################
-CODEMANAGEMENT:
-die informationen in diesem stil sollten von jedem entwickler für seinen code
-individuell eingefügt werden.
-
-/**
-	@author Martin Müller (mrtnmueller at users.berlios.de), Dominic Hopf (dmaphy at users.berlios.de)
-	@since 2005-01-26
-	@version 0.0.1
-
-*/
-
 
 ##############################################################################
 

@@ -217,7 +217,8 @@ class importiereTabelleUI extends JDialog  {
 						} // if
 
 						if (speicherTabelle[i - 1].isSelected()){
-							toWeda.writeFile("../daten/" + tabellen[i - 1].getImportName() + ".weda",i);
+							String name[] = tabellen[i - 1].getImportName().split("\\.");
+							toWeda.writeFile("../daten/" + name[0] + ".weda",i);
 						} // if
 					} // for
 

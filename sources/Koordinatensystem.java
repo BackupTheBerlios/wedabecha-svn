@@ -22,8 +22,6 @@
 		Martin Müller (mrtnmueller at users.berlios.de),
 		Dominic Hopf (dmaphy at users.berlios.de),
 		Robert Exner (ashrak at users.berlios.de)
-	@since 2005-01-26
-	@version 0.0.1
 
 */
 

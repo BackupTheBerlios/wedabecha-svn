@@ -21,7 +21,7 @@
 	hauptklasse die als programm aufgerufen wird.
 	das programm soll fünf kurven zeichnen können.
 */
-class wedabecha {
+public class wedabecha {
 	private static kurve kurve[] = {
 		new kurve(),
 		new kurve(),
