@@ -63,7 +63,7 @@ public class importiereTabelle {
 
 	// erstellt ein Array mit dem Datum
 	private ArrayList datumAL = new ArrayList();
-	private ListIterator datumIt = datumAL.listIterator();
+	private ListIterator datumALIt = datumAL.listIterator();
 
 
 	/*
@@ -292,7 +292,7 @@ public class importiereTabelle {
 				for( int i = 0 ; i < zeileL.length ; i++){
 					zeileALIt.add(zeileL[i]);
 					// Datum aus Array kopieren
-					this.datumIt.add(zeileAL.get(this.datumsPos));
+					this.datumALIt.add(zeileAL.get(this.datumsPos));
 					// Datum an datumsPos entfernen
 					zeileAL.remove(this.datumsPos);
 					// zeileALIt.set(Integer.parseInt((String)zeileALIt.next()));
@@ -323,9 +323,45 @@ public class importiereTabelle {
 		liefert eine Liste von Strings mit dem Datum für die jeweilige Zeile zurück.
 		Die Liste ist genauso lang wie die, die getDaten zurückliefert
 		*/
-		char datumsTrennzeichen;
+
+		String splittedDate[];
+		String ergebnisDate[]; // splittedDate richtig sortiert nach YYYY MM DD
+		ArrayList ergebnis =  new ArrayList();
+		ListIterator ergebnisIt =  new ListIterator();
+
+		// char datumsTrennzeichen = {'-','.','.','/','/'}; // gleiche länge wie datenFormate[]
+
+		while (datumALIt.hasNext()){
+			if (datumsFormat.matches(".")){
+				splittedDate = datumsFormat.split(".");
+			} else if (datumsFormat.matches("/")){
+				splittedDate = datumsFormat.split("/");
+			} else if (datumsFormat.matches("-")){
+				splittedDate = datumsFormat.split("-");
+			} // if
+
+			for (int i = 0; i < splittedDate.length; i++){
+				switch (i){
+					case 0:
+// hier geht's weiter
+					break;
+
+					case 1:
+
+					break;
+
+					case 2:
+
+					break;
+				} // switch
+			} // for
+
+			ergebnis.add(splittedDate);
+
+		} // while()
 
 		for (int i = 0; i < this.datenFormate.length; i++){
+
 
 		}
 	} // getDatum()
