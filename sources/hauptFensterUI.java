@@ -179,7 +179,7 @@ public class hauptFensterUI extends JFrame {
 
 		hauptFensterUI.hauptFenster.setLocation(Xposition,Yposition);
 		//hauptFensterUI.hauptFenster.setMinimumSize(new Dimension(this.fensterBreite,this.fensterHoehe));
-		hauptFensterUI.hauptFenster.setResizable(true);
+		hauptFensterUI.hauptFenster.setResizable(false);
 		hauptFensterUI.hauptFenster.setVisible(true);
 
 		/*
