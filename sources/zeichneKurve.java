@@ -33,14 +33,14 @@ class zeichneKurve extends JComponent{
 		// konstruktor ohne Parameter
 		// hier passiert nichts weiter
 	} // zeichneKurve
-	
+
 
 	public zeichneKurve(int kurvenNummer){
 		// kontruktor, welcher die berechnung durchführt,
 		// sobald ein objekt mit kurvenNummer erzeugt wird...
 		this.kurvenNummer = kurvenNummer;
-	
-	} // zeichneKurve()	
+
+	} // zeichneKurve()
 } // zeichneKurve
 
 class zeichneLinienKurve extends JComponent {
@@ -48,21 +48,21 @@ class zeichneLinienKurve extends JComponent {
     private Color farbe;
 
     public zeichneLinienKurve(ArrayList werte, Color farbe) {
-	this.farbe = farbe;
-	this.werte = werte;
-	this.setSize(700,  500);
+		this.farbe = farbe;
+		this.werte = werte;
+		this.setSize(700,  500);
     }// zeichneKurve()
 
 
     public void paintComponent(Graphics kurve){
-	int zaehler = 0;
+		int zaehler = 0;
 
-	for(int i = 0; i < this.werte.size()-1; i++){
-	    kurve.setColor(this.farbe);
-	    kurve.drawLine(zaehler, ((Double)this.werte.get(i)).intValue(),
-			   zaehler += 5, ((Double)this.werte.get(i+1)).intValue());
-	}// for
-    }// paintComponent()
+		for(int i = 0; i < this.werte.size()-1; i++){
+			kurve.setColor(this.farbe);
+			kurve.drawLine(	zaehler, ((Double)this.werte.get(i)).intValue(),
+							zaehler += 5, ((Double)this.werte.get(i+1)).intValue());
+		} // for
+    } // paintComponent()
 
 
 }// zeichneLinienKurve

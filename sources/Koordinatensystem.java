@@ -28,7 +28,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class zeichneKoordinatensystem extends JComponent {
+public class Koordinatensystem extends JComponent {
 
 	private int startX, endX, startY, endY;  // Zeichenbereich in xyKoordinaten
 	private int maxWert;
@@ -39,20 +39,14 @@ public class zeichneKoordinatensystem extends JComponent {
 
 	private Graphics g; // wird von paint gesetzt, von drawLine benutzt
 
-	/*
-		den konstruktor überladen,
-		zeichneKoordinatensystem wird gleich von der hauptFensterUI aufgerufen,
-		aber da noch keine Daten vorhanden sind, kann nichts berechnet werden,
-		also gibts auch keine Parameter :P
-	*/
 
-	zeichneKoordinatensystem(){
+	Koordinatensystem(){
 		// tu nichts, absolut nichts...
 	}
 
 
 	// Konstruktor
-	zeichneKoordinatensystem(int zeichenBreite, int zeichenHoehe) {
+	protected void zeichnen(int zeichenBreite, int zeichenHoehe) {
 		this.zeichenBreite = zeichenBreite;
 		this.zeichenHoehe = zeichenHoehe;
 		// Grösse der Zeichnungsfläche einstellen
@@ -234,7 +228,7 @@ public class zeichneKoordinatensystem extends JComponent {
 				" X-Achse: |" + this.startX + " - " + this.endX + "| = " + this.dx + "\n" +
 				" Y-Achse: |" + this.startY + " - " + this.endY + "| = " + this.dy + "\n";
 	}
-} // zeichneKoordinatensystem
+} // Koordinatensystem
 
 /*
 * Diese Klasse basiert auf der Grundlage, eines bereits existierenden Programms,

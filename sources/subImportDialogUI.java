@@ -84,7 +84,7 @@ public class subImportDialogUI extends JDialog {
 			this.edit1Panel.add(this.durchsuchenKnopf);
 				this.durchsuchenKnopf.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
-						 chooseFile();
+						 chooseFile(tabellenNummer);
 					}
 				});
 
@@ -113,28 +113,29 @@ public class subImportDialogUI extends JDialog {
 					//System.out.println( event.getActionCommand());
 
 					importiereTabelleUI.setPfad(
-						importiereTabelle.getImportPfad(),
+						importiereTabelleUI.tabellen[tabellenNummer - 1].getImportPfad(),
 						tabellenNummer
 					);
 
-					importiereTabelle.setTrennzeichenIndex(
+					importiereTabelleUI.tabellen[tabellenNummer - 1].setTrennzeichenIndex(
 						trennzeichenBox.getSelectedIndex()
 					);
 
 					wedabecha.getKurve(tabellenNummer).setWerte(
-						importiereTabelle.getWerte()
+						importiereTabelleUI.tabellen[tabellenNummer - 1].getWerte()
 					);
 
 					wedabecha.getKurve(tabellenNummer).setDaten(
-						importiereTabelle.getDaten()
+						importiereTabelleUI.tabellen[tabellenNummer - 1].getDaten()
 					);
 
 					wedabecha.getKurve(tabellenNummer).setExists(true);
 					// Button zur jeweiligen eingelesenen Kurve anzeigen
 					hauptFensterUI.toolBar.kurveWaehlen(tabellenNummer, true);
+					hauptFensterUI.hauptMenu.setKurveEditable(tabellenNummer, true);
 
 					// entkäfern
-					System.out.println(importiereTabelle.zurZeichenKette());
+// 					System.out.println(importiereTabelle.zurZeichenKette());
 
 					setVisible(false);
 				}
@@ -143,6 +144,7 @@ public class subImportDialogUI extends JDialog {
 			this.abbrechenKnopf.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
 					wedabecha.getKurve(tabellenNummer).setExists(false);
+					hauptFensterUI.hauptMenu.setKurveEditable(tabellenNummer, false);
 					setVisible(false);
 				}
 			});
@@ -162,16 +164,16 @@ public class subImportDialogUI extends JDialog {
 	} // pack()
 
 
-	public void chooseFile(){
+	public void chooseFile(int tabellenNummer){
 		JFileChooser auswahlDialog = new JFileChooser();
     	int returnVal = auswahlDialog.showOpenDialog(this);
     	if(returnVal == JFileChooser.APPROVE_OPTION) {
 			this.pfadField.setText(auswahlDialog.getSelectedFile().getPath());
-			importiereTabelle.setImportPfad(
+			importiereTabelleUI.tabellen[tabellenNummer - 1].setImportPfad(
 				auswahlDialog.getSelectedFile().getPath()
 			);
 
-			importiereTabelle.setImportName(
+			importiereTabelleUI.tabellen[tabellenNummer - 1].setImportName(
 				auswahlDialog.getSelectedFile().getName()
 			);
 		} // fi

@@ -27,15 +27,6 @@ class wedabecha {
 		new kurve()
 	};
 
-	private static zeichneKurve zeichneKurve[] = {
-		new zeichneKurve(),
-		new zeichneKurve(),
-		new zeichneKurve(),
-		new zeichneKurve(),
-		new zeichneKurve()
-	};
-
-
 	protected static kurve getKurve(int nummer){
 		/**
 			parameter nummer muss zahl von 1 bis 5 sein
@@ -43,22 +34,7 @@ class wedabecha {
 		return kurve[nummer - 1];
 	} // getKurve()
 
-
-	protected static zeichneKurve getZeichneKurve(int nummer){
-		/**
-			parameter nummer muss zahl von 1 bis 5 sein...
-		**/
-
-		return zeichneKurve[nummer - 1];
-	} // getZeichneKurve()
-
-
-	protected static void setZeichneKurve(int kurvenNummer, zeichneKurve kurve){
-		zeichneKurve[kurvenNummer - 1] = kurve;
-	} // setZeichneKurve
-
-
-	//konstruktor
+	// konstruktor
 	public wedabecha(){
 		hauptFensterUI hauptFenster = new hauptFensterUI();
 	} //wedabecha()

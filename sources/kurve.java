@@ -23,11 +23,11 @@ import java.awt.*;
 public class kurve {
 	// Klassenvariablen
 	private int nummer;
-    
+
 	public void kurve(int nummer){
 		this.nummer = nummer;
 	}// kurve()
-    
+
 	private static String kurvenStile[] = {
 		"Aktienkurve",
 		"Linienkurve (Tagesmittelwerte)",
@@ -59,7 +59,7 @@ public class kurve {
 	private ArrayList wochenMittel = new ArrayList(1);
 	private ArrayList monatsMittel = new ArrayList(1);
 	private ArrayList jahresMittel = new ArrayList(1);
-	
+
 	private ArrayList datumMonatsMittel = new ArrayList(1);
 	private ArrayList datumJahresMittel = new ArrayList(1);
 	private ArrayList datumWochenMittel = new ArrayList(1);
@@ -118,9 +118,9 @@ public class kurve {
 		this.daten = daten;
 	} // setDaten()
 
-	
+
 	// set- und get-Methoden für tagesMittel
-	
+
 	protected ArrayList getTagesMittel(){
 		return this.tagesMittel;
 	} // getTagesMittel()
@@ -132,17 +132,17 @@ public class kurve {
 
 
 	// set- und get-Methoden für wochenMittel und datumWochenMittel
-	
+
 	protected ArrayList getWochenMittel(){
 		return this.wochenMittel;
 	} // getWochenMittel()
-	
-	
+
+
 	protected void setWochenMittel(ArrayList wochenMittel){
 		this.wochenMittel = wochenMittel;
 	} // setWochenMittel()
-	
-	
+
+
 	protected ArrayList getDatumWochenMittel(){
 		return this.datumWochenMittel;
 	} // getDatumWochenMittel()
@@ -152,67 +152,103 @@ public class kurve {
 		this.datumWochenMittel = datumWochenMittel;
 	} // setDatumWochenMittel()
 
-	
+
 	// set- und get-Methoden für monatsMittel und datumMonatsMittel
-	
+
 	protected ArrayList getMonatsMittel(){
 		return this.monatsMittel;
 	} // getMonatsMittel()
-	
-	
+
+
 	protected void setMonatsMittel(ArrayList monatsMittel){
 		this.monatsMittel = monatsMittel;
 	} //setMonatsMittel()
-	
-	
+
+
 	protected ArrayList getDatumMonatsMittel(){
 		return this.datumMonatsMittel;
 	} // getDatumMonatsMittel()
-	
-	
+
+
 	protected void setDatumMonatsMittel(ArrayList datumMonatsMittel){
 		this.datumMonatsMittel = datumMonatsMittel;
 	} // setDatumMonatsMittel()
-	
-	
+
+
 	//set- und get-Methoden für jahresMittel und datumJahresMittel
-	
+
 	protected ArrayList getJahresMittel(){
 		return this.jahresMittel;
 	} // getJahresMittel()
 
-	
+
 	protected void setJahresMittel(ArrayList jahresMittel){
 		this.jahresMittel = jahresMittel;
 	} // setJahresMittel()
-	
-	
+
+
 	protected ArrayList getDatumJahresMittel(){
 		return this.datumJahresMittel;
 	} // getDatumJahresMittel()
-	
-	
+
+
 	protected void setDatumJahresMittel(ArrayList datumJahresMittel){
 		this.datumJahresMittel = datumJahresMittel;
 	} // setDatumJahresMittel()
-	
-	
+
+
 	protected void zeichneKurve(){
 		berechneMittelwerte berechneMittelwerte = new berechneMittelwerte(this.getWerte(), this.getDaten());
 		switch(this.getKurvenStilIndex()){
-		    case 0: hauptFensterUI.layeredPane.add(new zeichneLinienKurve(berechneMittelwerte.berechneJahresMittel(), this.getFarbe()), new Integer(nummer+2));
+		    case 0:
+				hauptFensterUI.layeredPane.add(
+					new zeichneLinienKurve(
+						// wird später durch aktienkurve ersetzt
+						berechneMittelwerte.berechneJahresMittel(),
+						this.getFarbe()
+					),
+					new Integer(nummer+2)
+				);
 			    break;
-		    case 1: hauptFensterUI.layeredPane.add(new zeichneLinienKurve(berechneMittelwerte.berechneTagesMittel(), this.getFarbe()), new Integer(nummer+2));
+		    case 1:
+				hauptFensterUI.layeredPane.add(
+					new zeichneLinienKurve(
+						berechneMittelwerte.berechneTagesMittel(),
+						this.getFarbe()
+					),
+					new Integer(nummer+2)
+				);
 			    break;
-		    case 2: hauptFensterUI.layeredPane.add(new zeichneLinienKurve(berechneMittelwerte.berechneWochenMittel(), this.getFarbe()), new Integer(nummer+2));
+		    case 2:
+				hauptFensterUI.layeredPane.add(
+					new zeichneLinienKurve(
+						berechneMittelwerte.berechneWochenMittel(),
+						this.getFarbe()
+					),
+					new Integer(nummer+2)
+				);
 			    break;
-		    case 3: hauptFensterUI.layeredPane.add(new zeichneLinienKurve(berechneMittelwerte.berechneMonatsMittel(), this.getFarbe()), new Integer(nummer+2));
+		    case 3:
+				hauptFensterUI.layeredPane.add(
+					new zeichneLinienKurve(
+						berechneMittelwerte.berechneMonatsMittel(),
+						this.getFarbe()
+					),
+					new Integer(nummer+2)
+				);
 			    break;
-		    case 4: hauptFensterUI.layeredPane.add(new zeichneLinienKurve(berechneMittelwerte.berechneJahresMittel(), this.getFarbe()), new Integer(nummer+2));
+		    case 4:
+				hauptFensterUI.layeredPane.add(
+					new zeichneLinienKurve(
+						berechneMittelwerte.berechneJahresMittel(),
+						this.getFarbe()
+					),
+					new Integer(nummer+2)
+				);
 			    break;
 		}// switch()
-		
+
 	} // zeichneKurve()
-	
-	
+
+
 } // kurve

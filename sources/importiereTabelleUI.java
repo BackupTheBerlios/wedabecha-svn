@@ -56,17 +56,30 @@ class importiereTabelleUI extends JDialog  {
 	private static JTextField pfadTabelle4 = new JTextField(20);
 	private static JTextField pfadTabelle5 = new JTextField(20);
 
-	private JCheckBox speicherTabelle1 = new JCheckBox("Speichern");
-	private JCheckBox speicherTabelle2 = new JCheckBox("Speichern");
-	private JCheckBox speicherTabelle3 = new JCheckBox("Speichern");
-	private JCheckBox speicherTabelle4 = new JCheckBox("Speichern");
-	private JCheckBox speicherTabelle5 = new JCheckBox("Speichern");
+	// mit einer Liste von Checkboxen kann leichter per schleife abgefragt werden
+	// welche nun gesetzt is und welche nich
+	private JCheckBox speicherTabelle[] = {
+		new JCheckBox("Speichern"),
+		new JCheckBox("Speichern"),
+		new JCheckBox("Speichern"),
+		new JCheckBox("Speichern"),
+		new JCheckBox("Speichern")
+	};
 
 	private JButton darstellungsTypButton1 = new JButton("Darstellung");
 	private JButton darstellungsTypButton2 = new JButton("Darstellung");
 	private JButton darstellungsTypButton3 = new JButton("Darstellung");
 	private JButton darstellungsTypButton4 = new JButton("Darstellung");
 	private JButton darstellungsTypButton5 = new JButton("Darstellung");
+
+	// für fünf verschiedene Kurven brauchen wir fünf verschiedene Tabellen
+	protected static importiereTabelle tabellen[] = {
+		new importiereTabelle(),
+		new importiereTabelle(),
+		new importiereTabelle(),
+		new importiereTabelle(),
+		new importiereTabelle()
+	};
 
 
 	// objekte unten
@@ -98,7 +111,8 @@ class importiereTabelleUI extends JDialog  {
 					} // actionPerformed(ActionEvent event)
 				});
 			this.LTzeile1.add(pfadTabelle1);
-			this.LTzeile1.add(this.speicherTabelle1);
+				pfadTabelle1.setEnabled(false);
+			this.LTzeile1.add(this.speicherTabelle[0]);
 			this.LTzeile1.add(this.darstellungsTypButton1);
 				this.darstellungsTypButton1.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
@@ -115,7 +129,8 @@ class importiereTabelleUI extends JDialog  {
 					} // actionPerformed(ActionEvent event)
 				});
 			this.LTzeile2.add(pfadTabelle2);
-			this.LTzeile2.add(this.speicherTabelle2);
+				pfadTabelle2.setEnabled(false);
+			this.LTzeile2.add(this.speicherTabelle[1]);
 			this.LTzeile2.add(this.darstellungsTypButton2);
 				this.darstellungsTypButton2.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
@@ -132,7 +147,8 @@ class importiereTabelleUI extends JDialog  {
 					} // actionPerformed(ActionEvent event)
 				});
 			this.LTzeile3.add(pfadTabelle3);
-			this.LTzeile3.add(this.speicherTabelle3);
+				pfadTabelle3.setEnabled(false);
+			this.LTzeile3.add(this.speicherTabelle[2]);
 			this.LTzeile3.add(this.darstellungsTypButton3);
 				this.darstellungsTypButton3.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
@@ -149,7 +165,8 @@ class importiereTabelleUI extends JDialog  {
 					} // actionPerformed(ActionEvent event)
 				});
 			this.LTzeile4.add(pfadTabelle4);
-			this.LTzeile4.add(this.speicherTabelle4);
+				pfadTabelle4.setEnabled(false);
+			this.LTzeile4.add(this.speicherTabelle[3]);
 			this.LTzeile4.add(this.darstellungsTypButton4);
 				this.darstellungsTypButton4.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
@@ -166,7 +183,8 @@ class importiereTabelleUI extends JDialog  {
 					} // actionPerformed(ActionEvent event)
 				});
 			this.LTzeile5.add(pfadTabelle5);
-			this.LTzeile5.add(this.speicherTabelle5);
+				pfadTabelle5.setEnabled(false);
+			this.LTzeile5.add(this.speicherTabelle[4]);
 			this.LTzeile5.add(this.darstellungsTypButton5);
 				this.darstellungsTypButton5.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
@@ -179,13 +197,24 @@ class importiereTabelleUI extends JDialog  {
 			this.okKnopf.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
 					setVisible(false);
-					
-					
+
 					for(int i = 1; i <= 5; i++){
-					    if(wedabecha.getKurve(i).isset()){
-						    wedabecha.getKurve(i).zeichneKurve();
-					    }// if
-					}// for
+					    // beim klick auf [OK] alle importierten Tabellen als Kurve zeichnen
+						if(wedabecha.getKurve(i).isset()){
+							wedabecha.getKurve(i).zeichneKurve();
+					    } // if
+
+						if (speicherTabelle[i - 1].isSelected()){
+							// hier gibts n problem,
+							// weil die hintergrundfunktion statisch is...
+							// der dateiname muss irgendwo her kommen :/
+							String name[] = tabellen[i -1].getImportName().split(".");
+							toWeda.writeFile(name[0] + ".weda",i);
+						} // if
+					} // for
+
+					// hier muss das Koordinatensystem aufgerufen und gezeichnet werden
+					hauptFensterUI.koordSys.zeichnen(hauptFensterUI.fensterBreite,hauptFensterUI.fensterHoehe);
 				} //  actionPerformed(ActionEvent event)
 			});
 

@@ -27,6 +27,8 @@ import javax.swing.*;
 
 public class hauptFensterUI extends JFrame {
 	static JFrame hauptFenster = new JFrame("wedabecha");
+	// Hauptmenu initialisieren
+	protected static hauptMenuUI hauptMenu = new hauptMenuUI();
 	protected static JLayeredPane mainPane = new JLayeredPane();
 	protected static JLayeredPane layeredPane = new JLayeredPane();
 	protected static JLayeredPane toolbarPane = new JLayeredPane();
@@ -38,7 +40,7 @@ public class hauptFensterUI extends JFrame {
 
 	protected static toolBarUI toolBar = new toolBarUI(fensterBreite);
 	protected static zeichneRaster zeichneRaster = new zeichneRaster(fensterBreite, fensterHoehe);
-	protected static zeichneKoordinatensystem koordSys = new zeichneKoordinatensystem();
+	protected static Koordinatensystem koordSys = new Koordinatensystem();
 	protected kontextMenuUI kontext = new kontextMenuUI();
 
 	// konstruktor
@@ -62,11 +64,8 @@ public class hauptFensterUI extends JFrame {
 		Bestandteilen zusammen
 		*/
 
-		// Hauptmenu initialisieren
-		hauptMenuUI hauptMenu = new hauptMenuUI();
-
 		// Hauptmenu in das Fenster einbinden
-		hauptFensterUI.hauptFenster.setJMenuBar(hauptMenu.getHauptMenu());
+		hauptFensterUI.hauptFenster.setJMenuBar(this.hauptMenu.getHauptMenu());
 
 		// Listener zum Fensterschliessen per "wegkreuzen"
 		hauptFensterUI.hauptFenster.addWindowListener(new beendenListener());

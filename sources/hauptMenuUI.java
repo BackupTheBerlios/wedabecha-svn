@@ -34,6 +34,14 @@ public class hauptMenuUI {
 			private JMenuItem exportiereGrafikMenuItem = new JMenuItem("Grafik exportieren");
 			private JMenuItem druckenMenuItem = new JMenuItem("Drucken");
 			private JMenuItem beendenMenuItem = new JMenuItem("Programm beenden");
+
+		/*
+			Menu [Kurve] : hat fünf einträge, für maximal fünf kurven,
+			also machen wir ne liste von einträgen für das menu,
+			das können wir per for-schleife besser packen,
+			und eine methode einfacher schreiben, mit denen wir die
+			Menueinträge schneller umd mit weniger code aktiveren und deaktivieren können...
+		*/
 		private JMenu kurveMenu = new JMenu("Kurve");
 			private JMenu kurveMenuList[] = {
 				new JMenu("Kurve 1"),
@@ -130,13 +138,14 @@ public class hauptMenuUI {
 						this.kurveDarstellungMenuItem[kurveIt].setEnabled(false);
 					this.kurveMenuList[kurveIt].add(this.kurveNeuZeichnenMenuItem[kurveIt]);
 						this.kurveNeuZeichnenMenuItem[kurveIt].setEnabled(false);
-						this.kurveNeuZeichnenMenuItem[kurveIt].addActionListener(
+/*						this.kurveNeuZeichnenMenuItem[kurveIt].addActionListener(
 							new ActionListener(){
 								public void actionPerformed(ActionEvent event){
 									wedabecha.setZeichneKurve(kurveIt, new zeichneKurve(kurveIt));
 								}
 							} // ActionListener()
 						);
+*/
 			} // for
 
 		this.mainMenuBar.add(this.kurveMenu);
@@ -177,8 +186,13 @@ public class hauptMenuUI {
 	} // pack()
 
 	public void setKurveEditable(int kurvenNummer, boolean wasnjetz){
-		this.kurveDarstellungMenuItem[kurvenNummer].setEnabled(wasnjetz);
-		this.kurveNeuZeichnenMenuItem[kurvenNummer].setEnabled(wasnjetz);
+		/**
+			setKurveEditable setzt die einzelnen Menueinträge für eine Kurve
+			aktiv oder deaktiv... wird z.b. vom import bei klick auf ok
+			des subImportDialoges true gesetzt bzw. beim klick auf abbrechen false
+		*/
+		this.kurveDarstellungMenuItem[kurvenNummer - 1].setEnabled(wasnjetz);
+		this.kurveNeuZeichnenMenuItem[kurvenNummer - 1].setEnabled(wasnjetz);
 	}
 
 
