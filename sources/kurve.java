@@ -45,84 +45,144 @@ public class kurve {
 
 	private ArrayList daten = new ArrayList(1);// Mehrzahl von Datum
 
-	private ArrayList mittelWerte = new ArrayList(1);
-	private ArrayList mittelDaten = new ArrayList(1); // Mehrzahl von Datums
+	private ArrayList tagesMittel = new ArrayList(1);
+	private ArrayList wochenMittel = new ArrayList(1);
+	private ArrayList monatsMittel = new ArrayList(1);
+	private ArrayList jahresMittel = new ArrayList(1);
+	
+	private ArrayList datumMonatsMittel = new ArrayList(1);
+	private ArrayList datumJahresMittel = new ArrayList(1);
+	private ArrayList datumWochenMittel = new ArrayList(1);
 
 	protected void setExists(boolean exists){
 		this.exists = exists;
-	}
+	} // setExists()
 
 
 	protected boolean isset(){
 		return this.exists;
-	}
+	} // isset()
 
 
 	protected String getFarbe(){
 		return this.farbe;
-	}
+	} // getFarbe()
 
 
 	protected void setFarbe(String farbe){
 		this.farbe = farbe;
-	}
+	} // setFarbe()
 
 
 	protected int getKurvenStilIndex(){
 		return this.kurvenStilIndex;
-	}
+	} // getKurvenStilIndex()
 
 
 	protected String getKurvenStil(){
 		return this.kurvenStile[this.kurvenStilIndex];
-
-	}
+	} // getKurvenStil()
 
 
 	protected void setKurvenStilIndex(int index){
 		this.kurvenStilIndex = index;
-	}
+	} // setKurvenStilIndex()
 
 
 	protected ArrayList getWerte(){
 		return this.werte;
-	}
+	} // getWerte()
 
 
 	protected void setWerte(ArrayList werte){
 		this.werte = werte;
-	}
+	} // setWerte()
 
 
 	protected ArrayList getDaten(){
 		return this.daten;
-	}
+	} // getDaten()
 
 
 	protected void setDaten(ArrayList daten){
 		this.daten = daten;
-	}
+	} // setDaten()
+
+	
+	// set- und get-Methoden für tagesMittel
+	
+	protected ArrayList getTagesMittel(){
+		return this.tagesMittel;
+	} // getTagesMittel()
 
 
-	protected ArrayList getMittelWerte(){
-		return this.mittelWerte;
-	}
+	protected void setTagesMittel(ArrayList tagesMittel){
+		this.tagesMittel = tagesMittel;
+	} // setTagesMittel()
 
 
-	protected void setMittelWerte(ArrayList mittelWerte){
-		this.mittelWerte = mittelWerte;
-	}
+	// set- und get-Methoden für wochenMittel und datumWochenMittel
+	
+	protected ArrayList getWochenMittel(){
+		return this.wochenMittel;
+	} // getWochenMittel()
+	
+	
+	protected void setWochenMittel(ArrayList wochenMittel){
+		this.wochenMittel = wochenMittel;
+	} // setWochenMittel()
+	
+	
+	protected ArrayList getDatumWochenMittel(){
+		return this.datumWochenMittel;
+	} // getDatumWochenMittel()
 
 
-	protected ArrayList getMittelDaten(){
-		return this.mittelDaten;
-	}
+	protected void setDatumWochenMittel(ArrayList datumWochenMittel){
+		this.datumWochenMittel = datumWochenMittel;
+	} // setDatumWochenMittel()
 
+	
+	// set- und get-Methoden für monatsMittel und datumMonatsMittel
+	
+	protected ArrayList getMonatsMittel(){
+		return this.monatsMittel;
+	} // getMonatsMittel()
+	
+	
+	protected void setMonatsMittel(ArrayList monatsMittel){
+		this.monatsMittel = monatsMittel;
+	} //setMonatsMittel()
+	
+	
+	protected ArrayList getDatumMonatsMittel(){
+		return this.datumMonatsMittel;
+	} // getDatumMonatsMittel()
+	
+	
+	protected void setDatumMonatsMittel(ArrayList datumMonatsMittel){
+		this.datumMonatsMittel = datumMonatsMittel;
+	} // setDatumMonatsMittel()
+	
+	
+	//set- und get-Methoden für jahresMittel und datumJahresMittel
+	
+	protected ArrayList getJahresMittel(){
+		return this.jahresMittel;
+	} // getJahresMittel()
 
-	protected void setMittelDaten(ArrayList mittelDaten){
-		this.mittelDaten = mittelDaten;
-	}
-
-
-
+	
+	protected void setJahresMittel(ArrayList jahresMittel){
+		this.jahresMittel = jahresMittel;
+	} // setJahresMittel()
+	
+	
+	protected ArrayList getDatumJahresMittel(){
+		return this.datumJahresMittel;
+	} // getDatumJahresMittel()
+	
+	
+	protected void setDatumJahresMittel(ArrayList datumJahresMittel){
+		this.datumJahresMittel = datumJahresMittel;
+	} // setDatumJahresMittel()
 } // kurve
