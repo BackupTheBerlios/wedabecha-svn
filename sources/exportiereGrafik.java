@@ -20,23 +20,41 @@
 // Diese Klasse dient zum Erstellen und Speichern eines Screenshots
 
 
-import com.sun.image.codec.jpeg.JPEGCodec;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.*;
+import com.sun.image.codec.jpeg.JPEGCodec; 
+import java.awt.*; 
+import java.awt.image.*; 
+import java.io.*; 
+//import java.awt.Component.*; 
+//import java.awt.Toolkit.*; 
 
-public class exportiereGrafik {
-	private String dateiname;
 
-	public void export() throws Exception {
+abstract class Component extends Object implements ImageObserver, MenuContainer, Serializable{}; 
 
-		Dimension     size  = hauptFensterUI.hauptFenster.getSize();
-		BufferedImage image = (BufferedImage)hauptFensterUI.hauptFenster.createImage(size.width, size.height);
-		
-		OutputStream  out  = new FileOutputStream( this.dateiname );
-		JPEGCodec.createJPEGEncoder( out ).encode( image );
-		out.close();
-		} // export()
+
+public class exportiereGrafik { 
+   private String dateiname; 
+
+   public void export() throws Exception { 
+
+      Dimension   size  = hauptFensterUI.layeredPane.getSize(); 
+      BufferedImage image = (BufferedImage)hauptFensterUI.layeredPane.createImage(size.width, size.height); 
+       
+      Graphics g = image.getGraphics(); 
+      hauptFensterUI.layeredPane.paint(g); 
+       
+      //Bildteile abschneiden 
+       
+
+      ImageFilter cropFilter = new CropImageFilter( 0, 35, size.width, size.height-35 ); 
+      final Image cropImage; 
+      //cropImage = createImage (new FilteredImageSource((ImageProducer) image, cropFilter)); 
+       
+      //Bildteile abschneiden fertig 
+       
+      OutputStream  out  = new FileOutputStream( this.dateiname ); 
+      JPEGCodec.createJPEGEncoder( out ).encode( image ); 
+      out.close(); 
+      } // export()
 
 	protected void setFile(String name){
 		this.dateiname = name;
