@@ -23,6 +23,7 @@
 import java.io.File;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
+import java.util.regex.*;
 
 public class exportiereGrafikUI {
 	private exportiereGrafik export = new exportiereGrafik();
@@ -52,13 +53,22 @@ public class exportiereGrafikUI {
 			// Rückgabe der gew�lten Datei als "file"
 			File file = fc.getSelectedFile();
 			System.out.println( file.getName() );
-			export.setFile(file.getAbsolutePath());
+			
+			//Prüfung, ob Dateiname & Endung eigegeben wurden
+			String filename  = file.getName();
+			boolean isjpg = filename.  endsWith  ( ".jpg" );
 
-			//try{
+			if (isjpg == true) { 
+				export.setFile(file.getAbsolutePath());
+			} else {
+				export.setFile(file.getAbsolutePath()+".jpg");				
+			}//if
+
+			try{
 				export.export(); // muss mit try-catch abgefangen werden!!!
-			//} catch ( Exception e ) {
-				//System.err.println( "Fehler beim Export!" );
-			//}
+			} catch ( Exception e ) {
+				System.err.println( "Fehler beim Export!" );
+			}
 
 		} else {
 			System.out.println( "Auswahl abgebrochen" );
@@ -67,31 +77,8 @@ public class exportiereGrafikUI {
 		fc.setVisible(false); // is klar, ne
 	} // exportiereGrafikUI()
 
-
-	protected static void showFileNotFoundError(String dateiname){
-		JOptionPane.showMessageDialog(null,
-		"Datei " + dateiname + "konnte nicht geschrieben werden.","Dateifehler",
-		JOptionPane.ERROR_MESSAGE );
-	} // showFileNotFoundError()
-
-
-	protected static void showEncodeError(){
-		JOptionPane.showMessageDialog(null,
-		"JPEG-Datei konnte nicht kodiert werden.","Dateifehler",
-		JOptionPane.ERROR_MESSAGE );
-	}
-
-
-	protected static void showCouldNotCloseError(){
-		JOptionPane.showMessageDialog(null,
-		"Konnte den OutputStream nicht schliessen.","Dateifehler",
-		JOptionPane.ERROR_MESSAGE );
-	}
-
-	/*
 	public static void main(String args[]){
 		new exportiereGrafikUI();
 	}
-	*/
 
 } // exportiereGrafikUI()
