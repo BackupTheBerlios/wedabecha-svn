@@ -21,9 +21,18 @@ import java.util.ArrayList;
 
 public class kurve {
 	// Klassenvariablen
+	private int nummer;
+    
+	public void kurve(int nummer){
+		this.nummer = nummer;
+	}// kurve()
+    
 	private static String kurvenStile[] = {
 		"Aktienkurve",
-		"durchgezogene Linie"/*,
+		"Linienkurve (Tagesmittelwerte)",
+		"Linienkurve (Wochenmittelwerte)",
+		"Linienkurve (Monatsmittelwerte)",
+		"Linienkurve (Jahresmittelwerte)"/*,
 		"gepunktete Linie",
 		"Balkendiagramm",
 		"gleitende Kurve"*/
@@ -185,4 +194,6 @@ public class kurve {
 	protected void setDatumJahresMittel(ArrayList datumJahresMittel){
 		this.datumJahresMittel = datumJahresMittel;
 	} // setDatumJahresMittel()
+	
+	
 } // kurve

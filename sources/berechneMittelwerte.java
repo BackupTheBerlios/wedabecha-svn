@@ -16,14 +16,16 @@
  *   Free Software Foundation, Inc.,                                        *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
-//author Matthias Tylkowski
-//zuletzt bearbeitet: 2005-01-26
+/**
+    @author Matthias Tylkowski
+    @since 2005-01-26
+ */
 
 import java.util.*;
 
 public class berechneMittelwerte {
 
-    /*
+    /**
 	diese Klasse dient zur Berechnung der Verschiedenen Mittelwerte die dann
 	als Diagramm dargestellt werden können.
     */
@@ -61,7 +63,7 @@ public class berechneMittelwerte {
 	ArrayList tagesMittel = new ArrayList();
 	
 	/* dient als vorrübergehender Speicherort für das Array, welches in 
-	   jeder Zeile der werte steht
+	 * jeder Zeile der werte steht
 	 */
 	double statArray[];
 	
@@ -75,9 +77,11 @@ public class berechneMittelwerte {
 	    /* ...in dieser Schleife werden dann die einzelnen werte aus dem statArray
 	     * ausgelesen, addiert und in der Variable zeilenSumme gespeichert...
 	     */
+	    
 	    for (int j = 0; j < statArray.length; j++){
-		zeilenSumme += statArray[j];	
+			zeilenSumme += statArray[j];	
 	    }// for()
+	    
 	    /* ...an dieser Stelle wird die summe durch die länge des statArrays geteilt,
 	     * welches einer Zeile in der ArrayList werte entspricht, und zur ArrayList
 	     * tagesMittel hinzugefügt.
@@ -138,16 +142,16 @@ public class berechneMittelwerte {
 		     */
 		    
 		    if(naechsterMonat.equals(monat)){
-			summe += ((Double)berechneTagesMittel().get(zaehler1)).doubleValue();
+				summe += ((Double)berechneTagesMittel().get(zaehler1)).doubleValue();
 		    } else {
-			monatsMittel.add(new Double(summe/(zaehler3-1)));
-			datumMonatsMittel.add(this.datum.get(zaehler1));
-			zaehler3 = 0;
-			summe = 0;
-			zaehler1--;
-			start--;
-			tempDatum = (String[])this.datum.get(start);
-			monat = tempDatum[1];
+				monatsMittel.add(new Double(summe/(zaehler3-1)));
+				datumMonatsMittel.add(this.datum.get(zaehler1));
+				zaehler3 = 0;
+				summe = 0;
+				zaehler1--;
+				start--;
+				tempDatum = (String[])this.datum.get(start);
+				monat = tempDatum[1];
 		    } // else
 		} // for
 
@@ -197,16 +201,16 @@ public class berechneMittelwerte {
 		    naechstesJahr = tempDatum[0];
 		    
 		    if(naechstesJahr.equals(jahr)){
-			summe += ((Double)berechneTagesMittel().get(zaehler1)).doubleValue();
+				summe += ((Double)berechneTagesMittel().get(zaehler1)).doubleValue();
 		    } else {
-			jahresMittel.add(new Double(summe/(zaehler3-1)));
-			datumJahresMittel.add(this.datum.get(zaehler1-1));
-			zaehler3 = 0;
-			summe = 0;
-			zaehler1--;
-			start--;
-			tempDatum = (String[])this.datum.get(start);
-			jahr = tempDatum[0];
+				jahresMittel.add(new Double(summe/(zaehler3-1)));
+				datumJahresMittel.add(this.datum.get(zaehler1-1));
+				zaehler3 = 0;
+				summe = 0;
+				zaehler1--;
+				start--;
+				tempDatum = (String[])this.datum.get(start);
+				jahr = tempDatum[0];
 		    } //else
 		} //for
 
@@ -250,11 +254,11 @@ public class berechneMittelwerte {
 		    summe += ((Double)berechneTagesMittel().get(zaehler1)).doubleValue();
 
 		    if(zaehler2 >= 5){
-			wochenMittel.add(new Double(summe/5));
-			datumWochenMittel.add(this.datum.get(zaehler1-1));
-			zaehler3++;
-			zaehler2 = 0;
-			summe = 0;
+				wochenMittel.add(new Double(summe/5));
+				datumWochenMittel.add(this.datum.get(zaehler1-1));
+				zaehler3++;
+				zaehler2 = 0;
+				summe = 0;
 		    } // if
 		} // for
 		

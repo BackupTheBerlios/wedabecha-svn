@@ -39,11 +39,13 @@ public class toolBarUI /*implements ActionListener*/{
 			protected JToggleButton pfeilzeichnenbutton = new JToggleButton(pfeilzeichnen);
 		private ImageIcon textzeichnen = new ImageIcon("Images/text.gif");
 			protected JToggleButton textzeichnenbutton = new JToggleButton(textzeichnen);
-		private JToggleButton tabelle1Button = new JToggleButton("Tabelle 1");
-		private JToggleButton tabelle2Button = new JToggleButton("Tabelle 2");
-		private JToggleButton tabelle3Button = new JToggleButton("Tabelle 3");
-		private JToggleButton tabelle4Button = new JToggleButton("Tabelle 4");
-		private JToggleButton tabelle5Button = new JToggleButton("Tabelle 5");
+		private JToggleButton kurveButton[] = {
+						    new JToggleButton("Kurve 1"),
+						    new JToggleButton("Kurve 2"),
+						    new JToggleButton("Kurve 3"),
+						    new JToggleButton("Kurve 4"),
+						    new JToggleButton("Kurve 5")
+		};
 
 		private int breite;
 
@@ -85,20 +87,21 @@ public class toolBarUI /*implements ActionListener*/{
 		this.toolBar.add(textzeichnenbutton);
 			this.textzeichnenbutton.setContentAreaFilled(true);
 			this.textzeichnenbutton.addActionListener(new textButtonListener());
-		/* die TabellenButtons werden erst gebraucht wenn mehrere Tabellen angezeigt werden können
+		//die TabellenButtons werden erst gebraucht wenn mehrere Tabellen angezeigt werden können
 		this.toolBar.addSeparator();
 		this.toolBar.addSeparator();
-		this.toolBar.add(tabelle1Button);
-			this.tabelle1Button.setEnabled(false);
-		this.toolBar.add(tabelle2Button);
-			this.tabelle2Button.setEnabled(false);
-		this.toolBar.add(tabelle3Button);
-			this.tabelle3Button.setEnabled(false);
-		this.toolBar.add(tabelle4Button);
-			this.tabelle4Button.setEnabled(false);
-		this.toolBar.add(tabelle5Button);
-			this.tabelle5Button.setEnabled(false);
-		*/
+		
+		for(int i=0; i<5; i++){
+		    this.toolBar.add(kurveButton[i]);
+		    this.kurveButton[i].addActionListener(new ActionListener(){
+			    public void actionPerformed(ActionEvent event){
+				
+			    }// actionPerformed()
+			}// ActionListener()
+		    );
+			this.kurveButton[i].setEnabled(false);
+		}// for
+		
 
 		this.toolBar.setFloatable(false);
 		this.toolBar.setBorderPainted(true);
@@ -108,7 +111,12 @@ public class toolBarUI /*implements ActionListener*/{
 		return this.toolBar;
 	} // getToolBar()
 
-
+	
+	public void kurveWaehlen(int kurve, boolean janein){
+		this.kurveButton[kurve-1].setEnabled(janein);
+	}// kurveWaehlen()
+	
+	
 	class linieButtonListener implements ActionListener{
 
 	    public void actionPerformed(ActionEvent e) {

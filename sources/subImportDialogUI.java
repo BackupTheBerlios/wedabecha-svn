@@ -130,6 +130,8 @@ public class subImportDialogUI extends JDialog {
 					);
 
 					wedabecha.getKurve(tabellenNummer).setExists(true);
+					// Button zur jeweiligen eingelesenen Kurve anzeigen
+					hauptFensterUI.toolBar.kurveWaehlen(tabellenNummer, true);
 
 					// entkäfern
 					System.out.println(importiereTabelle.zurZeichenKette());

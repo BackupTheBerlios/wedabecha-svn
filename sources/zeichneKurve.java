@@ -31,7 +31,7 @@ class zeichneKurve {
 		// konstruktor ohne Parameter
 		// hier passiert nichts weiter
 	} // zeichneKurve
-
+	
 
 	public zeichneKurve(int kurvenNummer){
 		// kontruktor, welcher die berechnung durchführt,

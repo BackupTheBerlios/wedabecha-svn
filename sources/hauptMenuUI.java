@@ -122,10 +122,10 @@ public class hauptMenuUI {
 		// beginn kurve-menues
 			for (kurveIt = 0; kurveIt < 5; kurveIt++){
 				this.kurveMenu.add(this.kurveMenuList[kurveIt]);
-					this.kurveMenuList[kurveIt].add(this.kurveOeffnenMenuItem[kurveIt]);
-						this.kurveOeffnenMenuItem[kurveIt].setEnabled(false);
-					this.kurveMenuList[kurveIt].add(this.kurveSpeichernMenuItem[kurveIt]);
-						this.kurveSpeichernMenuItem[kurveIt].setEnabled(false);
+					//this.kurveMenuList[kurveIt].add(this.kurveOeffnenMenuItem[kurveIt]);
+					//	this.kurveOeffnenMenuItem[kurveIt].setEnabled(false);
+					//this.kurveMenuList[kurveIt].add(this.kurveSpeichernMenuItem[kurveIt]);
+					//	this.kurveSpeichernMenuItem[kurveIt].setEnabled(false);
 					this.kurveMenuList[kurveIt].add(this.kurveDarstellungMenuItem[kurveIt]);
 						this.kurveDarstellungMenuItem[kurveIt].setEnabled(false);
 					this.kurveMenuList[kurveIt].add(this.kurveNeuZeichnenMenuItem[kurveIt]);

@@ -1,5 +1,5 @@
 /****************************************************************************
- *   Copyright (C) 2004 by BTU SWP GROUP 04/6.1 - Matthias Tylkowski        *
+ *   Copyright (C) 2004 by BTU SWP GROUP 04/6.1			            *
  *                                                                          *
  *   This program is free software; you can redistribute it and/or modify   *
  *   it under the terms of the GNU General Public License as published by   *
@@ -16,7 +16,10 @@
  *   Free Software Foundation, Inc.,                                        *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
-
+/**
+    @author Matthias Tylkowski
+    @since 2005-01-26
+ */
 
 /*
 	Diese Klasse dient zur Darstellung der Dokumentation, Kurzanleitung und der
