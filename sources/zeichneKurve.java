@@ -47,27 +47,37 @@ class zeichneKurve extends JComponent{
 class zeichneLinienKurve extends JComponent {
 	private ArrayList werte;
 	private Color farbe;
+	private int abstand;
 
 	public zeichneLinienKurve(ArrayList werte, Color farbe) {
 		this.farbe = farbe;
 		this.werte = werte;
-		this.setSize(	hauptFensterUI.layeredPane.getWidth(), 
-						hauptFensterUI.layeredPane.getHeight());
+		this.setSize(690, 452);
 	} // zeichneKurve()
+
+
+	public void setGroesse(int breite, int hoehe){
+		this.setSize(breite, hoehe);
+	} // setGroesse()
 
 
 	public void paintComponent(Graphics kurve){
 		int zaehler = 25;
-		int abstand =	Math.round(hauptFensterUI.layeredPane.getWidth() -
-						25 / this.werte.size());
+		if(	Math.round( (hauptFensterUI.layeredPane.getWidth() -
+			25) / this.werte.size() ) < 1){
+			abstand  = 1;
+		} else {
+			abstand = 	Math.round( (hauptFensterUI.layeredPane.getWidth() -
+						25) / this.werte.size());
+		} // if
 
 		for(int i = 0; i < this.werte.size() - 1; i++){
 			kurve.setColor(this.farbe);
-			kurve.drawLine(	zaehler, 
-							hauptFensterUI.layeredPane.getHeight() - 
+			kurve.drawLine(	zaehler,
+							hauptFensterUI.layeredPane.getHeight() -
 							25 - ((Double)this.werte.get(i)).intValue(),
-							zaehler += abstand, 
-							hauptFensterUI.layeredPane.getHeight() - 
+							zaehler += abstand,
+							hauptFensterUI.layeredPane.getHeight() -
 							25 - ((Double)this.werte.get(i+1)).intValue()
 			); // drawLine
 		} // for

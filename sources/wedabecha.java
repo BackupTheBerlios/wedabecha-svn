@@ -39,7 +39,7 @@ class wedabecha {
 
 	// konstruktor
 	public wedabecha(){
-		hauptFensterUI hauptFenster = new hauptFensterUI();
+		hauptFensterUI hauptFenster = new hauptFensterUI(700, 500);
 	} //wedabecha()
 
 	public static void main(String args[]){

@@ -48,12 +48,12 @@ public class Koordinatensystem extends JComponent {
 	private int maxWert, maxDate;
 
 	private int dx, dy; // Distanz zwischen Nullpunkt und dem Maximalpunkt auf den Achsen
-	private int einheitx, einheity; // Abstand der einzelnen Achseneinteilungsstriche
+	private int einheitx = 25; // Abstand der einzelnen Achseneinteilungsstriche
+	private int einheity = 25; // Abstand der einzelnen Achseneinteilungsstriche
 	private int zeichenBreite, zeichenHoehe; // Zeichenbereich in Pixelkoordinaten
 
 	//Konstruktor
 	Koordinatensystem(){
-
 	}
 
 
@@ -70,11 +70,11 @@ public class Koordinatensystem extends JComponent {
 		this.zeichenBreite = breite;
 		this.zeichenHoehe = hoehe;
 		// Start- und Endpunkt der Y-Achse in vertikaler Richtung
-		this.startY = this.zeichenHoehe - 25;
+		this.startY = hoehe - 25;
 		this.endY = 60;
 		// Start- und Endpunkt der X-Achse in horizontaler Richtung
 		this.startX = 25;
-		this.endX = this.zeichenBreite - 25;
+		this.endX = breite - 25;
 
 		this.dx = this.endX - this.startX; // Breite
    		this.dy = this.endY - this.startY; // Hoehe
@@ -92,20 +92,14 @@ public class Koordinatensystem extends JComponent {
 		*/
 
 		// Grösse der Zeichnungsfläche einstellen
-		this.setSize(zeichenBreite ,zeichenHoehe);
 
 		this.berechneMaxima();
-
-		this.setGroesse(
-			hauptFensterUI.layeredPane.getWidth()-25,
-			hauptFensterUI.layeredPane.getHeight()-50
-		);
-
+		this.setGroesse(690,452);
 		this.setVisible(true); // sichtbar machen
 	} // zeichneKoordinatensystem
 
 
-	public void paintComponent(Graphics g){
+	protected void paintComponent(Graphics g){
 		/**
 			Mit paintComponent() zeichnen wir das letztendliche Koordinatensystem.
 			Erst Achsen, dann Pfeilspitzen für die Achsen,
@@ -121,6 +115,18 @@ public class Koordinatensystem extends JComponent {
 		// Pfeilspitze X-Achse
 		g.drawLine((endX - 8),(startY + 4),endX,startY);
 		g.drawLine((endX - 8),(startY - 4),endX,startY);
+
+		// Achseneinteilungsstriche zeichnen
+
+		// auf der X-Achse
+		for (int i = startX; i < (endX - 50); i+= einheitx){
+			g.drawLine( (startX + i) , (startY - 4) , (startX + i) , (startY + 4) );
+		} // for
+
+		// auf der Y-Achse
+		for (int j = 25; j < (startY - 75) ; j+= einheity){
+			g.drawLine( (startX - 4) , (startY - j) ,  (startX + 4) , (startY - j) );
+		}
 	}
 
 

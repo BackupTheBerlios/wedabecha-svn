@@ -81,6 +81,8 @@ public class kurve {
 	private ArrayList datumJahresMittel = new ArrayList(1);
 	private ArrayList datumWochenMittel = new ArrayList(1);
 
+	protected zeichneLinienKurve zeichneLinienKurve;
+
 	// set- und get-Methoden für die Attribute der Kurve
 	protected void setExists(boolean exists){
 		this.exists = exists;
@@ -220,7 +222,7 @@ public class kurve {
 		switch(this.getKurvenStilIndex()){
 		    case 0:
 				hauptFensterUI.layeredPane.add(
-					new zeichneLinienKurve(
+					zeichneLinienKurve = new zeichneLinienKurve(
 						// wird später durch aktienkurve ersetzt
 						berechneMittelwerte.berechneJahresMittel(),
 						this.getFarbe()
@@ -230,7 +232,7 @@ public class kurve {
 			    break;
 		    case 1:
 				hauptFensterUI.layeredPane.add(
-					new zeichneLinienKurve(
+					zeichneLinienKurve = new zeichneLinienKurve(
 						berechneMittelwerte.berechneTagesMittel(),
 						this.getFarbe()
 					),
@@ -239,7 +241,7 @@ public class kurve {
 			    break;
 		    case 2:
 				hauptFensterUI.layeredPane.add(
-					new zeichneLinienKurve(
+					zeichneLinienKurve = new zeichneLinienKurve(
 						berechneMittelwerte.berechneWochenMittel(),
 						this.getFarbe()
 					),
@@ -248,7 +250,7 @@ public class kurve {
 			    break;
 		    case 3:
 				hauptFensterUI.layeredPane.add(
-					new zeichneLinienKurve(
+					zeichneLinienKurve = new zeichneLinienKurve(
 						berechneMittelwerte.berechneMonatsMittel(),
 						this.getFarbe()
 					),
@@ -257,7 +259,7 @@ public class kurve {
 			    break;
 		    case 4:
 				hauptFensterUI.layeredPane.add(
-					new zeichneLinienKurve(
+					zeichneLinienKurve = new zeichneLinienKurve(
 						berechneMittelwerte.berechneJahresMittel(),
 						this.getFarbe()
 					),

@@ -41,21 +41,21 @@ class zeichneLinie extends JComponent{
     private int startY;
     private int endX;
 	private int endY;
-    
-    
+
+
 	public zeichneLinie(int startXP, int startYP, int endXP, int endYP){
 		startX = startXP;
 		startY = startYP;
 		endX = endXP;
 		endY = endYP;
-		this.setSize(1600, 1200);
+		this.setSize(hauptFensterUI.layeredPane.getWidth(), hauptFensterUI.layeredPane.getHeight());
 	}// zeichneLinie()
-    
+
 	protected void setGroesse(int breite, int hoehe){
 		this.setSize(breite, hoehe);
 	}//setGroesse()
-	
-	
+
+
 	public void paintComponent(Graphics linie){
 		linie.drawLine(startX, startY, endX, endY);
 	}// paintComponent(GGraphics linie)
@@ -71,29 +71,29 @@ class zeichnePfeil extends JComponent{
 	private int endY;
 	private Point st;
 	private Point end;
-    
-    
+
+
 	public zeichnePfeil(int startXP, int startYP, int endXP, int endYP){
 		startX = startXP;
 		startY = startYP;
 		endX = endXP;
 		endY = endYP;
-		this.setSize(1600, 1200);
+		this.setSize(hauptFensterUI.layeredPane.getWidth(), hauptFensterUI.layeredPane.getHeight());
 	}// zeichnePfeil()
-        
-    
-	/* Algorithmus zum zeichnen des Pfeils zum größten teil aus dem Buch 
+
+
+	/* Algorithmus zum zeichnen des Pfeils zum größten teil aus dem Buch
 	 * "Profesional Java Fundamentals" entnommen */
-	
+
 	public void paintComponent(Graphics pfeil){
-		
+
 		st = new Point(startX, startY);
 		end = new Point(endX, endY);
-		Point upLine = new Point(0,0); 
+		Point upLine = new Point(0,0);
 		Point downLine = new Point(0,0);
 		int direction ;
 		double theta;
-		
+
 		if((end.y -st.y) >= 0) direction = -1;
 		else direction = 1;
 
@@ -119,7 +119,7 @@ class zeichnePfeil extends JComponent{
 		pfeil.drawLine(end.x, end.y, upLine.x, upLine.y);
 		pfeil.drawLine(end.x, end.y, downLine.x, downLine.y);
 		pfeil.drawLine(st.x, st.y, end.x, end.y);
-		
+
 	}// zeichnePfeil()
 }// zeichnePfeil
 
@@ -127,22 +127,22 @@ class zeichnePfeil extends JComponent{
 // Diese Klasse dient zum Zeichnen eines Textes
 
 class zeichneText extends JComponent{
-	
+
     private int startX;
     private int startY;
     private String text;
-        
-    
+
+
     public zeichneText(String textP, int startXP, int startYP){
 		text = textP;
 		startX = startXP;
 		startY = startYP;
-		this.setSize(1600, 1200);
+		this.setSize(hauptFensterUI.layeredPane.getWidth(), hauptFensterUI.layeredPane.getHeight());
     }// zeichneText()
-    
-    
+
+
     public void paintComponent(Graphics text){
 	    text.drawString(this.text, this.startX, this.startY);
     }// paintComponent(Graphics text)
-	
+
 }// zeichneText

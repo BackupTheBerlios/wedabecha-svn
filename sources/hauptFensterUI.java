@@ -60,9 +60,12 @@ public class hauptFensterUI extends JFrame {
 	protected kontextMenuUI kontext = new kontextMenuUI();
 
 	// konstruktor
-	public hauptFensterUI(){
-	    this.fensterBreite = 700;
-	    this.fensterHoehe = 500;
+	public hauptFensterUI(int breite, int hoehe){
+	    this.fensterBreite = breite;
+	    this.fensterHoehe = hoehe;
+		mainPane.setSize(breite, hoehe);
+	    layeredPane.setSize(breite, hoehe);
+	    toolbarPane.setSize(breite, 35);
 	    this.pack();
 	} // hauptFensterUI()
 
@@ -70,7 +73,7 @@ public class hauptFensterUI extends JFrame {
 	public static void setGroesse(int breite, int hoehe){
 	    mainPane.setSize(breite, hoehe);
 	    layeredPane.setSize(breite, hoehe);
-	    toolbarPane.setSize(breite, hoehe);
+	    toolbarPane.setSize(breite, 35);
 	} //setGroesse()
 
 
@@ -257,8 +260,12 @@ public class hauptFensterUI extends JFrame {
 					d = layeredPane.getSize();
 					zeichneRaster.setGroesse(d.width, d.height);
 					hauptFensterUI.setGroesse(d.width, d.height);
-					koordSys.setGroesse(d.width,d.height);
-					//zeichneLinie.setGroesse(d.width, d.height);
+					koordSys.setGroesse(d.width, d.height);
+					for(int i = 1; i <= 5; i++){
+						if(wedabecha.getKurve(i).isset()){
+							wedabecha.getKurve(i).zeichneLinienKurve.setGroesse(d.width, d.height);
+						} // if()
+					} // for
 					toolBar.setBreite(d.width);
 					System.out.println(d);
 				} // if
@@ -266,10 +273,5 @@ public class hauptFensterUI extends JFrame {
 		}); // addComponentListener()
 
 	} // pack()
-
-
-	public static void main(String args[]){
-		hauptFensterUI wedabecha = new hauptFensterUI();
-	} // main(String args[])
 
 } // hauptFensterUI
