@@ -27,37 +27,55 @@ import javax.swing.filechooser.FileFilter;
 
 public class exportiereTabelleUI {
 	public exportiereTabelleUI () {
-		final JFileChooser fc = new JFileChooser();
+		
+		//Tabellennummer abfragen
+		String input = JOptionPane.showInputDialog("Welche Tabelle exportieren (1-5) ?" );
+		int tablenumber = Integer.parseInt( input );
+		
+		if (tablenumber > 0 & tablenumber < 6) {
 
-		fc.setDialogTitle("Tabellendaten exportieren");
-		fc.setDialogType(JFileChooser.SAVE_DIALOG);
+
+			JFileChooser fc = new JFileChooser();
+
+			fc.setDialogTitle("Tabellendaten exportieren");
+			fc.setDialogType(JFileChooser.SAVE_DIALOG);
 		
 		
-		fc.setFileFilter( new FileFilter() {
+			//zeigt nur Dateien mit der Endung .weda und .csv an
+			fc.setFileFilter( new FileFilter() {
 
-			public boolean accept(File f) {
-				return f.isDirectory() ||
-				f.getName().toLowerCase().endsWith(".weda") ||
-				f.getName().toLowerCase().endsWith(".csv");
-			}//accept
+				public boolean accept(File f) {
+					return f.isDirectory() ||
+					f.getName().toLowerCase().endsWith(".weda") ||
+					f.getName().toLowerCase().endsWith(".csv");
+				}//accept
 
-			public String getDescription() {
-				return "Tabellendateien (*.weda, *.csv)";
+				public String getDescription() {
+					return "Tabellendateien (*.weda, *.csv)";
 				}
-  			} ); // zeigt nur Dateien mit der Endung .weda und .csv an
+  			} ); 
 
-		int returnVal = fc.showSaveDialog( null );
+			int returnVal = fc.showSaveDialog( null );
 
-		if ( returnVal == JFileChooser.APPROVE_OPTION ) {
-			// Rückgabe der gewählten Datei als "file"
-			File file = fc.getSelectedFile();
-			System.out.println( file.getName() );
-			// hier muss die tabellenNummer noch irgendwo herkommen
-			toWeda.writeFile(file.getAbsolutePath(), 1);
-		} else {
-			System.out.println( "Auswahl abgebrochen" );
-		} // fi
+			if ( returnVal == JFileChooser.APPROVE_OPTION ) {
+				// Rückgabe der gewählten Datei als "file"
+				File file = fc.getSelectedFile();
+				System.out.println( file.getName() );
+				// hier muss die tabellenNummer noch irgendwo herkommen
+				toWeda.writeFile(file.getAbsolutePath(), tablenumber);
+			} 
+		
+			else {
+				System.out.println( "Auswahl abgebrochen" );
+			} // fi
 
-		fc.setVisible(false); // is klar, ne
-	}
-} //exportiereTabelleUI()
+			fc.setVisible(false); // is klar, ne
+		}
+		
+		else {
+			JOptionPane.showMessageDialog( null, "Die Tabellennummer war falsch !" );
+		}//if
+		
+		}//exportiereTabelleUI()
+		
+}//class exportiereTabelleUI

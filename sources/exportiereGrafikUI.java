@@ -23,7 +23,6 @@
 import java.io.File;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
-import java.util.regex.*;
 
 public class exportiereGrafikUI {
 	private exportiereGrafik export = new exportiereGrafik();
@@ -50,7 +49,7 @@ public class exportiereGrafikUI {
 		int returnVal = fc.showSaveDialog( null );
 
 		if ( returnVal == JFileChooser.APPROVE_OPTION ) {
-			// Rückgabe der gew�lten Datei als "file"
+			// Rückgabe der gewälten Datei als "file"
 			File file = fc.getSelectedFile();
 			System.out.println( file.getName() );
 
