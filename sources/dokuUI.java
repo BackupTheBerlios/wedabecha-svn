@@ -22,9 +22,9 @@
  */
 
 /*
-	Diese Klasse dient zur Darstellung der Dokumentation, Kurzanleitung und der
- 	Hilfe. je nach bergebenen Werten wird der gewnschte Text in der TexrArea
- 	dargestellt
+	Diese Klasse dient zur Darstellung der Kurzanleitung. 
+	Je nach übergebenen Werten wird die gewünschte html-seite
+	dargestellt.
 */
 
 
@@ -34,7 +34,7 @@ import javax.swing.event.HyperlinkListener;
 import javax.swing.text.html.*;
 import java.awt.*; //wird fuer das Layout benoetigt
 import java.awt.event.*;
-import java.io.*; //wird benoeigt um die textdateien einzulesen
+import java.io.*;
 import java.io.File.*;
 import java.net.URI;
 import java.net.URL;
@@ -47,9 +47,9 @@ public class dokuUI extends JFrame {
 
     public dokuUI(String title) {
 		/*
-			der konstruktor soll noch zwei parameter erhalten (siehe
-			HauptMenuListener) die parameter sind vom Typ String und
-			können folgende Werte enthalten: "Kurzanleitung" und "Dokumentation"
+			Der Konstruktor bekommt entweder "Dokumentation" oder "Kurz-
+			anleitung" als String übergeben und setzt den jeweiligen Pfad
+			dafür.
 		*/
 
 		setTitle(title);
@@ -60,48 +60,61 @@ public class dokuUI extends JFrame {
 		}// else if()
 		
 		try {
-		    doku.setContentType("text/html");
-		    doku.setEditable(false);
-	    
+			// gibt an, wie die eingelesene Datei dargestellt werden soll
+			doku.setContentType("text/html");
+			doku.setEditable(false);
+			
+			/* Der eingelesene Pfad kann nur relativ sein, weil bei jedem,
+			 * das Programm ausführt der Pfad zum wedabecha-Ordner anders
+			 * sein kann. dieser relative Pfad wird dann vom Programm in
+			 * einen absoluten Pfad, nach dem Schema: file://c:/... um- 
+			 * gewandelt, der dann auch überall gleich ist, und dies wird
+			 * dann zu einer URL gemacht, die dann von dem JEditorPane 
+			 * interpretiert werden kann.
+			 */
+			
 		    URL url = path.toURI().toURL();
 		    doku.setPage(url);
 	    	    
 		    
-		    /*Der HyperlinkListener dient, wie der Name schon sagt, dazu, die html-Links
-		     *in der geladenen Seite anzusteuern.*/
+		    /* Der HyperlinkListener dient, wie der Name schon sagt, dazu, die html-Links
+		     * in der geladenen Seite anzusteuern.
+			 */
 		    
 		    doku.addHyperlinkListener(new HyperlinkListener(){
-			public void hyperlinkUpdate( HyperlinkEvent event ){
-			    HyperlinkEvent.EventType typ = event.getEventType();
-			    if ( typ == HyperlinkEvent.EventType.ACTIVATED ){
-			        try{
-				    setTitle( ""+event.getURL() );
-				    doku.setPage( event.getURL() );
-				} catch( IOException e ) {
-				    JOptionPane.showMessageDialog( null,
-						    "Can't follow link to "
-						    + event.getURL().toExternalForm(),
-						    "Error",
-						    JOptionPane.ERROR_MESSAGE);
-				}// try-catch()
-			    }// if()
-			}// hyperlinkUpdate()
+				public void hyperlinkUpdate( HyperlinkEvent event ){
+					HyperlinkEvent.EventType typ = event.getEventType();
+					if ( typ == HyperlinkEvent.EventType.ACTIVATED ){
+						try{
+							setTitle( ""+event.getURL() );
+							doku.setPage( event.getURL() );
+						} catch( IOException e ) {
+							JOptionPane.showMessageDialog( null,
+								"Can't follow link to "
+								+ event.getURL().toExternalForm(),
+								"Error",
+								JOptionPane.ERROR_MESSAGE);
+						}// try-catch()
+					}// if()
+				}// hyperlinkUpdate()
 		    }// HyperlinkListener()
 		    );// addHyperlinkListener
 
 	    	    
-		 } catch (IOException except){
-		     // fehlermeldung falls datei nicht gelesen werden kann
-		    JOptionPane.showMessageDialog(null,
-			"Die Datei, welche die Kurzanleitung enthaelt, konnte nicht gelesen werden.","Dateifehler",
-			JOptionPane.ERROR_MESSAGE );
-		 } // try-catch()
+		} catch (IOException except){
+			// fehlermeldung falls datei nicht gelesen werden kann
+			JOptionPane.showMessageDialog(null,
+				"Die Datei, welche die Kurzanleitung enthaelt, konnte nicht gelesen werden."
+				,"Dateifehler",
+				JOptionPane.ERROR_MESSAGE );
+		} // try-catch()
 	
 		this.pack();
 	} // dokuUI();
 
 
 	public void pack() {
+		// Layout
 		getContentPane().setLayout(new BorderLayout(5,5));
 
 		JPanel gridLayoutPanel = new JPanel();

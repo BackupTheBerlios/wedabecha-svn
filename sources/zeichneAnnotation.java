@@ -16,113 +16,133 @@
  *   Free Software Foundation, Inc.,                                        *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
+/**
+    @author Matthias Tylkowski
+    @since 2005-01-31
+ */
 
 import javax.swing.*;
 import java.awt.*;
 import java.lang.Math;
 
+/**
+ * Diese Klasse dient als Sammelklasse, für die verschiedenen Annotationnen
+ * (Text, Linie, Pfeil)
+ */
+
 public class zeichneAnnotation extends JComponent{
 
 }// zeichneAnnotation
 
+// Diese Klasse dient zum zeichnen einer Linie
 
 class zeichneLinie extends JComponent{
     private int startX;
     private int startY;
     private int endX;
-    private int endY;
+	private int endY;
     
     
-    public zeichneLinie(int startXP, int startYP, int endXP, int endYP){
-	startX = startXP;
-	startY = startYP;
-	endX = endXP;
-	endY = endYP;
-	this.setSize(700, 500);
-    }// zeichneLinie()
+	public zeichneLinie(int startXP, int startYP, int endXP, int endYP){
+		startX = startXP;
+		startY = startYP;
+		endX = endXP;
+		endY = endYP;
+		this.setSize(1600, 1200);
+	}// zeichneLinie()
     
-    protected void setGroesse(int breite, int hoehe){
-	this.setSize(breite, hoehe);
-    }//setGroesse()
+	protected void setGroesse(int breite, int hoehe){
+		this.setSize(breite, hoehe);
+	}//setGroesse()
 	
 	
-    public void paintComponent(Graphics linie){
-	    linie.drawLine(startX, startY, endX, endY);
-    }// paintComponent(GGraphics linie)
+	public void paintComponent(Graphics linie){
+		linie.drawLine(startX, startY, endX, endY);
+	}// paintComponent(GGraphics linie)
 }// zeichneLinie
 
 
+// Diese Klasse dient zum zeichnen eines Pfeils
+
 class zeichnePfeil extends JComponent{
-    private int startX;
-    private int startY;
-    private int endX;
-    private int endY;
-    private Point st;
-    private Point end;
+	private int startX;
+	private int startY;
+	private int endX;
+	private int endY;
+	private Point st;
+	private Point end;
     
     
-    public zeichnePfeil(int startXP, int startYP, int endXP, int endYP){
-	startX = startXP;
-	startY = startYP;
-	endX = endXP;
-	endY = endYP;
-	this.setSize(700, 500);
-    }// zeichnePfeil()
+	public zeichnePfeil(int startXP, int startYP, int endXP, int endYP){
+		startX = startXP;
+		startY = startYP;
+		endX = endXP;
+		endY = endYP;
+		this.setSize(1600, 1200);
+	}// zeichnePfeil()
         
     
-    /*Algorithmus zum zeichnen des Pfeils zum größten teil aus dem Buch 
-     "Profesional Java Fundamentals" entnommen */
-    public void paintComponent(Graphics pfeil){
-	st = new Point(startX, startY);
-	end = new Point(endX, endY);
-	Point upLine = new Point(0,0);
-	Point downLine = new Point(0,0);
-	int direction ;
-	double theta;
-	    if((end.y -st.y) >= 0) direction = -1;
+	/* Algorithmus zum zeichnen des Pfeils zum größten teil aus dem Buch 
+	 * "Profesional Java Fundamentals" entnommen */
+	
+	public void paintComponent(Graphics pfeil){
+		
+		st = new Point(startX, startY);
+		end = new Point(endX, endY);
+		Point upLine = new Point(0,0); 
+		Point downLine = new Point(0,0);
+		int direction ;
+		double theta;
+		
+		if((end.y -st.y) >= 0) direction = -1;
 		else direction = 1;
 
-        // Rotate the point by 30 deg
+		// den Punkt um 30° drehen
 
-        double angle = Math.atan((double)(end.x-st.x)/(double)(end.y-st.y));
-        int len = 10;
-        Point rel = new Point(len, len);
+		double angle = Math.atan((double)(end.x-st.x)/(double)(end.y-st.y));
+		int len = 10;
+		Point rel = new Point(len, len);
 
-        angle += Math.PI/2;
-        theta = -(angle + Math.PI/6);
-        //Rotate the line up
+		angle += Math.PI/2;
+		theta = -(angle + Math.PI/6);
 
-        upLine.x =end.x -(int)( len* Math.cos(theta)*direction);
-        upLine.y =end.y -(int)( len* Math.sin(theta)*direction);
-        // Rotate the line down
+		// Linie nach oben drehen
+		upLine.x =end.x -(int)( len* Math.cos(theta)*direction);
+		upLine.y =end.y -(int)( len* Math.sin(theta)*direction);
 
-        theta = -(angle - Math.PI/6);
-        downLine.x =end.x -(int)( len* Math.cos(theta)*direction);
-        downLine.y =end.y -(int)( len* Math.sin(theta)*direction);
+		// Linie nach unten drehen
+		theta = -(angle - Math.PI/6);
+		downLine.x =end.x -(int)( len* Math.cos(theta)*direction);
+		downLine.y =end.y -(int)( len* Math.sin(theta)*direction);
 
-        // Now the draw the arrow lines
-        pfeil.drawLine(end.x, end.y, upLine.x, upLine.y);
-        pfeil.drawLine(end.x, end.y, downLine.x, downLine.y);
-	pfeil.drawLine(st.x, st.y, end.x, end.y);
-   }
+		// Pfeil zeichnen
+		pfeil.drawLine(end.x, end.y, upLine.x, upLine.y);
+		pfeil.drawLine(end.x, end.y, downLine.x, downLine.y);
+		pfeil.drawLine(st.x, st.y, end.x, end.y);
+		
+	}// zeichnePfeil()
 }// zeichnePfeil
 
 
+// Diese Klasse dient zum Zeichnen eines Textes
+
 class zeichneText extends JComponent{
+	
     private int startX;
     private int startY;
     private String text;
         
     
     public zeichneText(String textP, int startXP, int startYP){
-	text = textP;
-	startX = startXP;
-	startY = startYP;
-	this.setSize(700, 500);
+		text = textP;
+		startX = startXP;
+		startY = startYP;
+		this.setSize(1600, 1200);
     }// zeichneText()
     
     
     public void paintComponent(Graphics text){
 	    text.drawString(this.text, this.startX, this.startY);
-    }// paintComponent(Graphics text)    
+    }// paintComponent(Graphics text)
+	
 }// zeichneText

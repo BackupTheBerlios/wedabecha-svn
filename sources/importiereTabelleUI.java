@@ -214,7 +214,7 @@ class importiereTabelleUI extends JDialog  {
 					    // beim klick auf [OK] alle importierten Tabellen als Kurve zeichnen
 						if(wedabecha.getKurve(i).isset()){
 							wedabecha.getKurve(i).zeichneKurve();
-					    } // if
+						} // if
 
 						if (speicherTabelle[i - 1].isSelected()){
 							toWeda.writeFile("../daten/" + tabellen[i - 1].getImportName() + ".weda",i);
