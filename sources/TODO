@@ -5,12 +5,9 @@ lassen.
 
 ##############################################################################
 
-Zahlen auf double umstellen. (Stehen im Moment noch auf Integer)
-
-##############################################################################
-
 darstellungsTypUI:
 Interaktion mit der kurve
+
 ##############################################################################
 
 zeichneKurve
@@ -49,7 +46,7 @@ Hilfe, Dokumentation, Kurzanleitung
 
 ##############################################################################
 
-Farbauswahldialog fehlt noch und die Übergabe der "Farbwerte" an kurve.java
+Übergabe der einzelnen "Farbwerte" für jede Kurve an kurve.java fehlt noch
 
 ##############################################################################
 
@@ -85,6 +82,10 @@ WÜNSCHE :
  - Proportionales vergrössern des HauptFensters
  - Tooltips und Statusleiste
  - Menupunkt [Hilfe]->[Lizenz] ?
+ - Menupunkt [Annotation] 
+ 	-> Pfeil zeichnen
+ 	-> Linie zeichnen
+ 	-> Text einfügen 
 
 ##############################################################################
 

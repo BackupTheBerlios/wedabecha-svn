@@ -208,6 +208,9 @@ public class importiereTabelle {
 
 				for(i = anfang, j = 0; i < ende && j < ende; i++, j++){
 					 // System.out.println(zeileL[i]); // debug-ausgabe
+					 if (zeileL[i].matches(",")){
+					 	zeileL[i] = zeileL[i].replace(',','.');
+					 }
 					zeileResL[j] = Double.parseDouble(zeileL[i]);
 					// debug += zeileResL[j] + "|";
 				} // for()

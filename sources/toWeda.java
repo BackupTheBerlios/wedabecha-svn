@@ -65,7 +65,7 @@ class toWeda {
 						if (j != werteA.length - 1 )subZeile += ";";
 
 				}
- 				zeile += datenA[0] + ";" + datenA[1] + ";" + datenA[2] + ";" + subZeile;
+ 				zeile += datenA[0] + "-" + datenA[1] + "-" + datenA[2] + ";" + subZeile;
 				if (i != werteAL.size() - 1) zeile += "\n";
 				fa.write(zeile);
 				zeile = "";
