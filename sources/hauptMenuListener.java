@@ -101,6 +101,13 @@ class exportiereGrafikListener implements ActionListener {
 	} // actionPerformed(ActionEvent event)
 } // exportiereGrafikListener
 
+class oeffnenListener implements ActionListener {
+	// für den MenuPunkt [Datei]->Öffnen
+	public void actionPerformed(ActionEvent event){
+		openWeda oeffnenDialog = new openWeda();
+	} // actionPerformed(ActionEvent event)
+} // oeffnenListener
+
 
 class gitterButtonListener implements ActionListener{
         public void actionPerformed(ActionEvent e) {
