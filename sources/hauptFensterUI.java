@@ -141,6 +141,9 @@ public class hauptFensterUI extends JFrame {
 								wedabecha.getKurve(i).zeichneLinienKurve.dateBeginIndex = ((Integer)startDateSpinner.getValue()).intValue();
 								wedabecha.getKurve(i).zeichneLinienKurve.dateEndIndex = ((Integer)endDateSpinner.getValue()).intValue();
 							} // if
+
+							koordSys.setStartDateIndex( ((Integer)startDateSpinner.getValue()).intValue() );
+							koordSys.setEndDateIndex( ((Integer)endDateSpinner.getValue()).intValue() );
 						} // if
 					} // for
 				}

@@ -41,10 +41,10 @@ public class kurve {
 	// Diese Liste wird von der DarstellungsTypUI für die JComboBox benötigt
 	private static String kurvenStile[] = {
 		"Aktienkurve",
-		"Linienkurve (Tagesmittelwerte)",
-		"Linienkurve (Wochenmittelwerte)",
-		"Linienkurve (Monatsmittelwerte)",
-		"Linienkurve (Jahresmittelwerte)"/*,
+		"Linienkurve (Tagesmittelwerte)", // 1
+		"Linienkurve (Wochenmittelwerte)", // 2
+		"Linienkurve (Monatsmittelwerte)", // 3
+		"Linienkurve (Jahresmittelwerte)"/*, // 4
 		"gepunktete Linie",
 		"Balkendiagramm",
 		"gleitende Kurve"*/
@@ -137,12 +137,12 @@ public class kurve {
 
 
 	protected ArrayList getDaten(){
-		return this.daten;
+		return this.daten; // mehrzahl von datum
 	} // getDaten()
 
 
 	protected void setDaten(ArrayList daten){
-		this.daten = daten;
+		this.daten = daten; // mehrzahl von datum
 	} // setDaten()
 
 
