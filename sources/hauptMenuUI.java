@@ -26,6 +26,7 @@ public class hauptMenuUI {
 	// alle Bestandteile des Menüs als Klassenatrribute deklarieren
 	private JMenuBar mainMenuBar = new JMenuBar();
 		private JMenu dateiMenu = new JMenu("Datei");
+			private JMenuItem oeffneDateiItem = new JMenuItem("Oeffnen");
 			private JMenuItem importiereTabelleMenuItem = new JMenuItem("Tabelle importieren");
 			private JMenuItem exportiereTabelleMenuItem = new JMenuItem("Tabelle exportieren");
 			private JMenuItem exportiereGrafikMenuItem = new JMenuItem("Grafik exportieren");
@@ -52,6 +53,7 @@ public class hauptMenuUI {
 		// d.h. erst setze ich das dateimenü zusammen, bevor ich es zur MenuBar adde usw.
 
 		// beginn dateiMenu
+			this.dateiMenu.add(this.oeffneDateiItem);
 			this.dateiMenu.add(this.importiereTabelleMenuItem);
 				this.importiereTabelleMenuItem.addActionListener(new importiereTabelleListener());
 			this.dateiMenu.add(this.exportiereTabelleMenuItem);

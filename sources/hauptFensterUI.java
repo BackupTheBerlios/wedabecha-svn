@@ -25,7 +25,9 @@ import javax.swing.*;
 
 public class hauptFensterUI extends JFrame {
 	private JFrame hauptFenster = new JFrame("wedabecha");
-
+	private static kontextMenuUI popupMenu = new kontextMenuUI();
+	
+	
 	// konstruktor
 	public hauptFensterUI(){
 		this.pack();
@@ -57,7 +59,16 @@ public class hauptFensterUI extends JFrame {
 
 	public static void main(String args[]){
 		hauptFensterUI wedabecha = new hauptFensterUI();
-		// kontextMenuUI kontextMenu = new kontextMenuUI();
+		kontextMenuUI kontextMenu = new kontextMenuUI();
+			
+		addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent me ) {
+				if ( me.isPopupTrigger() ){
+					popupMenu.show( me.getComponent(), me.getX(), me.getY() );
+				} // if()
+			} // mouseReleased(MouseEvent me)
+		} ); // addMouseListener()
+	
 	} // main(String args[])
 
 } // hauptFensterUI
