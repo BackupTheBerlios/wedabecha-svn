@@ -16,7 +16,14 @@
  *   Free Software Foundation, Inc.,                                        *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
+/**
+	@author
+		Dominic Hopf (dmaphy at users.berlios.de),
+		Martin Müller (mrtnmueller at users.berlios.de)
+	@since 2005-01-31
+	@version 0.0.1
 
+*/
 
 /**
 	speichert die Daten in Programmeigenem (CSV :D ) Format, das verknüpft werden kann.

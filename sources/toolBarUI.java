@@ -16,6 +16,15 @@
  *   Free Software Foundation, Inc.,                                        *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
+/**
+	@author
+		Dominic Hopf (dmaphy at users.berlios.de),
+		Robert Exner (ashrak at users.berlios.de),
+		Matthias Tylkowski (micron at users.berlios.de)
+	@since 2005-02-01
+	@version 0.0.1
+
+*/
 
 import java.awt.event.*;
 import javax.swing.*;
@@ -27,10 +36,14 @@ public class toolBarUI /*implements ActionListener*/{
 			private JButton oeffnenbutton = new JButton(oeffnen);
 		private ImageIcon speichern = new ImageIcon("Images/speichern.gif");
 			private JButton speichernbutton = new JButton(speichern);
-		private ImageIcon undo = new ImageIcon("Images/undo.gif");
-			private JButton undobutton = new JButton(undo);
-		private ImageIcon redo = new ImageIcon("Images/redo.gif");
-			private JButton redobutton = new JButton(redo);
+		/*
+			werden erst gebraucht, wenn die Funktion implementiert ist
+		*/
+// 		private ImageIcon undo = new ImageIcon("Images/undo.gif");
+// 			private JButton undobutton = new JButton(undo);
+// 		private ImageIcon redo = new ImageIcon("Images/redo.gif");
+// 			private JButton redobutton = new JButton(redo);
+		
 		private ImageIcon gitter = new ImageIcon("Images/gitter.gif");
 			private JToggleButton gitterbutton = new JToggleButton(gitter);
 		private ImageIcon liniezeichnen = new ImageIcon("Images/linie.gif");
@@ -77,17 +90,21 @@ public class toolBarUI /*implements ActionListener*/{
 		this.toolBar.add(gitterbutton);
 			this.gitterbutton.setContentAreaFilled(true);
 			this.gitterbutton.addActionListener(new gitterButtonListener());
+			this.gitterbutton.setToolTipText("Raster anzeigen");
 		this.toolBar.addSeparator();
 		this.toolBar.add(liniezeichnenbutton);
 			this.liniezeichnenbutton.setContentAreaFilled(true);
 			this.liniezeichnenbutton.addActionListener(new linieButtonListener());
+			this.liniezeichnenbutton.setToolTipText("Linie zeichnen");
 		this.toolBar.add(pfeilzeichnenbutton);
 			this.pfeilzeichnenbutton.setContentAreaFilled(true);
 			this.pfeilzeichnenbutton.addActionListener(new pfeilButtonListener());
+			this.pfeilzeichnenbutton.setToolTipText("Pfeil zeichnen");
 		this.toolBar.add(textzeichnenbutton);
 			this.textzeichnenbutton.setContentAreaFilled(true);
 			this.textzeichnenbutton.addActionListener(new textButtonListener());
-		//die TabellenButtons werden erst gebraucht wenn mehrere Tabellen angezeigt werden können
+			this.textzeichnenbutton.setToolTipText("Text einf\u00fcgen");
+		
 		this.toolBar.addSeparator();
 		this.toolBar.addSeparator();
 		
@@ -97,7 +114,6 @@ public class toolBarUI /*implements ActionListener*/{
 			this.kurveButton[i].setEnabled(false);
 		}// for
 		
-
 		this.toolBar.setFloatable(false);
 		this.toolBar.setBorderPainted(true);
 	} // pack()

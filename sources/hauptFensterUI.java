@@ -154,7 +154,7 @@ public class hauptFensterUI extends JFrame {
 				    if(text != null){
 					zeichneText zeichneText = new zeichneText(text, me.getX(), me.getY());
 					layeredPane.add(zeichneText, new Integer(9));
-					System.out.println(text);
+// 					System.out.println(text);
 				    }// if
 				}// if
 			    }// if
@@ -255,6 +255,7 @@ public class hauptFensterUI extends JFrame {
 		// Klasse zur dynamischen Größenbestimmung des Frames
 		hauptFensterUI.mainPane.addComponentListener(new ComponentAdapter(){
 			public void componentResized(ComponentEvent event){
+
 				if(event.getID() == ComponentEvent.COMPONENT_RESIZED){
 					JLayeredPane layeredPane = (JLayeredPane) event.getComponent();
 					d = layeredPane.getSize();

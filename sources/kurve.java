@@ -16,10 +16,19 @@
  *   Free Software Foundation, Inc.,                                        *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
+/**
+	@author
+		Matthias Tylkowski (micron at users.berlios.de),
+		Robert Exner (ashrak at users.berlios.de),
+		Dominic Hopf (dmaphy at users.berlios.de)
+	@since 2005-02-01
+	@version 0.0.1
+
+*/
 
 /**
-	Dies ist eine das "Basisklassen" für wedabecha.
-	hier werden alle Eigenschaften und Informationen einer Kurve gespeichert.
+	Dies ist eine der "Basisklassen" für wedabecha.
+	Hier werden alle Eigenschaften und Informationen einer Kurve gespeichert.
 	Die meisten UI's verändern diese Eigenschaften.
 	Damit können dann weitere Berechnungen angestellt werden,
 	um die letztendliche grafische Darstellung zu berechnen und auf dem Bildschirm

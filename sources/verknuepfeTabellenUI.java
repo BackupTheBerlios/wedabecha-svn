@@ -16,6 +16,14 @@
  *   Free Software Foundation, Inc.,                                        *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
+/**
+	@author
+		Robert Exner (ashrak at users.berlios.de),
+		Dominic Hopf (dmaphy at users.berlios.de)
+	@since 2005-02-01
+	@version 0.0.1
+
+*/
 
 import java.awt.event.*;
 import javax.swing.*;
