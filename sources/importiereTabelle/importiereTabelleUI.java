@@ -20,8 +20,21 @@
 package importiereTabelle;
 
 public class importiereTabelleUI {
+	private static importiereTabelle hinterGrundKlasse[] = {new importiereTabelle(),
+															new importiereTabelle(),
+															new importiereTabelle(),
+															new importiereTabelle(),
+															new importiereTabelle(),
+															};
+
 	//konstruktor
 	public importiereTabelleUI(){
 		new mainImportDialogUI();
 	} // importiereTabelleUI()
+
+
+	protected static importiereTabelle getHinterGrundKlasse(int tabellenNr){
+		/**tabellenNr kann nur eine ganze Zahl von 0 bis 4 sein */
+		return hinterGrundKlasse[tabellenNr];
+	} // getHinterGrundKlasse()
 } // importiereTabelleUI

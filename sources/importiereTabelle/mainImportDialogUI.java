@@ -49,11 +49,11 @@ public class mainImportDialogUI extends JDialog  {
 	private JButton oeffneTabelle4 = new JButton("\u00D6ffnen");
 	private JButton oeffneTabelle5 = new JButton("\u00D6ffnen");
 
-	private JTextField pfadTabelle1 = new JTextField(20);
-	private JTextField pfadTabelle2 = new JTextField(20);
-	private JTextField pfadTabelle3 = new JTextField(20);
-	private JTextField pfadTabelle4 = new JTextField(20);
-	private JTextField pfadTabelle5 = new JTextField(20);
+	private static JTextField pfadTabelle1 = new JTextField(20);
+	private static JTextField pfadTabelle2 = new JTextField(20);
+	private static JTextField pfadTabelle3 = new JTextField(20);
+	private static JTextField pfadTabelle4 = new JTextField(20);
+	private static JTextField pfadTabelle5 = new JTextField(20);
 
 	private JCheckBox speicherTabelle1 = new JCheckBox("Speichern");
 	private JCheckBox speicherTabelle2 = new JCheckBox("Speichern");
@@ -65,6 +65,13 @@ public class mainImportDialogUI extends JDialog  {
 	// objekte unten
 	private JButton okKnopf = new JButton("OK");
 	private JButton abbrechenKnopf = new JButton("Abbrechen");
+
+
+	// konstruktor
+	public mainImportDialogUI(){
+		this.pack();
+	} // importiereTabelleUI
+
 
 	public void pack(){
 		// pack() setzt das dialogfeld zusammen
@@ -134,7 +141,6 @@ public class mainImportDialogUI extends JDialog  {
 		this.bottomPanel.add(this.okKnopf);
 			this.okKnopf.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
-					//System.out.println(importiereTabelle.toString());
 					setVisible(false);
 				} //  actionPerformed(ActionEvent event)
 			});
@@ -158,37 +164,24 @@ public class mainImportDialogUI extends JDialog  {
 	} // pack()
 
 
-	// konstruktor
-	public mainImportDialogUI(){
-		this.pack();
-	} // importiereTabelleUI
-
-
 	private void showSubDialog(int tabellenNummer) {
 		new subImportDialogUI(tabellenNummer);
-		/*switch (tabellenNummer){
-			case 1: pfadTabelle1.setText();
-				break;
-			case 2: pfadTabelle2.setText(auswahlDialog.getSelectedFile().getName());
-				break;
-			case 3: pfadTabelle3.setText(auswahlDialog.getSelectedFile().getName());
-				break;
-			case 4: pfadTabelle4.setText(auswahlDialog.getSelectedFile().getName());
-				break;
-			case 5: pfadTabelle5.setText(auswahlDialog.getSelectedFile().getName());
-				break;
-		} // switch*/
 	} // showSubDialog
 
 
-	public void setPfad(String pfad, int nr){
+	public static void setPfad(String pfad, int nr){
 		switch (nr){
-			case 1: this.pfadTabelle1.setText(pfad);break;
-			case 2: this.pfadTabelle2.setText(pfad);break;
-			case 3: this.pfadTabelle3.setText(pfad);break;
-			case 4: this.pfadTabelle4.setText(pfad);break;
-			case 5: this.pfadTabelle5.setText(pfad);break;
+			case 1: pfadTabelle1.setText(pfad);break;
+			case 2: pfadTabelle2.setText(pfad);break;
+			case 3: pfadTabelle3.setText(pfad);break;
+			case 4: pfadTabelle4.setText(pfad);break;
+			case 5: pfadTabelle5.setText(pfad);break;
 		}
 	} // setPfad
+
+
+	private void clearFields(){
+
+	} // clearFields()
 
 } // importiereTabelleUI
