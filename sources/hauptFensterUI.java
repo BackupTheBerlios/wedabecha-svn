@@ -28,6 +28,8 @@ import javax.swing.*;
 public class hauptFensterUI extends JFrame {
 	static JFrame hauptFenster = new JFrame("wedabecha");
 	protected static JLayeredPane layeredPane = new JLayeredPane();
+	protected static JLayeredPane toolbarPane = new JLayeredPane();
+	protected static JLayeredPane mainPane = new JLayeredPane();
 	Dimension d;
 
 	protected int fensterBreite;
@@ -64,8 +66,22 @@ public class hauptFensterUI extends JFrame {
 
 		// JLayeredPane wird als neue ContentPane eingesetzt
 		layeredPane.setOpaque(true); // ContentPane muss durchsichtig sein
-		hauptFensterUI.hauptFenster.setContentPane(layeredPane);
-
+		toolbarPane.setOpaque(true);
+		mainPane.setOpaque(true);
+		
+		hauptFensterUI.hauptFenster.setContentPane(mainPane);
+		mainPane.setSize(fensterBreite,fensterHoehe);
+		mainPane.setVisible(true);
+		
+		hauptFensterUI.hauptFenster.getContentPane().add(toolbarPane);
+		hauptFensterUI.hauptFenster.getContentPane().add(layeredPane);
+		
+		toolbarPane.setSize(fensterBreite,35);
+		
+		layeredPane.setSize(fensterBreite,fensterHoehe);
+		toolbarPane.setVisible(true);
+		layeredPane.setVisible(true);
+		
 		// Raster der neuen ContentPane adden
 		final zeichneRaster zeichneRaster = new zeichneRaster(this.fensterBreite,this.fensterHoehe);
 		hauptFensterUI.layeredPane.add(zeichneRaster, JLayeredPane.DEFAULT_LAYER);
@@ -73,7 +89,7 @@ public class hauptFensterUI extends JFrame {
 		final toolBarUI toolBar = new toolBarUI(this.fensterBreite);
 
 		// Werkzeugleiste einbinden
-		hauptFensterUI.layeredPane.add(toolBar.getToolBar(), JLayeredPane.PALETTE_LAYER);
+		hauptFensterUI.toolbarPane.add(toolBar.getToolBar(), JLayeredPane.DEFAULT_LAYER);
 
 		hauptFensterUI.hauptFenster.setLocation(Xposition,Yposition);
 		hauptFensterUI.hauptFenster.setResizable(true);
@@ -200,7 +216,7 @@ public class hauptFensterUI extends JFrame {
 		
 
 		// Klasse zur dynamischen Größenbestimmung des Frames
-		hauptFensterUI.layeredPane.addComponentListener(new ComponentAdapter(){
+		hauptFensterUI.mainPane.addComponentListener(new ComponentAdapter(){
 			public void componentResized(ComponentEvent event){
 			if(event.getID() == ComponentEvent.COMPONENT_RESIZED){
 				JLayeredPane layeredPane = (JLayeredPane) event.getComponent();
