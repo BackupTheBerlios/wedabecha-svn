@@ -89,6 +89,62 @@ public class hauptFensterUI extends JFrame {
 				} // if()
 			} // mouseReleased(MouseEvent me)
 		} ); // addMouseListener()
+		
+		this.layeredPane.addMouseListener(new MouseAdapter(){
+			public void mouseReleased(MouseEvent me) {
+			    // wenn der ToggleButton in der Toolbar aktiviert ist...
+			    if(toolBar.textGewaehlt()){
+				// ...reagiert erst der MouseListener auf den Linksklick
+				if(me.getButton() == me.BUTTON1){
+				    String text = JOptionPane.showInputDialog(null, 
+								"Bitte den darzustellenden Text eingeben",
+								"neues Textfeld erstellen.",
+								JOptionPane.QUESTION_MESSAGE);
+				    zeichneText zeichneText = new zeichneText(text, me.getX(), me.getY());
+				    layeredPane.add(zeichneText, JLayeredPane.DRAG_LAYER, 8);
+				    System.out.println(text);
+				}// if
+			    }// if
+			}// mouseReleased(MouseEvent me)
+		}// MouseAdapter
+		);// addMouseListener()
+		
+		
+		this.layeredPane.addMouseListener(new MouseAdapter(){
+			private int startX;
+			private int endX;
+			private int startY;
+			private int endY;
+			private int zaehler;
+			
+			public void mouseReleased(MouseEvent me) {
+			    // wenn der ToggleButton in der Toolbar aktiviert ist...
+			    if(toolBar.linieGewaehlt()){
+				// ...reagiert erst der MouseListener auf den Linksklick
+				if(me.getButton() == me.BUTTON1){
+				    switch(zaehler){
+					case 0:
+					    startX = me.getX();
+					    startY = me.getY();
+					    zaehler = 1;
+					    break;
+					case 1:
+					    endX = me.getX();
+					    endY = me.getY();
+					    zaehler = 0;
+					    break;
+				    }// switch(zaehler)
+				    
+				    System.out.println(startX+" "+startY+" "+endX+" "+endY);
+				    zeichneLinie zeichneLinie = new zeichneLinie(startX, startY, endX, endY);
+				    zeichneLinie.setOpaque(true);
+				    layeredPane.add(zeichneLinie, JLayeredPane.DEFAULT_LAYER, 7);
+				}// if	
+			    }// if
+			}// mouseReleased(MouseEvent me)
+		}// MouseAdapter
+		);// addMouseListener()
+		
 
 		// Klasse zur dynamischen Größenbestimmung des Frames
 		this.layeredPane.addComponentListener(new ComponentAdapter(){

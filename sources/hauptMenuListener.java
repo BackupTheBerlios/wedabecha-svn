@@ -26,12 +26,14 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 
+
 class importiereTabelleListener implements ActionListener {
 	// für den MenuPunkt [Datei]->[Tabelle importieren]
 	public void actionPerformed(ActionEvent event){
 		importiereTabelle.importiereTabelleUI importDialog = new importiereTabelle.importiereTabelleUI();
 	} // actionPerformed(ActionEvent event)
 } // importiereTabelleListener
+
 
 class hauptMenuKurzAnleitungListener implements ActionListener {
 	// für den MenuPunkt [Hilfe]->[KurzAnleitung]
@@ -66,14 +68,6 @@ class verknuepfeTabelleListener implements ActionListener {
 } // verknuepfeTabellenListener
 
 
-class zeichneLinieListener implements ActionListener{
-	//für den Button zeichneLinie in der Toolbar
-	public void actionPerformed(ActionEvent event) {
-
-	}// actionPerformed(ActionEvent event)
-}// zeichneLinieListener
-
-
 class exportiereTabelleListener implements ActionListener {
 	// für den MenuPunkt [Datei]->Tabelle Exportieren
 	public void actionPerformed(ActionEvent event){
@@ -87,7 +81,7 @@ class exportiereGrafikListener implements ActionListener {
 	public void actionPerformed(ActionEvent event){
 		exportiereGrafikUI exportiereGrafikDialog = new exportiereGrafikUI();
 	} // actionPerformed(ActionEvent event)
-} // exportierGrafikListener
+} // exportiereGrafikListener
 
 
 class rasterSichtbarkeitsListener implements ActionListener {

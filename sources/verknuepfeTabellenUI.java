@@ -80,7 +80,7 @@ public class verknuepfeTabellenUI extends JDialog{
 				this.bottomBottomPanel.add(this.abbrechenButton);
 					this.abbrechenButton.addActionListener(new ActionListener(){
 						public void actionPerformed(ActionEvent event){
-					setVisible(false);
+							setVisible(false);
 						} // actionPerformed(ActionEvent event)
 					});
 

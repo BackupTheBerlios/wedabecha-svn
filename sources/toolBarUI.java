@@ -23,7 +23,7 @@ import java.awt.*;
 
 
 public class toolBarUI /*implements ActionListener*/{
-	private JToolBar toolBar = new JToolBar("Werkzeugleiste");
+	protected JToolBar toolBar = new JToolBar("Werkzeugleiste");
 		private ImageIcon oeffnen = new ImageIcon("Images/oeffnen.gif");
 			private JButton oeffnenbutton = new JButton(oeffnen);
 		private ImageIcon speichern = new ImageIcon("Images/speichern.gif");
@@ -35,11 +35,11 @@ public class toolBarUI /*implements ActionListener*/{
 		private ImageIcon gitter = new ImageIcon("Images/gitter.gif");
 			private JToggleButton gitterbutton = new JToggleButton(gitter);
 		private ImageIcon liniezeichnen = new ImageIcon("Images/linie.gif");
-			private JToggleButton liniezeichnenbutton = new JToggleButton(liniezeichnen);
+			protected JToggleButton liniezeichnenbutton = new JToggleButton(liniezeichnen);
 		private ImageIcon pfeilzeichnen = new ImageIcon("Images/pfeil.gif");
-			private JButton pfeilzeichnenbutton = new JButton(pfeilzeichnen);
+			protected JToggleButton pfeilzeichnenbutton = new JToggleButton(pfeilzeichnen);
 		private ImageIcon textzeichnen = new ImageIcon("Images/text.gif");
-			private JButton textzeichnenbutton = new JButton(textzeichnen);
+			protected JToggleButton textzeichnenbutton = new JToggleButton(textzeichnen);
 
 
 	// Konstruktor
@@ -73,7 +73,7 @@ public class toolBarUI /*implements ActionListener*/{
 			this.pfeilzeichnenbutton.setContentAreaFilled(true);
 		this.toolBar.add(textzeichnenbutton);
 			this.textzeichnenbutton.setContentAreaFilled(true);
-
+			
 		this.toolBar.setFloatable(false);
 		this.toolBar.setBorderPainted(true);
 	} // pack()
@@ -81,4 +81,42 @@ public class toolBarUI /*implements ActionListener*/{
 	public JToolBar getToolBar(){
 		return this.toolBar;
 	} // getToolBar()
+	
+		
+	public void abwaehlen(int aus){
+	    switch(aus){
+		case 1:
+		    this.textzeichnenbutton.setSelected(false);
+		    this.liniezeichnenbutton.setSelected(false);
+		    break;
+		case 2:
+		    this.liniezeichnenbutton.setSelected(false);
+		    this.pfeilzeichnenbutton.setSelected(false);
+		    break;
+		case 3:
+		    this.pfeilzeichnenbutton.setSelected(false);
+		    this.textzeichnenbutton.setSelected(false);
+		    break;
+	    }// switch
+	}// abwählen()
+	
+	
+	public boolean textGewaehlt(){
+	    return textzeichnenbutton.isSelected();
+	}// textGewählt()
+	
+	
+	public boolean gitterGewaehlt(){
+	    return gitterbutton.isSelected();
+	}// gitterGewaehlt()
+	
+	
+	public boolean pfeilGewaehlt(){
+	    return pfeilzeichnenbutton.isSelected();
+	}// pfeilGewaehlt()
+	
+	
+	public boolean linieGewaehlt(){
+	    return liniezeichnenbutton.isSelected();
+	}// linieGewaehlt
 } // toolBarUI

@@ -31,7 +31,7 @@ public class kontextMenuUI extends JComponent {
 		private JCheckBoxMenuItem gitteranzeigen = new JCheckBoxMenuItem("Gitter anzeigen");
 
 		private JMenuItem liniezeichnen = new JMenuItem("Linie zeichnen");
-		private JMenuItem schreibenItem = new JMenuItem("Text einf\u00dcgen");
+		private JMenuItem schreibenItem = new JMenuItem("Text einf\u00fcgen");
 		private JMenuItem pfeilzeichnen = new JMenuItem("Pfeil zeichnen");
 
 
