@@ -221,7 +221,64 @@ public class importiereTabelle {
 
 			// 2. datei im puffer zwischenspeichern
 			BufferedReader bufferread = new BufferedReader(readfile);
-
+			
+			
+/**Beraterecke...
+			
+			class liste {
+				liste next;
+				litem firstofrow;
+			}
+			
+			class litem {
+				litem next, prev = null;
+				int data;
+			}
+			
+			struktur der liste:
+			
+			//Erstes Item der Zeilenverwaltung initialisieren
+			liste myList = new liste();
+			//zusätzliche referenz auf 1. zeile
+			liste firstofrows = myList;
+			//... zeigt jetzt auf die erste Zeile...
+			//erste Zeile initialisieren
+			litem row = new litem();
+			//z.b. daten des ersten datensatzes, erste spalte schreiben:
+			row.data = gelesenes zeugs...
+			//referenz auf dieses erste spaltenitem...
+			myList.firstofrow = row;
+			//eine spalte weiterrücken
+			row.next = new litem();
+			row = row.next;
+			//daten der 2. spalte 1. datensatz schreiben
+			row.data = geleseneszeugs....;
+			//angenommen, hier ist datensatz fertig gelesen...
+			//dann 2. zeil initialisieren#
+			myList.next = new liste();
+			//erstes element dieser Zeile anlegen
+			myList = myList.next;
+			//jetzt erstes zeilenitem initialisieren#
+			myList.firstofrow = new litem();
+			//iterator dieses item referenzieren lassen, um daten zu schreiben und weiter zu rutschen
+			row = myList.firstofrow;
+			//... wieder daten schreiben
+			row.data = gelesenes zeugs...;
+			//neues element#
+			row.next = new litem();
+			//vorrücken#
+			row = row.next;#
+			//daten schreiben
+			row.data = geleseneszeugs;
+			
+			//auslesen der gerade geschreibenen datenstruktur:#
+			for (liste ml = firstofrows; ml != null; ml=ml.next)
+				for (litem it = ml.firstofrows; it != null; it = it.next)
+					System.out.println(it.data);
+					
+			
+//--------------------------------------------------------*/
+			
 			// Tabelle wird Zeile für Zeile eingelesen
 			// Zeilen werden im Puffer zwischengespeichert
 			while(bufferread.readLine() != null){
