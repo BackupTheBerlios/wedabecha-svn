@@ -53,9 +53,9 @@ public class dokuUI extends JFrame {
 
 		setTitle(title);
 		if(title.equals("Kurzanleitung")){
-		    path = new File("hilfe/anleitung.html");
-		}else if(title.equals("Dokumentation")){
 		    path = new File("hilfe/schnellstart.html");
+		}else if(title.equals("Dokumentation")){
+		    path = new File("hilfe/anleitung.html");
 		}// else if()
 
 		try {
