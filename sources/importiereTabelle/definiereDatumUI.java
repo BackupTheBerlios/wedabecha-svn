@@ -54,8 +54,11 @@ public class definiereDatumUI extends JDialog {
 
 	private String datumsFormat;
 
+	private int tabellenNummer;
+
 	// konstruktor
-	public definiereDatumUI(){
+	public definiereDatumUI(int tabellenNummer){
+		this.tabellenNummer = tabellenNummer;
 		this.pack();
 	} // definiereDatumUI
 
@@ -81,11 +84,21 @@ public class definiereDatumUI extends JDialog {
 		// zeile2 zusammensetzen
 		this.panel2.add(this.inkRB);
 		this.panel2.add(this.inkZahlCombo);
+			this.inkZahlCombo.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent event){
+					inkRB.setSelected(true);
+				}
+			});
 		this.panel2.add(this.repraesentLabel);
 
 		// zeile3 zusammensetzen
 		this.panel3.add(this.konkretRB);
 		this.panel3.add(this.datumCombo);
+			this.datumCombo.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent event){
+					konkretRB.setSelected(true);
+				}
+			});
 
 
 		// buttons für den dialog
@@ -93,16 +106,16 @@ public class definiereDatumUI extends JDialog {
 			this.buttonPanel.add(this.okKnopf);
 				this.okKnopf.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
-						/*if(spalteCombo.getSelectedIndex() == 0){
-							importiereTabelle.setDatumsPosFirstColumn(true);						// setDatumsPosFirstColumn(true)
+						if(spalteCombo.getSelectedIndex() == 0){
+							importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setDatumsPosFirstColumn(true);
 						} else {
-							importiereTabelle.setDatumsPosFirstColumn(false);						// setDatumsPosFirstColumn(false)
+							importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setDatumsPosFirstColumn(false);
 						} // if() else
 						if(inkRB.isSelected()){
-							importiereTabelle.setInkZahlRep(inkZahlCombo.getSelectedItem());		// setInkZahlRep
+							importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setInkZahlRep(inkZahlCombo.getSelectedItem().toString());
 						} else {
-							importiereTabelle.setDatumsFormat();									// setDatumsFormat
-						} // if() else*/
+							importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setDatumsFormat(datumCombo.getSelectedItem().toString());
+						} // if() else
 						setVisible(false);
 					}
 				});
@@ -125,7 +138,7 @@ public class definiereDatumUI extends JDialog {
 		setVisible(true);
 	} // pack()
 
-	public static void main(String args[]){
+	/*public static void main(String args[]){
 		new definiereDatumUI();
-	} // main(String args[])
+	} // main(String args[])*/
 } // definiereDatumUI

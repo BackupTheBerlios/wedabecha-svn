@@ -84,7 +84,7 @@ public class subImportDialogUI extends JDialog {
 			this.edit2Panel.add(this.datumsFormatKnopf);
 				this.datumsFormatKnopf.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
-						new definiereDatumUI();
+						new definiereDatumUI(tabellenNummer);
 					}
 				});
 		this.topPanel.add(this.label3Panel);
@@ -99,7 +99,14 @@ public class subImportDialogUI extends JDialog {
 		this.bottomPanel.add(this.okKnopf);
 			this.okKnopf.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
-					System.out.println( event.getActionCommand());
+					//System.out.println( event.getActionCommand());
+					mainImportDialogUI.setPfad(importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).getImportPfad(),tabellenNummer);
+					importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setInternerSpeicherName(
+						importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).getImportName()
+					);
+					importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setTrennzeichen(trennzeichenBox.getSelectedItem().toString());
+					// entkäfern
+					System.out.println(importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).toString());
 					setVisible(false);
 				}
 			});
@@ -127,7 +134,8 @@ public class subImportDialogUI extends JDialog {
     	int returnVal = auswahlDialog.showOpenDialog(this);
     	if(returnVal == JFileChooser.APPROVE_OPTION) {
 			this.pfadField.setText(auswahlDialog.getSelectedFile().getPath());
-//			hauptFenster.importDialog.setPfad(auswahlDialog.getSelectedFile().getPath(),this.tabellenNummer);
+			importiereTabelleUI.getHinterGrundKlasse(this.tabellenNummer).setImportPfad(auswahlDialog.getSelectedFile().getPath());
+			importiereTabelleUI.getHinterGrundKlasse(this.tabellenNummer).setImportName(auswahlDialog.getSelectedFile().getName());
 		} // fi
 
 	} // chooseFile()
