@@ -42,7 +42,13 @@ public class hauptFensterUI extends JFrame {
 	    this.pack();
 	} // hauptFensterUI()
 
-
+	public static void setGroesse(int breite, int hoehe){
+	    mainPane.setSize(breite, hoehe);
+	    layeredPane.setSize(breite, hoehe);
+	    toolbarPane.setSize(breite, hoehe);
+	}//setGroesse()
+	
+	
 	public void pack(){
 		/**
 		pack() setzt das Fenster als Ganzes aus den einzelnen
@@ -66,19 +72,17 @@ public class hauptFensterUI extends JFrame {
 
 		// JLayeredPane wird als neue ContentPane eingesetzt
 		layeredPane.setOpaque(true); // ContentPane muss durchsichtig sein
-		toolbarPane.setOpaque(true);
-		mainPane.setOpaque(true);
 		
 		hauptFensterUI.hauptFenster.setContentPane(mainPane);
-		mainPane.setSize(fensterBreite,fensterHoehe);
+		mainPane.setSize(this.fensterBreite,this.fensterHoehe);
 		mainPane.setVisible(true);
 		
-		hauptFensterUI.hauptFenster.getContentPane().add(toolbarPane);
-		hauptFensterUI.hauptFenster.getContentPane().add(layeredPane);
+		mainPane.add(toolbarPane, JLayeredPane.PALETTE_LAYER);
+		mainPane.add(layeredPane, JLayeredPane.DEFAULT_LAYER);
 		
-		toolbarPane.setSize(fensterBreite,35);
+		//toolbarPane.setSize(this.fensterBreite,35);
 		
-		layeredPane.setSize(fensterBreite,fensterHoehe);
+		layeredPane.setSize(this.fensterBreite,this.fensterHoehe);
 		toolbarPane.setVisible(true);
 		layeredPane.setVisible(true);
 		
@@ -89,7 +93,7 @@ public class hauptFensterUI extends JFrame {
 		final toolBarUI toolBar = new toolBarUI(this.fensterBreite);
 
 		// Werkzeugleiste einbinden
-		hauptFensterUI.toolbarPane.add(toolBar.getToolBar(), JLayeredPane.DEFAULT_LAYER);
+		hauptFensterUI.mainPane.add(toolBar.getToolBar(), JLayeredPane.PALETTE_LAYER);
 
 		hauptFensterUI.hauptFenster.setLocation(Xposition,Yposition);
 		hauptFensterUI.hauptFenster.setResizable(true);
@@ -222,6 +226,7 @@ public class hauptFensterUI extends JFrame {
 				JLayeredPane layeredPane = (JLayeredPane) event.getComponent();
 				d = layeredPane.getSize();
 				zeichneRaster.setGroesse(d.width, d.height);
+				hauptFensterUI.setGroesse(d.width, d.height);
 				toolBar.setBreite(d.width);
 				System.out.println(d);
 			} // if
