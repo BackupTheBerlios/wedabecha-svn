@@ -24,6 +24,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class subImportDialogUI extends JDialog {
+	/*
+		bestandteile des dialogs erzeugen
+	*/
 	private Container fenster = getContentPane();
 		private JPanel topPanel = new JPanel(new GridLayout(3,2));
 		private JPanel middlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -57,13 +60,21 @@ public class subImportDialogUI extends JDialog {
 
 	// konstruktor
 	public subImportDialogUI(int tabellenNummer){
-		/*parameter tabellenNummer kann nur ganze Zahl von 1 bis 5 sein*/
-		setTitle("Tabelle "+tabellenNummer+" f\u00fcr den Import vorbereiten - wedabecha");
+		/**
+			der konstruktor erwartet als parameter die tabellenNummer,
+			damit bestimmt werden kann, für welche Tabelle (1-5)
+			die eigenschaften festgelegt werden
+		*/
+
+		setTitle("Tabelle " + tabellenNummer + " f\u00fcr den Import vorbereiten - wedabecha");
 		this.tabellenNummer = tabellenNummer;
 		this.pack();
 	} // subImportDialogUI()
 
 	public void pack(){
+		/**
+			pack() setzt den dialog aus den einzelnen bestandteilen zusammen
+		*/
 		this.fenster.setLayout(new FlowLayout());
 		this.fenster.add(this.topPanel);
 		this.fenster.add(this.middlePanel);
@@ -78,6 +89,7 @@ public class subImportDialogUI extends JDialog {
 						 chooseFile();
 					}
 				});
+
 		this.topPanel.add(this.label2Panel);
 			this.label2Panel.add(this.datumsFormatLabel);
 		this.topPanel.add(this.edit2Panel);
@@ -87,6 +99,7 @@ public class subImportDialogUI extends JDialog {
 						new definiereDatumUI(tabellenNummer);
 					}
 				});
+
 		this.topPanel.add(this.label3Panel);
 			this.label3Panel.add(this.trennzeichenLabel);
 		this.topPanel.add(this.edit3Panel);
@@ -100,13 +113,18 @@ public class subImportDialogUI extends JDialog {
 			this.okKnopf.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
 					//System.out.println( event.getActionCommand());
+
 					mainImportDialogUI.setPfad(importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).getImportPfad(),tabellenNummer);
+
 					importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setInternerSpeicherName(
 						importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).getImportName()
 					);
+
 					importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setTrennzeichen(trennzeichenBox.getSelectedItem().toString());
+
 					// entkäfern
 					System.out.println(importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).toString());
+
 					setVisible(false);
 				}
 			});
@@ -117,6 +135,9 @@ public class subImportDialogUI extends JDialog {
 				}
 			});
 
+		/*
+			standard zum erzeugen und positionieren des dialogs
+		*/
 		int bildSchirmBreite = getToolkit().getScreenSize().width;
 		int bildSchirmHoehe = getToolkit().getScreenSize().height;
 		int Xposition = (bildSchirmBreite - 600) / 2;

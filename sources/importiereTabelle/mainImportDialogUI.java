@@ -22,9 +22,12 @@ package importiereTabelle;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-//import javax.swing.filechooser.*;
 
 public class mainImportDialogUI extends JDialog  {
+	/*
+		die bestandteile des dialogs erzeugen
+	*/
+
 	private Container importDialog = getContentPane();
 	private JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	private JPanel topPanel = new JPanel(new GridLayout(5,1));
@@ -142,9 +145,11 @@ public class mainImportDialogUI extends JDialog  {
 			this.okKnopf.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
 					clearAllFields();
+					//System.out.println(importiereTabelleUI.getHinterGrundKlasse(1).getDaten());
 					setVisible(false);
 				} //  actionPerformed(ActionEvent event)
 			});
+
 		this.bottomPanel.add(this.abbrechenKnopf);
 			this.abbrechenKnopf.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
@@ -153,6 +158,10 @@ public class mainImportDialogUI extends JDialog  {
 				} // actionPerformed(ActionEvent event)
 			});
 
+
+		/*
+			standard zum erzeugen und positionieren des dialogs
+		*/
 		int bildSchirmBreite = getToolkit().getScreenSize().width;
 		int bildSchirmHoehe = getToolkit().getScreenSize().height;
 		int Xposition = (bildSchirmBreite - 520) / 2;
@@ -172,6 +181,11 @@ public class mainImportDialogUI extends JDialog  {
 
 
 	public static void setPfad(String pfad, int nr){
+		/**
+			setPfad setzt den Text der Textfelder im mainImportDialogUI,
+			die Funktion wird von subImportDialogUI aufgerufen,
+			sobald dieser mit OK geschlossen wurde
+		*/
 		switch (nr){
 			case 1: pfadTabelle1.setText(pfad);break;
 			case 2: pfadTabelle2.setText(pfad);break;
@@ -183,6 +197,8 @@ public class mainImportDialogUI extends JDialog  {
 
 
 	private void clearAllFields(){
+		// die funktion sollte eigentlich die textfelder wieder leeren
+		// sobald der mainImportDialogUI geschlossen wurde
 		for (int i = 0; i < 4; i++){
 			importiereTabelleUI.getHinterGrundKlasse(i).zerstoeren();
 		} // for

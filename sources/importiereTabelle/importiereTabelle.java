@@ -21,18 +21,47 @@
 
 package importiereTabelle;
 
+import java.util.ArrayList;
+import java.io.*;
+
 public class importiereTabelle {
-	private String importName; // enthält nur den Namen der Datei
-	private String importPfad; // enthält Pfad UND Namen der Datei, also den kompletten Pfad
-	private String internerSpeicherName; // ist normalerweise gleich importName
-	private String internerSpeicherPfad = "./daten/"; // wird aus ProgrammPfad und internerSpeicherName zusammengesetzt
+
+	// enthält nur den Namen der Datei
+	private String importName;
+
+	// der pfad setzt sich aus absolutem verzeichnis UND dateinamen zusammen
+	private String importPfad;
+
+	// wird gleich dem importNamen gesetzt
+	private String internerSpeicherName;
+
+	// internerSpeicherPfad is das verzeichnis relativ zum programm, wo .weda-dateien abgespeichert werden
+	private String internerSpeicherPfad = "./daten/";
+
 	private String trennzeichen;
 	private String datumsFormat;
+
+	// an welcher stelle der ascii-datei das datum steht...
+	//erste spalte->true
+	//letzte spalte->false
 	private boolean isDatumsPosFirstColumn;
+
+	// stelle, an welcher das datum in der ascii-datei steht
+	// als zahl (letzte spalte muss ja dynamisch bleiben)
 	private int datumsPos;
+
+	// falls das datum nur eine inkrementierende Zahl ist,
+	// enthält diese Variable einen String, was die Zahl repräsentiert
 	private String inkZahlRep;
+
+	// ob dieses instanz der tabelle gespeichert werden soll
 	private boolean speichern;
 
+
+
+	/*
+	im folgenden alle nötigen get-und set-methoden, um die variabeln zu verändern
+	*/
 	protected void setImportName(String name){
 		this.importName = name;
 	} // setImportName(String name)
@@ -98,27 +127,6 @@ public class importiereTabelle {
 	} // getDatumsPos()
 
 
-	public int[][] getDaten(){
-		/**liefert ausschliesslich die zu verarbeitenden Daten zurück.
-		das Datum für die jeweilige Zeile kann über die Methode getDates() aufgerufen werden*/
-
-		// fake-code um dem missing-return-statement aus dem weg zu gehen
-		int I[][] = {{0},{0}};
-		return I;
-		// hier kommt der letztliche Code für den Import
-	}
-
-
-	public String[] getDates(){
-		/**liefert eine Liste von Strings mit dem Datum für die jeweilige Zeile zurück.
-		Die Liste ist genauso lang wie die, die getDaten zurückliefert*/
-
-		// fake-code um dem missing-return-statement aus dem weg zu gehen
-		String text[] = {"text"};
-		return text;
-	} // getDates()
-
-
 	protected void setDatumsPosFirstColumn(boolean bla){
 		this.isDatumsPosFirstColumn = bla;
 	} // setDatumsPosFirstColumn(boolean bla)
@@ -169,4 +177,82 @@ public class importiereTabelle {
 	protected void zerstoeren(){
 		this.importPfad = "";
 	} // finalize()
+
+/*
+	public int[][] getDaten(){
+
+		// liefert ausschliesslich die zu verarbeitenden Daten zurück.
+		// das Datum für die jeweilige Zeile kann über die Methode getDates() aufgerufen werden
+
+
+		// 1. datei auslesen
+		FileReader readfile = new FileReader(this.importPfad);
+
+		// 2. datei im puffer zwischenspeichern
+		BufferedReader bufferread = new BufferedReader(readfile);
+
+		// letztendlich zu übergebende Liste
+		ArrayList resAL = new ArrayList();
+
+		// zeile als Zeichenkette
+		String zeile;
+
+		// statisches Array, d.h. die Zeile gesplittet am Trennzeichen
+		String zeileL[];
+
+		// das selbe als dynamisches Array
+		ArrayList zeileAL = new ArrayList();
+
+		// eine zeile des ergebnisses
+		int resZeileL[];
+
+		// das gesamte ergebnis zusammengesetzt
+		int result[][];
+
+		// if Abfrage setzt die Position des Datums,
+		// ob in der ersten oder letzten Spalte der Tabelle
+		if(this.isDatumsPosFirstColumn){
+			this.setDatumsPos(0);
+		} else {
+			this.setDatumsPos(zerlegteListe.size());
+		} // if() else
+
+		// Tabelle wird Zeile für Zeile eingelesen
+		// Zeilen werden im Puffer zwischengespeichert
+		while(bufferread.readLine() != null){
+			zeile = bufferread.readLine();
+
+			// !!! this.trennzeichen enthält noch KEIN separates Trennzeichen,
+			// sondern eine Zeichkette aus mehreren Zeichen (Leerzeichen)
+			zeileL = zeile.split(this.trennzeichen);
+			zeileAL.addAll(zeileL);
+
+			// Datum an datumsPos entfernen
+			zeileAL.remove(this.datumsPos);
+
+			// wandelt Zeichen für Zeichen die Zeilen in Integer um
+			for(int i = 0 ; i < zeileAL.size(); i++){
+				resZeileL[i] = Integer.parseInt(zeileAL[i]);
+			} // for()
+
+			// fügt der zu übergebenden Liste die Daten hinzu
+			resAL.add(resZeileL);
+		} // while()
+
+		return resAL.toArray();
+
+	} // getDaten()
+*/
+
+	public int[][] getDatum(){
+		/**
+		liefert eine Liste von Strings mit dem Datum für die jeweilige Zeile zurück.
+		Die Liste ist genauso lang wie die, die getDaten zurückliefert
+		*/
+
+		// fake-code um dem missing-return-statement aus dem weg zu gehen
+		int text[][] = {{1}};
+		return text;
+	} // getDatum()
+
 } // importiereTabelle

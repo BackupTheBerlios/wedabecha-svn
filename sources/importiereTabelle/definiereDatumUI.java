@@ -24,6 +24,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class definiereDatumUI extends JDialog {
+	/*
+		die Bestandteile des Dialogs erzeugen
+	*/
 	private Container dialog = getContentPane();
 	private JPanel	topPanel = new JPanel(new GridLayout(3,1));
 		private JPanel panel1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -38,23 +41,28 @@ public class definiereDatumUI extends JDialog {
 	private String spalten[] = {"ersten","letzten"};
 	private JComboBox spalteCombo = new JComboBox(this.spalten);
 	private JLabel spalteSufLabel = new JLabel(" Spalte der Datei in Form");
+
 	// code für zweite zeile
 	private JRadioButton inkRB = new JRadioButton("einer inkrementierenden Zahl, welche",true);
 	private String inkRepraesentiert[] = {"einen Tag","eine Woche","einen Monat","ein Jahr"};
 	private JComboBox inkZahlCombo = new JComboBox(this.inkRepraesentiert);
 	private JLabel repraesentLabel = new JLabel("repr\u00e4sentiert.");
+
 	// code für dritte zeile
 	private JRadioButton konkretRB = new JRadioButton("eines anderen konkreten Datumsformates :");
 	private String datenFormate[] = {"YYYY-MM-DD","DD.MM.YYYY","MM.DD.YYYY","DD/MM/YYYY","MM/DD/YYYY"};
 	private JComboBox datumCombo = new JComboBox(this.datenFormate);
-
 
 	private JButton okKnopf = new JButton("OK");
 	private JButton abbrechenKnopf = new JButton("Abbrechen");
 
 	private String datumsFormat;
 
+	/*
+		wichtige Variablen, an denen die Tabellen identifiziert werden
+	*/
 	private int tabellenNummer;
+
 
 	// konstruktor
 	public definiereDatumUI(int tabellenNummer){
@@ -64,6 +72,9 @@ public class definiereDatumUI extends JDialog {
 
 
 	public void pack(){
+		/**
+			pack() setzt das Dialogfeld aus den Bestandteilen zusammen
+		*/
 		this.dialog.setLayout(new FlowLayout());
 
 		// radiobuttons in einer gruppe
@@ -107,25 +118,32 @@ public class definiereDatumUI extends JDialog {
 				this.okKnopf.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
 						if(spalteCombo.getSelectedIndex() == 0){
+							// wenn das datum in der ersten spalte der ascii-datei steht
 							importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setDatumsPosFirstColumn(true);
 						} else {
+							//wenn das datum in der letzten spalte der ascii-datei steht
 							importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setDatumsPosFirstColumn(false);
 						} // if() else
+
 						if(inkRB.isSelected()){
 							importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setInkZahlRep(inkZahlCombo.getSelectedItem().toString());
-						} else {
+						} else if (konkretRB.isSelected())  {
 							importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setDatumsFormat(datumCombo.getSelectedItem().toString());
 						} // if() else
+
 						setVisible(false);
 					}
 				});
+
 			this.buttonPanel.add(this.abbrechenKnopf);
 				this.abbrechenKnopf.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent event){
 						setVisible(false);
 					}
 				});
-
+		/*
+			standard zum erzeugen und positionieren des dialogs
+		*/
 		int bildSchirmBreite = getToolkit().getScreenSize().width;
 		int bildSchirmHoehe = getToolkit().getScreenSize().height;
 		int Xposition = (bildSchirmBreite - 600) / 2;
@@ -138,7 +156,12 @@ public class definiereDatumUI extends JDialog {
 		setVisible(true);
 	} // pack()
 
-	/*public static void main(String args[]){
+	/*
+	main methode zu debugging-zwecken
+
+	public static void main(String args[]){
 		new definiereDatumUI();
-	} // main(String args[])*/
+	} // main(String args[])
+
+	*/
 } // definiereDatumUI

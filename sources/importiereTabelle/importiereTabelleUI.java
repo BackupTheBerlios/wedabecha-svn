@@ -20,6 +20,10 @@
 package importiereTabelle;
 
 public class importiereTabelleUI {
+	/*
+		es kann fünf tabellen mit verschiedenen eigenschaften geben, die importiert werden können,
+		also braucht es fünf instanzen (im array von 0 bis 4) der hinterGrundKlasse
+	*/
 	private static importiereTabelle hinterGrundKlasse[] = {new importiereTabelle(),
 															new importiereTabelle(),
 															new importiereTabelle(),
@@ -29,12 +33,20 @@ public class importiereTabelleUI {
 
 	//konstruktor
 	public importiereTabelleUI(){
+		/*
+			erzeugt den Import-Dialog
+		*/
 		new mainImportDialogUI();
 	} // importiereTabelleUI()
 
 
 	protected static importiereTabelle getHinterGrundKlasse(int tabellenNr){
-		/**tabellenNr kann nur eine ganze Zahl von 0 bis 4 sein */
-		return hinterGrundKlasse[tabellenNr];
+		/**
+			getHinterGrundKlasse(int tabellenNr) liefert die jeweilig
+			angeforderte instanz der tabelle zurück.
+			die funktion erwartet als parameter eine zahl von 1 bis 5
+			für die erste bzw. die fünfte tabelle
+		*/
+		return hinterGrundKlasse[tabellenNr-1];
 	} // getHinterGrundKlasse()
 } // importiereTabelleUI
