@@ -30,18 +30,20 @@ public class exportiereTabelleUI {
 		
 		//Tabellennummer abfragen
 		String input = JOptionPane.showInputDialog("Welche Tabelle exportieren (1-5) ?" );
+		//wandelt den Eingabestring in eine int-Zahl um
 		int tablenumber = Integer.parseInt( input );
 		
+		//Abfrage, ob eine gültige Tabellennummer eingegeben wurde
 		if (tablenumber > 0 & tablenumber < 6) {
-
 
 			JFileChooser fc = new JFileChooser();
 
+			//Dialog-Typ und Titel setzen
 			fc.setDialogTitle("Tabellendaten exportieren");
 			fc.setDialogType(JFileChooser.SAVE_DIALOG);
 		
-		
-			//zeigt nur Dateien mit der Endung .weda und .csv an
+			//erzeugt einen Filefilter, der dazu dient, nur
+			//Dateien mit der Endung .weda und .csv anzuzeogen
 			fc.setFileFilter( new FileFilter() {
 
 				public boolean accept(File f) {
@@ -50,6 +52,7 @@ public class exportiereTabelleUI {
 					f.getName().toLowerCase().endsWith(".csv");
 				}//accept
 
+				//die Beschreibung für die Dropdown-Liste im Dialog
 				public String getDescription() {
 					return "Tabellendateien (*.weda, *.csv)";
 				}
@@ -61,10 +64,14 @@ public class exportiereTabelleUI {
 				// Rückgabe der gewählten Datei als "file"
 				File file = fc.getSelectedFile();
 				System.out.println( file.getName() );
-				// hier muss die tabellenNummer noch irgendwo herkommen
+				
+				//ruft writeFile in toWeda mit dem ausgewählten
+				//Dateinamen- u. Pfad sowie der abgefragten
+				//Tabellennummer auf
 				toWeda.writeFile(file.getAbsolutePath(), tablenumber);
 			} 
 		
+			//falls auf Abbrechen geklickt wurde...
 			else {
 				System.out.println( "Auswahl abgebrochen" );
 			} // fi
@@ -72,10 +79,11 @@ public class exportiereTabelleUI {
 			fc.setVisible(false); // is klar, ne
 		}
 		
+		//falls keine gültige Tabellennummer eingegeben wurde
 		else {
 			JOptionPane.showMessageDialog( null, "Die Tabellennummer war falsch !" );
 		}//if
 		
-		}//exportiereTabelleUI()
+	}//exportiereTabelleUI()
 		
 }//class exportiereTabelleUI

@@ -24,40 +24,56 @@ import com.sun.image.codec.jpeg.JPEGCodec;
 import java.awt.*;
 import java.awt.image.*;
 import java.io.*;
-//import java.awt.Component.*;
-//import java.awt.Toolkit.*;
+
 
 public class exportiereGrafik {
 	private String dateiname;
 
+	
 	public void export() {
-
+		
+		//holt die Größe des Bildes aus HauptFensterUI
 		Dimension size  = hauptFensterUI.layeredPane.getSize();
+		
+		//erzeugt ein Image aus layeredPane
 		Image image = hauptFensterUI.layeredPane.createImage(size.width, size.height);
-
+		
+		//zeichnet alles auf die layeredPane, damit Kurve, Gitter
+		//und Funktion auf dem bild sichtbar sind
 		Graphics g = image.getGraphics();
 		hauptFensterUI.layeredPane.paint(g);
+		
 		try {
+			//öffnet den OutputStream und erzeugt die Datei "dateiname"
 			OutputStream  out  = new FileOutputStream( this.dateiname );
 			try {
+				//das Bild wird JPEG-komprimiert und gespeichert
 				JPEGCodec.createJPEGEncoder( out ).encode( (BufferedImage)image );
-			} catch (IOException ochnoe){
+			} 	//falls Codierfehler auftreten
+				catch (IOException ochnoe){
 				exportiereGrafikUI.showEncodeError();
 			} // try
 
-			try { out.close(); } catch (IOException sonmist){
+			try {
+				//schließt die Datei und fängt Fehler beim schließen ab
+				out.close(); } catch (IOException sonmist){
 				exportiereGrafikUI.showCouldNotCloseError();
 			}
-		} catch (FileNotFoundException dateinichda){
+		} catch 
+			//fängt die FileNotFoundExeption ab
+			(FileNotFoundException dateinichda){
 			exportiereGrafikUI.showFileNotFoundError(this.dateiname);
 		} // try
 	} // export()
 
+	
 	protected void setFile(String name){
 		this.dateiname = name;
 	} // setFile()
 
+	
 	protected String getFile(){
 		return this.dateiname;
-	}
+	}//getFile()
+	
 } // exportiereGrafik

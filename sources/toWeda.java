@@ -38,42 +38,61 @@ class toWeda {
 		String subZeile = new String("");
 		double werteA[];
 		String datenA[];
-
+		
+		//holt die Werte und Daten aus der übergebenen tabellennummer
+		//und speichert sie in die jeweilige ArrayList
 		werteAL = wedabecha.getKurve(tabellenNummer).getWerte();
 		datenAL = wedabecha.getKurve(tabellenNummer).getDaten();
 
-		// das erste mal...rofl....ne die datei schreiben... :D
-
+		
+		//erzeugt eine leere Datei mit dem übergebenen Dateinamen
 		try {
 			FileWriter fw = new FileWriter( fileName );
 			fw.write("");
 			fw.close();
-		} catch (IOException except){
+		} 
+			//falls die Datei nicht geschrieben werden kann
+			//(z.b. auf CD speichern, schreibgeschützte Datei...)
+			catch (IOException except){
 			toWedaErrorUI.showWriteError(fileName);
 		} // try
 
-		// zeilenweises anhängen der zeilen an die datei
+		// zeilenweises Anhängen der Zeilen an die Datei
 		try {
+			//erzeugt neuen FileWriter fa; true bedeutet "anhängen=ja"
 			FileWriter fa = new FileWriter(fileName, true);
-
+			
+			//geht die ArrayList mit Daten solange durch, bis das Ende erreicht wurde
 			for (int i = 0; i < werteAL.size(); i++){
+				
 				werteA = (double[])werteAL.get(i);
 				datenA = (String[])datenAL.get(i);
+				
+				//gehe alle Werte einer Zeile durch
 				for (int j = 0; j < werteA.length; j++){
 
-						subZeile += werteA[j];
+						subZeile += werteA[j]; //subZeile den aktuellen Wert adden
+						
+						//wenn das Ende noch nicht erreicht wurde setze ein Semikolon
 						if (j != werteA.length - 1 )subZeile += ";";
-
-				}
+						
+				}//for(j)
+				
+				//fügt "zeile" das Datum dieser Tabellenzeile hinzu
  				zeile += datenA[0] + "-" + datenA[1] + "-" + datenA[2] + ";" + subZeile;
-				if (i != werteAL.size() - 1) zeile += "\n";
-				fa.write(zeile);
-				zeile = "";
-				subZeile = "";
+				
+ 				//wenn das Ende erreicht ist füge einen Zeilenumbruch ein
+ 				if (i != werteAL.size() - 1) zeile += "\n";
+ 				
+				fa.write(zeile); //schreibt die Zeile
+				zeile = ""; //leeren von "zeile"
+				subZeile = ""; //leeren von "subZeile"
 			} // for(i)
 
-			fa.close();
-		} catch (IOException except){
+			fa.close(); //schließt die Datei
+			
+		} 	//falls beim Anhängen etwas fehlschlägt
+			catch (IOException except){
 			toWedaErrorUI.showAppendError(fileName);
 		} // try
 
@@ -114,4 +133,5 @@ class toWedaErrorUI {
 		"Datei" + fileName + "konnte nicht gefunden werden.","Dateifehler",
 		JOptionPane.ERROR_MESSAGE );
 	} // showFNFE()
+	
 } // toWedaErrorUI
