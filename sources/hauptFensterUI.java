@@ -28,7 +28,7 @@ public class hauptFensterUI extends JFrame {
 	static JFrame hauptFenster = new JFrame("wedabecha");
 	private static kontextMenuUI popupMenu = new kontextMenuUI();
 	private JPanel mainPanel = new JPanel();
-	private JLayeredPane layeredPane;
+	private JLayeredPane layeredPane = new JLayeredPane();
 	private zeichneRaster zeichneRaster = new zeichneRaster();
 	Dimension d;
 
@@ -62,7 +62,6 @@ public class hauptFensterUI extends JFrame {
 		// Werkzeugleiste einbinden
 		this.hauptFenster.getContentPane().add(toolBar.getToolBar(), BorderLayout.NORTH);
 
-		//this.hauptFenster.getContentPane().add(this.mainPanel, BorderLayout.CENTER);
 
 		// Listener zum Fensterschliessen per "wegkreuzen"
 		this.hauptFenster.addWindowListener(new beendenListener());
@@ -72,8 +71,11 @@ public class hauptFensterUI extends JFrame {
 		int Xposition = (bildSchirmBreite - this.fensterBreite) / 2;
 		int Yposition = (bildSchirmHoehe - this.fensterHoehe) / 2;
 		this.hauptFenster.setSize(this.fensterBreite,this.fensterHoehe);
-
-		this.hauptFenster.getContentPane().add(zeichneRaster, BorderLayout.CENTER);
+		
+		// JLayeredPane wird als neue ContentPane eingesetzt
+		this.hauptFenster.setContentPane(layeredPane);
+		layeredPane.setOpaque(true); // contentpanes müssen opaque sein
+		this.layeredPane.add(zeichneRaster, JLayeredPane.DEFAULT_LAYER);
 
 		this.hauptFenster.setLocation(Xposition,Yposition);
 		this.hauptFenster.setResizable(true);
@@ -81,7 +83,7 @@ public class hauptFensterUI extends JFrame {
 
 		final kontextMenuUI kontext = new kontextMenuUI();
 
-		this.hauptFenster.getContentPane().add(kontext.getKontextMenu());
+		this.layeredPane.add(kontext.getKontextMenu(), JLayeredPane.POPUP_LAYER);
 
 		this.hauptFenster.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent me ) {
