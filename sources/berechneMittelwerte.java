@@ -31,17 +31,20 @@ public class berechneMittelwerte {
     private ArrayList werte;
     private ArrayList datum;
 
-    // zÃ¤hler fÃ¼r die stelle im datum
+    // zähler für die stelle im datum
     //private int zaehler1 = 0;
-    // zÃ¤hler fÃ¼r die stelle in der Methode wochenMittel
+    // zähler für die stelle in der Methode wochenMittel
     private int zaehler2 = 0;
-    // zÃ¤hler fÃ¼r die teilende anzahl
+    // zähler für die teilende anzahl
     private int zaehler3 = 0;
 
     private double summe = 0;
     // start dient der zu Bestimmung, wann ein Monat/ Jahr zu ende ist
     private int start = 0;
-
+	
+	private ArrayList tagesMittel;
+	private double[] statArray;
+	private double zeilenSumme = 0;
 
     public berechneMittelwerte(ArrayList werte, ArrayList datum){
 
@@ -63,7 +66,7 @@ public class berechneMittelwerte {
 
     public ArrayList berechneTagesMittel(){
 	// ArrayList in der die berechneten Tagesmittel zusammengefasst werden.
-	ArrayList tagesMittel = new ArrayList();
+	this.tagesMittel = new ArrayList();
 
 	/* Diese Schleife liest die Zeilen aus der ArrayList werte aus und speichert
 	 * sie in dem statischen Array statArray...
@@ -72,25 +75,25 @@ public class berechneMittelwerte {
 		/* dient als vorrÃ¼bergehender Speicherort fÃ¼r das Array, welches in
 		 * jeder Zeile der werte steht
 		 */
-	    double[] statArray = (double[])this.werte.get(i);
-	    double zeilenSumme = 0;
+	    this.statArray = (double[])this.werte.get(i);
+	    
 
 	    /* ...in dieser Schleife werden dann die einzelnen werte aus dem statArray
 	     * ausgelesen, addiert und in der Variable zeilenSumme gespeichert...
 	     */
 
-	    for (int j = 0; j < statArray.length; j++){
-			zeilenSumme += statArray[j];
+	    for (int j = 0; j < this.statArray.length; j++){
+			this.zeilenSumme += this.statArray[j];
 	    }// for()
 
 	    /* ...an dieser Stelle wird die summe durch die lÃ¤nge des statArrays geteilt,
 	     * welches einer Zeile in der ArrayList werte entspricht, und zur ArrayList
 	     * tagesMittel hinzugefÃ¼gt.
 	     */
-	    tagesMittel.add(new Double(zeilenSumme/statArray.length));
-		
+	    this.tagesMittel.add(new Double(this.zeilenSumme/this.statArray.length));
+		this.zeilenSumme = 0;
 	}// for ()
-	return tagesMittel;
+	return this.tagesMittel;
     }// berechneTagesMittel()
 
     /* Diese Methode berechnet die Monatsmittelwerten aus den zuvor berechneten
@@ -100,9 +103,9 @@ public class berechneMittelwerte {
     public ArrayList berechneMonatsMittel() {
 		String monat;
 		String naechsterMonat;
-		// vorÃ¼bergehend verwendetes Array zum herausfiltern des Monats
+		// vorübergehend verwendetes Array zum herausfiltern des Monats
 		String[] tempDatum = new String[3];
-		// enthÃ¤lt die Mittelwerte fÃ¼r jeden Monat
+		// enthält die Mittelwerte für jeden Monat
 		ArrayList monatsMittel = new ArrayList();
 		// enthÃ¤lt das Datum zum dazugerhÃ¶rigen Mittelwert
 		ArrayList datumMonatsMittel = new ArrayList();

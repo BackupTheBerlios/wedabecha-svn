@@ -37,7 +37,7 @@ class zeichneLinienKurve extends JComponent {
 	private double multiplikator;
 	private double max;
 
-	private int breite = 670;
+	private int breite = 700;
 
 	private ArrayList ausgangsWerte;
 
@@ -75,7 +75,7 @@ class zeichneLinienKurve extends JComponent {
 		getMax();
 		int zaehler = 25;
 
-		this.abstand = (2 * this.ausgangsWerte.size() * this.breite / 670)  / this.werte.size();
+		this.abstand = (2 * this.ausgangsWerte.size() * this.breite / 700)  / this.werte.size();
 
 		for(int i = dateBeginIndex / (this.abstand / 2); i < dateEndIndex / (this.abstand / 2); i ++){
 			kurve.setColor(this.farbe);
@@ -113,7 +113,7 @@ class zeichneAktienKurve extends JComponent {
 	protected int dateBeginIndex = 0;
 	protected int dateEndIndex = 299;
 	
-	private int breite = 670;
+	private int breite = 700;
 
 	public zeichneAktienKurve(ArrayList werte, Color farbe){
 		this.werte = werte;
@@ -153,7 +153,7 @@ class zeichneAktienKurve extends JComponent {
 		
 		kurve.setColor(farbe);
 		
-		this.abstand = 2 * this.breite / 670;
+		this.abstand = 2 * this.breite / 700;
 		
 		for(int i = dateBeginIndex; i < dateEndIndex; i++){
 			this.kurse = (double[])this.werte.get(i);

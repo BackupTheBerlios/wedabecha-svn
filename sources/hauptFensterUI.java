@@ -126,7 +126,8 @@ public class hauptFensterUI extends JFrame {
 				public void stateChanged(ChangeEvent event){
 					if(((Integer)startDateSpinner.getValue()).intValue() <= 0){
 						startDateSpinner.setValue(new Integer(1));
-					}
+					} // if()
+					
 					endDateSpinner.setValue(new Integer( ((Integer)startDateSpinner.getValue()).intValue() + 299));
 
 					for (int i = 1; i < 6; i++){

@@ -22,7 +22,7 @@
 
 /*
 	Diese Klasse dient zur Darstellung der Kurzanleitung.
-	Je nach Ã¼bergebenen Werten wird die gewÃ¼nschte html-seite
+	Je nach übergebenen Werten wird die gewünschte html-seite
 	dargestellt.
 */
 
@@ -47,8 +47,8 @@ public class dokuUI extends JFrame {
     public dokuUI(String title) {
 		/*
 			Der Konstruktor bekommt entweder "Dokumentation" oder "Kurz-
-			anleitung" als String Ã¼bergeben und setzt den jeweiligen Pfad
-			dafÃ¼r.
+			anleitung" als String übergeben und setzt den jeweiligen Pfad
+			dafür.
 		*/
 
 		setTitle(title);
@@ -64,10 +64,10 @@ public class dokuUI extends JFrame {
 			doku.setEditable(false);
 
 			/* Der eingelesene Pfad kann nur relativ sein, weil bei jedem,
-			 * das Programm ausfÃ¼hrt der Pfad zum wedabecha-Ordner anders
+			 * das Programm ausführt der Pfad zum wedabecha-Ordner anders
 			 * sein kann. dieser relative Pfad wird dann vom Programm in
 			 * einen absoluten Pfad, nach dem Schema: file://c:/... um-
-			 * gewandelt, der dann auch Ã¼berall gleich ist, und dies wird
+			 * gewandelt, der dann auch überall gleich ist, und dies wird
 			 * dann zu einer URL gemacht, die dann von dem JEditorPane
 			 * interpretiert werden kann.
 			 */
