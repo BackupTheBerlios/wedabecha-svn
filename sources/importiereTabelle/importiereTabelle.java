@@ -22,78 +22,105 @@
 package importiereTabelle;
 
 public class importiereTabelle {
-	private String importName; // enthält nur den Namen der Datei
-	private String importPfad; // enthält Pfad UND Namen der Datei, also den kompletten Pfad
-	private String internerSpeicherName; // ist normalerweise gleich importName
-	private String internerSpeicherPfad; // wird aus ProgrammPfad und internerSpeicherName zusammengesetzt
-	private char trennzeichen;
-	private String datumsFormat;
-	private int datumsPos;
+	private static String importName; // enthält nur den Namen der Datei
+	private static String importPfad; // enthält Pfad UND Namen der Datei, also den kompletten Pfad
+	private static String internerSpeicherName; // ist normalerweise gleich importName
+	private static String internerSpeicherPfad; // wird aus ProgrammPfad und internerSpeicherName zusammengesetzt
+	private static char trennzeichen;
+	private static String datumsFormat;
+	private static boolean isDatumsPosFirstColumn;
+	private static int datumsPos;
+	private static String inkZahlRep;
 
-	protected void setImportName(String name){
+	protected static void setImportName(String name){
 		this.importName = name;
 	} // setImportName(String name)
 
-	protected String getImportName(){
+	protected static String getImportName(){
 		return this.importName;
 	} // getImportName()
 
-	protected void setImportPfad(String pfad){
+	protected static void setImportPfad(String pfad){
 		this.importPfad = pfad;
 	} // setImportPfad(String pfad)
 
-	protected String getImportPfad(){
+	protected static String getImportPfad(){
 		return this.importPfad;
 	} // getImportPfad()
 
-	protected void setInternerSpeicherName(String name){
+	protected static void setInternerSpeicherName(String name){
 		this.internerSpeicherName = name;
 	}
 
-	protected String getInternerSpeicherName(){
+	protected static String getInternerSpeicherName(){
 		return this.internerSpeicherName;
 	} // getInternerSpeicherName()
 
-	protected void setTrennzeichen(char zeichen){
+	protected static void setTrennzeichen(char zeichen){
 		this.trennzeichen = zeichen;
 	} // setTrennzeichen(char zeichen)
 
-	protected char getTrennzeichen(){
+	protected static char getTrennzeichen(){
 		return this.trennzeichen;
 	}
 
-	protected void setDatum(String datumsFormat){
+	protected static void setDatumsFormat(String datumsFormat){
 		this.datumsFormat = datumsFormat;
 	} // setDatum(Datum datum)
 
-	protected String getDatum(){
+	protected static String getDatumsFormat(){
 		return this.datumsFormat;
 	} // getDatum()
 
-	protected void getIsoDateForm(String datum){
+	protected static void getIsoDateForm(String datum){
 
 	} // getIsoForm(String datum)
 
-	protected void setDatumsPos(int pos){
+	protected static void setDatumsPos(int pos){
 		this.datumsPos = pos;
 	} // setDatumsPos(int pos)
 
-	protected int getDatumsPos(){
+	protected static int getDatumsPos(){
 		return this.datumsPos;
 	} // getDatumsPos()
 
-	public int[][] getDaten(){
+	public static int[][] getDaten(){
 		/**liefert ausschliesslich die zu verarbeitenden Daten zurück.
 		das Datum für die jeweilige Zeile kann über die Methode getDates() aufgerufen werden*/
 
 		// hier kommt der letztliche Code für den Import
 	}
 
-	public String[] getDates(){
+	public static String[] getDates(){
 		/**liefert eine Liste von Strings mit dem Datum für die jeweilige Zeile zurück.
 		Die Liste ist genauso lang wie die, die getDaten zurückliefert*/
 	} // getDates()
 
+	protected static void setDatumsPosFirstColumn(boolean bla){
+		this.isDatumsPosFirstColumn = bla;
+	} // setDatumsPosFirstColumn(boolean bla)
 
+
+	protected static boolean isDatumsPosFirstColumn(){
+		return this.isDatumsPosFirstColumn;
+	} // isDatumsPosFirstColumn()
+
+
+	protected static void setInkZahlRep(String blo){
+		this.inkZahlRep = blo;
+	} // setInkZahlRep(boolean blo)
+
+
+	protected static String getInkZahlRep(){
+		return this.inkZahlRep;
+	} // getInkZahlRep()
+
+
+	public static String toString(){
+		String toString = new String("importName:"+this.importName+",\n importPfad:"+this.importPfad+",\n internerSpeicherName:"+this.internerSpeicherPfad+
+		",\n internerSpeicherPfad:"+this.internerSpeicherPfad+",\n trennzeichen"+this.trennzeichen+",\n datumsFormat"+this.datumsFormat+",\n " +
+		"isDatumsPosFirstColumn:"+this.isDatumsPosFirstColumn+",\n datumsPos"+this.datumsPos+",\n inkZahlRep"+this.inkZahlRep);
+		return toString;
+	} // toString()
 
 } // importiereTabelle

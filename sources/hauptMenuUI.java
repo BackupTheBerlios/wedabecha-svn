@@ -28,6 +28,7 @@ public class hauptMenuUI {
 		private JMenu dateiMenu = new JMenu("Datei");
 			private JMenuItem oeffneDateiItem = new JMenuItem("\u00D6ffnen");
 			private JMenuItem importiereTabelleMenuItem = new JMenuItem("Tabelle importieren");
+			private JMenuItem verknuepfeTabelleMenuItem = new JMenuItem("Tabellen verkn\u00fcpfen");
 			private JMenuItem exportiereTabelleMenuItem = new JMenuItem("Tabelle exportieren");
 			private JMenuItem exportiereGrafikMenuItem = new JMenuItem("Grafik exportieren");
 			private JMenuItem druckenMenuItem = new JMenuItem("Drucken");
@@ -56,6 +57,7 @@ public class hauptMenuUI {
 			this.dateiMenu.add(this.oeffneDateiItem);
 			this.dateiMenu.add(this.importiereTabelleMenuItem);
 				this.importiereTabelleMenuItem.addActionListener(new importiereTabelleListener());
+			this.dateiMenu.add(this.verknuepfeTabelleMenuItem);
 			this.dateiMenu.add(this.exportiereTabelleMenuItem);
 			this.dateiMenu.add(this.exportiereGrafikMenuItem);
 			this.dateiMenu.add(this.druckenMenuItem);

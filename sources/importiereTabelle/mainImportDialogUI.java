@@ -26,7 +26,7 @@ import java.awt.event.*;
 
 public class mainImportDialogUI extends JDialog  {
 	private Container importDialog = getContentPane();
-	private JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+	private JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	private JPanel topPanel = new JPanel(new GridLayout(5,1));
 	private JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
@@ -55,11 +55,12 @@ public class mainImportDialogUI extends JDialog  {
 	private JTextField pfadTabelle4 = new JTextField(20);
 	private JTextField pfadTabelle5 = new JTextField(20);
 
-	private JButton darstellungTabelle1 = new JButton("Darstellung");
-	private JButton darstellungTabelle2 = new JButton("Darstellung");
-	private JButton darstellungTabelle3 = new JButton("Darstellung");
-	private JButton darstellungTabelle4 = new JButton("Darstellung");
-	private JButton darstellungTabelle5 = new JButton("Darstellung");
+	private JCheckBox speicherTabelle1 = new JCheckBox("Speichern");
+	private JCheckBox speicherTabelle2 = new JCheckBox("Speichern");
+	private JCheckBox speicherTabelle3 = new JCheckBox("Speichern");
+	private JCheckBox speicherTabelle4 = new JCheckBox("Speichern");
+	private JCheckBox speicherTabelle5 = new JCheckBox("Speichern");
+
 
 	// objekte unten
 	private JButton okKnopf = new JButton("OK");
@@ -83,7 +84,7 @@ public class mainImportDialogUI extends JDialog  {
 					} // actionPerformed(ActionEvent event)
 				});
 			this.LTzeile1.add(this.pfadTabelle1);
-			this.LTzeile1.add(this.darstellungTabelle1);
+			this.LTzeile1.add(this.speicherTabelle1);
 		// zeile 2
 		this.topPanel.add(this.LTzeile2);
 			this.LTzeile2.add(this.tabelle2Label);
@@ -94,7 +95,7 @@ public class mainImportDialogUI extends JDialog  {
 					} // actionPerformed(ActionEvent event)
 				});
 			this.LTzeile2.add(this.pfadTabelle2);
-			this.LTzeile2.add(this.darstellungTabelle2);
+			this.LTzeile2.add(this.speicherTabelle2);
 		// zeile 3
 		this.topPanel.add(this.LTzeile3);
 			this.LTzeile3.add(this.tabelle3Label);
@@ -105,7 +106,7 @@ public class mainImportDialogUI extends JDialog  {
 					} // actionPerformed(ActionEvent event)
 				});
 			this.LTzeile3.add(this.pfadTabelle3);
-			this.LTzeile3.add(this.darstellungTabelle3);
+			this.LTzeile3.add(this.speicherTabelle3);
 		// zeile 4
 		this.topPanel.add(this.LTzeile4);
 			this.LTzeile4.add(this.tabelle4Label);
@@ -116,7 +117,7 @@ public class mainImportDialogUI extends JDialog  {
 					} // actionPerformed(ActionEvent event)
 				});
 			this.LTzeile4.add(this.pfadTabelle4);
-			this.LTzeile4.add(this.darstellungTabelle4);
+			this.LTzeile4.add(this.speicherTabelle4);
 		// zeile 5
 		this.topPanel.add(this.LTzeile5);
 			this.LTzeile5.add(this.tabelle5Label);
@@ -127,13 +128,13 @@ public class mainImportDialogUI extends JDialog  {
 					} // actionPerformed(ActionEvent event)
 				});
 			this.LTzeile5.add(this.pfadTabelle5);
-			this.LTzeile5.add(this.darstellungTabelle5);
+			this.LTzeile5.add(this.speicherTabelle5);
 
 		// das Panel unten nur die Buttons für Ok und Abbrechen
 		this.bottomPanel.add(this.okKnopf);
 			this.okKnopf.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
-					//
+					System.out.println(importiereTabelle.toString());
 					setVisible(false);
 				} //  actionPerformed(ActionEvent event)
 			});
@@ -146,9 +147,9 @@ public class mainImportDialogUI extends JDialog  {
 
 		int bildSchirmBreite = getToolkit().getScreenSize().width;
 		int bildSchirmHoehe = getToolkit().getScreenSize().height;
-		int Xposition = (bildSchirmBreite - 600) / 2;
+		int Xposition = (bildSchirmBreite - 520) / 2;
 		int Yposition = (bildSchirmHoehe - 280) / 2;
-		setSize(600,280);
+		setSize(520,280);
 		setLocation(Xposition,Yposition);
 		setResizable(false);
 		setModal(true);
