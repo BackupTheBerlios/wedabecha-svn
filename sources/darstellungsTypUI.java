@@ -44,6 +44,8 @@ class darstellungsTypUI extends JDialog {
 	JButton okKnopf = new JButton("OK");
 
 	private int tabellenNummer;
+	
+	Color farbe;
 
 
 	// Konstruktor
@@ -64,6 +66,14 @@ class darstellungsTypUI extends JDialog {
 				this.bottomLeftPanel.add(this.farbeLabel);
 			this.topPanel.add(this.bottomRightPanel);
 				this.bottomRightPanel.add(this.farbeButton);
+				this.farbeButton.setBackground(farbe);
+					this.farbeButton.addActionListener( new ActionListener(){
+						public void actionPerformed( ActionEvent event ){
+							farbe = JColorChooser.showDialog(
+								null, "Darstellungsfarbe der Kurve", farbeButton.getBackground() );
+							farbeButton.setBackground(farbe);
+						}
+					} );
 		this.fenster.add(this.bottomPanel);
 			this.bottomPanel.add(this.okKnopf);
 				this.okKnopf.addActionListener(new ActionListener(){
