@@ -44,8 +44,8 @@ public class subImportDialogUI extends JDialog {
 	private JLabel datumsFormatLabel = new JLabel("DatumsFormat");
 	private JLabel trennzeichenLabel = new JLabel("Trennzeichen");
 
-	private String trennzeichen[] = {"; (Semikolon)",", (Komma)","# (Raute)","  (Leerzeichen)"};
-	private JComboBox trennzeichenBox = new JComboBox(this.trennzeichen);
+
+	private JComboBox trennzeichenBox = new JComboBox(importiereTabelle.getTrennzeichenStr());
 
 	private JButton durchsuchenKnopf = new JButton("Durchsuchen ...");
 	private JButton datumsFormatKnopf = new JButton("Datum"); // die beschriftung muss dynamisch anngepasst werden
@@ -123,8 +123,8 @@ public class subImportDialogUI extends JDialog {
 						importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).getImportName()
 					);
 
-					importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setTrennzeichen(
-						trennzeichenBox.getSelectedItem().toString()
+					importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setTrennzeichenIndex(
+						trennzeichenBox.getSelectedIndex()
 					);
 
 					// entkäfern

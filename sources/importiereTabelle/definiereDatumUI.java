@@ -130,8 +130,8 @@ public class definiereDatumUI extends JDialog {
 								inkZahlCombo.getSelectedItem().toString()
 							);
 						} else if (konkretRB.isSelected())  {
-							importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setDatumsFormat(
-								datumCombo.getSelectedItem().toString()
+							importiereTabelleUI.getHinterGrundKlasse(tabellenNummer).setDatumsFormatIndex(
+								datumCombo.getSelectedIndex()
 							);
 						} // if() else
 

@@ -64,6 +64,12 @@ public class mainImportDialogUI extends JDialog  {
 	private JCheckBox speicherTabelle4 = new JCheckBox("Speichern");
 	private JCheckBox speicherTabelle5 = new JCheckBox("Speichern");
 
+	private JButton darstellungsTypButton1 = new JButton("Darstellung");
+	private JButton darstellungsTypButton2 = new JButton("Darstellung");
+	private JButton darstellungsTypButton3 = new JButton("Darstellung");
+	private JButton darstellungsTypButton4 = new JButton("Darstellung");
+	private JButton darstellungsTypButton5 = new JButton("Darstellung");
+
 
 	// objekte unten
 	private JButton okKnopf = new JButton("OK");
@@ -95,6 +101,7 @@ public class mainImportDialogUI extends JDialog  {
 				});
 			this.LTzeile1.add(this.pfadTabelle1);
 			this.LTzeile1.add(this.speicherTabelle1);
+			this.LTzeile1.add(this.darstellungsTypButton1);
 		// zeile 2
 		this.topPanel.add(this.LTzeile2);
 			this.LTzeile2.add(this.tabelle2Label);
@@ -106,6 +113,7 @@ public class mainImportDialogUI extends JDialog  {
 				});
 			this.LTzeile2.add(this.pfadTabelle2);
 			this.LTzeile2.add(this.speicherTabelle2);
+			this.LTzeile2.add(this.darstellungsTypButton2);
 		// zeile 3
 		this.topPanel.add(this.LTzeile3);
 			this.LTzeile3.add(this.tabelle3Label);
@@ -117,6 +125,7 @@ public class mainImportDialogUI extends JDialog  {
 				});
 			this.LTzeile3.add(this.pfadTabelle3);
 			this.LTzeile3.add(this.speicherTabelle3);
+			this.LTzeile3.add(this.darstellungsTypButton3);
 		// zeile 4
 		this.topPanel.add(this.LTzeile4);
 			this.LTzeile4.add(this.tabelle4Label);
@@ -128,6 +137,7 @@ public class mainImportDialogUI extends JDialog  {
 				});
 			this.LTzeile4.add(this.pfadTabelle4);
 			this.LTzeile4.add(this.speicherTabelle4);
+			this.LTzeile4.add(this.darstellungsTypButton4);
 		// zeile 5
 		this.topPanel.add(this.LTzeile5);
 			this.LTzeile5.add(this.tabelle5Label);
@@ -139,6 +149,7 @@ public class mainImportDialogUI extends JDialog  {
 				});
 			this.LTzeile5.add(this.pfadTabelle5);
 			this.LTzeile5.add(this.speicherTabelle5);
+			this.LTzeile5.add(this.darstellungsTypButton5);
 
 		// das Panel unten nur die Buttons für Ok und Abbrechen
 		this.bottomPanel.add(this.okKnopf);
@@ -147,6 +158,7 @@ public class mainImportDialogUI extends JDialog  {
 					//clearAllFields();
 					//System.out.println(importiereTabelleUI.getHinterGrundKlasse(1).getDaten());
 					setVisible(false);
+					importiereTabelleUI.getHinterGrundKlasse(1).getDaten();
 				} //  actionPerformed(ActionEvent event)
 			});
 
@@ -164,9 +176,9 @@ public class mainImportDialogUI extends JDialog  {
 		*/
 		int bildSchirmBreite = getToolkit().getScreenSize().width;
 		int bildSchirmHoehe = getToolkit().getScreenSize().height;
-		int Xposition = (bildSchirmBreite - 520) / 2;
+		int Xposition = (bildSchirmBreite - 600) / 2;
 		int Yposition = (bildSchirmHoehe - 280) / 2;
-		setSize(520,280);
+		setSize(600,280);
 		setLocation(Xposition,Yposition);
 		setResizable(false);
 		setModal(true);

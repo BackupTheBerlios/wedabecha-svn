@@ -1,1 +1,91 @@
- 
+Fehler beim Importieren der Tabellen beheben.
+
+##############################################################################
+
+verknuepfeTabellen:
+JLabel für den Speicherpfad
+
+##############################################################################
+
+darstellungsTypUI:
+Auswahl zwischen verschiedenen Typen grafischer Darstellung dieser Daten
+(Punkte, durchgezogene Linie, Balken, aktienspezifische Balkendarstellung
+(Hoch-, Tiefstands- und Mittelwertbalken)
+
+Die Struktur der Darstellung muss neu überdacht werden, z.b.
+Hintergrundklasse implementiert werden etc.
+
+##############################################################################
+
+zeichneKurve
+
+##############################################################################
+
+exportiereTabelle:
+ganzes Objekt mit darstellungsTyp und Linienart als Objekt
+mit serialize (?) abspeichern als .weda-Datei
+
+##############################################################################
+
+toolBarUI:
+UNDO und REDO  auskommentieren, das ist Wunschkriterium und kann für später
+aufgehoben werden.
+Die Speichernschaltfläche ist nicht mehr erforlderlich
+
+##############################################################################
+
+Kalenderfunktion und konkrete Datumsbeschriftung der Zeitachse
+
+##############################################################################
+
+Berechnung und DARSTELLUNG von Wochen-,Monats- und Jahresmitteln
+
+##############################################################################
+
+Interaktives Einfügen von Pfeilen, Textblöcken und Hilfslinien für die
+„technische Analyse“ der Kurse (Annotation der Kurven)
+
+##############################################################################
+
+Ausgabe der Datei im jpg- oder PNG (?) -Format
+
+##############################################################################
+
+mehrere Kurven in einem Diagramm darstellbar (verschiedene Farben,
+Strichtypen)
+
+##############################################################################
+
+Zeitachse zoombar
+
+##############################################################################
+
+Beschriftungen der x-Achse auf Tages-, Monats-, Jahresbasis
+
+##############################################################################
+
+Veränderung des Maßstabs der Achsen
+Hilfe, Dokumentation, Kurzanleitung
+
+##############################################################################
+
+QUALITÄTSMANAGEMENT:
+Grösse, Breite, Titel der Fenster im "Standard"-Bereich der pack()-Methoden
+durchgehen, und ggf. ändern.
+
+
+##############################################################################
+
+WÜNSCHE :
+
+ - Druckfunktion direkt aus dem Softwareprodukt heraus
+ - logarithmische Darstellung der Einteilung der y-Achse
+   gleitende Mittelwerte
+ - Kombination mehrerer Eingabedateien zu einer einzigen
+   Sicherheitsabfrage, falls eingelesene Daten identisch sind
+ - Zoom durch markieren des Bereichs mit der Maus
+ - Einlesen von  Daten direkt aus einer Internetseite und Speicherung dieser
+   Daten im CSV - Format
+ - Proportionales vergrössern des HauptFensters
+ - Tooltips und Statusleiste
+ - Menupunkt [Hilfe]->[Lizenz] ?

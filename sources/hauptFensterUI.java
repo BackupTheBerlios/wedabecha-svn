@@ -64,11 +64,11 @@ public class hauptFensterUI extends JFrame {
 		// JLayeredPane wird als neue ContentPane eingesetzt
 		layeredPane.setOpaque(true); // ContentPane muss durchsichtig sein
 		this.hauptFenster.setContentPane(layeredPane);
-		
+
 		// Raster der neuen ContentPane adden
 		final zeichneRaster zeichneRaster = new zeichneRaster(this.fensterBreite,this.fensterHoehe);
-		this.layeredPane.add(zeichneRaster, JLayeredPane.DEFAULT_LAYER);		
-		
+		this.layeredPane.add(zeichneRaster, JLayeredPane.DEFAULT_LAYER);
+
 		final toolBarUI toolBar = new toolBarUI(this.fensterBreite);
 
 		// Werkzeugleiste einbinden
@@ -84,7 +84,7 @@ public class hauptFensterUI extends JFrame {
 
 		this.layeredPane.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent me ) {
-				if ( me.isPopupTrigger() ) {
+				if ( me.getButton() == me.BUTTON3) {
 					kontext.getKontextMenu().show( layeredPane, me.getX(), me.getY() );
 				} // if()
 			} // mouseReleased(MouseEvent me)

@@ -41,9 +41,10 @@ public class importiereTabelle {
 	// internerSpeicherPfad is das verzeichnis relativ zum programm, wo .weda-dateien abgespeichert werden
 	private String internerSpeicherPfad = "./daten/";
 
-	private String trennzeichen;
-	private String datumsFormat;
-	static String datenFormate[] = {"YYYY-MM-DD","DD.MM.YYYY","MM.DD.YYYY","DD/MM/YYYY","MM/DD/YYYY"};
+	// zeichenketten für die JComboBox in der subImportDialogUI
+	private static String trennzeichenStr[] = {"; (Semikolon)",", (Komma)","# (Raute)","  (Leerzeichen)"};
+	// wird von der subImportDialogUI bei klick auf [OK] gesetzt
+	private int trennzeichenIndex;
 
 	// an welcher stelle der ascii-datei das datum steht...
 	// erste spalte->true
@@ -54,6 +55,17 @@ public class importiereTabelle {
 	// als zahl (letzte spalte muss ja dynamisch bleiben)
 	private int datumsPos;
 
+	// Formate für die JComboBox in definiereDatumUI
+	private static String datenFormate[] = {"YYYY-MM-DD","DD.MM.YYYY","MM.DD.YYYY","DD/MM/YYYY","MM/DD/YYYY"};
+
+	// wird von definiereDatumUI bei klick auf [OK] gesetzt
+	private int datumsFormatIndex;
+
+	// erstellt ein Array mit dem Datum
+	private ArrayList datumAL = new ArrayList();
+	private ListIterator datumALIt = datumAL.listIterator();
+
+
 	// falls das datum nur eine inkrementierende Zahl ist,
 	// enthält diese Variable einen String, was die Zahl repräsentiert
 	private String inkZahlRep;
@@ -61,9 +73,6 @@ public class importiereTabelle {
 	// ob dieses instanz der tabelle gespeichert werden soll
 	private boolean speichern;
 
-	// erstellt ein Array mit dem Datum
-	private ArrayList datumAL = new ArrayList();
-	private ListIterator datumALIt = datumAL.listIterator();
 
 
 	/*
@@ -99,24 +108,19 @@ public class importiereTabelle {
 	} // getInternerSpeicherName()
 
 
-	protected void setTrennzeichen(String zeichen){
-		this.trennzeichen = zeichen;
-	} // setTrennzeichen(char zeichen)
+	protected void setTrennzeichenIndex(int zahl){
+		this.trennzeichenIndex = zahl;
+	} // setTrennzeichenIndex()
 
 
-	protected String getTrennzeichen(){
-		return this.trennzeichen;
+	protected static String[] getTrennzeichenStr(){
+		return trennzeichenStr;
 	}
 
 
-	protected void setDatumsFormat(String datumsFormat){
-		this.datumsFormat = datumsFormat;
+	protected void setDatumsFormatIndex(int zahl){
+		this.datumsFormatIndex = zahl;
 	} // setDatum(Datum datum)
-
-
-	protected String getDatumsFormat(){
-		return this.datumsFormat;
-	} // getDatumsFormat()
 
 
 	protected static String[] getDatenFormate(){
@@ -170,8 +174,6 @@ public class importiereTabelle {
 			",\n importPfad: \t\t\t" + this.importPfad +
 			",\n internerSpeicherName: \t\t" + this.internerSpeicherName +
 			",\n internerSpeicherPfad: \t\t" + this.internerSpeicherPfad +
-			",\n trennzeichen: \t\t\t" + this.trennzeichen +
-			",\n datumsFormat \t\t\t" + this.datumsFormat +
 			",\n isDatumsPosFirstColumn: \t" + this.isDatumsPosFirstColumn +
 			",\n datumsPos \t\t\t" + this.datumsPos +
 			",\n inkZahlRep \t\t\t" + this.inkZahlRep
@@ -224,70 +226,15 @@ public class importiereTabelle {
 			BufferedReader bufferread = new BufferedReader(readfile);
 
 
-/**Beraterecke...
-
-			class liste {
-				liste next;
-				litem firstofrow;
-			}
-
-			class litem {
-				litem next, prev = null;
-				int data;
-			}
-
-			struktur der liste:
-
-			//Erstes Item der Zeilenverwaltung initialisieren
-			liste myList = new liste();
-			//zusätzliche referenz auf 1. zeile
-			liste firstofrows = myList;
-			//... zeigt jetzt auf die erste Zeile...
-			//erste Zeile initialisieren
-			litem row = new litem();
-			//z.b. daten des ersten datensatzes, erste spalte schreiben:
-			row.data = gelesenes zeugs...
-			//referenz auf dieses erste spaltenitem...
-			myList.firstofrow = row;
-			//eine spalte weiterrücken
-			row.next = new litem();
-			row = row.next;
-			//daten der 2. spalte 1. datensatz schreiben
-			row.data = geleseneszeugs....;
-			//angenommen, hier ist datensatz fertig gelesen...
-			//dann 2. zeil initialisieren#
-			myList.next = new liste();
-			//erstes element dieser Zeile anlegen
-			myList = myList.next;
-			//jetzt erstes zeilenitem initialisieren#
-			myList.firstofrow = new litem();
-			//iterator dieses item referenzieren lassen, um daten zu schreiben und weiter zu rutschen
-			row = myList.firstofrow;
-			//... wieder daten schreiben
-			row.data = gelesenes zeugs...;
-			//neues element#
-			row.next = new litem();
-			//vorrücken#
-			row = row.next;#
-			//daten schreiben
-			row.data = geleseneszeugs;
-
-			//auslesen der gerade geschreibenen datenstruktur:#
-			for (liste ml = firstofrows; ml != null; ml=ml.next)
-				for (litem it = ml.firstofrows; it != null; it = it.next)
-					System.out.println(it.data);
-
-
-//--------------------------------------------------------*/
-
 			// Tabelle wird Zeile für Zeile eingelesen
 			// Zeilen werden im Puffer zwischengespeichert
 			while(bufferread.readLine() != null){
 				zeile = bufferread.readLine();
 
-				// !!! this.trennzeichen enthält noch KEIN separates Trennzeichen,
-				// sondern eine Zeichkette aus mehreren Zeichen (Leerzeichen)
-				zeileL = zeile.split(this.trennzeichen);
+				zeileL = zeile.split( Character.toString(
+						this.trennzeichenStr[this.trennzeichenIndex].charAt(0)
+					)
+				);
 
 				for( int i = 0 ; i < zeileL.length ; i++){
 					zeileALIt.add(zeileL[i]);
@@ -324,46 +271,51 @@ public class importiereTabelle {
 		Die Liste ist genauso lang wie die, die getDaten zurückliefert
 		*/
 
-		String splittedDate[] = {"2004","11","3"};
-		String ergebnisDate[]; // splittedDate richtig sortiert nach YYYY MM DD
+		String splittedDate[];
+		String ergebnisDate[] = {"0000","11","22"}; // splittedDate richtig sortiert nach YYYY MM DD
+		String tempDatum;
 		ArrayList ergebnis =  new ArrayList();
 		ListIterator ergebnisIt =  ergebnis.listIterator();
 
-		// char datumsTrennzeichen = {'-','.','.','/','/'}; // gleiche länge wie datenFormate[]
-
 		while (datumALIt.hasNext()){
-			if (datumsFormat.matches(".")){
-				splittedDate = datumsFormat.split(".");
-			} else if (datumsFormat.matches("/")){
-				splittedDate = datumsFormat.split("/");
-			} else if (datumsFormat.matches("-")){
-				splittedDate = datumsFormat.split("-");
-			} // if
+			tempDatum = (String)this.datumALIt.next();
+			switch (this.datumsFormatIndex){
+				case 0: /*yyyy-mm-dd*/
+					splittedDate = tempDatum.split("-");
+					ergebnisDate = splittedDate;
+				break;
+				case 1: /*dd.mm.yyyy*/
+					splittedDate = tempDatum.split(".");
+					ergebnisDate[0] = splittedDate[2];
+					ergebnisDate[1] = splittedDate[1];
+					ergebnisDate[2] = splittedDate[0];
+				break;
+				case 2: /*mm.dd.yyyy*/
+					splittedDate = tempDatum.split(".");
+					ergebnisDate[0] = splittedDate[2];
+					ergebnisDate[1] = splittedDate[0];
+					ergebnisDate[2] = splittedDate[1];
+				break;
+				case 3: /*dd/mm/yyyy*/
+					splittedDate = tempDatum.split("/");
+					ergebnisDate[0] = splittedDate[2];
+					ergebnisDate[1] = splittedDate[1];
+					ergebnisDate[2] = splittedDate[0];
+				break;
+				case 4: /*mm/dd/yyyy*/
+					splittedDate = tempDatum.split("/");
+					ergebnisDate[0] = splittedDate[2];
+					ergebnisDate[1] = splittedDate[0];
+					ergebnisDate[2] = splittedDate[1];
+				break;
+				default:
 
-			for (int i = 0; i < splittedDate.length; i++){
-				switch (i){
-					case 0:
-// hier geht's weiter
-					break;
+				break;
+			} // switch
 
-					case 1:
-
-					break;
-
-					case 2:
-
-					break;
-				} // switch
-			} // for
-
-			ergebnis.add(splittedDate);
-
-		} // while()
-
-		for (int i = 0; i < this.datenFormate.length; i++){
-
-
-		}
+			ergebnis.add(ergebnisDate);
+		} // while
+		//System.out.println(ergebnis);
 	} // getDatum()
 
 } // importiereTabelle
