@@ -1,23 +1,24 @@
 /****************************************************************************
- *   Copyright (C) 2004 by Matthias Tylkowski									*
- *																			*
- *   This program is free software; you can redistribute it and/or modify	*
- *   it under the terms of the GNU General Public License as published by	*
- *   the Free Software Foundation; either version 2 of the License, or		*
- *   (at your option) any later version.									*
- *																			*
- *   This program is distributed in the hope that it will be useful,		*
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of			*
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the			*
- *   GNU General Public License for more details.							*
- *																			*
- *   You should have received a copy of the GNU General Public License		*
- *   along with this program; if not, write to the							*
- *   Free Software Foundation, Inc.,										*
- *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.				*
+ *   Copyright (C) 2004 by Matthias Tylkowski				    *
+ *									    *
+ *   This program is free software; you can redistribute it and/or modify   *
+ *   it under the terms of the GNU General Public License as published by   *
+ *   the Free Software Foundation; either version 2 of the License, or	    *
+ *   (at your option) any later version.				    *
+ *									    *
+ *   This program is distributed in the hope that it will be useful,	    *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of	    *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the	    *
+ *   GNU General Public License for more details.			    *
+ *									    *
+ *   You should have received a copy of the GNU General Public License	    *
+ *   along with this program; if not, write to the			    *
+ *   Free Software Foundation, Inc.,					    *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.		    *
  ***************************************************************************/
-/* Diese Klasse dient zur Darstellung der Dokumentation, Kurzanleitung und der Hilfe.
- *je nach bergebenen Werten wird der gewnschte Text in der TexrArea dargestellt*/
+/*Diese Klasse dient zur Darstellung der Dokumentation, Kurzanleitung und der 
+ *Hilfe. je nach bergebenen Werten wird der gewnschte Text in der TexrArea
+ *dargestellt*/
 
 
 import javax.swing.*; //brauche ich um die Swing Objekte darzustellen
@@ -32,9 +33,9 @@ public class dokuUI extends JFrame {
     private String areaInhalt = "";
 
     public dokuUI(String title) {
-		// der konstruktor soll noch zwei parameter erhalten (siehe hauptMenuListener) :
-		// die parameter sind vom Typ String und können folgende Werte enthalten:
-		// "Kurzanleitung" und "Doku"
+		/*der konstruktor soll noch zwei parameter erhalten (siehe 
+		 *HauptMenuListener) die parameter sind vom Typ String und 
+		 *können folgende Werte enthalten: "Kurzanleitung" und "Doku"*/
 	setTitle(title);
 
         if(title.equals("Kurzanleitung")){
@@ -43,9 +44,9 @@ public class dokuUI extends JFrame {
             	BufferedReader bufferKurzAnleitung = new BufferedReader(textKurzAnleitung);
                 String buffer;
 		while ((buffer = bufferKurzAnleitung.readLine()) != null) {
-                    this.textArea.append(buffer+"\n");
-                } // while()
-            } catch (IOException except){
+		    this.textArea.append(buffer+"\n");
+		} // while()
+	    } catch (IOException except){
                 // fehlermeldung falls datei nicht gelesen werden kann
 		JOptionPane.showMessageDialog(null,
             	"Die Datei, welche die Kurzanleitung enthaelt, konnte nicht gelesen werden.","Dateifehler",
@@ -77,13 +78,12 @@ public class dokuUI extends JFrame {
 	
 	
     public void pack() {
-        getContentPane().setLayout(new BorderLayout());
+        getContentPane().setLayout(new BorderLayout(5,5));
 
         JPanel gridLayoutPanel = new JPanel();
         getContentPane().add((gridLayoutPanel),BorderLayout.CENTER);
         gridLayoutPanel.setLayout(new GridLayout(1,1));
 
-        //textArea = new JTextArea();
         textArea.setLineWrap(true); //Zeilenumbruch generell
         textArea.setWrapStyleWord(true);//keine Wörter unterbrechen bei Zeilenumbruch
         textArea.setEditable(false);
