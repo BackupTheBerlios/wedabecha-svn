@@ -35,7 +35,7 @@ public class toolBarUI /*implements ActionListener*/{
 		private ImageIcon gitter = new ImageIcon("Images/gitter.gif");
 			private JToggleButton gitterbutton = new JToggleButton(gitter);
 		private ImageIcon liniezeichnen = new ImageIcon("Images/linie.gif");
-			private JButton liniezeichnenbutton = new JButton(liniezeichnen);
+			private JToggleButton liniezeichnenbutton = new JToggleButton(liniezeichnen);
 		private ImageIcon pfeilzeichnen = new ImageIcon("Images/pfeil.gif");
 			private JButton pfeilzeichnenbutton = new JButton(pfeilzeichnen);
 		private ImageIcon textzeichnen = new ImageIcon("Images/text.gif");

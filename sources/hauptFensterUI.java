@@ -26,11 +26,11 @@ import javax.swing.*;
 
 public class hauptFensterUI extends JFrame {
 	static JFrame hauptFenster = new JFrame("wedabecha");
-	private JLayeredPane layeredPane = new JLayeredPane();
+	protected JLayeredPane layeredPane = new JLayeredPane();
 	Dimension d;
 
-	private int fensterBreite;
-	private int fensterHoehe;
+	protected int fensterBreite;
+	protected int fensterHoehe;
 
 	// konstruktor
 	public hauptFensterUI(){
@@ -84,9 +84,9 @@ public class hauptFensterUI extends JFrame {
 
 		this.layeredPane.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent me ) {
-				//if ( me.isPopupTrigger() ) {
+				if ( me.isPopupTrigger() ) {
 					kontext.getKontextMenu().show( layeredPane, me.getX(), me.getY() );
-				//} // if()
+				} // if()
 			} // mouseReleased(MouseEvent me)
 		} ); // addMouseListener()
 

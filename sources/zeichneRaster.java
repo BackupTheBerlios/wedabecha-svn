@@ -49,6 +49,6 @@ public class zeichneRaster extends JComponent {
 				raster.drawLine(0, j, this.breite , j);
 		    } // for(j)
 		} // for(i)
-	} // paint()
+	} // paintComponent(Graphics raster)
 
 } // zeichneRaster

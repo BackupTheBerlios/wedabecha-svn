@@ -65,8 +65,15 @@ class verknuepfeTabelleListener implements ActionListener {
 	} // actionPerformed(ActionEvent event)
 } // verknuepfeTabellenListener
 
+class zeichneLinieListener implements ActionListener{
+	//für den Button zeichneLinie in der Toolbar
+	public void actionPerformed(ActionEvent event) {
+		
+	}// actionPerformed(ActionEvent event)
+}// zeichneLinieListener
+
 class exportiereGrafikListener implements ActionListener {
-	// für den MenuPunkt [Datei]->Tabellen verknuepfen
+	// für den MenuPunkt [Datei]->Grafik Exportieren
 	public void actionPerformed(ActionEvent event){
 		exportiereGrafikUI exportdialog = new exportiereGrafikUI();
 	} // actionPerformed(ActionEvent event)
@@ -74,8 +81,13 @@ class exportiereGrafikListener implements ActionListener {
 
 class rasterSichtbarkeitsListener implements ActionListener {
 	// für den MenuPunkt [Ansicht]->Raster anzeigen
+    
 	public void actionPerformed(ActionEvent event){
 	    
+	    /*   final zeichneRaster zeichneRaster = new zeichneRaster(hauptFensterUI.fensterBreite, hauptFensterUI.fensterHoehe);
+	    hauptFensterUI.layeredPane.add(zeichneRaster, JLayeredPane.DEFAULT_LAYER);
+	    */
+    
 	} // actionPerformed(ActionEvent event)
 } // rasterSichtbarkeitsListener
 
@@ -95,7 +107,7 @@ class beendenListener extends WindowAdapter implements ActionListener {
 
 class endProgram {
 	/*
-	Die Klasse enhaelt den Code, der zum beenden des Programms erforderlich ist.
+	Die Klasse enthaelt den Code, der zum beenden des Programms erforderlich ist.
 	Solange es sich nur um einen einfachen System.exit(0);-Befehl handelt,
 	scheint das etwas unnütz,
 	aber falls später mal Sicherheitsabfragen hinzukommen, wie z.B.
