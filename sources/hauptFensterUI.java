@@ -26,8 +26,9 @@ import javax.swing.*;
 public class hauptFensterUI extends JFrame {
 	private JFrame hauptFenster = new JFrame("wedabecha");
 	private static kontextMenuUI popupMenu = new kontextMenuUI();
-	
-	
+	private Container mainPanel = getContentPane();
+	private Container subMainPanel = new JPanel();
+
 	// konstruktor
 	public hauptFensterUI(){
 		this.pack();
@@ -42,6 +43,10 @@ public class hauptFensterUI extends JFrame {
 		hauptMenuUI hauptMenu = new hauptMenuUI(); // Hauptmenu initialisieren
 		this.hauptFenster.setJMenuBar(hauptMenu.getHauptMenu()); // Hauptmenu in das Fenster einbinden
 
+		this.hauptFenster.add(this.mainPanel);
+			this.mainPanel.add(this.subMainPanel);
+
+
 		// Listener zum Fensterschliessen per "wegkreuzen"
 		this.hauptFenster.addWindowListener(new beendenListener());
 
@@ -54,21 +59,23 @@ public class hauptFensterUI extends JFrame {
 		this.hauptFenster.setResizable(true);
 		this.hauptFenster.setVisible(true);
 
+		final kontextMenuUI kontext = new kontextMenuUI();
+
+		this.hauptFenster.add(kontext.getKontextMenu());
+
+		this.hauptFenster.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent me ) {
+				if ( me.isPopupTrigger() ){
+					kontext.getKontextMenu().show( hauptFenster, me.getX(), me.getY() );
+				} // if()
+			} // mouseReleased(MouseEvent me)
+		} ); // addMouseListener()
+
 	} // pack()
 
 
 	public static void main(String args[]){
 		hauptFensterUI wedabecha = new hauptFensterUI();
-		kontextMenuUI kontextMenu = new kontextMenuUI();
-			
-		addMouseListener(new MouseAdapter() {
-			public void mouseReleased(MouseEvent me ) {
-				if ( me.isPopupTrigger() ){
-					popupMenu.show( me.getComponent(), me.getX(), me.getY() );
-				} // if()
-			} // mouseReleased(MouseEvent me)
-		} ); // addMouseListener()
-	
 	} // main(String args[])
 
 } // hauptFensterUI
