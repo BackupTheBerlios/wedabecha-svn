@@ -9,6 +9,8 @@ dass niemand son schrott wie 30. februar eingibt und so...
 
 darstellungsTypUI:
 Interaktion mit der kurve
+neues element in der GUI, um die art mittelwerte für durchgezogene linie 
+festzulegen
 
 ##############################################################################
 
@@ -49,6 +51,19 @@ Hilfe, Dokumentation, Kurzanleitung
 ##############################################################################
 
 Übergabe der einzelnen "Farbwerte" für jede Kurve an kurve.java fehlt noch
+
+##############################################################################
+CODEMANAGEMENT:
+die informationen in diesem stil sollten von jedem entwickler für seinen code
+individuell eingefügt werden.
+
+/**
+	@author Martin Müller (mrtnmueller at users.berlios.de), Dominic Hopf (dmaphy at users.berlios.de)
+	@since 2005-01-26
+	@version 0.0.1
+
+*/
+
 
 ##############################################################################
 
