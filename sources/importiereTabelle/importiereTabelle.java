@@ -324,10 +324,10 @@ public class importiereTabelle {
 		Die Liste ist genauso lang wie die, die getDaten zurückliefert
 		*/
 
-		String splittedDate[];
+		String splittedDate[] = {"2004","11","3"};
 		String ergebnisDate[]; // splittedDate richtig sortiert nach YYYY MM DD
 		ArrayList ergebnis =  new ArrayList();
-		ListIterator ergebnisIt =  new ListIterator();
+		ListIterator ergebnisIt =  ergebnis.listIterator();
 
 		// char datumsTrennzeichen = {'-','.','.','/','/'}; // gleiche länge wie datenFormate[]
 

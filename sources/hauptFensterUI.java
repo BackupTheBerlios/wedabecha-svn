@@ -26,7 +26,6 @@ import javax.swing.*;
 
 public class hauptFensterUI extends JFrame {
 	static JFrame hauptFenster = new JFrame("wedabecha");
-	private static kontextMenuUI popupMenu = new kontextMenuUI();
 	private JPanel mainPanel = new JPanel();
 	private JLayeredPane layeredPane = new JLayeredPane();
 	private zeichneRaster zeichneRaster = new zeichneRaster();
@@ -57,12 +56,6 @@ public class hauptFensterUI extends JFrame {
 		// Hauptmenu in das Fenster einbinden
 		this.hauptFenster.setJMenuBar(hauptMenu.getHauptMenu());
 
-		toolBarUI toolBar = new toolBarUI();
-
-		// Werkzeugleiste einbinden
-		this.hauptFenster.getContentPane().add(toolBar.getToolBar(), BorderLayout.NORTH);
-
-
 		// Listener zum Fensterschliessen per "wegkreuzen"
 		this.hauptFenster.addWindowListener(new beendenListener());
 
@@ -71,11 +64,17 @@ public class hauptFensterUI extends JFrame {
 		int Xposition = (bildSchirmBreite - this.fensterBreite) / 2;
 		int Yposition = (bildSchirmHoehe - this.fensterHoehe) / 2;
 		this.hauptFenster.setSize(this.fensterBreite,this.fensterHoehe);
-		
+
 		// JLayeredPane wird als neue ContentPane eingesetzt
 		this.hauptFenster.setContentPane(layeredPane);
 		layeredPane.setOpaque(true); // contentpanes müssen opaque sein
 		this.layeredPane.add(zeichneRaster, JLayeredPane.DEFAULT_LAYER);
+
+		final toolBarUI toolBar = new toolBarUI();
+
+		// Werkzeugleiste einbinden
+		this.layeredPane.add(toolBar.getToolBar(), JLayeredPane.PALETTE_LAYER);
+
 
 		this.hauptFenster.setLocation(Xposition,Yposition);
 		this.hauptFenster.setResizable(true);
