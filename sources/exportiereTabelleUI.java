@@ -27,22 +27,24 @@ import javax.swing.filechooser.FileFilter;
 
 public class exportiereTabelleUI {
 	public exportiereTabelleUI () {
-		JFileChooser fc = new JFileChooser();
+		final JFileChooser fc = new JFileChooser();
 
 		fc.setDialogTitle("Tabellendaten exportieren");
 		fc.setDialogType(JFileChooser.SAVE_DIALOG);
-
+		
+		
 		fc.setFileFilter( new FileFilter() {
-			public boolean accept( File f ) {
-				return 	f.isDirectory() ||
-						f.getName().toLowerCase().endsWith(".weda") ||
-						f.getName().toLowerCase().endsWith(".csv");
-  			} // accept()
+
+			public boolean accept(File f) {
+				return f.isDirectory() ||
+				f.getName().toLowerCase().endsWith(".weda") ||
+				f.getName().toLowerCase().endsWith(".csv");
+			}//accept
 
 			public String getDescription() {
-				return "WeDaBeCha Tabellendatei (*.weda)";
-  			}
-  		} ); // zeigt nur Dateien mit der Endung .jpg an
+				return "Tabellendateien (*.weda, *.csv)";
+				}
+  			} ); // zeigt nur Dateien mit der Endung .weda und .csv an
 
 		int returnVal = fc.showSaveDialog( null );
 
@@ -51,7 +53,7 @@ public class exportiereTabelleUI {
 			File file = fc.getSelectedFile();
 			System.out.println( file.getName() );
 			// hier muss die tabellenNummer noch irgendwo herkommen
-			toWeda.writeFile(file.getName(), 1);
+			toWeda.writeFile(file.getAbsolutePath(), 1);
 		} else {
 			System.out.println( "Auswahl abgebrochen" );
 		} // fi
